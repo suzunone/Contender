@@ -33,7 +33,7 @@ use DOMDocument;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  */
-class DOM
+class Contender
 {
     public const DEFAULT_OPTION = [
         LIBXML_BIGLINES,

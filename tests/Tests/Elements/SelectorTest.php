@@ -19,16 +19,16 @@ namespace Tests\Suzunone\Contender\Elements;
 
 use Contender\Elements\Node;
 use PHPUnit\Framework\TestCase;
-use Contender\DOM;
+use Contender\Contender;
 
 class SelectorTest extends TestCase
 {
     public function test_querySelector()
     {
-        $parser = new DOM();
+        $parser = new Contender();
 
         /**
-         * @var \Contender\DOM
+         * @var \Contender\Contender
          */
         $res = $parser->load(file_get_contents(__DIR__.'/../../data/wikipedia.html'));
 
@@ -49,7 +49,7 @@ class SelectorTest extends TestCase
 
     public function test_querySelectorAll()
     {
-        $parser = new DOM();
+        $parser = new Contender();
         $res = $parser->load(file_get_contents(__DIR__.'/../../data/wikipedia.html'));
         $collection = $res->querySelectorAll('.toclevel-1.tocsection-1, .toclevel-1.tocsection-2');
 

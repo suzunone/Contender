@@ -17,17 +17,17 @@
 
 namespace Tests\Suzunone\Contender\Elements;
 
-use Contender\DOM;
+use Contender\Contender;
 use PHPUnit\Framework\TestCase;
 
 class GetterTest extends TestCase
 {
     public function test_getAttribute()
     {
-        $parser = new DOM();
+        $parser = new Contender();
 
         /**
-         * @var \Contender\DOM
+         * @var \Contender\Contender
          */
         $res = $parser->load(file_get_contents(__DIR__ . '/../../data/wikipedia.html'));
 
@@ -69,10 +69,10 @@ class GetterTest extends TestCase
      */
     public function test_innerHtml($html, $path, $expect)
     {
-        $parser = new DOM();
+        $parser = new Contender();
 
         /**
-         * @var \Contender\DOM
+         * @var \Contender\Contender
          */
         $res = $parser->load($html);
 
@@ -92,10 +92,10 @@ class GetterTest extends TestCase
      */
     public function test_innerHtml_add($html, $path, $expect)
     {
-        $parser = new DOM();
+        $parser = new Contender();
 
         /**
-         * @var \Contender\DOM
+         * @var \Contender\Contender
          */
         $res = $parser->load($html);
 
@@ -107,7 +107,7 @@ class GetterTest extends TestCase
 
     public function test_children()
     {
-        $parser = new DOM();
+        $parser = new Contender();
         $res = $parser->load(file_get_contents(__DIR__ . '/../../data/wikipedia.html'));
         $main = $res->querySelectorAll('#toc > ul');
 

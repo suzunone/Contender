@@ -17,14 +17,14 @@
 
 namespace Tests\Contender\Elements;
 
-use Contender\DOM;
+use Contender\Contender;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase
 {
     public function test_onlyElement()
     {
-        $parser = new DOM();
+        $parser = new Contender();
         $document = $parser->load(file_get_contents(__DIR__.'/../../data/wikipedia.html'));
         $main = $document->querySelectorAll('#toc > ul');
 
@@ -38,7 +38,7 @@ class CollectionTest extends TestCase
 
     public function test_querySelectorAll()
     {
-        $parser = new DOM();
+        $parser = new Contender();
         $document = $parser->load(file_get_contents(__DIR__.'/../../data/wikipedia.html'));
         $main = $document->querySelectorAll('#toc > ul');
 
@@ -50,7 +50,7 @@ class CollectionTest extends TestCase
 
     public function test_querySelectorAll_from_children()
     {
-        $parser = new DOM();
+        $parser = new Contender();
         $document = $parser->load(file_get_contents(__DIR__.'/../../data/wikipedia.html'));
         $main = $document->querySelectorAll('#toc > ul');
 

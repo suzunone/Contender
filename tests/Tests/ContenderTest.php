@@ -20,13 +20,13 @@ namespace Tests\Contender;
 use Contender\Elements\Document;
 use PHPUnit\Framework\TestCase;
 use Contender\Elements\Node;
-use Contender\DOM;
+use Contender\Contender;
 
 class ContenderTest extends TestCase
 {
     public function test_load_bigfile()
     {
-        $parser = new DOM();
+        $parser = new Contender();
 
         $dom = $parser->load(file_get_contents(__DIR__.'/../data/789_14547.html'));
 
@@ -41,7 +41,7 @@ class ContenderTest extends TestCase
 
     public function test_load_un_escaped()
     {
-        $parser = new DOM();
+        $parser = new Contender();
 
         $dom = $parser->load('<div>&</div>');
 
