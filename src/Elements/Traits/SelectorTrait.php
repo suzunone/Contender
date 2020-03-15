@@ -134,6 +134,15 @@ trait SelectorTrait
 
     /**
      * @param string $query
+     * @return \Contender\Elements\Collection
+     */
+    public function find(string $query): Collection
+    {
+        return $this->querySelectorAll($query)->onlyElement();
+    }
+
+    /**
+     * @param string $query
      * @return \Contender\Elements\Collection|Node[]
      */
     public function evaluateToCollection(string $query): Collection

@@ -41,6 +41,15 @@ class Collection extends \Illuminate\Support\Collection
     use CssSelector2XPathTrait;
 
     /**
+     * @param string $query
+     * @return \Contender\Elements\Collection
+     */
+    public function find(string $query): Collection
+    {
+        return $this->querySelectorAll($query)->onlyElement();
+    }
+
+    /**
      * @param \DOMNodeList $element
      * @param \Contender\Elements\ElementInterface $node
      * @return \Contender\Elements\Collection
@@ -60,7 +69,7 @@ class Collection extends \Illuminate\Support\Collection
      */
     public function onlyElement(): Collection
     {
-        return $this->filter(function (Node $node) {
+        return $this->filter(static function (Node $node) {
             return $node->is_element;
         })->values();
     }
