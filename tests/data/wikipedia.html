@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="ja" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>ウェブスクレイピング - Wikipedia</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":!1,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"ja","wgMonthNames":["","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],"wgMonthNamesShort":["","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],"wgRequestId":"XmDvHwpAAD8AAEy5AmIAAAAN","wgCSPNonce":!1,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"ウェブスクレイピング","wgTitle":"ウェブスクレイピング","wgCurRevisionId":75759597,"wgRevisionId":75759597,"wgArticleId":2546040,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["ソフトウェア関連のスタブ","コンピュータ関連のサブスタブ項目","自動認識およびデータ取得","構文解析 (プログラミング)"],
+"wgPageContentLanguage":"ja","wgPageContentModel":"wikitext","wgRelevantPageName":"ウェブスクレイピング","wgRelevantArticleId":2546040,"wgIsProbablyEditable":!0,"wgRelevantPageIsProbablyEditable":!0,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgMediaViewerOnClick":!0,"wgMediaViewerEnabledByDefault":!0,"wgPopupsReferencePreviews":!1,"wgPopupsConflictsWithNavPopupGadget":!1,"wgVisualEditor":{"pageLanguageCode":"ja","pageLanguageDir":"ltr","pageVariantFallbacks":"ja"},"wgMFDisplayWikibaseDescriptions":{"search":!0,"nearby":!0,"watchlist":!0,"tagline":!0},"wgWMESchemaEditAttemptStepOversample":!1,"wgULSCurrentAutonym":"日本語","wgNoticeProject":"wikipedia","wgWikibaseItemId":"Q665452","wgCentralAuthMobileDomain":!1,"wgEditSubmitButtonLabelPublish":!0};RLSTATE={"ext.globalCssJs.user.styles":"ready","site.styles":"ready","noscript":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","user.tokens":
+"loading","ext.cite.styles":"ready","mediawiki.legacy.shared":"ready","mediawiki.legacy.commonPrint":"ready","mediawiki.toc.styles":"ready","skins.vector.styles":"ready","wikibase.client.init":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.uls.interlanguage":"ready","ext.wikimediaBadges":"ready"};RLPAGEMODULES=["ext.cite.ux-enhancements","site","mediawiki.page.startup","skins.vector.js","mediawiki.page.ready","mediawiki.toc","ext.gadget.ReferenceTooltips","ext.gadget.suppressEnterAtSummaryBox","ext.gadget.checkSignature","ext.gadget.WikiMiniAtlas","ext.gadget.switcher","ext.centralauth.centralautologin","mmv.head","mmv.bootstrap.autostart","ext.popups","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.eventLogging","ext.wikimediaEvents","ext.navigationTiming","ext.uls.compactlinks","ext.uls.interface","ext.cx.eventlogging.campaigns","ext.centralNotice.geoIP","ext.centralNotice.startUp"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@1smlf",function($,jQuery,require,module){/*@nomin*/mw.user.options.set({"variant":"ja"});
+});mw.loader.implement("user.tokens@tffin",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+});});</script>
+<link rel="stylesheet" href="/w/load.php?lang=ja&amp;modules=ext.cite.styles%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.toc.styles%7Cskins.vector.styles%7Cwikibase.client.init&amp;only=styles&amp;skin=vector"/>
+<script async="" src="/w/load.php?lang=ja&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/w/load.php?lang=ja&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="generator" content="MediaWiki 1.35.0-wmf.21"/>
+<meta name="referrer" content="origin"/>
+<meta name="referrer" content="origin-when-crossorigin"/>
+<meta name="referrer" content="origin-when-cross-origin"/>
+<link rel="alternate" type="application/x-wiki" title="編集" href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit"/>
+<link rel="edit" title="編集" href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit"/>
+<link rel="apple-touch-icon" href="/static/apple-touch/wikipedia.png"/>
+<link rel="shortcut icon" href="/static/favicon/wikipedia.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipedia (ja)"/>
+<link rel="EditURI" type="application/rsd+xml" href="//ja.wikipedia.org/w/api.php?action=rsd"/>
+<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/"/>
+<link rel="alternate" type="application/atom+xml" title="WikipediaのAtomフィード" href="/w/index.php?title=%E7%89%B9%E5%88%A5:%E6%9C%80%E8%BF%91%E3%81%AE%E6%9B%B4%E6%96%B0&amp;feed=atom"/>
+<link rel="canonical" href="https://ja.wikipedia.org/wiki/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0"/>
+<link rel="dns-prefetch" href="//login.wikimedia.org"/>
+<link rel="dns-prefetch" href="//meta.wikimedia.org" />
+<!--[if lt IE 9]><script src="/w/resources/lib/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject mw-editable page-ウェブスクレイピング rootpage-ウェブスクレイピング skin-vector action-view">
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice" class="mw-body-content"><!-- CentralNotice --></div>
+	<div class="mw-indicators mw-body-content">
+</div>
+
+	<h1 id="firstHeading" class="firstHeading" lang="ja">ウェブスクレイピング</h1>
+	
+	<div id="bodyContent" class="mw-body-content">
+		<div id="siteSub" class="noprint">出典: フリー百科事典『ウィキペディア（Wikipedia）』</div>
+		<div id="contentSub"></div>
+		
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">ナビゲーションに移動</a>
+		<a class="mw-jump-link" href="#p-search">検索に移動</a>
+		<div id="mw-content-text" lang="ja" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><p><b>ウェブスクレイピング</b>（<a href="/wiki/%E8%8B%B1%E8%AA%9E" title="英語">英</a>&#58; <span lang="en">Web scraping</span>）とは、<a href="/wiki/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88" title="ウェブサイト">ウェブサイト</a>から情報を抽出するコンピュータソフトウェア技術のこと。ウェブ・クローラー<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">&#91;1&#93;</a></sup>あるいはウェブ・スパイダー<sup id="cite_ref-2" class="reference"><a href="#cite_note-2">&#91;2&#93;</a></sup>とも呼ばれる。
+通常このようなソフトウェアプログラムは低レベルの<a href="/wiki/HTTP" class="mw-redirect" title="HTTP">HTTP</a>を実装することで、もしくはウェブブラウザを埋め込むことによって、<a href="/wiki/WWW" class="mw-redirect" title="WWW">WWW</a>のコンテンツを取得する。
+</p><p>ウェブスクレイピングは多くの検索エンジンによって採用されている、<a href="/wiki/%E3%83%9C%E3%83%83%E3%83%88" class="mw-disambig" title="ボット">ボット</a>を利用してウェブ上の情報にインデックス付けを行う<a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%A4%E3%83%B3%E3%83%87%E3%82%AF%E3%82%B7%E3%83%B3%E3%82%B0&amp;action=edit&amp;redlink=1" class="new" title="ウェブインデクシング (存在しないページ)">ウェブインデクシング</a>と密接な関係がある。ウェブスクレイピングではウェブ上の非構造化データの変換、一般的には<a href="/wiki/HTML" class="mw-redirect" title="HTML">HTML</a>フォーマットからデータベースやスプレッドシートに格納・分析可能な構造化データへの変換に、より焦点が当てられている。また、コンピュータソフトウェアを利用して人間のブラウジングをシミュレートするウェブオートメーションとも関係が深い。ウェブスクレイピングの用途は、オンラインでの価格比較、気象データ監視、ウェブサイトの変更検出、研究、<a href="/wiki/%E3%83%9E%E3%83%83%E3%82%B7%E3%83%A5%E3%82%A2%E3%83%83%E3%83%97_(Web%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0)" title="マッシュアップ (Webプログラミング)">ウェブマッシュアップ</a>やウェブデータの統合等である。
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="ja" dir="ltr"><h2 id="mw-toc-heading">目次</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#手法"><span class="tocnumber">1</span> <span class="toctext">手法</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#法的問題"><span class="tocnumber">2</span> <span class="toctext">法的問題</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#ボットを禁止するための技術的手段"><span class="tocnumber">3</span> <span class="toctext">ボットを禁止するための技術的手段</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#脚注"><span class="tocnumber">4</span> <span class="toctext">脚注</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#関連項目"><span class="tocnumber">5</span> <span class="toctext">関連項目</span></a></li>
+</ul>
+</div>
+
+<h2><span id=".E6.89.8B.E6.B3.95"></span><span class="mw-headline" id="手法">手法</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit&amp;section=1" title="節を編集: 手法">編集</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>ウェブスクレイピングはWWWから自動的に情報を収集する処理に他ならない。この分野は未だテキスト処理や意味論的理解、人工知能、ヒューマンコンピュータインタラクションの面でブレークスルーを必要としている野心的な手法である<a href="/wiki/%E3%82%BB%E3%83%9E%E3%83%B3%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E3%82%A6%E3%82%A7%E3%83%96" class="mw-redirect" title="セマンティックウェブ">セマンティックウェブ</a>と目指すところが近い。対して、ウェブスクレイピングでは既存技術に基づいた、その場しのぎであろうとも現実的な解決案を良しとする。したがって、ウェブスクレイピング技術は次のような異なる自動化技術の集合体である。
+</p>
+<ul><li>人間によるコピーアンドペースト</li>
+<li>全文検索と<a href="/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE" title="reg">正規表現</a>マッチ</li>
+<li>HTTPプログラミング</li>
+<li>データマイニングアルゴリズム</li>
+<li>DOM解析</li>
+<li>HTMLパーサ</li>
+<li>ウェブスクレイピングソフトウェア</li>
+<li>垂直統合プラットフォーム</li>
+<li>意味注釈認識</li></ul>
+<h2><span id=".E6.B3.95.E7.9A.84.E5.95.8F.E9.A1.8C"></span><span class="mw-headline" id="法的問題">法的問題</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit&amp;section=2" title="節を編集: 法的問題">編集</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>ウェブスクレイピングはいくつかのウェブサイトの規約に反する可能性がある。
+例えば、短文投稿サイトの<a href="/wiki/%E3%83%84%E3%82%A4%E3%83%83%E3%82%BF%E3%83%BC" class="mw-redirect" title="ツイッター">ツイッター</a>ではサービス利用規約によって明示的に禁止されており<sup id="cite_ref-3" class="reference"><a href="#cite_note-3">&#91;3&#93;</a></sup>、APIの利用が必須となる。
+</p>
+<h2><span id=".E3.83.9C.E3.83.83.E3.83.88.E3.82.92.E7.A6.81.E6.AD.A2.E3.81.99.E3.82.8B.E3.81.9F.E3.82.81.E3.81.AE.E6.8A.80.E8.A1.93.E7.9A.84.E6.89.8B.E6.AE.B5"></span><span class="mw-headline" id="ボットを禁止するための技術的手段">ボットを禁止するための技術的手段</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit&amp;section=3" title="節を編集: ボットを禁止するための技術的手段">編集</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>ウェブサイトの管理者にはボットを停止または処理を遅らせるいくつかの手段が存在する。
+</p><p>たとえば，HTMLを書く際，ヘッダ内（<code>&lt;head&gt;</code>～<code>&lt;/head&gt;</code>）に
+</p>
+<pre><code>&lt;meta name="robots" content="noindex,nofollow"&gt;</code>
+</pre>
+<p>と記載することで，当該ページを bot により（検索エンジンなどに）登録（<code>index</code>）したり，当該ページからリンクをたどっていかないように（<code>nofollow</code>）指定できる．
+</p><p><br />
+</p>
+<h2><span id=".E8.84.9A.E6.B3.A8"></span><span class="mw-headline" id="脚注">脚注</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit&amp;section=4" title="節を編集: 脚注">編集</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="reflist" style="list-style-type: decimal;">
+<ol class="references">
+<li id="cite_note-1"><b><a href="#cite_ref-1">^</a></b> <span class="reference-text"><a href="/wiki/%E8%8B%B1%E8%AA%9E" title="英語">英</a>&#58; <span lang="en">Web crawler</span></span>
+</li>
+<li id="cite_note-2"><b><a href="#cite_ref-2">^</a></b> <span class="reference-text"><a href="/wiki/%E8%8B%B1%E8%AA%9E" title="英語">英</a>&#58; <span lang="en">Web spider</span></span>
+</li>
+<li id="cite_note-3"><b><a href="#cite_ref-3">^</a></b> <span class="reference-text"><a rel="nofollow" class="external text" href="https://twitter.com/tos">サービス利用規約</a> - Twitter</span>
+</li>
+</ol></div>
+<h2><span id=".E9.96.A2.E9.80.A3.E9.A0.85.E7.9B.AE"></span><span class="mw-headline" id="関連項目">関連項目</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit&amp;section=5" title="節を編集: 関連項目">編集</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="div-col columns column-width" style="-moz-column-count:auto; -webkit-column-count:auto; column-count:auto; -moz-column-width: 22em; -webkit-column-width: 22em; column-width: 22em;">
+<ul><li><a href="/w/index.php?title=30_Digits&amp;action=edit&amp;redlink=1" class="new" title="30 Digits (存在しないページ)">30 Digits</a></li>
+<li><a href="/w/index.php?title=%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%82%BF&amp;action=edit&amp;redlink=1" class="new" title="インポータ (存在しないページ)">インポータ</a></li>
+<li><a href="/w/index.php?title=80legs&amp;action=edit&amp;redlink=1" class="new" title="80legs (存在しないページ)">80legs</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.octoparse.jp/">Octoparse</a></li>
+<li><a href="/wiki/%E3%82%B3%E3%83%BC%E3%83%91%E3%82%B9%E8%A8%80%E8%AA%9E%E5%AD%A6" title="コーパス言語学">コーパス言語学</a></li>
+<li><a href="/wiki/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" title="スクリーンスクレイピング">スクリーンスクレイピング</a></li>
+<li><a href="/w/index.php?title=%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%83%9E%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0&amp;action=edit&amp;redlink=1" class="new" title="レポートマイニング (存在しないページ)">レポートマイニング</a></li>
+<li><a href="/wiki/%E3%83%9E%E3%83%83%E3%82%B7%E3%83%A5%E3%82%A2%E3%83%83%E3%83%97_(Web%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0)" title="マッシュアップ (Webプログラミング)">マッシュアップ (Webプログラミング)</a></li>
+<li><a href="/wiki/OpenSocial" title="OpenSocial">OpenSocial</a></li>
+<li><a href="/w/index.php?title=Scraper_site&amp;action=edit&amp;redlink=1" class="new" title="Scraper site (存在しないページ)">Scraper site</a></li>
+<li><a href="/wiki/%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%82%B9%E3%83%91%E3%83%A0" title="検索エンジンスパム">検索エンジンスパム</a></li>
+<li><a href="/wiki/%E3%82%B3%E3%83%BC%E3%83%91%E3%82%B9" title="コーパス">コーパス</a></li>
+<li><a href="/wiki/%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%A9" title="クローラ">クローラ</a></li>
+<li><a href="/wiki/%E3%83%A1%E3%82%BF%E3%83%87%E3%83%BC%E3%82%BF" title="メタデータ">メタデータ</a></li>
+<li><a href="/wiki/%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%A2%E3%82%B0%E3%83%AA%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3" title="アカウントアグリゲーション">アカウントアグリゲーション</a></li>
+<li><a href="/w/index.php?title=Job_wrapping&amp;action=edit&amp;redlink=1" class="new" title="Job wrapping (存在しないページ)">Job wrapping</a></li>
+<li><a href="/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6" title="岡崎市立中央図書館事件">岡崎市立中央図書館事件</a></li></ul>
+</div>
+<table class="asbox plainlinks noprint" role="presentation"><tbody><tr>
+<td class="mbox-image"><a href="/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Crystal_Clear_app_kpackage.png" class="image" title="執筆の途中です"><img alt="執筆の途中です" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/03/Crystal_Clear_app_kpackage.png/30px-Crystal_Clear_app_kpackage.png" decoding="async" width="30" height="30" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/03/Crystal_Clear_app_kpackage.png/45px-Crystal_Clear_app_kpackage.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/03/Crystal_Clear_app_kpackage.png/60px-Crystal_Clear_app_kpackage.png 2x" data-file-width="128" data-file-height="128" /></a></td>
+<td class="mbox-text">この項目は、<a href="/wiki/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2" title="ソフトウェア">ソフトウェア</a>に関連した<b><a href="/wiki/Wikipedia:%E3%82%B9%E3%82%BF%E3%83%96" title="Wikipedia:スタブ">書きかけの項目</a></b>です。<a class="external text" href="https://ja.wikipedia.org/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit">この項目を加筆・訂正</a>などしてくださる<a href="/wiki/Category:%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%A2%E9%80%A3%E3%81%AE%E3%82%B9%E3%82%BF%E3%83%96" title="Category:ソフトウェア関連のスタブ">協力者を求めています</a>（<a href="/wiki/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88:%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF" title="プロジェクト:コンピュータ">PJ:コンピュータ</a>/<a href="/wiki/Portal:%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF" title="Portal:コンピュータ">P:コンピュータ</a>）。</td>
+</tr></tbody></table>
+<div class="boilerplate metadata" id="stub">
+<table cellspacing="2" cellpadding="3" style="width:80%; border:solid #999 1px;background:#F8F8F8; margin:0.5em auto; clear:both">
+<tbody><tr>
+<td style="width:10%; text-align:right"><a href="/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Qsicon_inArbeit.png" class="image" title="加筆訂正願います"><img alt="加筆訂正願います" src="//upload.wikimedia.org/wikipedia/commons/a/a4/Qsicon_inArbeit.png" decoding="async" width="24" height="24" data-file-width="24" data-file-height="24" /></a><a href="/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:PC_template.svg" class="image" title="執筆の途中です"><img alt="執筆の途中です" src="//upload.wikimedia.org/wikipedia/commons/thumb/b/be/PC_template.svg/48px-PC_template.svg.png" decoding="async" width="48" height="48" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/b/be/PC_template.svg/72px-PC_template.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/be/PC_template.svg/96px-PC_template.svg.png 2x" data-file-width="48" data-file-height="48" /></a>
+</td>
+<td style="color:black">この「<b>ウェブスクレイピング</b>」は、<a href="/wiki/%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF" title="コンピュータ">コンピュータ</a>関連の項目ですが、<b><a href="/wiki/Wikipedia:%E3%82%B9%E3%82%BF%E3%83%96" title="Wikipedia:スタブ">内容が不十分</a></b>です。<a class="external text" href="https://ja.wikipedia.org/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit">この記事を加筆、訂正</a>などして下さる<a href="/wiki/Category:%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E9%96%A2%E9%80%A3%E3%81%AE%E3%82%B5%E3%83%96%E3%82%B9%E3%82%BF%E3%83%96%E9%A0%85%E7%9B%AE" title="Category:コンピュータ関連のサブスタブ項目">協力者を求めています</a><small>（<a href="/wiki/Portal:%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF" title="Portal:コンピュータ">Portal:コンピュータ</a>）</small>。
+</td></tr></tbody></table></div>
+<!-- 
+NewPP limit report
+Parsed by mw1327
+Cached time: 20200305065722
+Cache expiry: 2592000
+Dynamic content: false
+Complications: []
+CPU time usage: 0.068 seconds
+Real time usage: 0.091 seconds
+Preprocessor visited node count: 344/1000000
+Post‐expand include size: 4597/2097152 bytes
+Template argument size: 626/2097152 bytes
+Highest expansion depth: 9/40
+Expensive parser function count: 0/500
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 875/5000000 bytes
+Number of Wikibase entities loaded: 0/400
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   59.276      1 -total
+ 18.63%   11.042      3 Template:Lang-en-short
+ 18.60%   11.024      1 Template:Div_col
+ 17.56%   10.411      1 Template:Reflist
+ 14.13%    8.373      1 Template:Software-stub
+ 12.76%    7.564      3 Template:LangWithName
+  8.98%    5.324      1 Template:Asbox
+  6.08%    3.604      1 Template:Column-count
+  5.70%    3.377      3 Template:Lang
+  5.15%    3.051      1 Template:Comp-substub
+-->
+
+<!-- Saved in parser cache with key jawiki:pcache:idhash:2546040-0!canonical and timestamp 20200305065722 and revision id 75759597
+ -->
+</div><noscript><img src="//ja.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript></div>
+		<div class="printfooter">「<a dir="ltr" href="https://ja.wikipedia.org/w/index.php?title=ウェブスクレイピング&amp;oldid=75759597">https://ja.wikipedia.org/w/index.php?title=ウェブスクレイピング&amp;oldid=75759597</a>」から取得</div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/%E7%89%B9%E5%88%A5:%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA" title="特別:カテゴリ">カテゴリ</a>: <ul><li><a href="/wiki/Category:%E8%87%AA%E5%8B%95%E8%AA%8D%E8%AD%98%E3%81%8A%E3%82%88%E3%81%B3%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%96%E5%BE%97" title="Category:自動認識およびデータ取得">自動認識およびデータ取得</a></li><li><a href="/wiki/Category:%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90_(%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0)" title="Category:構文解析 (プログラミング)">構文解析 (プログラミング)</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">隠しカテゴリ: <ul><li><a href="/wiki/Category:%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%A2%E9%80%A3%E3%81%AE%E3%82%B9%E3%82%BF%E3%83%96" title="Category:ソフトウェア関連のスタブ">ソフトウェア関連のスタブ</a></li><li><a href="/wiki/Category:%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E9%96%A2%E9%80%A3%E3%81%AE%E3%82%B5%E3%83%96%E3%82%B9%E3%82%BF%E3%83%96%E9%A0%85%E7%9B%AE" title="Category:コンピュータ関連のサブスタブ項目">コンピュータ関連のサブスタブ項目</a></li></ul></div></div>
+		<div class="visualClear"></div>
+		
+	</div>
+</div>
+<div id='mw-data-after-content'>
+	<div class="read-more-container"></div>
+</div>
+
+<div id="mw-navigation">
+    <h2>案内メニュー</h2>
+    <div id="mw-head">
+        
+<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">個人用ツール</h3>
+	<ul >
+		
+		<li id="pt-anonuserpage">ログインしていません</li>
+		<li id="pt-anontalk"><a href="/wiki/%E7%89%B9%E5%88%A5:%E3%83%88%E3%83%BC%E3%82%AF%E3%83%9A%E3%83%BC%E3%82%B8" title="このIPアドレスからなされた編集についての議論 [n]" accesskey="n">トーク</a></li><li id="pt-anoncontribs"><a href="/wiki/%E7%89%B9%E5%88%A5:%E8%87%AA%E5%88%86%E3%81%AE%E6%8A%95%E7%A8%BF%E8%A8%98%E9%8C%B2" title="このIPアドレスからなされた編集の一覧 [y]" accesskey="y">投稿記録</a></li><li id="pt-createaccount"><a href="/w/index.php?title=%E7%89%B9%E5%88%A5:%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E4%BD%9C%E6%88%90&amp;returnto=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" title="アカウントを作成してログインすることをお勧めしますが、必須ではありません">アカウント作成</a></li><li id="pt-login"><a href="/w/index.php?title=%E7%89%B9%E5%88%A5:%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3&amp;returnto=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" title="ログインすることを推奨します。ただし、必須ではありません。 [o]" accesskey="o">ログイン</a></li>
+	</ul>
+</div>
+
+        <div id="left-navigation">
+            <div id="p-namespaces" role="navigation" class="vectorTabs " aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">名前空間</h3>
+	<ul >
+		<li id="ca-nstab-main" class="selected"><a href="/wiki/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" title="本文を閲覧 [c]" accesskey="c">ページ</a></li><li id="ca-talk" class="new"><a href="/w/index.php?title=%E3%83%8E%E3%83%BC%E3%83%88:%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit&amp;redlink=1" rel="discussion" title="本文ページについての議論 (存在しないページ) [t]" accesskey="t">ノート</a></li>
+	</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-variants-label" />
+	<h3 id="p-variants-label">
+		<span>変種</span>
+	</h3>
+	<ul class="menu" >
+		
+	</ul>
+</div>
+
+        </div>
+        <div id="right-navigation">
+            <div id="p-views" role="navigation" class="vectorTabs " aria-labelledby="p-views-label">
+	<h3 id="p-views-label">表示</h3>
+	<ul >
+		<li id="ca-view" class="collapsible selected"><a href="/wiki/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0">閲覧</a></li><li id="ca-edit" class="collapsible"><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=edit" title="このページを編集 [e]" accesskey="e">編集</a></li><li id="ca-history" class="collapsible"><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=history" title="このページの過去の版 [h]" accesskey="h">履歴表示</a></li>
+	</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-cactions-label" />
+	<h3 id="p-cactions-label">
+		<span>その他</span>
+	</h3>
+	<ul class="menu" >
+		
+	</ul>
+</div>
+<div id="p-search" role="search">
+	<h3 >
+		<label for="searchInput">検索</label>
+	</h3>
+	<form action="/w/index.php" id="searchform">
+		<div id="simpleSearch">
+			<input type="search" name="search" placeholder="Wikipedia内を検索" title="Wikipedia内を検索する [f]" accesskey="f" id="searchInput"/>
+			<input type="hidden" value="特別:検索" name="title"/>
+			<input type="submit" name="fulltext" value="検索" title="この文字列が含まれるページを探す" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/>
+			<input type="submit" name="go" value="表示" title="厳密に一致する名前のページが存在すれば、そのページへ移動する" id="searchButton" class="searchButton"/>
+		</div>
+	</form>
+</div>
+
+        </div>
+    </div>
+    <div id="mw-panel">
+        <div id="p-logo" role="banner">
+            <a  title="メインページに移動する" class="mw-wiki-logo" href="/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8"></a>
+        </div>
+        
+<div class="portal" role="navigation" id="p-navigation"  aria-labelledby="p-navigation-label">
+	<h3  id="p-navigation-label">
+		案内
+	</h3>
+	<div class="body">
+		<ul><li id="n-mainpage"><a href="/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8" title="メインページに移動する [z]" accesskey="z">メインページ</a></li><li id="n-portal"><a href="/wiki/Wikipedia:%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3%E3%83%BB%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB" title="このプロジェクトについて、できること、情報を入手する場所">コミュニティ・ポータル</a></li><li id="n-currentevents"><a href="/wiki/Portal:%E6%9C%80%E8%BF%91%E3%81%AE%E5%87%BA%E6%9D%A5%E4%BA%8B" title="最近の出来事の背景を知る">最近の出来事</a></li><li id="n-newpages"><a href="/wiki/%E7%89%B9%E5%88%A5:%E6%96%B0%E3%81%97%E3%81%84%E3%83%9A%E3%83%BC%E3%82%B8" title="最近新規に作成されたページの一覧">新しいページ</a></li><li id="n-recentchanges"><a href="/wiki/%E7%89%B9%E5%88%A5:%E6%9C%80%E8%BF%91%E3%81%AE%E6%9B%B4%E6%96%B0" title="このウィキにおける最近の更新の一覧 [r]" accesskey="r">最近の更新</a></li><li id="n-randompage"><a href="/wiki/%E7%89%B9%E5%88%A5:%E3%81%8A%E3%81%BE%E3%81%8B%E3%81%9B%E8%A1%A8%E7%A4%BA" title="無作為に選択されたページを読み込む [x]" accesskey="x">おまかせ表示</a></li><li id="n-sandbox"><a href="/wiki/Wikipedia:%E3%82%B5%E3%83%B3%E3%83%89%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9" title="練習用のページ">練習用ページ</a></li><li id="n-commonsupload"><a href="//commons.wikimedia.org/wiki/Special:UploadWizard?uselang=ja" title="画像やメディアファイルをウィキメディア・コモンズにアップロード">アップロード (ウィキメディア・コモンズ)</a></li></ul>
+		
+	</div>
+</div>
+
+<div class="portal" role="navigation" id="p-help"  aria-labelledby="p-help-label">
+	<h3  id="p-help-label">
+		ヘルプ
+	</h3>
+	<div class="body">
+		<ul><li id="n-help"><a href="/wiki/Help:%E7%9B%AE%E6%AC%A1" title="情報を得る場所">ヘルプ</a></li><li id="n-villagepump"><a href="/wiki/Wikipedia:%E4%BA%95%E6%88%B8%E7%AB%AF" title="プロジェクトについての意見交換">井戸端</a></li><li id="n-notice"><a href="/wiki/Wikipedia:%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B" title="プロジェクトについてのお知らせ">お知らせ</a></li><li id="n-bugreportspage"><a href="/wiki/Wikipedia:%E3%83%90%E3%82%B0%E3%81%AE%E5%A0%B1%E5%91%8A" title="ウィキペディア・ソフトウェアのバグ報告">バグの報告</a></li><li id="n-sitesupport"><a href="//donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_ja.wikipedia.org&amp;uselang=ja" title="ご支援ください">寄付</a></li><li id="n-contact"><a href="/wiki/Wikipedia:%E9%80%A3%E7%B5%A1%E5%85%88" title="ウィキペディアやウィキメディア財団に関する連絡先">ウィキペディアに関するお問い合わせ</a></li></ul>
+		
+	</div>
+</div>
+
+<div class="portal" role="navigation" id="p-tb"  aria-labelledby="p-tb-label">
+	<h3  id="p-tb-label">
+		ツール
+	</h3>
+	<div class="body">
+		<ul><li id="t-whatlinkshere"><a href="/wiki/%E7%89%B9%E5%88%A5:%E3%83%AA%E3%83%B3%E3%82%AF%E5%85%83/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" title="ここにリンクしている全ウィキページの一覧 [j]" accesskey="j">リンク元</a></li><li id="t-recentchangeslinked"><a href="/wiki/%E7%89%B9%E5%88%A5:%E9%96%A2%E9%80%A3%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%B3%81/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" rel="nofollow" title="このページからリンクしているページの最近の更新 [k]" accesskey="k">関連ページの更新状況</a></li><li id="t-upload"><a href="/wiki/Wikipedia:%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89" title="ファイルをアップロードする [u]" accesskey="u">ファイルをアップロード</a></li><li id="t-specialpages"><a href="/wiki/%E7%89%B9%E5%88%A5:%E7%89%B9%E5%88%A5%E3%83%9A%E3%83%BC%E3%82%B8%E4%B8%80%E8%A6%A7" title="特別ページの一覧 [q]" accesskey="q">特別ページ</a></li><li id="t-permalink"><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;oldid=75759597" title="このページのこの版への固定リンク">この版への固定リンク</a></li><li id="t-info"><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=info" title="このページについての詳細情報">ページ情報</a></li><li id="t-wikibase"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q665452" title="関連付けられたデータリポジトリ項目へのリンク [g]" accesskey="g">ウィキデータ項目</a></li><li id="t-cite"><a href="/w/index.php?title=%E7%89%B9%E5%88%A5:%E3%81%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E5%BC%95%E7%94%A8&amp;page=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;id=75759597" title="このページの引用方法">このページを引用</a></li></ul>
+		
+	</div>
+</div>
+
+<div class="portal" role="navigation" id="p-coll-print_export"  aria-labelledby="p-coll-print_export-label">
+	<h3  id="p-coll-print_export-label">
+		印刷/書き出し
+	</h3>
+	<div class="body">
+		<ul><li id="coll-create_a_book"><a href="/w/index.php?title=%E7%89%B9%E5%88%A5:%E3%83%96%E3%83%83%E3%82%AF&amp;bookcmd=book_creator&amp;referer=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0">ブックの新規作成</a></li><li id="coll-download-as-rl"><a href="/w/index.php?title=%E7%89%B9%E5%88%A5:ElectronPdf&amp;page=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;action=show-download-screen">PDF 形式でダウンロード</a></li><li id="t-print"><a href="/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;printable=yes" title="このページの印刷用ページ [p]" accesskey="p">印刷用バージョン</a></li></ul>
+		
+	</div>
+</div>
+
+<div class="portal" role="navigation" id="p-lang"  aria-labelledby="p-lang-label">
+	<h3  id="p-lang-label">
+		他言語版
+	</h3>
+	<div class="body">
+		<ul><li class="interlanguage-link interwiki-ar"><a href="https://ar.wikipedia.org/wiki/%D8%A7%D8%B3%D8%AA%D8%AE%D9%84%D8%A7%D8%B5_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9" title="アラビア語: استخلاص المواقع" lang="ar" hreflang="ar" class="interlanguage-link-target">العربية</a></li><li class="interlanguage-link interwiki-ca"><a href="https://ca.wikipedia.org/wiki/Web_scraping" title="カタロニア語: Web scraping" lang="ca" hreflang="ca" class="interlanguage-link-target">Català</a></li><li class="interlanguage-link interwiki-de"><a href="https://de.wikipedia.org/wiki/Screen_Scraping" title="ドイツ語: Screen Scraping" lang="de" hreflang="de" class="interlanguage-link-target">Deutsch</a></li><li class="interlanguage-link interwiki-en"><a href="https://en.wikipedia.org/wiki/Web_scraping" title="英語: Web scraping" lang="en" hreflang="en" class="interlanguage-link-target">English</a></li><li class="interlanguage-link interwiki-es"><a href="https://es.wikipedia.org/wiki/Web_scraping" title="スペイン語: Web scraping" lang="es" hreflang="es" class="interlanguage-link-target">Español</a></li><li class="interlanguage-link interwiki-eu"><a href="https://eu.wikipedia.org/wiki/Web_scraping" title="バスク語: Web scraping" lang="eu" hreflang="eu" class="interlanguage-link-target">Euskara</a></li><li class="interlanguage-link interwiki-fr"><a href="https://fr.wikipedia.org/wiki/Web_scraping" title="フランス語: Web scraping" lang="fr" hreflang="fr" class="interlanguage-link-target">Français</a></li><li class="interlanguage-link interwiki-id"><a href="https://id.wikipedia.org/wiki/Web_scraping" title="インドネシア語: Web scraping" lang="id" hreflang="id" class="interlanguage-link-target">Bahasa Indonesia</a></li><li class="interlanguage-link interwiki-is"><a href="https://is.wikipedia.org/wiki/Vefs%C3%B6fnun" title="アイスランド語: Vefsöfnun" lang="is" hreflang="is" class="interlanguage-link-target">Íslenska</a></li><li class="interlanguage-link interwiki-it"><a href="https://it.wikipedia.org/wiki/Web_scraping" title="イタリア語: Web scraping" lang="it" hreflang="it" class="interlanguage-link-target">Italiano</a></li><li class="interlanguage-link interwiki-lv"><a href="https://lv.wikipedia.org/wiki/Rasmo%C5%A1ana" title="ラトビア語: Rasmošana" lang="lv" hreflang="lv" class="interlanguage-link-target">Latviešu</a></li><li class="interlanguage-link interwiki-nl"><a href="https://nl.wikipedia.org/wiki/Scrapen" title="オランダ語: Scrapen" lang="nl" hreflang="nl" class="interlanguage-link-target">Nederlands</a></li><li class="interlanguage-link interwiki-pt"><a href="https://pt.wikipedia.org/wiki/Coleta_de_dados_web" title="ポルトガル語: Coleta de dados web" lang="pt" hreflang="pt" class="interlanguage-link-target">Português</a></li><li class="interlanguage-link interwiki-ru"><a href="https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%B1-%D1%81%D0%BA%D1%80%D0%B5%D0%B9%D0%BF%D0%B8%D0%BD%D0%B3" title="ロシア語: Веб-скрейпинг" lang="ru" hreflang="ru" class="interlanguage-link-target">Русский</a></li><li class="interlanguage-link interwiki-sr"><a href="https://sr.wikipedia.org/wiki/Web_scraping" title="セルビア語: Web scraping" lang="sr" hreflang="sr" class="interlanguage-link-target">Српски / srpski</a></li><li class="interlanguage-link interwiki-tr"><a href="https://tr.wikipedia.org/wiki/Web_kaz%C4%B1ma" title="トルコ語: Web kazıma" lang="tr" hreflang="tr" class="interlanguage-link-target">Türkçe</a></li><li class="interlanguage-link interwiki-uk"><a href="https://uk.wikipedia.org/wiki/Web_scraping" title="ウクライナ語: Web scraping" lang="uk" hreflang="uk" class="interlanguage-link-target">Українська</a></li><li class="interlanguage-link interwiki-zh"><a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96" title="中国語: 网页抓取" lang="zh" hreflang="zh" class="interlanguage-link-target">中文</a></li></ul>
+		<div class="after-portlet after-portlet-lang"><span class="wb-langlinks-edit wb-langlinks-link"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q665452#sitelinks-wikipedia" title="言語間リンクを編集する" class="wbc-editpage">リンクを編集</a></span></div>
+	</div>
+</div>
+
+    </div>
+</div>
+
+
+<div id="footer" role="contentinfo" >
+	<ul id="footer-info" class="">
+		<li id="footer-info-lastmod"> 最終更新 2020年1月13日 (月) 13:07 （日時は<a href="/wiki/%E7%89%B9%E5%88%A5:%E5%80%8B%E4%BA%BA%E8%A8%AD%E5%AE%9A#mw-prefsection-rendering" title="特別:個人設定">個人設定</a>で未設定ならば<a href="/wiki/%E5%8D%94%E5%AE%9A%E4%B8%96%E7%95%8C%E6%99%82" title="協定世界時">UTC</a>）。</li>
+		<li id="footer-info-copyright">テキストは<a href="//ja.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">クリエイティブ・コモンズ 表示-継承ライセンス</a>の下で利用可能です。追加の条件が適用される場合があります。詳細は<a href="//foundation.wikimedia.org/wiki/Terms_of_Use/ja">利用規約</a>を参照してください。<br /></li>
+	</ul>
+	<ul id="footer-places" class="">
+		<li id="footer-places-privacy"><a href="https://meta.wikimedia.org/wiki/Privacy_policy/ja" class="extiw" title="m:Privacy policy/ja">プライバシー・ポリシー</a></li>
+		<li id="footer-places-about"><a href="/wiki/Wikipedia:%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%87%E3%82%A3%E3%82%A2%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" title="Wikipedia:ウィキペディアについて">ウィキペディアについて</a></li>
+		<li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:%E5%85%8D%E8%B2%AC%E4%BA%8B%E9%A0%85" title="Wikipedia:免責事項">免責事項</a></li>
+		<li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">開発者</a></li>
+		<li id="footer-places-statslink"><a href="https://stats.wikimedia.org/#/ja.wikipedia.org">統計</a></li>
+		<li id="footer-places-cookiestatement"><a href="https://foundation.wikimedia.org/wiki/Cookie_statement">Cookieに関する声明</a></li>
+		<li id="footer-places-mobileview"><a href="//ja.m.wikipedia.org/w/index.php?title=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">モバイルビュー</a></li>
+	</ul>
+	<ul id="footer-icons" class="noprint">
+		<li id="footer-copyrightico"><a href="https://wikimediafoundation.org/"><img src="/static/images/wikimedia-button.png" srcset="/static/images/wikimedia-button-1.5x.png 1.5x, /static/images/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation"/></a></li>
+		<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/"><img src="/static/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/static/images/poweredby_mediawiki_132x47.png 1.5x, /static/images/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a></li>
+	</ul>
+	<div style="clear: both;"></div>
+</div>
+
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.068","walltime":"0.091","ppvisitednodes":{"value":344,"limit":1000000},"postexpandincludesize":{"value":4597,"limit":2097152},"templateargumentsize":{"value":626,"limit":2097152},"expansiondepth":{"value":9,"limit":40},"expensivefunctioncount":{"value":0,"limit":500},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":875,"limit":5000000},"entityaccesscount":{"value":0,"limit":400},"timingprofile":["100.00%   59.276      1 -total"," 18.63%   11.042      3 Template:Lang-en-short"," 18.60%   11.024      1 Template:Div_col"," 17.56%   10.411      1 Template:Reflist"," 14.13%    8.373      1 Template:Software-stub"," 12.76%    7.564      3 Template:LangWithName","  8.98%    5.324      1 Template:Asbox","  6.08%    3.604      1 Template:Column-count","  5.70%    3.377      3 Template:Lang","  5.15%    3.051      1 Template:Comp-substub"]},"cachereport":{"origin":"mw1327","timestamp":"20200305065722","ttl":2592000,"transientcontent":false}}});});</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Article","name":"\u30a6\u30a7\u30d6\u30b9\u30af\u30ec\u30a4\u30d4\u30f3\u30b0","url":"https:\/\/ja.wikipedia.org\/wiki\/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0","sameAs":"http:\/\/www.wikidata.org\/entity\/Q665452","mainEntity":"http:\/\/www.wikidata.org\/entity\/Q665452","author":{"@type":"Organization","name":"Contributors to Wikimedia projects"},"publisher":{"@type":"Organization","name":"Wikimedia Foundation, Inc.","logo":{"@type":"ImageObject","url":"https:\/\/www.wikimedia.org\/static\/images\/wmf-hor-googpub.png"}},"datePublished":"2012-03-28T20:36:49Z","dateModified":"2020-01-13T13:07:47Z"}</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":114,"wgHostname":"mw1268"});});</script></body></html>
