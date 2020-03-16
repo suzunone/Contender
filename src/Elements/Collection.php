@@ -40,6 +40,13 @@ class Collection extends \Illuminate\Support\Collection
 {
     use CssSelector2XPathTrait;
 
+    public function __construct($items = [])
+    {
+        parent::__construct($items);
+
+        static::proxy('innerHTML');
+    }
+
     /**
      * @param string $query
      * @return \Contender\Elements\Collection
@@ -136,4 +143,17 @@ class Collection extends \Illuminate\Support\Collection
 
         return $res->sortDom();
     }
+
+    public function innerHTML()
+    {
+        $this->first()->innerHTML;
+    }
+
+    public function attr(...$param)
+    {
+        $this->first()->attr(...$param);
+    }
+
+
+
 }
