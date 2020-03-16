@@ -43,8 +43,6 @@ class Collection extends \Illuminate\Support\Collection
     public function __construct($items = [])
     {
         parent::__construct($items);
-
-        static::proxy('innerHTML');
     }
 
     /**
@@ -144,9 +142,32 @@ class Collection extends \Illuminate\Support\Collection
         return $res->sortDom();
     }
 
-    public function innerHTML()
+
+    public function __get($key)
     {
-        return $this->first()->innerHTML;
+        if ($key === 'innerHTML') {
+            return $this->first()->innerHTML;
+        }
+
+        return parent::__get($key);
+    }
+
+    public function __set($name, $value)
+    {
+        if ($name === 'innerHTML') {
+            return $this->first()->innerHTML = $value;
+        }
+
+    }
+
+    public function __isset($name)
+    {
+        if ($name === 'innerHTML') {
+            return true;
+        }
+
+        return in_array($name, static::$proxies, true);
+
     }
 
     public function attr(...$param)
