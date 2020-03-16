@@ -35,6 +35,7 @@ use Contender\Elements\Traits\CssSelector2XPathTrait;
  * @method \Contender\Elements\Node offsetGet($key)
  * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
+ * @property string innerHtml
  */
 class Collection extends \Illuminate\Support\Collection
 {
@@ -145,24 +146,34 @@ class Collection extends \Illuminate\Support\Collection
 
     public function __get($key)
     {
-        if ($key === 'innerHTML') {
-            return $this->first()->innerHTML;
+        if (strtolower($key) === 'innerhtml') {
+            return $this->getInnerHtmlAttribute();
         }
 
         return parent::__get($key);
     }
 
-    public function __set($name, $value)
+    public function __set($key, $value)
     {
-        if ($name === 'innerHTML') {
-            return $this->first()->innerHTML = $value;
+        if (strtolower($key) === 'innerhtml') {
+            return $this->setInnerHtmlAttribute($value);
         }
 
     }
 
-    public function __isset($name)
+    public function getInnerHTMLAttribute()
     {
-        if ($name === 'innerHTML') {
+        return $this->first()->innerHTML;
+    }
+
+    public function setInnerHTMLAttribute($val)
+    {
+        return $this->first()->innerHTML = $val;
+    }
+
+    public function __isset($key)
+    {
+        if (strtolower($key) === 'innerhtml') {
             return true;
         }
 
