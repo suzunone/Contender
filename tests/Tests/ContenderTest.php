@@ -17,10 +17,9 @@
 
 namespace Tests\Contender;
 
+use Contender\Contender;
 use Contender\Elements\Document;
 use PHPUnit\Framework\TestCase;
-use Contender\Elements\Node;
-use Contender\Contender;
 
 class ContenderTest extends TestCase
 {
@@ -28,7 +27,7 @@ class ContenderTest extends TestCase
     {
         $parser = new Contender();
 
-        $dom = $parser->load(file_get_contents(__DIR__.'/../data/789_14547.html'));
+        $dom = $parser->load(file_get_contents(__DIR__ . '/../data/789_14547.html'));
 
         $this->assertInstanceOf(Document::class, $dom);
 
@@ -39,12 +38,27 @@ class ContenderTest extends TestCase
         $this->assertStringContainsString('<ruby><rb>吾輩</rb><rp>（</rp><rt>わがはい</rt><rp>）</rp></ruby>は猫', $content->innerHTML);
     }
 
-    public function test_load_un_escaped()
+    public function loadYnescapedDataProvider()
+    {
+        return [
+            'and' => ['<div>&</div>',
+                '<div>&amp;</div>',
+            ],
+            'nbsp' => ['<div>&nbsp;</div>',
+                '<div>&nbsp;</div>',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider loadYnescapedDataProvider
+     */
+    public function test_load_un_escaped($html, $expect)
     {
         $parser = new Contender();
 
-        $dom = $parser->load('<div>&</div>');
+        $dom = $parser->load($html);
 
-        $this->assertStringContainsString('<div>&amp;</div>', $dom->innerHTML);
+        $this->assertStringContainsString($expect, $dom->innerHTML);
     }
 }

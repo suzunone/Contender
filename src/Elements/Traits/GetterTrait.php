@@ -16,6 +16,7 @@
 
 namespace Contender\Elements\Traits;
 
+use Contender\Contender;
 use Contender\Elements\Collection;
 use Contender\Elements\Node;
 use DOMDocument;
@@ -262,7 +263,7 @@ trait GetterTrait
             $res .= $node->ownerDocument->saveHtml($node);
         }
 
-        return $res;
+        return str_replace(' ', '&nbsp;', $res);
     }
 
     /**
@@ -272,7 +273,7 @@ trait GetterTrait
     protected function htmlToNode(string $html): \DOMNode
     {
         $newNode = new DOMDocument();
-        $newNode->loadHtml($html, LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL);
+        $newNode->loadHtml($html, Contender::DEFAULT_LIBXML_OPTION);
         $newNode = $newNode->getElementsByTagName('body')->item(0)->childNodes->item(0);
 
         return $this->document()->importNode($newNode, true);
@@ -305,13 +306,15 @@ trait GetterTrait
      */
     public function getOuterHTMLAttribute(): string
     {
-        return $this->element->ownerDocument->saveHtml($this->element);
+        $res = $this->element->ownerDocument->saveHtml($this->element);
+
+        return str_replace(' ', '&nbsp;', $res);
     }
 
     /**
      * @return string
      */
-    public function getinnerXMLAttribute(): string
+    public function getInnerXMLAttribute(): string
     {
         if (!$this->element->childNodes) {
             return $this->innerText;
@@ -321,13 +324,13 @@ trait GetterTrait
             $res .= $node->ownerDocument->saveXML($node, LIBXML_NOXMLDECL);
         }
 
-        return $res;
+        return str_replace(' ', '&nbsp;', $res);
     }
 
     /**
      * @return string
      */
-    public function getOuterXTMLAttribute(): string
+    public function getOuterXMLAttribute(): string
     {
         return $this->element->ownerDocument->saveXML($this->element);
     }
