@@ -146,14 +146,13 @@ class Collection extends \Illuminate\Support\Collection
 
     public function innerHTML()
     {
-        $this->first()->innerHTML;
+        return $this->first()->innerHTML;
     }
 
     public function attr(...$param)
     {
-        $this->first()->attr(...$param);
+        return $this->first()->attr(...$param);
     }
-
 
 
 }
