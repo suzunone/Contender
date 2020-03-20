@@ -43,13 +43,25 @@ class Contender
     const OPTION_NONET = 'LIBXML_NONET';
     const OPTION_CONVERT_ENCODE = 'CONVERT_ENCODE';
     const OPTION_CONVERT_NO_ENCODE = 'CONVERT_NO_ENCODE';
+    const OPTION_CONVERT_REPLACE_CHARSET = 'OPTION_CONVERT_REPLACE_CHARSET';
+    const OPTION_CONVERT_NO_REPLACE_CHARSET = 'OPTION_CONVERT_NO_REPLACE_CHARSET';
+    const OPTION_FORMAT_OUTPUT_ENABLE = 'OPTION_FORMAT_OUTPUT_ENABLE';
+    const OPTION_FORMAT_OUTPUT_DISABLE = 'OPTION_FORMAT_OUTPUT_DISABLE';
+    const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
+    const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
 
     public const DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING;
 
     protected $options = [];
 
-    protected $is_encode = true;
+    protected $is_encode = false;
+    protected $is_replace_charset = true;
+    protected $format_output = false;
+    protected $is_minify = true;
 
+    /**
+     * Contender constructor.
+     */
     public function __construct()
     {
         libxml_use_internal_errors(true);
@@ -68,6 +80,10 @@ class Contender
         return $this;
     }
 
+    /**
+     * @param $option
+     * @return $this
+     */
     public function setOption($option): self
     {
         switch ($option) {
@@ -95,7 +111,27 @@ class Contender
             case self::OPTION_CONVERT_ENCODE:
                 $this->is_encode = true;
                 break;
+            case self::OPTION_CONVERT_REPLACE_CHARSET:
+                $this->is_replace_charset = true;
+                break;
+            case self::OPTION_CONVERT_NO_REPLACE_CHARSET:
+                $this->is_replace_charset = false;
+                break;
+            case self::OPTION_FORMAT_OUTPUT_ENABLE:
+                $this->format_output = true;
+                break;
+            case self::OPTION_FORMAT_OUTPUT_DISABLE:
+                $this->format_output = false;
+                break;
+            case self::OPTION_MINIFY_ENABLE:
+                $this->is_minify = true;
+                break;
+            case self::OPTION_MINIFY_DISABLE:
+                $this->is_minify = false;
+                break;
         }
+
+        return $this;
     }
 
     /**
@@ -110,13 +146,44 @@ class Contender
             $html = $this->toUTF8($html);
         }
 
-        $doc = new DOMDocument();
+        if (strpos($html, '</body>') === false) {
+            $html = "<body>{$html}</body>";
+        }
 
+        if (strpos($html, '</html>') === false) {
+            $internal_encoding = mb_internal_encoding();
+            $html = <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="{$internal_encoding}">
+</head>
+{$html}
+</html>
+HTML;
+        }
+
+        $doc = new DOMDocument();
+        if ($this->is_encode) {
+            $doc->encoding = 'UTF-8';
+        }
+        $doc->formatOutput = $this->format_output;
+        $doc->substituteEntities = false;
+
+        if ($this->is_minify) {
+            $html = preg_replace('/[ \t]+/', ' ', $html);
+        }
         $doc->loadHTML($html, $this->options());
 
         return new Document($doc);
     }
 
+    /**
+     * @param string $url
+     * @param array $options
+     * @param array|null $context_option
+     * @return \Contender\Elements\Document
+     */
     public function loadFromUrl(string $url, array $options = [], ?array $context_option = null)
     {
         $context = stream_context_create($context_option);
@@ -145,15 +212,28 @@ class Contender
         $doc = new DOMDocument();
         $doc->loadHTML($html, self::DEFAULT_LIBXML_OPTION);
         $xpath = new \DOMXPath($doc);
-        $items = $xpath->query('//meta[@charset]');
+        $items = $xpath->query('//head/meta[@charset]');
+        $match = [];
+
+        $is_add_meta = true;
+
         if (!$items || $items->count() === 0) {
-            $encode = mb_detect_encoding($html);
+            if (mb_ereg('<\?xml version="1.0" encoding="(Shift_JIS)"\?>', $html, $match)) {
+                $encode = $match[1];
+            } else {
+                $encode = mb_detect_encoding($html);
+            }
         } else {
+            //$is_add_meta = true;
             $item = $items->item(0);
             $encode = $item->getAttribute('charset');
         }
         $encode = strtolower($encode);
         if ($encode === 'utf8' || $encode === 'utf-8') {
+            if ($is_add_meta) {
+                $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>', $html);
+            }
+
             return $html;
         }
 
@@ -162,9 +242,19 @@ class Contender
         }
 
         if ($encode === '') {
-            $encode = 'sjis-win, utf-8,euc-jp';
+            $encode = 'sjis-win,utf-8,euc-jp';
         }
 
-        return mb_convert_encoding($html, 'utf8', $encode);
+        $html = mb_convert_encoding($html, 'utf8', $encode);
+        if ($this->is_replace_charset) {
+            $html = mb_eregi_replace('charset=[^ "\']+', 'charset=utf-8', $html);
+            $html = mb_eregi_replace('encoding="[^"]*"', 'encoding="utf-8"', $html);
+        }
+
+        if ($is_add_meta) {
+            $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>', $html);
+        }
+
+        return $html;
     }
 }

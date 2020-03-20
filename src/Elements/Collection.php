@@ -35,7 +35,8 @@ use Contender\Elements\Traits\CssSelector2XPathTrait;
  * @method \Contender\Elements\Node offsetGet($key)
  * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
- * @property string innerHtml
+ * @property mixed innerHTML
+ * @property mixed inner_h_t_m_l
  */
 class Collection extends \Illuminate\Support\Collection
 {
@@ -143,7 +144,6 @@ class Collection extends \Illuminate\Support\Collection
         return $res->sortDom();
     }
 
-
     public function __get($key)
     {
         if (strtolower($key) === 'innerhtml') {
@@ -158,17 +158,16 @@ class Collection extends \Illuminate\Support\Collection
         if (strtolower($key) === 'innerhtml') {
             return $this->setInnerHtmlAttribute($value);
         }
-
     }
 
     public function getInnerHTMLAttribute()
     {
-        return $this->first()->innerHTML;
+        return $this->sortDom()->first()->innerHTML;
     }
 
     public function setInnerHTMLAttribute($val)
     {
-        return $this->first()->innerHTML = $val;
+        return $this->sortDom()->first()->innerHTML = $val;
     }
 
     public function __isset($key)
@@ -177,14 +176,11 @@ class Collection extends \Illuminate\Support\Collection
             return true;
         }
 
-        return in_array($name, static::$proxies, true);
-
+        return in_array($key, static::$proxies, true);
     }
 
     public function attr(...$param)
     {
-        return $this->first()->attr(...$param);
+        return $this->sortDom()->first()->attr(...$param);
     }
-
-
 }

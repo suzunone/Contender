@@ -47,6 +47,10 @@ class ContenderTest extends TestCase
             'nbsp' => ['<div>&nbsp;</div>',
                 '<div>&nbsp;</div>',
             ],
+            'スペース' => [
+                '<div> </div> ',
+                '<div> </div> ',
+            ],
         ];
     }
 

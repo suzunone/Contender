@@ -18,6 +18,7 @@ namespace Contender\Elements\Traits;
 
 use Contender\Contender;
 use Contender\Elements\Collection;
+use Contender\Elements\Document;
 use Contender\Elements\Node;
 use DOMDocument;
 
@@ -68,8 +69,10 @@ use DOMDocument;
  * @property string inner_h_t_m_l
  * @property-read string outerHTML
  * @property-read string outer_h_t_m_l
- * @property-read string outerXTML
- * @property-read string outer_x_t_m_l
+ * @property string innerXML
+ * @property string inner_x_m_l
+ * @property-read string outerXML
+ * @property-read string outer_x_m_l
  * @property-read string nodePath
  * @property-read string node_path
  * @property-read int lineNo
@@ -306,7 +309,11 @@ trait GetterTrait
      */
     public function getOuterHTMLAttribute(): string
     {
-        $res = $this->element->ownerDocument->saveHtml($this->element);
+        if ($this instanceof Document) {
+            $res = $this->element->saveHtml();
+        } else {
+            $res = $this->element->ownerDocument->saveHtml($this->element);
+        }
 
         return str_replace(' ', '&nbsp;', $res);
     }
@@ -332,7 +339,11 @@ trait GetterTrait
      */
     public function getOuterXMLAttribute(): string
     {
-        return $this->element->ownerDocument->saveXML($this->element);
+        if ($this instanceof Document) {
+            $res = $this->element->saveXml();
+        } else {
+            $res = $this->element->ownerDocument->saveXml($this->element);
+        }
     }
 
     /**

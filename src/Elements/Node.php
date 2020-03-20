@@ -65,8 +65,10 @@ use DOMDocument;
  * @property string inner_h_t_m_l
  * @property-read string outerHTML
  * @property-read string outer_h_t_m_l
- * @property-read string outerXTML
- * @property-read string outer_x_t_m_l
+ * @property string innerXML
+ * @property string inner_x_m_l
+ * @property-read string outerXML
+ * @property-read string outer_x_m_l
  * @property-read string nodePath
  * @property-read string node_path
  * @property-read int lineNo

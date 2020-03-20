@@ -55,7 +55,6 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $files = glob(dirname(__DIR__, 2) . '/src/' . '/**/*.php');
         $res = get_declared_classes();
         $autoloaderClassName = '';
         foreach ($res as $className) {

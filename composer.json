@@ -34,9 +34,6 @@
     "psr-4": {
       "Tools\\Contender\\": "tools",
       "Tests\\Contender\\": "tests/Tests"
-    },
-    "files": [
-      "src/functions/debugger.php"
-    ]
+    }
   }
 }
