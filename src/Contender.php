@@ -194,6 +194,31 @@ HTML;
     }
 
     /**
+     * @param string $html
+     * @param array $options
+     * @return \Contender\Elements\Document
+     */
+    public static function loadStr(string $html, array $options = []): Document
+    {
+        $contender = new self();
+
+        return $contender->load($html, $options);
+    }
+
+    /**
+     * @param string $html
+     * @param array $options
+     * @param array|null $context_option
+     * @return \Contender\Elements\Document
+     */
+    public static function loadUrl(string $html, array $options = [], ?array $context_option = null): Document
+    {
+        $contender = new self();
+
+        return $contender->loadFromUrl($html, $options, $context_option);
+    }
+
+    /**
      * @return int
      */
     protected function options(): int
