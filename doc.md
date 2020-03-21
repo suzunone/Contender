@@ -327,12 +327,12 @@ Properties
 ----------------------------
 
 ### string Contender\Elements\Collection::$innerHTML 
-先頭のinnerHTML
+1st of innerHTML
 
 
 
 ### string Contender\Elements\Collection::$inner_h_t_m_l 
-先頭のinnerHTML
+1st of innerHTML
 
 
 

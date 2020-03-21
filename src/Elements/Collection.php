@@ -38,8 +38,8 @@ use DOMNodeList;
  * @method \Contender\Elements\Node offsetGet($key)
  * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
- * @property string innerHTML 先頭のinnerHTML
- * @property string inner_h_t_m_l 先頭のinnerHTML
+ * @property string innerHTML 1st of innerHTML
+ * @property string inner_h_t_m_l 1st of innerHTML
  */
 class Collection extends \Illuminate\Support\Collection
 {
@@ -188,7 +188,7 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @return string 先頭のinnerHTML
+     * @return string 1st of innerHTML
      */
     public function getInnerHTMLAttribute(): string
     {
