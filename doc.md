@@ -6,127 +6,127 @@ Load Html to generate a {@link \Contender\Elements\Document} object.
 Const
 ----------------------------
 
-### string Contender\Contender::OPTION_COMPACT = "LIBXML_COMPACT"
+### `string` Contender\Contender::OPTION_COMPACT = "LIBXML_COMPACT"
 Activate small nodes allocation optimization. This may speed up your application without needing to change the code.
 
 
 
 
-### string Contender\Contender::OPTION_NOBLANKS = "LIBXML_NOBLANKS"
+### `string` Contender\Contender::OPTION_NOBLANKS = "LIBXML_NOBLANKS"
 Remove blank nodes
 
 
 
 
-### string Contender\Contender::OPTION_NOCDATA = "LIBXML_NOCDATA"
+### `string` Contender\Contender::OPTION_NOCDATA = "LIBXML_NOCDATA"
 Merge CDATA as text nodes
 
 
 
 
-### string Contender\Contender::OPTION_NOEMPTYTAG = "LIBXML_NOEMPTYTAG"
+### `string` Contender\Contender::OPTION_NOEMPTYTAG = "LIBXML_NOEMPTYTAG"
 Expand empty tags (e.g. <br/> to <br></br>)
 
 
 
 
-### string Contender\Contender::OPTION_NOENT = "LIBXML_NOENT"
+### `string` Contender\Contender::OPTION_NOENT = "LIBXML_NOENT"
 Substitute entities
 
 
 
 
-### string Contender\Contender::OPTION_NONET = "LIBXML_NONET"
+### `string` Contender\Contender::OPTION_NONET = "LIBXML_NONET"
 Disable network access when loading documents
 
 
 
 
-### string Contender\Contender::OPTION_CONVERT_ENCODE = "CONVERT_ENCODE"
+### `string` Contender\Contender::OPTION_CONVERT_ENCODE = "CONVERT_ENCODE"
 Force to UTF -8 encoding
 
 
 
 
-### string Contender\Contender::OPTION_CONVERT_NO_ENCODE = "CONVERT_NO_ENCODE"
+### `string` Contender\Contender::OPTION_CONVERT_NO_ENCODE = "CONVERT_NO_ENCODE"
 
 
 
 
 
-### string Contender\Contender::OPTION_CONVERT_REPLACE_CHARSET = "OPTION_CONVERT_REPLACE_CHARSET"
+### `string` Contender\Contender::OPTION_CONVERT_REPLACE_CHARSET = "OPTION_CONVERT_REPLACE_CHARSET"
 Change charset<meta>tag when {@link \Contender\Contender::OPTION_CONVERT_ENCODE} option is enabled
 
 
 
 
-### string Contender\Contender::OPTION_CONVERT_NO_REPLACE_CHARSET = "OPTION_CONVERT_NO_REPLACE_CHARSET"
+### `string` Contender\Contender::OPTION_CONVERT_NO_REPLACE_CHARSET = "OPTION_CONVERT_NO_REPLACE_CHARSET"
 
 
 
 
 
-### string Contender\Contender::OPTION_FORMAT_OUTPUT_ENABLE = "OPTION_FORMAT_OUTPUT_ENABLE"
+### `string` Contender\Contender::OPTION_FORMAT_OUTPUT_ENABLE = "OPTION_FORMAT_OUTPUT_ENABLE"
 Nicely formats output with indentation and extra space.
 
 
 
 
-### string Contender\Contender::OPTION_FORMAT_OUTPUT_DISABLE = "OPTION_FORMAT_OUTPUT_DISABLE"
+### `string` Contender\Contender::OPTION_FORMAT_OUTPUT_DISABLE = "OPTION_FORMAT_OUTPUT_DISABLE"
 
 
 
 
 
-### string Contender\Contender::OPTION_MINIFY_DISABLE = "OPTION_MINIFY_DISABLE"
+### `string` Contender\Contender::OPTION_MINIFY_DISABLE = "OPTION_MINIFY_DISABLE"
 Do not minify html, then generating to {@link \Contender\Elements\Document}
 
 
 
 
-### string Contender\Contender::OPTION_MINIFY_ENABLE = "OPTION_MINIFY_ENABLE"
+### `string` Contender\Contender::OPTION_MINIFY_ENABLE = "OPTION_MINIFY_ENABLE"
 
 
 
 
 
-### string Contender\Contender::OPTION_REMOVE_STYLE_ENABLE = "OPTION_REMOVE_STYLE_ENABLE"
+### `string` Contender\Contender::OPTION_REMOVE_STYLE_ENABLE = "OPTION_REMOVE_STYLE_ENABLE"
 Remove <style>tags, then generating to {@link \Contender\Elements\Document}
 
 
 
 
-### string Contender\Contender::OPTION_REMOVE_STYLE_DISABLE = "OPTION_REMOVE_STYLE_DISABLE"
+### `string` Contender\Contender::OPTION_REMOVE_STYLE_DISABLE = "OPTION_REMOVE_STYLE_DISABLE"
 
 
 
 
 
-### string Contender\Contender::OPTION_REMOVE_SCRIPT_ENABLE = "OPTION_REMOVE_SCRIPT_ENABLE"
+### `string` Contender\Contender::OPTION_REMOVE_SCRIPT_ENABLE = "OPTION_REMOVE_SCRIPT_ENABLE"
 Remove <script>tags, then generating to {@link \Contender\Elements\Document}
 
 
 
 
-### string Contender\Contender::OPTION_REMOVE_SCRIPT_DISABLE = "OPTION_REMOVE_SCRIPT_DISABLE"
+### `string` Contender\Contender::OPTION_REMOVE_SCRIPT_DISABLE = "OPTION_REMOVE_SCRIPT_DISABLE"
 
 
 
 
 
-### string Contender\Contender::OPTION_REMOVE_COMMENT_ENABLE = "OPTION_REMOVE_COMMENT_ENABLE"
+### `string` Contender\Contender::OPTION_REMOVE_COMMENT_ENABLE = "OPTION_REMOVE_COMMENT_ENABLE"
 Remove <comment>tags, then generating to {@link \Contender\Elements\Document}
 
 
 
 
-### string Contender\Contender::OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE"
+### `string` Contender\Contender::OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE"
 
 
 
 
 
-### integer Contender\Contender::DEFAULT_LIBXML_OPTION = 4194402
+### `integer` Contender\Contender::DEFAULT_LIBXML_OPTION = 4194402
 Default libxml options
 
 
@@ -167,7 +167,7 @@ Options for converting Html to ContenderDocument
 
 
 #### Parameters
-##### (string) $option
+##### `string` $option
 
 Contender option const.
 
@@ -188,7 +188,7 @@ Calls {@link \Contender\Contender::setOption()} as an array
 
 
 #### Parameters
-##### (array) $options
+##### `array` $options
 
 Array multiple Contender option constants
 
@@ -209,11 +209,11 @@ Generate a {@link \Contender\Elements\Document} from a string
 
 
 #### Parameters
-##### (string) $html
+##### `string` $html
 
 The string containing the HTML.
 
-##### (array) $options
+##### `array` $options
 
 Array multiple Contender option constants
 
@@ -234,15 +234,15 @@ Generate a {@link \Contender\Elements\Document}  from a URL
 
 
 #### Parameters
-##### (string) $url
+##### `string` $url
 
 The path to the HTML document.
 
-##### (array) $options
+##### `array` $options
 
 Array multiple Contender option constants
 
-##### (array|null) $context_option
+##### `array|null` $context_option
 
 Context options
 
@@ -263,11 +263,11 @@ Generate a {@link \Contender\Elements\Document}  from a string(static call)
 
 
 #### Parameters
-##### (string) $html
+##### `string` $html
 
 The string containing the HTML.
 
-##### (array) $options
+##### `array` $options
 
 Array multiple Contender option constants
 
@@ -288,15 +288,15 @@ Generate a {@link \Contender\Elements\Document}  from a URL(static call)
 
 
 #### Parameters
-##### (string) $url
+##### `string` $url
 
 The path to the HTML document.
 
-##### (array) $options
+##### `array` $options
 
 Array multiple Contender option constants
 
-##### (array|null) $context_option
+##### `array|null` $context_option
 
 Context options
 
@@ -326,12 +326,12 @@ Const
 Properties
 ----------------------------
 
-### string Contender\Elements\Collection::$innerHTML 
+### `string` Contender\Elements\Collection::$innerHTML 
 1st of innerHTML
 
 
 
-### string Contender\Elements\Collection::$inner_h_t_m_l 
+### `string` Contender\Elements\Collection::$inner_h_t_m_l 
 1st of innerHTML
 
 
@@ -348,7 +348,7 @@ Collection constructor.
 
 
 #### Parameters
-##### (array) $items
+##### `array` $items
 
 
 
@@ -369,7 +369,7 @@ Call {@link \Contender\Elements\Collection::querySelectorAll()} and {@link \Cont
 
 
 #### Parameters
-##### (string) $selectors
+##### `string` $selectors
 
 
 
@@ -390,11 +390,11 @@ None
 
 
 #### Parameters
-##### (\DOMNodeList) $element
+##### `\DOMNodeList` $element
 
 
 
-##### (\Contender\Elements\ElementInterface) $node
+##### `\Contender\Elements\ElementInterface` $node
 
 
 
@@ -449,7 +449,7 @@ Returns a {@link \Contender\Elements\Node} matching Css selector.
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 Valid CSS selector string
 
@@ -470,7 +470,7 @@ Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\N
 
 
 #### Parameters
-##### (string) $selectors
+##### `string` $selectors
 
 Valid CSS selector string
 
@@ -491,7 +491,7 @@ None
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
@@ -512,11 +512,11 @@ None
 
 
 #### Parameters
-##### (mixed|null) $key
+##### `mixed|null` $key
 
 
 
-##### (mixed|null) $value
+##### `mixed|null` $value
 
 
 
@@ -537,7 +537,7 @@ None
 
 
 #### Parameters
-##### (mixed|null) $key
+##### `mixed|null` $key
 
 
 
@@ -558,7 +558,7 @@ None
 
 
 #### Parameters
-##### (mixed|null) $param
+##### `mixed|null` $param
 
 
 
@@ -579,11 +579,11 @@ Create a new collection by invoking the callback a given amount of times.
 
 
 #### Parameters
-##### (int) $number
+##### `int` $number
 
 
 
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -638,7 +638,7 @@ Get the average value of a given key.
 
 
 #### Parameters
-##### (callable|string|null) $callback
+##### `callable|string|null` $callback
 
 
 
@@ -659,7 +659,7 @@ Get the median of a given key.
 
 
 #### Parameters
-##### (string|array|null) $key
+##### `string|array|null` $key
 
 
 
@@ -680,7 +680,7 @@ Get the mode of a given key.
 
 
 #### Parameters
-##### (string|array|null) $key
+##### `string|array|null` $key
 
 
 
@@ -718,15 +718,15 @@ Determine if an item exists in the collection.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $operator
+##### `mixed` $operator
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -747,7 +747,7 @@ Cross join with the given lists, returning all possible permutations.
 
 
 #### Parameters
-##### (mixed|null) $lists
+##### `mixed|null` $lists
 
 
 
@@ -768,7 +768,7 @@ Get the items in the collection that are not present in the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -789,11 +789,11 @@ Get the items in the collection that are not present in the given items, using t
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -814,7 +814,7 @@ Get the items in the collection whose keys and values are not present in the giv
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -835,11 +835,11 @@ Get the items in the collection whose keys and values are not present in the giv
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -860,7 +860,7 @@ Get the items in the collection whose keys are not present in the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -881,11 +881,11 @@ Get the items in the collection whose keys are not present in the given items, u
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -906,11 +906,11 @@ Retrieve duplicate items from the collection.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
-##### (bool) $strict
+##### `bool` $strict
 
 
 
@@ -931,7 +931,7 @@ Retrieve duplicate items from the collection using strict comparison.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
@@ -952,7 +952,7 @@ Get all items except for those with the specified keys.
 
 
 #### Parameters
-##### (\Illuminate\Support\Collection|mixed) $keys
+##### `\Illuminate\Support\Collection|mixed` $keys
 
 
 
@@ -973,7 +973,7 @@ Run a filter over each of the items.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
@@ -994,11 +994,11 @@ Get the first item from the collection passing the given truth test.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
-##### (mixed) $default
+##### `mixed` $default
 
 
 
@@ -1019,7 +1019,7 @@ Get a flattened array of the items in the collection.
 
 
 #### Parameters
-##### (int) $depth
+##### `int` $depth
 
 
 
@@ -1057,7 +1057,7 @@ Remove an item from the collection by key.
 
 
 #### Parameters
-##### (string|array) $keys
+##### `string|array` $keys
 
 
 
@@ -1078,11 +1078,11 @@ Get an item from the collection by key.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $default
+##### `mixed` $default
 
 
 
@@ -1103,11 +1103,11 @@ Group an associative array by a field or using a callback.
 
 
 #### Parameters
-##### (array|callable|string) $groupBy
+##### `array|callable|string` $groupBy
 
 
 
-##### (bool) $preserveKeys
+##### `bool` $preserveKeys
 
 
 
@@ -1128,7 +1128,7 @@ Key an associative array by a field or using a callback.
 
 
 #### Parameters
-##### (callable|string) $keyBy
+##### `callable|string` $keyBy
 
 
 
@@ -1149,7 +1149,7 @@ Determine if an item exists in the collection by key.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
@@ -1170,11 +1170,11 @@ Concatenate values of a given key as a string.
 
 
 #### Parameters
-##### (string) $value
+##### `string` $value
 
 
 
-##### (string) $glue
+##### `string` $glue
 
 
 
@@ -1195,7 +1195,7 @@ Intersect the collection with the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1216,7 +1216,7 @@ Intersect the collection with the given items by key.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1254,11 +1254,11 @@ Join all items from the collection using a string. The final items can use a sep
 
 
 #### Parameters
-##### (string) $glue
+##### `string` $glue
 
 
 
-##### (string) $finalGlue
+##### `string` $finalGlue
 
 
 
@@ -1296,11 +1296,11 @@ Get the last item from the collection.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
-##### (mixed) $default
+##### `mixed` $default
 
 
 
@@ -1321,11 +1321,11 @@ Get the values of a given key.
 
 
 #### Parameters
-##### (string|array) $value
+##### `string|array` $value
 
 
 
-##### (string|null) $key
+##### `string|null` $key
 
 
 
@@ -1346,7 +1346,7 @@ Run a map over each of the items.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -1367,7 +1367,7 @@ Run a dictionary map over the items.
 The callback should return an associative array with a single key/value pair.
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -1388,7 +1388,7 @@ Run an associative map over each of the items.
 The callback should return an associative array with a single key/value pair.
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -1409,7 +1409,7 @@ Merge the collection with the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1430,7 +1430,7 @@ Recursively merge the collection with the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1451,7 +1451,7 @@ Create a collection by using this collection for keys and another for its values
 
 
 #### Parameters
-##### (mixed) $values
+##### `mixed` $values
 
 
 
@@ -1472,7 +1472,7 @@ Union the collection with the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1493,11 +1493,11 @@ Create a new collection consisting of every n-th element.
 
 
 #### Parameters
-##### (int) $step
+##### `int` $step
 
 
 
-##### (int) $offset
+##### `int` $offset
 
 
 
@@ -1518,7 +1518,7 @@ Get the items with the specified keys.
 
 
 #### Parameters
-##### (mixed) $keys
+##### `mixed` $keys
 
 
 
@@ -1556,11 +1556,11 @@ Push an item onto the beginning of the collection.
 
 
 #### Parameters
-##### (mixed) $value
+##### `mixed` $value
 
 
 
-##### (mixed) $key
+##### `mixed` $key
 
 
 
@@ -1581,7 +1581,7 @@ Push an item onto the end of the collection.
 
 
 #### Parameters
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -1602,7 +1602,7 @@ Push all of the given items onto the collection.
 
 
 #### Parameters
-##### (iterable) $source
+##### `iterable` $source
 
 
 
@@ -1623,11 +1623,11 @@ Get and remove an item from the collection.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $default
+##### `mixed` $default
 
 
 
@@ -1648,11 +1648,11 @@ Put an item in the collection by key.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -1673,7 +1673,7 @@ Get one or a specified number of items randomly from the collection.
 
 
 #### Parameters
-##### (int|null) $number
+##### `int|null` $number
 
 
 
@@ -1694,11 +1694,11 @@ Reduce the collection to a single value.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (mixed) $initial
+##### `mixed` $initial
 
 
 
@@ -1719,7 +1719,7 @@ Replace the collection items with the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1740,7 +1740,7 @@ Recursively replace the collection items with the given items.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -1778,11 +1778,11 @@ Search the collection for a given value and return the corresponding key if succ
 
 
 #### Parameters
-##### (mixed) $value
+##### `mixed` $value
 
 
 
-##### (bool) $strict
+##### `bool` $strict
 
 
 
@@ -1820,7 +1820,7 @@ Shuffle the items in the collection.
 
 
 #### Parameters
-##### (int) $seed
+##### `int` $seed
 
 
 
@@ -1841,7 +1841,7 @@ Skip the first {$count} items.
 
 
 #### Parameters
-##### (int) $count
+##### `int` $count
 
 
 
@@ -1862,11 +1862,11 @@ Slice the underlying collection array.
 
 
 #### Parameters
-##### (int) $offset
+##### `int` $offset
 
 
 
-##### (int) $length
+##### `int` $length
 
 
 
@@ -1887,7 +1887,7 @@ Split a collection into a certain number of groups.
 
 
 #### Parameters
-##### (int) $numberOfGroups
+##### `int` $numberOfGroups
 
 
 
@@ -1908,7 +1908,7 @@ Chunk the collection into chunks of the given size.
 
 
 #### Parameters
-##### (int) $size
+##### `int` $size
 
 
 
@@ -1929,7 +1929,7 @@ Sort through each item with a callback.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
@@ -1950,15 +1950,15 @@ Sort the collection using the given callback.
 
 
 #### Parameters
-##### (callable|string) $callback
+##### `callable|string` $callback
 
 
 
-##### (int) $options
+##### `int` $options
 
 
 
-##### (bool) $descending
+##### `bool` $descending
 
 
 
@@ -1979,11 +1979,11 @@ Sort the collection in descending order using the given callback.
 
 
 #### Parameters
-##### (callable|string) $callback
+##### `callable|string` $callback
 
 
 
-##### (int) $options
+##### `int` $options
 
 
 
@@ -2004,11 +2004,11 @@ Sort the collection keys.
 
 
 #### Parameters
-##### (int) $options
+##### `int` $options
 
 
 
-##### (bool) $descending
+##### `bool` $descending
 
 
 
@@ -2029,7 +2029,7 @@ Sort the collection keys in descending order.
 
 
 #### Parameters
-##### (int) $options
+##### `int` $options
 
 
 
@@ -2050,15 +2050,15 @@ Splice a portion of the underlying collection array.
 
 
 #### Parameters
-##### (int) $offset
+##### `int` $offset
 
 
 
-##### (int|null) $length
+##### `int|null` $length
 
 
 
-##### (mixed) $replacement
+##### `mixed` $replacement
 
 
 
@@ -2079,7 +2079,7 @@ Take the first or last {$limit} items.
 
 
 #### Parameters
-##### (int) $limit
+##### `int` $limit
 
 
 
@@ -2100,7 +2100,7 @@ Transform each item in the collection using a callback.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -2138,7 +2138,7 @@ Zip the collection together with one or more arrays.
 e.g. new Collection([1, 2, 3])->zip([4, 5, 6]);=> [[1, 4], [2, 5], [3, 6]]
 
 #### Parameters
-##### (mixed|null) $items
+##### `mixed|null` $items
 
 
 
@@ -2159,11 +2159,11 @@ Pad collection to the specified length with a value.
 
 
 #### Parameters
-##### (int) $size
+##### `int` $size
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2218,7 +2218,7 @@ Add an item to the collection.
 
 
 #### Parameters
-##### (mixed) $item
+##### `mixed` $item
 
 
 
@@ -2256,7 +2256,7 @@ Determine if an item exists at an offset.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
@@ -2277,7 +2277,7 @@ Get an item at a given offset.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
@@ -2298,11 +2298,11 @@ Set the item at a given offset.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2323,7 +2323,7 @@ Unset the item at a given offset.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
@@ -2344,7 +2344,7 @@ Create a new collection instance if the value isn't one already.
 
 
 #### Parameters
-##### (mixed) $items
+##### `mixed` $items
 
 
 
@@ -2365,7 +2365,7 @@ Wrap the given value in a collection if applicable.
 
 
 #### Parameters
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2386,7 +2386,7 @@ Get the underlying items from the given collection if applicable.
 
 
 #### Parameters
-##### (array|static) $value
+##### `array|static` $value
 
 
 
@@ -2407,7 +2407,7 @@ Alias for the "avg" method.
 
 
 #### Parameters
-##### (callable|string|null) $callback
+##### `callable|string|null` $callback
 
 
 
@@ -2428,15 +2428,15 @@ Alias for the "contains" method.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $operator
+##### `mixed` $operator
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2457,11 +2457,11 @@ Determine if an item exists, using strict comparison.
 
 
 #### Parameters
-##### (mixed) $key
+##### `mixed` $key
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2482,7 +2482,7 @@ Dump the items and end the script.
 
 
 #### Parameters
-##### (mixed|null) $args
+##### `mixed|null` $args
 
 
 
@@ -2520,7 +2520,7 @@ Execute a callback over each item.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -2541,7 +2541,7 @@ Execute a callback over each nested chunk of items.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -2562,15 +2562,15 @@ Determine if all items pass the given truth test.
 
 
 #### Parameters
-##### (string|callable) $key
+##### `string|callable` $key
 
 
 
-##### (mixed) $operator
+##### `mixed` $operator
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2591,15 +2591,15 @@ Get the first item by the given key value pair.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $operator
+##### `mixed` $operator
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2637,7 +2637,7 @@ Run a map over each nested chunk of items.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -2658,7 +2658,7 @@ Run a grouping map over the items.
 The callback should return an associative array with a single key/value pair.
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -2679,7 +2679,7 @@ Map a collection and flatten the result by a single level.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -2700,7 +2700,7 @@ Map the values into a new class.
 
 
 #### Parameters
-##### (string) $class
+##### `string` $class
 
 
 
@@ -2721,7 +2721,7 @@ Get the min value of a given key.
 
 
 #### Parameters
-##### (callable|string|null) $callback
+##### `callable|string|null` $callback
 
 
 
@@ -2742,7 +2742,7 @@ Get the max value of a given key.
 
 
 #### Parameters
-##### (callable|string|null) $callback
+##### `callable|string|null` $callback
 
 
 
@@ -2763,11 +2763,11 @@ None
 
 
 #### Parameters
-##### (int) $page
+##### `int` $page
 
 
 
-##### (int) $perPage
+##### `int` $perPage
 
 
 
@@ -2788,15 +2788,15 @@ Partition the collection into two arrays using the given callback or key.
 
 
 #### Parameters
-##### (callable|string) $key
+##### `callable|string` $key
 
 
 
-##### (mixed) $operator
+##### `mixed` $operator
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -2817,7 +2817,7 @@ Get the sum of the given values.
 
 
 #### Parameters
-##### (callable|string|null) $callback
+##### `callable|string|null` $callback
 
 
 
@@ -2838,15 +2838,15 @@ Apply the callback if the value is truthy.
 
 
 #### Parameters
-##### (bool|mixed) $value
+##### `bool|mixed` $value
 
 
 
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (callable) $default
+##### `callable` $default
 
 
 
@@ -2867,11 +2867,11 @@ Apply the callback if the collection is empty.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (callable) $default
+##### `callable` $default
 
 
 
@@ -2892,11 +2892,11 @@ Apply the callback if the collection is not empty.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (callable) $default
+##### `callable` $default
 
 
 
@@ -2917,15 +2917,15 @@ Apply the callback if the value is falsy.
 
 
 #### Parameters
-##### (bool) $value
+##### `bool` $value
 
 
 
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (callable) $default
+##### `callable` $default
 
 
 
@@ -2946,11 +2946,11 @@ Apply the callback unless the collection is empty.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (callable) $default
+##### `callable` $default
 
 
 
@@ -2971,11 +2971,11 @@ Apply the callback unless the collection is not empty.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
-##### (callable) $default
+##### `callable` $default
 
 
 
@@ -2996,15 +2996,15 @@ Filter items by the given key value pair.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $operator
+##### `mixed` $operator
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -3025,7 +3025,7 @@ Filter items where the given key is not null.
 
 
 #### Parameters
-##### (string|null) $key
+##### `string|null` $key
 
 
 
@@ -3046,7 +3046,7 @@ Filter items where the given key is null.
 
 
 #### Parameters
-##### (string|null) $key
+##### `string|null` $key
 
 
 
@@ -3067,11 +3067,11 @@ Filter items by the given key value pair using strict comparison.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $value
+##### `mixed` $value
 
 
 
@@ -3092,15 +3092,15 @@ Filter items by the given key value pair.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $values
+##### `mixed` $values
 
 
 
-##### (bool) $strict
+##### `bool` $strict
 
 
 
@@ -3121,11 +3121,11 @@ Filter items by the given key value pair using strict comparison.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $values
+##### `mixed` $values
 
 
 
@@ -3146,11 +3146,11 @@ Filter items such that the value of the given key is between the given values.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (array) $values
+##### `array` $values
 
 
 
@@ -3171,11 +3171,11 @@ Filter items such that the value of the given key is not between the given value
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (array) $values
+##### `array` $values
 
 
 
@@ -3196,15 +3196,15 @@ Filter items by the given key value pair.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $values
+##### `mixed` $values
 
 
 
-##### (bool) $strict
+##### `bool` $strict
 
 
 
@@ -3225,11 +3225,11 @@ Filter items by the given key value pair using strict comparison.
 
 
 #### Parameters
-##### (string) $key
+##### `string` $key
 
 
 
-##### (mixed) $values
+##### `mixed` $values
 
 
 
@@ -3250,7 +3250,7 @@ Filter the items, removing any items that don't match the given type.
 
 
 #### Parameters
-##### (string) $type
+##### `string` $type
 
 
 
@@ -3271,7 +3271,7 @@ Pass the collection to the given callback and return the result.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -3292,7 +3292,7 @@ Pass the collection to the given callback and then return it.
 
 
 #### Parameters
-##### (callable) $callback
+##### `callable` $callback
 
 
 
@@ -3313,7 +3313,7 @@ Create a collection of all elements that do not pass a given truth test.
 
 
 #### Parameters
-##### (callable|mixed) $callback
+##### `callable|mixed` $callback
 
 
 
@@ -3334,11 +3334,11 @@ Return only unique items from the collection array.
 
 
 #### Parameters
-##### (string|callable|null) $key
+##### `string|callable|null` $key
 
 
 
-##### (bool) $strict
+##### `bool` $strict
 
 
 
@@ -3359,7 +3359,7 @@ Return only unique items from the collection array using strict comparison.
 
 
 #### Parameters
-##### (string|callable|null) $key
+##### `string|callable|null` $key
 
 
 
@@ -3431,7 +3431,7 @@ Get the collection of items as JSON.
 
 
 #### Parameters
-##### (int) $options
+##### `int` $options
 
 
 
@@ -3452,7 +3452,7 @@ Get a CachingIterator instance.
 
 
 #### Parameters
-##### (int) $flags
+##### `int` $flags
 
 
 
@@ -3473,7 +3473,7 @@ Count the number of items in the collection using a given truth test.
 
 
 #### Parameters
-##### (callable|null) $callback
+##### `callable|null` $callback
 
 
 
@@ -3511,7 +3511,7 @@ Add a method to the list of proxied methods.
 
 
 #### Parameters
-##### (string) $method
+##### `string` $method
 
 
 
@@ -3532,11 +3532,11 @@ Register a custom macro.
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
-##### (object|callable) $macro
+##### `object|callable` $macro
 
 
 
@@ -3557,11 +3557,11 @@ Mix another object into the class.
 
 
 #### Parameters
-##### (object) $mixin
+##### `object` $mixin
 
 
 
-##### (bool) $replace
+##### `bool` $replace
 
 
 
@@ -3582,7 +3582,7 @@ Checks if macro is registered.
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
@@ -3603,11 +3603,11 @@ Dynamically handle calls to the class.
 
 
 #### Parameters
-##### (string) $method
+##### `string` $method
 
 
 
-##### (array) $parameters
+##### `array` $parameters
 
 
 
@@ -3628,11 +3628,11 @@ Dynamically handle calls to the class.
 
 
 #### Parameters
-##### (string) $method
+##### `string` $method
 
 
 
-##### (array) $parameters
+##### `array` $parameters
 
 
 
@@ -3662,317 +3662,317 @@ Const
 Properties
 ----------------------------
 
-### bool Contender\Elements\Document::$isElement __read only__
+### `bool` Contender\Elements\Document::$isElement __read only__
 true if this node is an XML_ELEMENT_NODE
 
 
 
-### bool Contender\Elements\Document::$is_element __read only__
+### `bool` Contender\Elements\Document::$is_element __read only__
 true if this node is an XML_ELEMENT_NODE
 
 
 
-### bool Contender\Elements\Document::$isAttr __read only__
+### `bool` Contender\Elements\Document::$isAttr __read only__
 true if this node is an XML_ATTRIBUTE_NODE
 
 
 
-### bool Contender\Elements\Document::$is_attr __read only__
+### `bool` Contender\Elements\Document::$is_attr __read only__
 true if this node is an XML_ATTRIBUTE_NODE
 
 
 
-### bool Contender\Elements\Document::$isText __read only__
+### `bool` Contender\Elements\Document::$isText __read only__
 true if this node is an XML_TEXT_NODE
 
 
 
-### bool Contender\Elements\Document::$is_text __read only__
+### `bool` Contender\Elements\Document::$is_text __read only__
 true if this node is an XML_TEXT_NODE
 
 
 
-### bool Contender\Elements\Document::$isCharacterData __read only__
+### `bool` Contender\Elements\Document::$isCharacterData __read only__
 true if this node is an XML_CDATA_SECTION_NODE
 
 
 
-### bool Contender\Elements\Document::$is_character_data __read only__
+### `bool` Contender\Elements\Document::$is_character_data __read only__
 true if this node is an XML_CDATA_SECTION_NODE
 
 
 
-### bool Contender\Elements\Document::$isEntityReference __read only__
+### `bool` Contender\Elements\Document::$isEntityReference __read only__
 true if this node is an XML_ENTITY_REF_NODE
 
 
 
-### bool Contender\Elements\Document::$is_entity_reference __read only__
+### `bool` Contender\Elements\Document::$is_entity_reference __read only__
 true if this node is an XML_ENTITY_REF_NODE
 
 
 
-### bool Contender\Elements\Document::$isEntity __read only__
+### `bool` Contender\Elements\Document::$isEntity __read only__
 true if this node is an XML_ENTITY_NODE
 
 
 
-### bool Contender\Elements\Document::$is_entity __read only__
+### `bool` Contender\Elements\Document::$is_entity __read only__
 true if this node is an XML_ENTITY_NODE
 
 
 
-### bool Contender\Elements\Document::$isProcessingInstruction __read only__
+### `bool` Contender\Elements\Document::$isProcessingInstruction __read only__
 true if this node is an XML_PI_NODE
 
 
 
-### bool Contender\Elements\Document::$is_processing_instruction __read only__
+### `bool` Contender\Elements\Document::$is_processing_instruction __read only__
 true if this node is an XML_PI_NODE
 
 
 
-### bool Contender\Elements\Document::$isComment __read only__
+### `bool` Contender\Elements\Document::$isComment __read only__
 true if this node is an XML_COMMENT_NODE
 
 
 
-### bool Contender\Elements\Document::$is_comment __read only__
+### `bool` Contender\Elements\Document::$is_comment __read only__
 true if this node is an XML_COMMENT_NODE
 
 
 
-### bool Contender\Elements\Document::$isDocument __read only__
+### `bool` Contender\Elements\Document::$isDocument __read only__
 true if this node is an XML_DOCUMENT_NODE
 
 
 
-### bool Contender\Elements\Document::$is_document __read only__
+### `bool` Contender\Elements\Document::$is_document __read only__
 true if this node is an XML_DOCUMENT_NODE
 
 
 
-### bool Contender\Elements\Document::$isDocumentType __read only__
+### `bool` Contender\Elements\Document::$isDocumentType __read only__
 true if this node is an XML_DOCUMENT_TYPE_NODE
 
 
 
-### bool Contender\Elements\Document::$is_document_type __read only__
+### `bool` Contender\Elements\Document::$is_document_type __read only__
 true if this node is an XML_DOCUMENT_TYPE_NODE
 
 
 
-### bool Contender\Elements\Document::$isDocumentFragment __read only__
+### `bool` Contender\Elements\Document::$isDocumentFragment __read only__
 true if this node is an XML_DOCUMENT_FRAG_NODE
 
 
 
-### bool Contender\Elements\Document::$is_document_fragment __read only__
+### `bool` Contender\Elements\Document::$is_document_fragment __read only__
 true if this node is an XML_DOCUMENT_FRAG_NODE
 
 
 
-### bool Contender\Elements\Document::$isNotation __read only__
+### `bool` Contender\Elements\Document::$isNotation __read only__
 true if this node is an XML_NOTATION_NODE
 
 
 
-### bool Contender\Elements\Document::$is_notation __read only__
+### `bool` Contender\Elements\Document::$is_notation __read only__
 true if this node is an XML_NOTATION_NODE
 
 
 
-### string Contender\Elements\Document::$innerText __read only__
+### `string` Contender\Elements\Document::$innerText __read only__
 The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
 
 
 
-### string Contender\Elements\Document::$inner_text __read only__
+### `string` Contender\Elements\Document::$inner_text __read only__
 The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
 
 
 
-### string Contender\Elements\Document::$textContent __read only__
+### `string` Contender\Elements\Document::$textContent __read only__
 The text content of this node and its descendants.
 
 
 
-### string Contender\Elements\Document::$text_content __read only__
+### `string` Contender\Elements\Document::$text_content __read only__
 The text content of this node and its descendants.
 
 
 
-### string Contender\Elements\Document::$outerHTML __read only__
+### `string` Contender\Elements\Document::$outerHTML __read only__
 The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Document::$outer_h_t_m_l __read only__
+### `string` Contender\Elements\Document::$outer_h_t_m_l __read only__
 The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Document::$outerXML __read only__
+### `string` Contender\Elements\Document::$outerXML __read only__
 The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Document::$outer_x_m_l __read only__
+### `string` Contender\Elements\Document::$outer_x_m_l __read only__
 The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Document::$nodePath __read only__
+### `string` Contender\Elements\Document::$nodePath __read only__
 Gets an XPath location path for the node
 
 
 
-### string Contender\Elements\Document::$node_path __read only__
+### `string` Contender\Elements\Document::$node_path __read only__
 Gets an XPath location path for the node
 
 
 
-### int Contender\Elements\Document::$lineNo __read only__
+### `int` Contender\Elements\Document::$lineNo __read only__
 Get line number for a node
 
 
 
-### int Contender\Elements\Document::$line_no __read only__
+### `int` Contender\Elements\Document::$line_no __read only__
 Get line number for a node
 
 
 
-### \Contender\Elements\Collection Contender\Elements\Document::$children __read only__
+### `\Contender\Elements\Collection` Contender\Elements\Document::$children __read only__
 That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
 
 
 
-### \Contender\Elements\Collection Contender\Elements\Document::$childNodes __read only__
+### `\Contender\Elements\Collection` Contender\Elements\Document::$childNodes __read only__
 Aliases to children
 
 
 
-### \Contender\Elements\Collection Contender\Elements\Document::$child_nodes __read only__
+### `\Contender\Elements\Collection` Contender\Elements\Document::$child_nodes __read only__
 Aliases to children
 
 
 
-### \Contender\Elements\Node Contender\Elements\Document::$firstChild __read only__
+### `\Contender\Elements\Node` Contender\Elements\Document::$firstChild __read only__
 Get a first child node.
 
 
 
-### \Contender\Elements\Node Contender\Elements\Document::$first_child __read only__
+### `\Contender\Elements\Node` Contender\Elements\Document::$first_child __read only__
 Get a first child node.
 
 
 
-### \Contender\Elements\Node Contender\Elements\Document::$lastChild __read only__
+### `\Contender\Elements\Node` Contender\Elements\Document::$lastChild __read only__
 Get a last child node.
 
 
 
-### \Contender\Elements\Node Contender\Elements\Document::$last_child __read only__
+### `\Contender\Elements\Node` Contender\Elements\Document::$last_child __read only__
 Get a last child node.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$firstElementChild __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$firstElementChild __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$first_element_child __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$first_element_child __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$parentNode __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$parentNode __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$parent_node __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$parent_node __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$lastElementChild __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$last_element_child __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$last_element_child __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$previousElementSibling __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$previousElementSibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$previous_element_sibling __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$previous_element_sibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$nextElementSibling __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$nextElementSibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$next_element_sibling __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$next_element_sibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$nextSibling __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$nextSibling __read only__
 Alias to next_element_sibling
 
 
 
-### \Contender\Elements\Document|null Contender\Elements\Document::$next_sibling __read only__
+### `\Contender\Elements\Document|null` Contender\Elements\Document::$next_sibling __read only__
 Alias to next_element_sibling
 
 
 
-### int Contender\Elements\Document::$nodeType __read only__
+### `int` Contender\Elements\Document::$nodeType __read only__
 Gets the type of the node.
 
 
 
-### int Contender\Elements\Document::$node_type __read only__
+### `int` Contender\Elements\Document::$node_type __read only__
 Gets the type of the node.
 
 
 
-### string Contender\Elements\Document::$nodeName __read only__
+### `string` Contender\Elements\Document::$nodeName __read only__
 Returns the most accurate name for the current node type
 
 
 
-### string Contender\Elements\Document::$node_name __read only__
+### `string` Contender\Elements\Document::$node_name __read only__
 Returns the most accurate name for the current node type
 
 
 
-### string Contender\Elements\Document::$innerHTML 
+### `string` Contender\Elements\Document::$innerHTML 
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
 
 
-### string Contender\Elements\Document::$inner_h_t_m_l 
+### `string` Contender\Elements\Document::$inner_h_t_m_l 
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
 
 
-### string Contender\Elements\Document::$innerXML 
+### `string` Contender\Elements\Document::$innerXML 
 The Element property innerXML gets or sets the HTML or XML markup contained within the element
 
 
 
-### string Contender\Elements\Document::$inner_x_m_l 
+### `string` Contender\Elements\Document::$inner_x_m_l 
 The Element property innerXML gets or sets the HTML or XML markup contained within the element
 
 
@@ -3989,7 +3989,7 @@ Node constructor.
 
 
 #### Parameters
-##### (\DOMDocument) $element
+##### `\DOMDocument` $element
 
 
 
@@ -4010,11 +4010,11 @@ None
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
-##### (string|null) $value
+##### `string|null` $value
 
 
 
@@ -4052,7 +4052,7 @@ Returns a {@link \Contender\Elements\Node} object representing the element whose
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 tag id
 
@@ -4073,7 +4073,7 @@ Returns a {@link \Contender\Elements\Collection} object of all child elements wh
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 tag class name
 
@@ -4094,7 +4094,7 @@ Returns a {@link \Contender\Elements\Collection} object of elements with a given
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 tag name attribute
 
@@ -4115,7 +4115,7 @@ Returns a {@link \Contender\Elements\Collection} object of elements with the giv
 
 
 #### Parameters
-##### (string) $tag_name
+##### `string` $tag_name
 
 Elements tag name
 
@@ -4136,11 +4136,11 @@ Returns the attribute node in namespace namespaceURI with local name localName f
 
 
 #### Parameters
-##### (string) $namespaceURI
+##### `string` $namespaceURI
 
 The namespace URI.
 
-##### (string) $localName
+##### `string` $localName
 
 The local name.
 
@@ -4161,7 +4161,7 @@ Returns a {@link \Contender\Elements\Node} matching Css selector.
 
 
 #### Parameters
-##### (string) $selectors
+##### `string` $selectors
 
 Valid CSS selector string
 
@@ -4182,7 +4182,7 @@ Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\N
 
 
 #### Parameters
-##### (string) $selectors
+##### `string` $selectors
 
 Valid CSS selector string
 
@@ -4203,7 +4203,7 @@ Call querySelectorAll() and {@link \Contender\Elements\Collection::onlyElement()
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 
 
@@ -4224,7 +4224,7 @@ Evaluates the given XPath expression and returns a {@link \Contender\Elements\Co
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 xpath
 
@@ -4245,11 +4245,11 @@ Evaluates the given XPath expression and returns a {@link \Contender\Elements\No
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 xpath
 
-##### (int) $offset
+##### `int` $offset
 
 
 
@@ -4270,7 +4270,7 @@ if call attr('name')
 Alias getAttr()if call attr('name', 'value')Alias setAttr()
 
 #### Parameters
-##### (mixed|null) $name
+##### `mixed|null` $name
 
 
 
@@ -4291,7 +4291,7 @@ get tag attribute for element.
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
@@ -4312,11 +4312,11 @@ set tag attribute for element.
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
-##### (string) $value
+##### `string` $value
 
 
 
@@ -4346,317 +4346,317 @@ Const
 Properties
 ----------------------------
 
-### bool Contender\Elements\Node::$isElement __read only__
+### `bool` Contender\Elements\Node::$isElement __read only__
 true if this node is an XML_ELEMENT_NODE
 
 
 
-### bool Contender\Elements\Node::$is_element __read only__
+### `bool` Contender\Elements\Node::$is_element __read only__
 true if this node is an XML_ELEMENT_NODE
 
 
 
-### bool Contender\Elements\Node::$isAttr __read only__
+### `bool` Contender\Elements\Node::$isAttr __read only__
 true if this node is an XML_ATTRIBUTE_NODE
 
 
 
-### bool Contender\Elements\Node::$is_attr __read only__
+### `bool` Contender\Elements\Node::$is_attr __read only__
 true if this node is an XML_ATTRIBUTE_NODE
 
 
 
-### bool Contender\Elements\Node::$isText __read only__
+### `bool` Contender\Elements\Node::$isText __read only__
 true if this node is an XML_TEXT_NODE
 
 
 
-### bool Contender\Elements\Node::$is_text __read only__
+### `bool` Contender\Elements\Node::$is_text __read only__
 true if this node is an XML_TEXT_NODE
 
 
 
-### bool Contender\Elements\Node::$isCharacterData __read only__
+### `bool` Contender\Elements\Node::$isCharacterData __read only__
 true if this node is an XML_CDATA_SECTION_NODE
 
 
 
-### bool Contender\Elements\Node::$is_character_data __read only__
+### `bool` Contender\Elements\Node::$is_character_data __read only__
 true if this node is an XML_CDATA_SECTION_NODE
 
 
 
-### bool Contender\Elements\Node::$isEntityReference __read only__
+### `bool` Contender\Elements\Node::$isEntityReference __read only__
 true if this node is an XML_ENTITY_REF_NODE
 
 
 
-### bool Contender\Elements\Node::$is_entity_reference __read only__
+### `bool` Contender\Elements\Node::$is_entity_reference __read only__
 true if this node is an XML_ENTITY_REF_NODE
 
 
 
-### bool Contender\Elements\Node::$isEntity __read only__
+### `bool` Contender\Elements\Node::$isEntity __read only__
 true if this node is an XML_ENTITY_NODE
 
 
 
-### bool Contender\Elements\Node::$is_entity __read only__
+### `bool` Contender\Elements\Node::$is_entity __read only__
 true if this node is an XML_ENTITY_NODE
 
 
 
-### bool Contender\Elements\Node::$isProcessingInstruction __read only__
+### `bool` Contender\Elements\Node::$isProcessingInstruction __read only__
 true if this node is an XML_PI_NODE
 
 
 
-### bool Contender\Elements\Node::$is_processing_instruction __read only__
+### `bool` Contender\Elements\Node::$is_processing_instruction __read only__
 true if this node is an XML_PI_NODE
 
 
 
-### bool Contender\Elements\Node::$isComment __read only__
+### `bool` Contender\Elements\Node::$isComment __read only__
 true if this node is an XML_COMMENT_NODE
 
 
 
-### bool Contender\Elements\Node::$is_comment __read only__
+### `bool` Contender\Elements\Node::$is_comment __read only__
 true if this node is an XML_COMMENT_NODE
 
 
 
-### bool Contender\Elements\Node::$isDocument __read only__
+### `bool` Contender\Elements\Node::$isDocument __read only__
 true if this node is an XML_DOCUMENT_NODE
 
 
 
-### bool Contender\Elements\Node::$is_document __read only__
+### `bool` Contender\Elements\Node::$is_document __read only__
 true if this node is an XML_DOCUMENT_NODE
 
 
 
-### bool Contender\Elements\Node::$isDocumentType __read only__
+### `bool` Contender\Elements\Node::$isDocumentType __read only__
 true if this node is an XML_DOCUMENT_TYPE_NODE
 
 
 
-### bool Contender\Elements\Node::$is_document_type __read only__
+### `bool` Contender\Elements\Node::$is_document_type __read only__
 true if this node is an XML_DOCUMENT_TYPE_NODE
 
 
 
-### bool Contender\Elements\Node::$isDocumentFragment __read only__
+### `bool` Contender\Elements\Node::$isDocumentFragment __read only__
 true if this node is an XML_DOCUMENT_FRAG_NODE
 
 
 
-### bool Contender\Elements\Node::$is_document_fragment __read only__
+### `bool` Contender\Elements\Node::$is_document_fragment __read only__
 true if this node is an XML_DOCUMENT_FRAG_NODE
 
 
 
-### bool Contender\Elements\Node::$isNotation __read only__
+### `bool` Contender\Elements\Node::$isNotation __read only__
 true if this node is an XML_NOTATION_NODE
 
 
 
-### bool Contender\Elements\Node::$is_notation __read only__
+### `bool` Contender\Elements\Node::$is_notation __read only__
 true if this node is an XML_NOTATION_NODE
 
 
 
-### string Contender\Elements\Node::$innerText __read only__
+### `string` Contender\Elements\Node::$innerText __read only__
 The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
 
 
 
-### string Contender\Elements\Node::$inner_text __read only__
+### `string` Contender\Elements\Node::$inner_text __read only__
 The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
 
 
 
-### string Contender\Elements\Node::$textContent __read only__
+### `string` Contender\Elements\Node::$textContent __read only__
 The text content of this node and its descendants.
 
 
 
-### string Contender\Elements\Node::$text_content __read only__
+### `string` Contender\Elements\Node::$text_content __read only__
 The text content of this node and its descendants.
 
 
 
-### string Contender\Elements\Node::$outerHTML __read only__
+### `string` Contender\Elements\Node::$outerHTML __read only__
 The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Node::$outer_h_t_m_l __read only__
+### `string` Contender\Elements\Node::$outer_h_t_m_l __read only__
 The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Node::$outerXML __read only__
+### `string` Contender\Elements\Node::$outerXML __read only__
 The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Node::$outer_x_m_l __read only__
+### `string` Contender\Elements\Node::$outer_x_m_l __read only__
 The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 
 
-### string Contender\Elements\Node::$nodePath __read only__
+### `string` Contender\Elements\Node::$nodePath __read only__
 Gets an XPath location path for the node
 
 
 
-### string Contender\Elements\Node::$node_path __read only__
+### `string` Contender\Elements\Node::$node_path __read only__
 Gets an XPath location path for the node
 
 
 
-### int Contender\Elements\Node::$lineNo __read only__
+### `int` Contender\Elements\Node::$lineNo __read only__
 Get line number for a node
 
 
 
-### int Contender\Elements\Node::$line_no __read only__
+### `int` Contender\Elements\Node::$line_no __read only__
 Get line number for a node
 
 
 
-### \Contender\Elements\Collection Contender\Elements\Node::$children __read only__
+### `\Contender\Elements\Collection` Contender\Elements\Node::$children __read only__
 That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
 
 
 
-### \Contender\Elements\Collection Contender\Elements\Node::$childNodes __read only__
+### `\Contender\Elements\Collection` Contender\Elements\Node::$childNodes __read only__
 Aliases to children
 
 
 
-### \Contender\Elements\Collection Contender\Elements\Node::$child_nodes __read only__
+### `\Contender\Elements\Collection` Contender\Elements\Node::$child_nodes __read only__
 Aliases to children
 
 
 
-### \Contender\Elements\Node Contender\Elements\Node::$firstChild __read only__
+### `\Contender\Elements\Node` Contender\Elements\Node::$firstChild __read only__
 Get a first child node.
 
 
 
-### \Contender\Elements\Node Contender\Elements\Node::$first_child __read only__
+### `\Contender\Elements\Node` Contender\Elements\Node::$first_child __read only__
 Get a first child node.
 
 
 
-### \Contender\Elements\Node Contender\Elements\Node::$lastChild __read only__
+### `\Contender\Elements\Node` Contender\Elements\Node::$lastChild __read only__
 Get a last child node.
 
 
 
-### \Contender\Elements\Node Contender\Elements\Node::$last_child __read only__
+### `\Contender\Elements\Node` Contender\Elements\Node::$last_child __read only__
 Get a last child node.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$firstElementChild __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$firstElementChild __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$first_element_child __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$first_element_child __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$parentNode __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$parentNode __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$parent_node __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$parent_node __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$lastElementChild __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$last_element_child __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$last_element_child __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$previousElementSibling __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$previousElementSibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$previous_element_sibling __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$previous_element_sibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$nextElementSibling __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$nextElementSibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$next_element_sibling __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$next_element_sibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$nextSibling __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$nextSibling __read only__
 Alias to next_element_sibling
 
 
 
-### \Contender\Elements\Node|null Contender\Elements\Node::$next_sibling __read only__
+### `\Contender\Elements\Node|null` Contender\Elements\Node::$next_sibling __read only__
 Alias to next_element_sibling
 
 
 
-### int Contender\Elements\Node::$nodeType __read only__
+### `int` Contender\Elements\Node::$nodeType __read only__
 Gets the type of the node.
 
 
 
-### int Contender\Elements\Node::$node_type __read only__
+### `int` Contender\Elements\Node::$node_type __read only__
 Gets the type of the node.
 
 
 
-### string Contender\Elements\Node::$nodeName __read only__
+### `string` Contender\Elements\Node::$nodeName __read only__
 Returns the most accurate name for the current node type
 
 
 
-### string Contender\Elements\Node::$node_name __read only__
+### `string` Contender\Elements\Node::$node_name __read only__
 Returns the most accurate name for the current node type
 
 
 
-### string Contender\Elements\Node::$innerHTML 
+### `string` Contender\Elements\Node::$innerHTML 
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
 
 
-### string Contender\Elements\Node::$inner_h_t_m_l 
+### `string` Contender\Elements\Node::$inner_h_t_m_l 
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
 
 
-### string Contender\Elements\Node::$innerXML 
+### `string` Contender\Elements\Node::$innerXML 
 The Element property innerXML gets or sets the HTML or XML markup contained within the element
 
 
 
-### string Contender\Elements\Node::$inner_x_m_l 
+### `string` Contender\Elements\Node::$inner_x_m_l 
 The Element property innerXML gets or sets the HTML or XML markup contained within the element
 
 
@@ -4673,7 +4673,7 @@ Node constructor.
 
 
 #### Parameters
-##### (\DOMNode) $element
+##### `\DOMNode` $element
 
 
 
@@ -4711,7 +4711,7 @@ Returns a {@link \Contender\Elements\Node} object representing the element whose
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 tag id
 
@@ -4732,7 +4732,7 @@ Returns a {@link \Contender\Elements\Collection} object of all child elements wh
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 tag class name
 
@@ -4753,7 +4753,7 @@ Returns a {@link \Contender\Elements\Collection} object of elements with a given
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 tag name attribute
 
@@ -4774,7 +4774,7 @@ Returns a {@link \Contender\Elements\Collection} object of elements with the giv
 
 
 #### Parameters
-##### (string) $tag_name
+##### `string` $tag_name
 
 Elements tag name
 
@@ -4795,11 +4795,11 @@ Returns the attribute node in namespace namespaceURI with local name localName f
 
 
 #### Parameters
-##### (string) $namespaceURI
+##### `string` $namespaceURI
 
 The namespace URI.
 
-##### (string) $localName
+##### `string` $localName
 
 The local name.
 
@@ -4820,7 +4820,7 @@ Returns a {@link \Contender\Elements\Node} matching Css selector.
 
 
 #### Parameters
-##### (string) $selectors
+##### `string` $selectors
 
 Valid CSS selector string
 
@@ -4841,7 +4841,7 @@ Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\N
 
 
 #### Parameters
-##### (string) $selectors
+##### `string` $selectors
 
 Valid CSS selector string
 
@@ -4862,7 +4862,7 @@ Call querySelectorAll() and {@link \Contender\Elements\Collection::onlyElement()
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 
 
@@ -4883,7 +4883,7 @@ Evaluates the given XPath expression and returns a {@link \Contender\Elements\Co
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 xpath
 
@@ -4904,11 +4904,11 @@ Evaluates the given XPath expression and returns a {@link \Contender\Elements\No
 
 
 #### Parameters
-##### (string) $query
+##### `string` $query
 
 xpath
 
-##### (int) $offset
+##### `int` $offset
 
 
 
@@ -4929,7 +4929,7 @@ if call attr('name')
 Alias getAttr()if call attr('name', 'value')Alias setAttr()
 
 #### Parameters
-##### (mixed|null) $name
+##### `mixed|null` $name
 
 
 
@@ -4950,7 +4950,7 @@ get tag attribute for element.
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
@@ -4971,11 +4971,11 @@ set tag attribute for element.
 
 
 #### Parameters
-##### (string) $name
+##### `string` $name
 
 
 
-##### (string) $value
+##### `string` $value
 
 
 

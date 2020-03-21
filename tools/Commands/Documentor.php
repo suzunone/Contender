@@ -196,7 +196,7 @@ EOT
 
                 $params[$name]['type'] .= ($parameter->allowsNull() ? '|null' : '');
             }
-            $res .= "##### ({$params[$name]['type']}) {$params[$name]['param']}\n\n{$params[$name]['description']}\n\n";
+            $res .= "##### `{$params[$name]['type']}` {$params[$name]['param']}\n\n{$params[$name]['description']}\n\n";
         }
 
         return $res;

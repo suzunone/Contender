@@ -1,4 +1,4 @@
-### DummyType DummyClass::DummyName = DummyValue
+### `DummyType` DummyClass::DummyName = DummyValue
 DummyTitle
 
 DummyDescription
