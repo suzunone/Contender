@@ -12,8 +12,8 @@
   "require": {
     "ext-dom": "*",
     "ext-libxml": "*",
+    "ext-mbstring": "*",
     "illuminate/support":  "~5.1|~6.0",
-    "symfony/polyfill-mbstring": "^1.10",
     "symfony/css-selector": "^5.0"
   },
   "require-dev": {

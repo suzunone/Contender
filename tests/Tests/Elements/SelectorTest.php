@@ -21,6 +21,27 @@ use Contender\Elements\Node;
 use PHPUnit\Framework\TestCase;
 use Contender\Contender;
 
+/**
+ * Class SelectorTest
+ *
+ * @category   Contender
+ * @package    Tests\Suzunone\Contender\Elements
+ * @subpackage Tests\Suzunone\Contender\Elements
+ * @author     suzunone<suzunone.eleven@gmail.com>
+ * @copyright  Project Contender
+ * @license    MIT
+ * @version    1.0
+ * @link       https://github.com/suzunone/Contender
+ * @see        https://github.com/suzunone/Contender
+ * @since      2020/03/22
+ * @covers \Contender\Elements\Document
+ * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Collection
+ * @covers \Contender\Elements\Traits\SelectorTrait
+ * @covers \Contender\Elements\Traits\MutationTrait
+ * @covers \Contender\Elements\Traits\ElementTrait
+ * @covers \Contender\Elements\Traits\NodeTrait
+ */
 class SelectorTest extends TestCase
 {
     public function test_querySelector()

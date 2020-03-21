@@ -21,13 +21,39 @@ use Contender\Contender;
 use Contender\Elements\Document;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class ContenderTest
+ *
+ * @category   Contender
+ * @package    Tests\Contender
+ * @subpackage Tests\Contender
+ * @author     suzunone<suzunone.eleven@gmail.com>
+ * @copyright  Project Contender
+ * @license    MIT
+ * @version    1.0
+ * @link       https://github.com/suzunone/Contender
+ * @see        https://github.com/suzunone/Contender
+ * @since      2020/03/22
+ * @covers     \Contender\Contender
+ * @covers     \Contender\Elements\Document
+ * @covers     \Contender\Elements\Node
+ * @covers     \Contender\Elements\Collection
+ */
 class ContenderTest extends TestCase
 {
+    /**
+     *
+     */
     public function test_load_bigfile()
     {
-        $parser = new Contender();
-
-        $dom = $parser->load(file_get_contents(__DIR__ . '/../data/789_14547.html'));
+        $header = [
+            'http' => [
+                'method'        => 'GET',
+                'header'        => 'User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:13.0) Gecko/20100101 Firefox/13.0.1',
+                'ignore_errors' => true,
+            ],
+        ];
+        $dom = Contender::loadUrl('https://www.aozora.gr.jp/cards/000148/files/789_14547.html', [], $header);
 
         $this->assertInstanceOf(Document::class, $dom);
 
@@ -153,9 +179,7 @@ HTMLEND;
      */
     public function test_remove_tag($html, $expects, $expect_ignores, $options)
     {
-        $parser = new Contender();
-
-        $dom = $parser->load($html, $options);
+        $dom = Contender::loadStr($html, $options);
         $ex_html = (string) $dom;
         foreach ($expects as $expect) {
             $this->assertStringContainsString($expect, $ex_html);

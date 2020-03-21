@@ -109,7 +109,7 @@ EOT
             $document = $method->getDocComment();
             $default_comment = '';
             if (preg_match('/@return +[^\s]+( [^\n]*)/u', $document, $return_annotate_match)) {
-                $default_comment = trim($return_annotate_match[1]);
+                $default_comment = ' '.trim($return_annotate_match[1]);
             }
 
             $annotate = ' * @property';
@@ -120,9 +120,9 @@ EOT
 
             $annotate .= ' ' . $type . ' ';
 
-            $annotates[$camel] = $annotate . $camel.$default_comment;
+            $annotates[$camel] = $annotate . $camel . $default_comment;
             if ($camel !== $snake) {
-                $annotates[$snake] = $annotate . $snake.$default_comment;
+                $annotates[$snake] = $annotate . $snake . $default_comment;
             }
         }
 
@@ -131,6 +131,7 @@ EOT
 
         $replacement_doc = str_replace("\n */", "\n" . implode("\n", $annotates) . "\n */", $replacement_doc);
 
+        dump($file);
         file_put_contents($file, str_replace($now_doc, $replacement_doc, file_get_contents($file)));
     }
 
@@ -156,12 +157,12 @@ EOT
             $res = $type->getName() ?: $default_type;
         } elseif ($type->getName() === 'self') {
             if (!$clazz->isTrait()) {
-                $res = '\\'.$clazz->getName();
+                $res = '\\' . $clazz->getName();
             } else {
                 $res = 'self';
             }
         } else {
-            $res = '\\'.$type->getName();
+            $res = '\\' . $type->getName();
         }
 
         if ($type->allowsNull()) {

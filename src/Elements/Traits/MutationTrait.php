@@ -39,6 +39,7 @@ trait MutationTrait
     /**
      * @param $name
      * @return mixed|string
+     * @hideDoc
      */
     public function __get($name)
     {
@@ -52,6 +53,7 @@ trait MutationTrait
     /**
      * @param $name
      * @param $value
+     * @hideDoc
      */
     public function __set($name, $value)
     {
@@ -67,6 +69,7 @@ trait MutationTrait
     /**
      * @param $name
      * @return bool
+     * @hideDoc
      */
     public function __isset($name)
     {

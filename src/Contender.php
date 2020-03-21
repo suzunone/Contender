@@ -22,6 +22,8 @@ use DOMDocument;
 /**
  * Class Contender
  *
+ * Load Html to generate a {@link \Contender\Elements\Document} object.
+ *
  * @category   Contender
  * @package    Contender
  * @subpackage Contender
@@ -32,77 +34,91 @@ use DOMDocument;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
+ * @isdoc
  */
 class Contender
 {
     /**
      * Activate small nodes allocation optimization. This may speed up your application without needing to change the code.
+     * @var string Contender Load Option.
      */
     const OPTION_COMPACT = 'LIBXML_COMPACT';
 
     /**
      * Remove blank nodes
+     * @var string Contender Load Option.
      */
     const OPTION_NOBLANKS = 'LIBXML_NOBLANKS';
 
     /**
      * Merge CDATA as text nodes
+     * @var string Contender Load Option.
      */
     const OPTION_NOCDATA = 'LIBXML_NOCDATA';
 
     /**
      * Expand empty tags (e.g. <br/> to <br></br>)
+     * @var string Contender Load Option.
      */
     const OPTION_NOEMPTYTAG = 'LIBXML_NOEMPTYTAG';
 
     /**
      * Substitute entities
+     * @var string Contender Load Option.
      */
     const OPTION_NOENT = 'LIBXML_NOENT';
 
     /**
      * Disable network access when loading documents
+     * @var string Contender Load Option.
      */
     const OPTION_NONET = 'LIBXML_NONET';
 
     /**
      * Force to UTF -8 encoding
+     * @var string Contender Load Option.
      */
     const OPTION_CONVERT_ENCODE = 'CONVERT_ENCODE';
     const OPTION_CONVERT_NO_ENCODE = 'CONVERT_NO_ENCODE';
 
     /**
      * Change charset<meta>tag when {@link \Contender\Contender::OPTION_CONVERT_ENCODE} option is enabled
+     * @var string Contender Load Option.
      */
     const OPTION_CONVERT_REPLACE_CHARSET = 'OPTION_CONVERT_REPLACE_CHARSET';
     const OPTION_CONVERT_NO_REPLACE_CHARSET = 'OPTION_CONVERT_NO_REPLACE_CHARSET';
 
     /**
      * Nicely formats output with indentation and extra space.
+     * @var string Contender Load Option.
      */
     const OPTION_FORMAT_OUTPUT_ENABLE = 'OPTION_FORMAT_OUTPUT_ENABLE';
     const OPTION_FORMAT_OUTPUT_DISABLE = 'OPTION_FORMAT_OUTPUT_DISABLE';
 
     /**
-     * Minify html, then generating to {@link \Contender\Elements\Document}(Default:Enabled)
+     * Do not minify html, then generating to {@link \Contender\Elements\Document}
+     * @var string Contender Load Option.
      */
-    const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
     const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
+    const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
 
     /**
      * Remove <style>tags, then generating to {@link \Contender\Elements\Document}
+     * @var string Contender Load Option.
      */
     const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
     const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
 
     /**
      * Remove <script>tags, then generating to {@link \Contender\Elements\Document}
+     * @var string Contender Load Option.
      */
     const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
     const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
 
     /**
      * Remove <comment>tags, then generating to {@link \Contender\Elements\Document}
+     * @var string Contender Load Option.
      */
     const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
     const OPTION_REMOVE_COMMENT_DISABLE = 'OPTION_REMOVE_COMMENT_DISABLE';
@@ -224,7 +240,7 @@ class Contender
     /**
      * Generate a {@link \Contender\Elements\Document} from a string
      *
-     * @param string $html  The string containing the HTML.
+     * @param string $html   The string containing the HTML.
      * @param array $options Array multiple Contender option constants
      * @return \Contender\Elements\Document
      */
@@ -363,17 +379,20 @@ HTML;
     /**
      * Generate a {@link \Contender\Elements\Document}  from a URL
      *
-     * @param string $url The path to the HTML document.
-     * @param array $options Array multiple Contender option constants
+     * @param string $url                The path to the HTML document.
+     * @param array $options             Array multiple Contender option constants
      * @param array|null $context_option Context options
      * @return \Contender\Elements\Document
      * @link https://www.php.net/manual/en/context.php
      */
     public function loadFromUrl(string $url, array $options = [], ?array $context_option = null)
     {
-        $context = stream_context_create($context_option);
-
-        $html = file_get_contents($url, false, $context);
+        if ($context_option) {
+            $context = stream_context_create($context_option);
+            $html = file_get_contents($url, false, $context);
+        } else {
+            $html = file_get_contents($url);
+        }
 
         return $this->load($html, $options);
     }
@@ -381,8 +400,8 @@ HTML;
     /**
      * Generate a {@link \Contender\Elements\Document}  from a string(static call)
      *
-     * @param string $html The string containing the HTML.
-     * @param array $options  Array multiple Contender option constants
+     * @param string $html   The string containing the HTML.
+     * @param array $options Array multiple Contender option constants
      * @return \Contender\Elements\Document
      */
     public static function loadStr(string $html, array $options = []): Document
@@ -395,8 +414,8 @@ HTML;
     /**
      * Generate a {@link \Contender\Elements\Document}  from a URL(static call)
      *
-     * @param string $url The path to the HTML document.
-     * @param array $options Array multiple Contender option constants
+     * @param string $url                The path to the HTML document.
+     * @param array $options             Array multiple Contender option constants
      * @param array|null $context_option Context options
      * @return \Contender\Elements\Document
      * @link https://www.php.net/manual/en/context.php

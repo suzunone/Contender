@@ -20,6 +20,27 @@ namespace Tests\Suzunone\Contender\Elements;
 use Contender\Contender;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class GetterTest
+ *
+ * @category   Contender
+ * @package    Tests\Suzunone\Contender\Elements
+ * @subpackage Tests\Suzunone\Contender\Elements
+ * @author     suzunone<suzunone.eleven@gmail.com>
+ * @copyright  Project Contender
+ * @license    MIT
+ * @version    1.0
+ * @link       https://github.com/suzunone/Contender
+ * @see        https://github.com/suzunone/Contender
+ * @since      2020/03/22
+ * @covers \Contender\Elements\Document
+ * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Collection
+ * @covers \Contender\Elements\Traits\GetterTrait
+ * @covers \Contender\Elements\Traits\MutationTrait
+ * @covers \Contender\Elements\Traits\ElementTrait
+ * @covers \Contender\Elements\Traits\NodeTrait
+ */
 class GetterTest extends TestCase
 {
     public function test_getAttribute()

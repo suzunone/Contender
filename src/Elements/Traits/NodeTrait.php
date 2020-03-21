@@ -37,21 +37,45 @@ trait NodeTrait
 {
     /**
      * if call attr('name')
-     * get tag attribute for element.
+     * Alias getAttr()
      *
      * if call attr('name', 'value')
-     * set tag attribute for element.
+     * Alias setAttr()
      *
      * @param ...$name
-     * @return string
+     * @return string|null
      */
-    public function attr(...$name): string
+    public function attr(...$name): ?string
     {
         if (count($name) === 1) {
-            return $this->element->getAttribute($name[0]);
+            return $this->getAttr($name[0]);
         }
 
-        $this->element->setAttribute($name[0], $name[1]);
+        $this->setAttr($name[0], $name[1]);
+
+        return null;
+    }
+
+    /**
+     * get tag attribute for element.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function getAttr(string $name)
+    {
+        return $this->element->getAttribute($name);
+    }
+
+    /**
+     * set tag attribute for element.
+     *
+     * @param string $name
+     * @param string $value
+     */
+    public function setAttr(string $name, string $value)
+    {
+        $this->element->setAttribute($name, $value);
     }
 
     /**
@@ -59,12 +83,14 @@ trait NodeTrait
      *
      * @param \DOMNode|null $element
      * @return Node|null
+     * @hideDoc
      */
     public function createNode(?DOMNode $element): ?Node
     {
         if ($element === null) {
             return $element;
         }
+
         return new Node($element);
     }
 }

@@ -22,6 +22,8 @@ use DOMNodeList;
 /**
  * Class Collection
  *
+ * A collection of {@link \Contender\Elements\Node} from {@link \Contender\Elements\Document}
+ *
  * @category   Contender
  * @package    Contender\Elements
  * @subpackage Contender\Elements
@@ -32,11 +34,12 @@ use DOMNodeList;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
+ * @isdoc
  * @method \Contender\Elements\Node offsetGet($key)
  * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
- * @property string innerHTML先頭のinnerHTML
- * @property string inner_h_t_m_l先頭のinnerHTML
+ * @property string innerHTML 先頭のinnerHTML
+ * @property string inner_h_t_m_l 先頭のinnerHTML
  */
 class Collection extends \Illuminate\Support\Collection
 {

@@ -20,6 +20,23 @@ namespace Tests\Contender\Elements;
 use Contender\Contender;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class CollectionTest
+ *
+ * @category   Contender
+ * @package    Tests\Contender\Elements
+ * @subpackage Tests\Contender\Elements
+ * @author     suzunone<suzunone.eleven@gmail.com>
+ * @copyright  Project Contender
+ * @license    MIT
+ * @version    1.0
+ * @link       https://github.com/suzunone/Contender
+ * @see        https://github.com/suzunone/Contender
+ * @since      2020/03/22
+ * @covers \Contender\Elements\Document
+ * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Collection
+ */
 class CollectionTest extends TestCase
 {
     public function test_onlyElement()

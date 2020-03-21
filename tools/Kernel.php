@@ -18,6 +18,7 @@
 namespace Tools\Contender;
 
 use Tools\Contender\Commands\DocComments;
+use Tools\Contender\Commands\Documentor;
 
 class Kernel
 {
@@ -25,6 +26,7 @@ class Kernel
     {
         $app = [
             DocComments::class,
+            Documentor::class
         ];
 
         return collect($app)

@@ -91,7 +91,6 @@ trait SelectorTrait
 
         $res = $this->document()->getElementsByTagName($tag_name);
 
-
         return Collection::makeByDOMNodeList($res);
     }
 
