@@ -50,6 +50,15 @@ class Contender
     const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
     const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
 
+    const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
+    const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
+
+    const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
+    const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
+
+    const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
+    const OPTION_REMOVE_COMMENT_DISABLE = 'OPTION_REMOVE_COMMENT_DISABLE';
+
     public const DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING;
 
     protected $options = [];
@@ -58,6 +67,9 @@ class Contender
     protected $is_replace_charset = true;
     protected $format_output = false;
     protected $is_minify = true;
+    protected $is_style_remove = false;
+    protected $is_script_remove = false;
+    protected $is_comment_remove = false;
 
     /**
      * Contender constructor.
@@ -68,19 +80,8 @@ class Contender
     }
 
     /**
-     * @param array $options
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        foreach ($options as $option) {
-            $this->setOption($option);
-        }
-
-        return $this;
-    }
-
-    /**
+     * Options for converting Html to ContenderDocument
+     *
      * @param $option
      * @return $this
      */
@@ -129,12 +130,51 @@ class Contender
             case self::OPTION_MINIFY_DISABLE:
                 $this->is_minify = false;
                 break;
+
+            case self::OPTION_REMOVE_STYLE_ENABLE:
+                $this->is_style_remove = true;
+                break;
+            case self::OPTION_REMOVE_STYLE_DISABLE:
+                $this->is_style_remove = false;
+                break;
+            case self::OPTION_REMOVE_SCRIPT_ENABLE:
+                $this->is_script_remove = true;
+                break;
+            case self::OPTION_REMOVE_SCRIPT_DISABLE:
+                $this->is_script_remove = false;
+                break;
+
+            case self::OPTION_REMOVE_COMMENT_ENABLE:
+                $this->is_comment_remove = true;
+                break;
+            case self::OPTION_REMOVE_COMMENT_DISABLE:
+                $this->is_comment_remove = false;
+                break;
+
         }
 
         return $this;
     }
 
     /**
+     * Calls {@link \Contender\Contender::setOption()} as an array
+     *
+     * @param array $options
+     * @return $this
+     * @link \Contender\Contender::setOption()
+     */
+    public function setOptions(array $options): self
+    {
+        foreach ($options as $option) {
+            $this->setOption($option);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document} from a string
+     *
      * @param string $html
      * @param array $options
      * @return \Contender\Elements\Document
@@ -146,22 +186,7 @@ class Contender
             $html = $this->toUTF8($html);
         }
 
-        if (strpos($html, '</body>') === false) {
-            $html = "<body>{$html}</body>";
-        }
-
-        if (strpos($html, '</html>') === false) {
-            $internal_encoding = mb_internal_encoding();
-            $html = <<<HTML
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="{$internal_encoding}">
-</head>
-{$html}
-</html>
-HTML;
-        }
+        $html = $this->completeHtmlTag($html);
 
         $doc = new DOMDocument();
         if ($this->is_encode) {
@@ -175,10 +200,91 @@ HTML;
         }
         $doc->loadHTML($html, $this->options());
 
+        $doc = $this->cleanUpDom($doc);
+
         return new Document($doc);
     }
 
     /**
+     * Complete <html> and <body> tags.
+     * @param string $html
+     * @return string
+     */
+    protected function completeHtmlTag(string $html): string
+    {
+        if (strpos($html, '</body>') === false) {
+            $html = "<body>{$html}</body>";
+        }
+
+        if (strpos($html, '</html>') === false) {
+            $internal_encoding = mb_internal_encoding();
+            $html = <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="{$internal_encoding}">
+<meta http-equiv="Content-Type" content="text/html; charset={$internal_encoding}">
+</head>
+{$html}
+</html>
+HTML;
+        }
+
+        return $html;
+    }
+
+    /**
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function cleanUpDom(DOMDocument $dom): DOMDocument
+    {
+        if ($this->is_comment_remove) {
+            $dom = $this->removeComment($dom);
+        }
+        if ($this->is_style_remove) {
+            $dom = $this->removeStyle($dom);
+        }
+        if ($this->is_script_remove) {
+            $dom = $this->removeScript($dom);
+        }
+
+        return $dom;
+    }
+
+    protected function removeComment(DOMDocument $dom): DOMDocument
+    {
+        return $this->removePath('//comment()', $dom);
+    }
+
+    protected function removeStyle(DOMDocument $dom): DOMDocument
+    {
+        return $this->removePath('//style', $dom);
+    }
+
+    protected function removeScript(DOMDocument $dom): DOMDocument
+    {
+        return $this->removePath('//script', $dom);
+    }
+
+    protected function removePath($path, DOMDocument $dom): DOMDocument
+    {
+        $xpath = new \DOMXPath($dom);
+        $items = $xpath->query($path);
+        if ($items === false) {
+            return $dom;
+        }
+
+        foreach ($items as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        return $dom;
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document}  from a URL
+     *
      * @param string $url
      * @param array $options
      * @param array|null $context_option
@@ -194,6 +300,8 @@ HTML;
     }
 
     /**
+     * Generate a {@link \Contender\Elements\Document}  from a string(static call)
+     *
      * @param string $html
      * @param array $options
      * @return \Contender\Elements\Document
@@ -206,6 +314,8 @@ HTML;
     }
 
     /**
+     * Generate a {@link \Contender\Elements\Document}  from a URL(static call)
+     *
      * @param string $html
      * @param array $options
      * @param array|null $context_option
@@ -219,6 +329,7 @@ HTML;
     }
 
     /**
+     * Generate options for libxml
      * @return int
      */
     protected function options(): int
@@ -232,7 +343,13 @@ HTML;
         return $option;
     }
 
-    protected function toUTF8(string $html)
+    /**
+     * Convert character codes to UTF-8
+     *
+     * @param string $html
+     * @return string
+     */
+    protected function toUTF8(string $html): string
     {
         $doc = new DOMDocument();
         $doc->loadHTML($html, self::DEFAULT_LIBXML_OPTION);
