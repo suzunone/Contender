@@ -35,8 +35,8 @@ use DOMNodeList;
  * @method \Contender\Elements\Node offsetGet($key)
  * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
- * @property mixed innerHTML
- * @property mixed inner_h_t_m_l
+ * @property string innerHTML
+ * @property string inner_h_t_m_l
  */
 class Collection extends \Illuminate\Support\Collection
 {
@@ -52,12 +52,14 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @param string $query
+     * Call {@link \Contender\Elements\Collection::querySelectorAll()} and {@link \Contender\Elements\Collection::onlyElement()}
+     *
+     * @param string $selectors
      * @return \Contender\Elements\Collection
      */
-    public function find(string $query): Collection
+    public function find(string $selectors): Collection
     {
-        return $this->querySelectorAll($query)->onlyElement();
+        return $this->querySelectorAll($selectors)->onlyElement();
     }
 
     /**
@@ -76,7 +78,9 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @return \Contender\Elements\Collection
+     * HTMLElement only Node
+     *
+     * @return \Contender\Elements\Collection Filtered Collection
      */
     public function onlyElement(): Collection
     {
@@ -86,7 +90,9 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @return \Contender\Elements\Collection
+     * Sort {@link \Contender\Elements\Node} by line number and Xpath
+     *
+     * @return \Contender\Elements\Collection Sorted Collection
      */
     public function sortDom()
     {
@@ -108,7 +114,9 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @param string $query
+     * Returns a {@link \Contender\Elements\Node} matching Css selector.
+     *
+     * @param string $query Valid CSS selector string
      * @return \Contender\Elements\Node|null
      */
     public function querySelector(string $query): ?Node
@@ -131,12 +139,14 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @param string $query
+     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching Css selector.
+     *
+     * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Collection|Node[]
      */
-    public function querySelectorAll(string $query): Collection
+    public function querySelectorAll(string $selectors): Collection
     {
-        $queries = explode(',', $query);
+        $queries = explode(',', $selectors);
         $res = self::make();
 
         $this->each(function (Node $item) use ($queries, &$res) {
@@ -175,7 +185,7 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @return string
+     * @return string 先頭のinnerHTML
      */
     public function getInnerHTMLAttribute(): string
     {

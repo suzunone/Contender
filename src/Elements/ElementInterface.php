@@ -16,6 +16,8 @@
 
 namespace Contender\Elements;
 
+use DOMNode;
+
 /**
  * Interface ElementInterface
  *
@@ -33,8 +35,8 @@ namespace Contender\Elements;
 interface ElementInterface
 {
     /**
-     * @param \DOMNode $element
+     * @param \DOMNode|null $element
      * @return Node
      */
-    public function createNode(\DOMNode $element): Node;
+    public function createNode(?DOMNode $element): ?Node;
 }

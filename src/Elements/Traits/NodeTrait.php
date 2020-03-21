@@ -49,11 +49,14 @@ trait NodeTrait
     }
 
     /**
-     * @param \DOMNode $element
-     * @return Node
+     * @param \DOMNode|null $element
+     * @return Node|null
      */
-    public function createNode(DOMNode $element): Node
+    public function createNode(?DOMNode $element): ?Node
     {
+        if ($element === null) {
+            return $element;
+        }
         return new Node($element);
     }
 }

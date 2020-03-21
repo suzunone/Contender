@@ -106,6 +106,12 @@ EOT
             $snake = Str::snake($match);
             $camel = Str::camel($match);
 
+            $document = $method->getDocComment();
+            $default_comment = '';
+            if (preg_match('/@return +[^\s]+( [^\n]*)/u', $document, $return_annotate_match)) {
+                $default_comment = trim($return_annotate_match[1]);
+            }
+
             $annotate = ' * @property';
             if (!isset($setter[$match])) {
                 $annotate .= '-read';
@@ -114,28 +120,40 @@ EOT
 
             $annotate .= ' ' . $type . ' ';
 
-            $annotates[$camel] = $annotate . $camel;
+            $annotates[$camel] = $annotate . $camel.$default_comment;
             if ($camel !== $snake) {
-                $annotates[$snake] = $annotate . $snake;
+                $annotates[$snake] = $annotate . $snake.$default_comment;
             }
         }
 
         $replacement_doc = preg_replace('/ \* @property(-read)? .*?\n/u', '', $now_doc);
         // $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);
 
-        $replacement_doc = str_replace("\n */", "\n" . join("\n", $annotates) . "\n */", $replacement_doc);
+        $replacement_doc = str_replace("\n */", "\n" . implode("\n", $annotates) . "\n */", $replacement_doc);
 
         file_put_contents($file, str_replace($now_doc, $replacement_doc, file_get_contents($file)));
     }
 
+    /**
+     * @param \ReflectionMethod $method
+     * @param \ReflectionClass $clazz
+     * @return mixed|string
+     */
     public function makeTypeHint(\ReflectionMethod $method, ReflectionClass $clazz)
     {
+        $document = $method->getDocComment();
+        $default_type = 'mixed';
+        if (preg_match('/@return +([^\s]+)/u', $document, $return_annotate_match)) {
+            $default_type = $return_annotate_match[1];
+        }
+
         $type = $method->getReturnType();
         if (!$type) {
-            return 'mixed';
+            return $default_type;
         }
+
         if ($type->isBuiltin()) {
-            $res = $type->getName() ?: 'mixed';
+            $res = $type->getName() ?: $default_type;
         } elseif ($type->getName() === 'self') {
             if (!$clazz->isTrait()) {
                 $res = '\\'.$clazz->getName();

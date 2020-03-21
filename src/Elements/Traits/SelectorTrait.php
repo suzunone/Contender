@@ -40,8 +40,10 @@ trait SelectorTrait
     use CssSelector2XPathTrait;
 
     /**
-     * @param string $query
-     * @return \Contender\Elements\Node|null
+     *  Returns a {@link \Contender\Elements\Node} object representing the element whose id property matches the specified string.
+     *
+     * @param string $query tag id
+     * @return \Contender\Elements\Node|null Selected node
      */
     public function getElementById(string $query): ?Node
     {
@@ -54,7 +56,9 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     *  Returns a {@link \Contender\Elements\Collection} object of all child elements which have all of the given class name(s)
+     *
+     * @param string $query tag class name
      * @return \Contender\Elements\Collection|\Contender\Elements\Node[]
      */
     public function getElementsByClassName(string $query): Collection
@@ -63,7 +67,9 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     *  Returns a {@link \Contender\Elements\Collection} object of elements with a given name in the document.
+     *
+     * @param string $query tag name attribute
      * @return \Contender\Elements\Collection|\Contender\Elements\Node[]
      */
     public function getElementsByName(string $query): Collection
@@ -72,23 +78,28 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     * Returns a {@link \Contender\Elements\Collection} object of elements with the given tag name.
+     *
+     * @param string $tag_name Elements tag name
      * @return \Contender\Elements\Collection
      */
-    public function getElementsByTagName(string $query): Collection
+    public function getElementsByTagName(string $tag_name): Collection
     {
         if ($this->isElement) {
-            return $this->element->getElementsByTagName($query);
+            return $this->element->getElementsByTagName($tag_name);
         }
 
-        $res = $this->document()->getElementsByTagName($query);
+        $res = $this->document()->getElementsByTagName($tag_name);
+
 
         return Collection::makeByDOMNodeList($res);
     }
 
     /**
-     * @param string $namespaceURI
-     * @param string $localName
+     * Returns the attribute node in namespace namespaceURI with local name localName for the current node.
+     *
+     * @param string $namespaceURI The namespace URI.
+     * @param string $localName The local name.
      * @return \Contender\Elements\Collection
      */
     public function getAttributeNodeNS(string $namespaceURI, string $localName): Collection
@@ -103,12 +114,14 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     * Returns a {@link \Contender\Elements\Node} matching Css selector.
+     *
+     * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Node|null
      */
-    public function querySelector(string $query): ?Node
+    public function querySelector(string $selectors): ?Node
     {
-        $queries = explode(',', $query);
+        $queries = explode(',', $selectors);
         foreach ($queries as $selector) {
             $res = $this->evaluate($this->cssSelector2XPath(trim($selector)));
             if ($res) {
@@ -118,12 +131,14 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching Css selector.
+     *
+     * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Collection|Node[]
      */
-    public function querySelectorAll(string $query): Collection
+    public function querySelectorAll(string $selectors): Collection
     {
-        $queries = explode(',', $query);
+        $queries = explode(',', $selectors);
         $res = Collection::make();
         foreach ($queries as $selector) {
             $res = $res->merge($this->evaluateToCollection($this->cssSelector2XPath(trim($selector))));
@@ -133,6 +148,8 @@ trait SelectorTrait
     }
 
     /**
+     * Call querySelectorAll() and {@link \Contender\Elements\Collection::onlyElement()}
+     *
      * @param string $query
      * @return \Contender\Elements\Collection
      */
@@ -142,7 +159,9 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     * Evaluates the given XPath expression and returns a {@link \Contender\Elements\Collection} result if possible
+     *
+     * @param string $query xpath
      * @return \Contender\Elements\Collection|Node[]
      */
     public function evaluateToCollection(string $query): Collection
@@ -160,7 +179,9 @@ trait SelectorTrait
     }
 
     /**
-     * @param string $query
+     * Evaluates the given XPath expression and returns a {@link \Contender\Elements\Node} result if possible
+     *
+     * @param string $query xpath
      * @param int $offset
      * @return \Contender\Elements\Node|null
      */
@@ -180,6 +201,8 @@ trait SelectorTrait
     }
 
     /**
+     * alias DOMXPath::evaluate
+     *
      * @param string $query
      * @return  DOMNodeList
      */
