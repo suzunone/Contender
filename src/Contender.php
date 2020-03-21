@@ -1,6 +1,6 @@
 <?php
 /**
- * DOM.php
+ * Contender.php
  *
  * @category   Contender
  * @package    Contender
@@ -20,7 +20,7 @@ use Contender\Elements\Document;
 use DOMDocument;
 
 /**
- * Class DOM
+ * Class Contender
  *
  * @category   Contender
  * @package    Contender
@@ -35,30 +35,81 @@ use DOMDocument;
  */
 class Contender
 {
+    /**
+     * Activate small nodes allocation optimization. This may speed up your application without needing to change the code.
+     */
     const OPTION_COMPACT = 'LIBXML_COMPACT';
+
+    /**
+     * Remove blank nodes
+     */
     const OPTION_NOBLANKS = 'LIBXML_NOBLANKS';
+
+    /**
+     * Merge CDATA as text nodes
+     */
     const OPTION_NOCDATA = 'LIBXML_NOCDATA';
+
+    /**
+     * Expand empty tags (e.g. <br/> to <br></br>)
+     */
     const OPTION_NOEMPTYTAG = 'LIBXML_NOEMPTYTAG';
+
+    /**
+     * Substitute entities
+     */
     const OPTION_NOENT = 'LIBXML_NOENT';
+
+    /**
+     * Disable network access when loading documents
+     */
     const OPTION_NONET = 'LIBXML_NONET';
+
+    /**
+     * Force to UTF -8 encoding
+     */
     const OPTION_CONVERT_ENCODE = 'CONVERT_ENCODE';
     const OPTION_CONVERT_NO_ENCODE = 'CONVERT_NO_ENCODE';
+
+    /**
+     * Change charset<meta>tag when {@link \Contender\Contender::OPTION_CONVERT_ENCODE} option is enabled
+     */
     const OPTION_CONVERT_REPLACE_CHARSET = 'OPTION_CONVERT_REPLACE_CHARSET';
     const OPTION_CONVERT_NO_REPLACE_CHARSET = 'OPTION_CONVERT_NO_REPLACE_CHARSET';
+
+    /**
+     * Nicely formats output with indentation and extra space.
+     */
     const OPTION_FORMAT_OUTPUT_ENABLE = 'OPTION_FORMAT_OUTPUT_ENABLE';
     const OPTION_FORMAT_OUTPUT_DISABLE = 'OPTION_FORMAT_OUTPUT_DISABLE';
+
+    /**
+     * Minify html, then generating to {@link \Contender\Elements\Document}(Default:Enabled)
+     */
     const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
     const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
 
+    /**
+     * Remove <style>tags, then generating to {@link \Contender\Elements\Document}
+     */
     const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
     const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
 
+    /**
+     * Remove <script>tags, then generating to {@link \Contender\Elements\Document}
+     */
     const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
     const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
 
+    /**
+     * Remove <comment>tags, then generating to {@link \Contender\Elements\Document}
+     */
     const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
     const OPTION_REMOVE_COMMENT_DISABLE = 'OPTION_REMOVE_COMMENT_DISABLE';
 
+    /**
+     * Default libxml options
+     */
     public const DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING;
 
     protected $options = [];
@@ -82,10 +133,10 @@ class Contender
     /**
      * Options for converting Html to ContenderDocument
      *
-     * @param $option
+     * @param string $option Contender option const.
      * @return $this
      */
-    public function setOption($option): self
+    public function setOption(string $option): self
     {
         switch ($option) {
             case self::OPTION_COMPACT:
@@ -130,7 +181,6 @@ class Contender
             case self::OPTION_MINIFY_DISABLE:
                 $this->is_minify = false;
                 break;
-
             case self::OPTION_REMOVE_STYLE_ENABLE:
                 $this->is_style_remove = true;
                 break;
@@ -150,7 +200,6 @@ class Contender
             case self::OPTION_REMOVE_COMMENT_DISABLE:
                 $this->is_comment_remove = false;
                 break;
-
         }
 
         return $this;
@@ -159,7 +208,7 @@ class Contender
     /**
      * Calls {@link \Contender\Contender::setOption()} as an array
      *
-     * @param array $options
+     * @param array $options Array multiple Contender option constants
      * @return $this
      * @link \Contender\Contender::setOption()
      */
@@ -175,8 +224,8 @@ class Contender
     /**
      * Generate a {@link \Contender\Elements\Document} from a string
      *
-     * @param string $html
-     * @param array $options
+     * @param string $html  The string containing the HTML.
+     * @param array $options Array multiple Contender option constants
      * @return \Contender\Elements\Document
      */
     public function load(string $html, array $options = []): Document
@@ -198,6 +247,7 @@ class Contender
         if ($this->is_minify) {
             $html = preg_replace('/[ \t]+/', ' ', $html);
         }
+
         $doc->loadHTML($html, $this->options());
 
         $doc = $this->cleanUpDom($doc);
@@ -218,7 +268,8 @@ class Contender
 
         if (strpos($html, '</html>') === false) {
             $internal_encoding = mb_internal_encoding();
-            $html = <<<HTML
+            $html = /** @lang html */
+                <<<HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -234,6 +285,8 @@ HTML;
     }
 
     /**
+     * Clean dom according to configured options
+     *
      * @param \DOMDocument $dom
      * @return \DOMDocument
      */
@@ -252,22 +305,47 @@ HTML;
         return $dom;
     }
 
+    /**
+     * Remove html comment
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
     protected function removeComment(DOMDocument $dom): DOMDocument
     {
-        return $this->removePath('//comment()', $dom);
+        return $this->removeFromXPath('//comment()', $dom);
     }
 
+    /**
+     * Remove <style> tags
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
     protected function removeStyle(DOMDocument $dom): DOMDocument
     {
-        return $this->removePath('//style', $dom);
+        return $this->removeFromXPath('//style', $dom);
     }
 
+    /**
+     * Remove <script> tags
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
     protected function removeScript(DOMDocument $dom): DOMDocument
     {
-        return $this->removePath('//script', $dom);
+        return $this->removeFromXPath('//script', $dom);
     }
 
-    protected function removePath($path, DOMDocument $dom): DOMDocument
+    /**
+     * Removes a DomNode by specifying an Xpath
+     *
+     * @param string $path
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function removeFromXPath(string $path, DOMDocument $dom): DOMDocument
     {
         $xpath = new \DOMXPath($dom);
         $items = $xpath->query($path);
@@ -285,10 +363,11 @@ HTML;
     /**
      * Generate a {@link \Contender\Elements\Document}  from a URL
      *
-     * @param string $url
-     * @param array $options
-     * @param array|null $context_option
+     * @param string $url The path to the HTML document.
+     * @param array $options Array multiple Contender option constants
+     * @param array|null $context_option Context options
      * @return \Contender\Elements\Document
+     * @link https://www.php.net/manual/en/context.php
      */
     public function loadFromUrl(string $url, array $options = [], ?array $context_option = null)
     {
@@ -302,8 +381,8 @@ HTML;
     /**
      * Generate a {@link \Contender\Elements\Document}  from a string(static call)
      *
-     * @param string $html
-     * @param array $options
+     * @param string $html The string containing the HTML.
+     * @param array $options  Array multiple Contender option constants
      * @return \Contender\Elements\Document
      */
     public static function loadStr(string $html, array $options = []): Document
@@ -316,20 +395,22 @@ HTML;
     /**
      * Generate a {@link \Contender\Elements\Document}  from a URL(static call)
      *
-     * @param string $html
-     * @param array $options
-     * @param array|null $context_option
+     * @param string $url The path to the HTML document.
+     * @param array $options Array multiple Contender option constants
+     * @param array|null $context_option Context options
      * @return \Contender\Elements\Document
+     * @link https://www.php.net/manual/en/context.php
      */
-    public static function loadUrl(string $html, array $options = [], ?array $context_option = null): Document
+    public static function loadUrl(string $url, array $options = [], ?array $context_option = null): Document
     {
         $contender = new self();
 
-        return $contender->loadFromUrl($html, $options, $context_option);
+        return $contender->loadFromUrl($url, $options, $context_option);
     }
 
     /**
      * Generate options for libxml
+     *
      * @return int
      */
     protected function options(): int
@@ -346,7 +427,7 @@ HTML;
     /**
      * Convert character codes to UTF-8
      *
-     * @param string $html
+     * @param string $html The string containing the HTML.
      * @return string
      */
     protected function toUTF8(string $html): string
@@ -360,7 +441,7 @@ HTML;
         $is_add_meta = true;
 
         if (!$items || $items->count() === 0) {
-            if (mb_ereg('<\?xml version="1.0" encoding="(Shift_JIS)"\?>', $html, $match)) {
+            if (mb_ereg('<\?xml version="1.0" encoding="([^"]*)"\?>', $html, $match)) {
                 $encode = $match[1];
             } else {
                 $encode = mb_detect_encoding($html);

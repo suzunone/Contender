@@ -108,6 +108,7 @@ class Node implements ElementInterface
 
     /**
      * Node constructor.
+     *
      * @param \DOMNode $element
      */
     public function __construct(DOMNode $element)

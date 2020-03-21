@@ -16,8 +16,8 @@
 
 namespace Contender\Elements;
 
-use DOMNodeList;
 use Contender\Elements\Traits\CssSelector2XPathTrait;
+use DOMNodeList;
 
 /**
  * Class Collection
@@ -42,6 +42,10 @@ class Collection extends \Illuminate\Support\Collection
 {
     use CssSelector2XPathTrait;
 
+    /**
+     * Collection constructor.
+     * @param array $items
+     */
     public function __construct($items = [])
     {
         parent::__construct($items);
@@ -144,6 +148,11 @@ class Collection extends \Illuminate\Support\Collection
         return $res->sortDom();
     }
 
+    /**
+     * @param string $key
+     * @return mixed|string
+     * @throws \Exception
+     */
     public function __get($key)
     {
         if (strtolower($key) === 'innerhtml') {
@@ -153,6 +162,11 @@ class Collection extends \Illuminate\Support\Collection
         return parent::__get($key);
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return void|mixed
+     */
     public function __set($key, $value)
     {
         if (strtolower($key) === 'innerhtml') {
@@ -160,16 +174,26 @@ class Collection extends \Illuminate\Support\Collection
         }
     }
 
-    public function getInnerHTMLAttribute()
+    /**
+     * @return string
+     */
+    public function getInnerHTMLAttribute(): string
     {
         return $this->sortDom()->first()->innerHTML;
     }
 
-    public function setInnerHTMLAttribute($val)
+    /**
+     * @param string $val
+     */
+    public function setInnerHTMLAttribute(string $val): void
     {
-        return $this->sortDom()->first()->innerHTML = $val;
+        $this->sortDom()->first()->innerHTML = $val;
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
     public function __isset($key)
     {
         if (strtolower($key) === 'innerhtml') {
@@ -179,7 +203,11 @@ class Collection extends \Illuminate\Support\Collection
         return in_array($key, static::$proxies, true);
     }
 
-    public function attr(...$param)
+    /**
+     * @param mixed ...$param
+     * @return string
+     */
+    public function attr(...$param): string
     {
         return $this->sortDom()->first()->attr(...$param);
     }
