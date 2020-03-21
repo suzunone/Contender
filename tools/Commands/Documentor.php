@@ -112,6 +112,9 @@ EOT
                 continue;
             }
 
+            if ($refMethod->getDeclaringClass()->getName() !== $refClass->getName()) {
+                continue;
+            }
             if (mb_ereg('^[gs]et.*Attribute$', $refMethod->getName())) {
                 continue;
             }
