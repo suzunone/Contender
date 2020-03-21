@@ -36,7 +36,13 @@ use Contender\Elements\Node;
 trait NodeTrait
 {
     /**
-     * @param $name
+     * if call attr('name')
+     * get tag attribute for element.
+     *
+     * if call attr('name', 'value')
+     * set tag attribute for element.
+     *
+     * @param ...$name
      * @return string
      */
     public function attr(...$name): string
@@ -49,6 +55,8 @@ trait NodeTrait
     }
 
     /**
+     * Create {@link \Contender\Elements\Node} From \DomNode
+     *
      * @param \DOMNode|null $element
      * @return Node|null
      */

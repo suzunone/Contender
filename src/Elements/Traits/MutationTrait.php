@@ -52,12 +52,13 @@ trait MutationTrait
     /**
      * @param $name
      * @param $value
-     * @return string
      */
     public function __set($name, $value)
     {
         if (method_exists($this, $this->mutateSetAttributeName($name))) {
-            return $this->mutateSetAttribute($name, $value);
+            $this->mutateSetAttribute($name, $value);
+
+            return;
         }
 
         $this->setAttribute($name, $value);

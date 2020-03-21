@@ -35,8 +35,8 @@ use DOMNodeList;
  * @method \Contender\Elements\Node offsetGet($key)
  * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
- * @property string innerHTML
- * @property string inner_h_t_m_l
+ * @property string innerHTML先頭のinnerHTML
+ * @property string inner_h_t_m_l先頭のinnerHTML
  */
 class Collection extends \Illuminate\Support\Collection
 {
