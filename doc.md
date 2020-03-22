@@ -199,7 +199,7 @@ $this
 
 
 ### See Also
- - <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a>)
+ - <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a>
 
 
 
@@ -254,7 +254,7 @@ Context options
 
 
 ### See Also
- - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>)
+ - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
 
 
 
@@ -309,7 +309,7 @@ Context options
 
 
 ### See Also
- - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>)
+ - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
 
 
 
@@ -447,7 +447,7 @@ None
 
 
 ### \Contender\Elements\Collection::querySelector(string $query)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching Css selector.
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
 
 
@@ -468,7 +468,7 @@ None
 
 
 ### \Contender\Elements\Collection::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching Css selector.
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
 
 
@@ -1085,7 +1085,7 @@ None
 
 
 ### \Contender\Elements\Document::querySelector(string $selectors)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching Css selector.
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
 
 
@@ -1106,7 +1106,7 @@ None
 
 
 ### \Contender\Elements\Document::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching Css selector.
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
 
 
@@ -1744,7 +1744,7 @@ None
 
 
 ### \Contender\Elements\Node::querySelector(string $selectors)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching Css selector.
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
 
 
@@ -1765,7 +1765,7 @@ None
 
 
 ### \Contender\Elements\Node::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching Css selector.
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
 
 

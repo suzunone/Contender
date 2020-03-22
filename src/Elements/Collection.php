@@ -118,7 +118,7 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * Returns a {@link \Contender\Elements\Node} matching Css selector.
+     * Returns a {@link \Contender\Elements\Node} matching CSS selector.
      *
      * @param string $query Valid CSS selector string
      * @return \Contender\Elements\Node|null
@@ -143,7 +143,7 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching Css selector.
+     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching CSS selector.
      *
      * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Collection|Node[]

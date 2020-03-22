@@ -294,7 +294,7 @@ EOT
         $res = '';
 
         foreach ($doc as $str) {
-            $res .= " - {@link $str})\n";
+            $res .= " - {@link $str}\n";
         }
 
         return $res;
