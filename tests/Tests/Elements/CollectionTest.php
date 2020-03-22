@@ -33,6 +33,7 @@ use PHPUnit\Framework\TestCase;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
+ * @covers \Contender\Contender
  * @covers \Contender\Elements\Document
  * @covers \Contender\Elements\Node
  * @covers \Contender\Elements\Collection

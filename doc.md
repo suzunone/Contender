@@ -488,77 +488,10 @@ None
 
 
 
-### \Contender\Elements\Collection::__get(mixed|null $key)
-
-
-
-
-#### Parameters
-##### `string` $key
-
-
-
-
-
-#### Return Values
-mixed|string
-
-
-### See Also
-None
-
-
-
-### \Contender\Elements\Collection::__set(mixed|null $key, mixed|null $value)
-
-
-
-
-#### Parameters
-##### `mixed|null` $key
-
-
-
-##### `mixed|null` $value
-
-
-
-
-
-#### Return Values
-void|mixed
-
-
-### See Also
-None
-
-
-
-### \Contender\Elements\Collection::__isset(mixed|null $key)
-
-
-
-
-#### Parameters
-##### `mixed|null` $key
-
-
-
-
-
-#### Return Values
-bool
-
-
-### See Also
-None
-
-
-
 ### \Contender\Elements\Collection::attr(mixed|null $param)
+if call attr('name')
 
-
-
+Alias getAttr()if call attr('name', 'value')Alias setAttr()
 
 #### Parameters
 ##### `mixed|null` $param
@@ -568,7 +501,70 @@ None
 
 
 #### Return Values
-string
+string|null
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Collection::getAttr(string $name)
+get tag attribute for element.
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Collection::setAttr(string $name, string $value)
+set tag attribute for element.
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+##### `string` $value
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Collection::remove()
+Removes the object from the tree it belongs to.
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Contender\Elements\Collection
 
 
 ### See Also
@@ -1260,6 +1256,44 @@ None
 
 
 
+### \Contender\Elements\Document::appendChild(Contender\Elements\Node $node)
+
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $node
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Document::nativeNode()
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+DOMNode
+
+
+### See Also
+None
+
+
+
 
 \Contender\Elements\Node
 ==========================
@@ -1634,6 +1668,65 @@ None
 
 
 
+### \Contender\Elements\Node::remove()
+Removes the object from the tree it belongs to.
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Contender\Elements\Node|null
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Node::after(mixed|null $elements)
+Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> or String in the children list of this ChildNode's parent, just after this ChildNode. Strings are inserted as equivalent Text nodes.
+
+
+
+#### Parameters
+##### `mixed|null` $elements
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node|null
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Node::before(mixed|null $elements)
+Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
+
+
+
+#### Parameters
+##### `mixed|null` $elements
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+
+
 ### \Contender\Elements\Node::getElementById(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
 
@@ -1912,6 +2005,44 @@ set tag attribute for element.
 
 #### Return Values
 mixed
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Node::appendChild(Contender\Elements\Node $node)
+
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $node
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+
+
+### \Contender\Elements\Node::nativeNode()
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+DOMNode
 
 
 ### See Also

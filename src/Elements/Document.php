@@ -16,8 +16,8 @@
 
 namespace Contender\Elements;
 
-use DOMDocument;
 use Contender\Elements\Traits\ElementTrait;
+use DOMDocument;
 
 /**
  * Class Document
@@ -130,7 +130,10 @@ class Document implements ElementInterface
      */
     public function createElement(string $name, ?string $value = null): Node
     {
-        return $this->createNode($this->element->createElement($name, $value));
+        $element = $this->element->createElement($name, $value);
+        $this->element->importNode($element);
+
+        return $this->createNode($element);
     }
 
     /**

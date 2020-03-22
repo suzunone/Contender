@@ -33,6 +33,7 @@ use PHPUnit\Framework\TestCase;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
+ * @covers \Contender\Contender
  * @covers \Contender\Elements\Document
  * @covers \Contender\Elements\Node
  * @covers \Contender\Elements\Collection
@@ -45,17 +46,14 @@ class GetterTest extends TestCase
 {
     public function test_getAttribute()
     {
-        $parser = new Contender();
+        $document = Contender::loadUrl(__DIR__ . '/../../data/wikipedia.html');
 
-        /**
-         * @var \Contender\Contender
-         */
-        $res = $parser->load(file_get_contents(__DIR__ . '/../../data/wikipedia.html'));
-
-        $element = $res->querySelector('[title="reg"]');
+        $element = $document->querySelector('[title="reg"]');
 
         $this->assertEquals('/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE', $element->attr('href'));
     }
+
+
 
     public function innerhtmlDataProvider()
     {

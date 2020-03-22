@@ -16,8 +16,8 @@
 
 namespace Contender\Elements\Traits;
 
-use DOMNode;
 use Contender\Elements\Node;
+use DOMNode;
 
 /**
  * Trait NodeTrait
@@ -92,5 +92,24 @@ trait NodeTrait
         }
 
         return new Node($element);
+    }
+
+    /**
+     * @param \Contender\Elements\Node $node
+     * @return \Contender\Elements\Node
+     */
+    public function appendChild(Node $node)
+    {
+        $res = $this->element->appendChild($node->nativeNode());
+
+        return new Node($res);
+    }
+
+    /**
+     * @return DOMNode
+     */
+    public function nativeNode()
+    {
+        return $this->element;
     }
 }

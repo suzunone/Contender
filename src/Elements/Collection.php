@@ -166,6 +166,7 @@ class Collection extends \Illuminate\Support\Collection
      * @param string $key
      * @return mixed|string
      * @throws \Exception
+     * @hideDoc
      */
     public function __get($key)
     {
@@ -180,6 +181,7 @@ class Collection extends \Illuminate\Support\Collection
      * @param $key
      * @param $value
      * @return void|mixed
+     * @hideDoc
      */
     public function __set($key, $value)
     {
@@ -190,6 +192,7 @@ class Collection extends \Illuminate\Support\Collection
 
     /**
      * @return string 1st of innerHTML
+     * @hideDoc
      */
     public function getInnerHTMLAttribute(): string
     {
@@ -198,6 +201,7 @@ class Collection extends \Illuminate\Support\Collection
 
     /**
      * @param string $val
+     * @hideDoc
      */
     public function setInnerHTMLAttribute(string $val): void
     {
@@ -207,6 +211,7 @@ class Collection extends \Illuminate\Support\Collection
     /**
      * @param $key
      * @return bool
+     * @hideDoc
      */
     public function __isset($key)
     {
@@ -218,11 +223,56 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @param mixed ...$param
-     * @return string
+     * if call attr('name')
+     * Alias getAttr()
+     *
+     * if call attr('name', 'value')
+     * Alias setAttr()
+     *
+     * @param ...$name
+     * @return string|null
      */
     public function attr(...$param): string
     {
         return $this->sortDom()->first()->attr(...$param);
     }
+
+
+    /**
+     * get tag attribute for element.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function getAttr(string $name)
+    {
+        return $this->sortDom()->first()->getAttribute($name);
+    }
+
+    /**
+     * set tag attribute for element.
+     *
+     * @param string $name
+     * @param string $value
+     */
+    public function setAttr(string $name, string $value)
+    {
+        $this->sortDom()->first()->setAttribute($name, $value);
+    }
+
+    /**
+     * Removes the object from the tree it belongs to.
+     *
+     * @return \Contender\Elements\Collection
+     */
+    public function remove()
+    {
+        $collect = new Collection([]);
+        $this->each(function (Node $node) use (&$collect){
+            $collect->push($node->remove());
+        });
+
+        return $collect;
+    }
+
 }

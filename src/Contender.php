@@ -453,25 +453,10 @@ HTML;
      */
     protected function toUTF8(string $html): string
     {
-        $doc = new DOMDocument();
-        $doc->loadHTML($html, self::DEFAULT_LIBXML_OPTION);
-        $xpath = new \DOMXPath($doc);
-        $items = $xpath->query('//head/meta[@charset]');
-        $match = [];
-
+        $encode = $this->getEncode($html);
         $is_add_meta = true;
 
-        if (!$items || $items->count() === 0) {
-            if (mb_ereg('<\?xml version="1.0" encoding="([^"]*)"\?>', $html, $match)) {
-                $encode = $match[1];
-            } else {
-                $encode = mb_detect_encoding($html);
-            }
-        } else {
-            //$is_add_meta = true;
-            $item = $items->item(0);
-            $encode = $item->getAttribute('charset');
-        }
+
         $encode = strtolower($encode);
         if ($encode === 'utf8' || $encode === 'utf-8') {
             if ($is_add_meta) {
@@ -500,5 +485,43 @@ HTML;
         }
 
         return $html;
+    }
+
+    /**
+     * @param string $html
+     * @return string
+     */
+    protected function getEncode(string $html): string
+    {
+        $doc = new DOMDocument();
+        $doc->loadHTML($html, self::DEFAULT_LIBXML_OPTION);
+        $xpath = new \DOMXPath($doc);
+        $items = $xpath->query('//head/meta[@charset]');
+        $match = [];
+
+        if ($items && $items->count() >= 1) {
+            $item = $items->item(0);
+            $encode = $item->getAttribute('charset');
+            if ($encode) {
+                return $encode;
+            }
+        }
+
+
+        $xpath = new \DOMXPath($doc);
+        $items = $xpath->query('//head/meta[@http-equiv="Content-Type"]');
+        if ($items && $items->count() >= 1) {
+            $item = $items->item(0);
+            $encode = $item->getAttribute('content');
+            if ($encode && mb_ereg('charset=([^ ]*)', $encode, $match)) {
+                return $match[1];
+            }
+        }
+
+        if (mb_ereg('<\?xml version="1.0" encoding="([^"]*)"\?>', $html, $match)) {
+            return $match[1];
+        }
+
+        return mb_detect_encoding($html);;
     }
 }

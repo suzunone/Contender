@@ -16,9 +16,9 @@
 
 namespace Contender\Elements;
 
-use DOMNode;
 use Contender\Elements\Traits\ElementTrait;
 use DOMDocument;
+use DOMNode;
 
 /**
  * Class Node
@@ -134,5 +134,77 @@ class Node implements ElementInterface
     public function __toString()
     {
         return $this->getOuterHTMLAttribute();
+    }
+
+
+    /**
+     * Removes the object from the tree it belongs to.
+     *
+     * @return \Contender\Elements\Node|null
+     */
+    public function remove(): ?Node
+    {
+        $res = $this->element->parentNode->removeChild($this->element);
+
+        return new Node($res);
+    }
+
+    /**
+     * Inserts a set of {@link \Contender\Elements\Node} or String in the children list of this ChildNode's parent, just after this ChildNode. Strings are inserted as equivalent Text nodes.
+     *
+     * @param \Contender\Elements\Node|string ...$elements
+     * @return \Contender\Elements\Node|null
+     */
+    public function after(...$elements)
+    {
+        krsort($elements);
+        foreach ($elements as $element) {
+            if (!$element instanceof Node) {
+                $node = new \DOMText($element);
+            } else {
+                $node = $element->nativeNode();
+            }
+
+            if ($this->element->nextSibling) {
+                $res = $this->element->parentNode->insertBefore($node, $this->element->nextSibling);
+            } else {
+                $res = $this->element->parentNode->appendChild($node);
+            }
+
+        }
+
+        if (isset($res)) {
+            return new Node($res);
+        }
+
+        return null;
+    }
+
+
+    /**
+     * Inserts a set of {@link \Contender\Elements\Node}  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
+     *
+     * @param \Contender\Elements\Node|string ...$elements
+     * @return \Contender\Elements\Node
+     */
+    public function before(...$elements)
+    {
+        krsort($elements);
+
+        foreach ($elements as $element) {
+            if (!$element instanceof Node) {
+                $node = new \DOMText($element);
+            } else {
+                $node = $element->nativeNode();
+            }
+
+            $res = $this->element->parentNode->insertBefore($node, $this->element);
+        }
+
+        if (isset($res)) {
+            return new Node($res);
+        }
+
+        return null;
     }
 }

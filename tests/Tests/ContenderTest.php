@@ -53,7 +53,9 @@ class ContenderTest extends TestCase
                 'ignore_errors' => true,
             ],
         ];
-        $dom = Contender::loadUrl('https://www.aozora.gr.jp/cards/000148/files/789_14547.html', [], $header);
+        $dom = Contender::loadUrl('https://www.aozora.gr.jp/cards/000148/files/789_14547.html', [
+            Contender::OPTION_CONVERT_ENCODE
+        ], $header);
 
         $this->assertInstanceOf(Document::class, $dom);
 
