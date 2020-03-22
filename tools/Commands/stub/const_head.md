@@ -1,0 +1,1 @@
+`DummyType` \DummyClass::DummyName = DummyValue

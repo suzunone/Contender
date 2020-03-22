@@ -111,6 +111,7 @@ class Document implements ElementInterface
     /**
      * Node constructor.
      * @param \DOMDocument $element
+     * @return void
      */
     public function __construct(DOMDocument $element)
     {

@@ -1,4 +1,4 @@
-### `DummyType` DummyClass::$DummyName DummyReadOnly
+### DummyHead
 DummyTitle
 
 DummyDescription

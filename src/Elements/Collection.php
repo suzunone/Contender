@@ -48,6 +48,7 @@ class Collection extends \Illuminate\Support\Collection
     /**
      * Collection constructor.
      * @param array $items
+     * @return void
      */
     public function __construct($items = [])
     {

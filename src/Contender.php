@@ -57,7 +57,7 @@ class Contender
     const OPTION_NOCDATA = 'LIBXML_NOCDATA';
 
     /**
-     * Expand empty tags (e.g. <br/> to <br></br>)
+     * Expand empty tags (e.g. `<br/>` to `<br></br>`)
      * @var string Contender Load Option.
      */
     const OPTION_NOEMPTYTAG = 'LIBXML_NOEMPTYTAG';
@@ -82,7 +82,7 @@ class Contender
     const OPTION_CONVERT_NO_ENCODE = 'CONVERT_NO_ENCODE';
 
     /**
-     * Change charset<meta>tag when {@link \Contender\Contender::OPTION_CONVERT_ENCODE} option is enabled
+     * Change charset`<meta>`tag when {@link \Contender\Contender::OPTION_CONVERT_ENCODE} option is enabled
      * @var string Contender Load Option.
      */
     const OPTION_CONVERT_REPLACE_CHARSET = 'OPTION_CONVERT_REPLACE_CHARSET';
@@ -103,21 +103,21 @@ class Contender
     const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
 
     /**
-     * Remove <style>tags, then generating to {@link \Contender\Elements\Document}
+     * Remove `<style>`tags, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
     const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
     const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
 
     /**
-     * Remove <script>tags, then generating to {@link \Contender\Elements\Document}
+     * Remove `<script>`tags, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
     const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
     const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
 
     /**
-     * Remove <comment>tags, then generating to {@link \Contender\Elements\Document}
+     * Remove comment tags, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
     const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
@@ -140,6 +140,8 @@ class Contender
 
     /**
      * Contender constructor.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -333,7 +335,7 @@ HTML;
     }
 
     /**
-     * Remove <style> tags
+     * Remove `<style>` tags
      *
      * @param \DOMDocument $dom
      * @return \DOMDocument
@@ -344,7 +346,7 @@ HTML;
     }
 
     /**
-     * Remove <script> tags
+     * Remove `<script>` tags
      *
      * @param \DOMDocument $dom
      * @return \DOMDocument

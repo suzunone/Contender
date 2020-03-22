@@ -1,4 +1,4 @@
-### DummyClass::DummyName(DummyProperties)
+### DummyHead
 DummyTitle
 
 DummyDescription
