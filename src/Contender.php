@@ -127,7 +127,9 @@ class Contender
      * Default libxml options
      *
      * ``` .php
+     *
      *  DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING
+     *
      * ```
      *
      * @see https://www.php.net/manual/en/dom.constants.php

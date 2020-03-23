@@ -153,7 +153,7 @@ EOT
             'DummyConstants' => $DummyConstants,
             'DummyProperties' => $DummyProperties,
             'DummyMethods' => $DummyMethods,
-            'DummyClassSynopsis' =>  $this->synopsisStub($ref),
+            'DummyClassSynopsis' => $this->synopsisStub($ref),
         ];
 
         $DummyHead = str_replace(
@@ -193,7 +193,7 @@ EOT
                 if ($parameter['default_value_available']) {
                     $sub .= " = {$parameter['default_value']}";
                     if ($parameter['allowNull']) {
-                        $sub = '?'.$sub;
+                        $sub = '?' . $sub;
                     }
 
                     $sub = "[$sub]";
@@ -209,9 +209,9 @@ EOT
             $res['Methods'][] = "public {$value['name']} ({$params}) : {$value['type']}";
         }
 
-        $stub = $refClass->getName().' {';
+        $stub = $refClass->getName() . ' {';
         foreach ($res as $key => $prop) {
-            $stub .= "\n\n    /* {$key} */\n    ".implode("\n    ",$prop);
+            $stub .= "\n\n    /* {$key} */\n    " . implode("\n    ", $prop);
         }
         $stub .= "\n\n }";
 
@@ -257,7 +257,7 @@ EOT
         $annotate = $this->parseDocBlock($refClass->getDocComment());
 
         foreach ($annotate['property'] as $property) {
-            [$type, $name,] = preg_split('/ +/',$property, 3);
+            [$type, $name,] = preg_split('/ +/', $property, 3);
 
             $properties[] = [
                 'isStatic' => false,
@@ -305,7 +305,6 @@ EOT
             }
 
 
-
             $resType = $refMethod->getReturnType();
             if ($resType !== null) {
                 $resType = (string)$refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
@@ -321,7 +320,7 @@ EOT
             foreach ($refMethod->getParameters() as $key => $refParameter) {
                 $param_type = $params[$refMethod->name]['type'] ?? null;
 
-                $parameter[$key]['type']= $param_type ?? (string)($refParameter->getType() ?? 'mixed');
+                $parameter[$key]['type'] = $param_type ?? (string)($refParameter->getType() ?? 'mixed');
                 $parameter[$key]['allowNull'] = $refParameter->allowsNull();
                 $parameter[$key]['name'] = $refParameter->getName();
                 $parameter[$key]['default_value'] = $refParameter->isDefaultValueAvailable() ? json_encode($refParameter->getDefaultValue()) : null;
@@ -371,7 +370,6 @@ EOT
 
             $stub_contents = file_get_contents(__DIR__ . '/stub/method.md');
             $DummyHead = file_get_contents(__DIR__ . '/stub/method_head.md');
-
 
 
             $resType = $refMethod->getReturnType();
@@ -629,7 +627,7 @@ EOT
             } elseif ($no_annotation && $key === 1 && mb_eregi('^ *\*(.*)$', $line, $match)) {
                 $res['title'] = trim($match[1]);
             } elseif ($no_annotation && mb_eregi('^ *\*(.*)$', $line, $match)) {
-                $res['description'] .= trim($match[1]);
+                $res['description'] .= trim($match[1]) . "\n";
             }
 
         }

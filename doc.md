@@ -1,7 +1,10 @@
 \Contender\Contender
 ==========================
 
+
 Load Html to generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object.
+
+
 
 
 Class synopsis
@@ -154,7 +157,14 @@ Remove comment tags, then generating to <a href="#contenderelementsdocument">\Co
 ### `integer` \Contender\Contender::DEFAULT_LIBXML_OPTION = 4194402
 Default libxml options
 
-``` .phpDEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING```
+
+``` .php
+
+DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING
+
+```
+
+
 
 
 
@@ -173,6 +183,7 @@ Contender constructor.
 
 
 
+
 #### Parameters
 
 
@@ -185,6 +196,7 @@ None
 
 ### \Contender\Contender::setOption(string $option)
 Options for converting Html to ContenderDocument
+
 
 
 
@@ -207,6 +219,7 @@ Calls <a href="#contendercontendersetoptionstring-option">\Contender\Contender::
 
 
 
+
 #### Parameters
 ##### `array` $options
 
@@ -224,6 +237,7 @@ $this
 
 ### \Contender\Contender::load(string $html, array $options)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a> from a string
+
 
 
 
@@ -249,6 +263,7 @@ Array multiple Contender option constants
 
 ### \Contender\Contender::loadFromUrl(string $url, array $options, array|null $context_option)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL
+
 
 
 
@@ -282,6 +297,7 @@ Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>
 
 
 
+
 #### Parameters
 ##### `string` $html
 
@@ -304,6 +320,7 @@ Array multiple Contender option constants
 
 ### \Contender\Contender::loadUrl(string $url, array $options, array|null $context_option)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL(static call)
+
 
 
 
@@ -336,7 +353,10 @@ Context options
 \Contender\Elements\Collection
 ==========================
 
+
 A collection of <a href="#contenderelementsnode">\Contender\Elements\Node</a> from <a href="#contenderelementsdocument">\Contender\Elements\Document</a>
+
+
 
 
 Class synopsis
@@ -429,6 +449,7 @@ Call <a href="#contenderelementscollectionqueryselectorallstring-selectors">\Con
 
 
 
+
 #### Parameters
 ##### `string` $selectors
 
@@ -471,6 +492,7 @@ HTMLElement only Node
 
 
 
+
 #### Parameters
 
 
@@ -486,6 +508,7 @@ Sort <a href="#contenderelementsnode">\Contender\Elements\Node</a> by line numbe
 
 
 
+
 #### Parameters
 
 
@@ -498,6 +521,7 @@ None
 
 ### \Contender\Elements\Collection::querySelector(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
 
 
 
@@ -520,6 +544,7 @@ Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection<
 
 
 
+
 #### Parameters
 ##### `string` $selectors
 
@@ -537,7 +562,12 @@ None
 ### \Contender\Elements\Collection::attr(mixed|null $param)
 if call attr('name')
 
-Alias getAttr()if call attr('name', 'value')Alias setAttr()
+Alias getAttr()
+
+if call attr('name', 'value')
+Alias setAttr()
+
+
 
 #### Parameters
 ##### `mixed|null` $param
@@ -559,6 +589,7 @@ get tag attribute for element.
 
 
 
+
 #### Parameters
 ##### `string` $name
 
@@ -576,6 +607,7 @@ mixed
 
 ### \Contender\Elements\Collection::setAttr(string $name, string $value)
 set tag attribute for element.
+
 
 
 
@@ -603,6 +635,7 @@ Removes the object from the tree it belongs to.
 
 
 
+
 #### Parameters
 
 
@@ -618,7 +651,10 @@ Removes the object from the tree it belongs to.
 \Contender\Elements\Document
 ==========================
 
+
 Access each element of Html, like window.document in Javascript.
+
+
 
 
 Class synopsis
@@ -1128,6 +1164,7 @@ Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object r
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -1144,6 +1181,7 @@ None
 
 ### \Contender\Elements\Document::getElementsByClassName(string $query)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
+
 
 
 
@@ -1166,6 +1204,7 @@ Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection<
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -1185,6 +1224,7 @@ Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection<
 
 
 
+
 #### Parameters
 ##### `string` $tag_name
 
@@ -1201,6 +1241,7 @@ None
 
 ### \Contender\Elements\Document::getAttributeNodeNS(string $namespaceURI, string $localName)
 Returns the attribute node in namespace namespaceURI with local name localName for the current node.
+
 
 
 
@@ -1227,6 +1268,7 @@ Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching
 
 
 
+
 #### Parameters
 ##### `string` $selectors
 
@@ -1243,6 +1285,7 @@ None
 
 ### \Contender\Elements\Document::querySelectorAll(string $selectors)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
 
 
 
@@ -1265,6 +1308,7 @@ Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\C
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -1284,6 +1328,7 @@ Evaluates the given XPath expression and returns a <a href="#contenderelementsco
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -1300,6 +1345,7 @@ None
 
 ### \Contender\Elements\Document::evaluate(string $query, int $offset)
 Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
+
 
 
 
@@ -1324,7 +1370,12 @@ None
 ### \Contender\Elements\Document::attr(mixed|null $name)
 if call attr('name')
 
-Alias getAttr()if call attr('name', 'value')Alias setAttr()
+Alias getAttr()
+
+if call attr('name', 'value')
+Alias setAttr()
+
+
 
 #### Parameters
 ##### `mixed|null` $name
@@ -1345,6 +1396,7 @@ get tag attribute for element.
 
 
 
+
 #### Parameters
 ##### `string` $name
 
@@ -1361,6 +1413,7 @@ None
 
 ### \Contender\Elements\Document::setAttr(string $name, string $value)
 set tag attribute for element.
+
 
 
 
@@ -1387,6 +1440,7 @@ Adds a node to the end of the list of children of a specified parent node.
 
 
 
+
 #### Parameters
 ##### `\Contender\Elements\Node` $node
 
@@ -1405,6 +1459,7 @@ Adds a node to the end of the list of children of a specified parent node.
 
 ### \Contender\Elements\Document::insertBefore(Contender\Elements\Node $node, Contender\Elements\Node|null $referenceNode)
 Inserts a node before a reference node as a child of a specified parent node.
+
 
 
 
@@ -1431,7 +1486,10 @@ Inserts a node before a reference node as a child of a specified parent node.
 ### \Contender\Elements\Document::normalize()
 Normalizes the node
 
+
 Remove empty text nodes and merge adjacent text nodes in this node and all its children.
+
+
 
 #### Parameters
 
@@ -1464,7 +1522,10 @@ None
 \Contender\Elements\Node
 ==========================
 
+
 Each element accessed from the <a href="#contenderelementsdocument">\Contender\Elements\Document</a>
+
+
 
 
 Class synopsis
@@ -1904,6 +1965,7 @@ Node constructor.
 
 
 
+
 #### Parameters
 ##### `\DOMNode` $element
 
@@ -1938,6 +2000,7 @@ Removes the object from the tree it belongs to.
 
 
 
+
 #### Parameters
 
 
@@ -1951,6 +2014,7 @@ Removes the object from the tree it belongs to.
 
 ### \Contender\Elements\Node::after(mixed|null $elements)
 Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> or String in the children list of this ChildNode's parent, just after this ChildNode. Strings are inserted as equivalent Text nodes.
+
 
 
 
@@ -1972,6 +2036,7 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> o
 
 ### \Contender\Elements\Node::before(mixed|null $elements)
 Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
+
 
 
 
@@ -2011,6 +2076,7 @@ Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object r
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -2027,6 +2093,7 @@ None
 
 ### \Contender\Elements\Node::getElementsByClassName(string $query)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
+
 
 
 
@@ -2049,6 +2116,7 @@ Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection<
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -2068,6 +2136,7 @@ Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection<
 
 
 
+
 #### Parameters
 ##### `string` $tag_name
 
@@ -2084,6 +2153,7 @@ None
 
 ### \Contender\Elements\Node::getAttributeNodeNS(string $namespaceURI, string $localName)
 Returns the attribute node in namespace namespaceURI with local name localName for the current node.
+
 
 
 
@@ -2110,6 +2180,7 @@ Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching
 
 
 
+
 #### Parameters
 ##### `string` $selectors
 
@@ -2126,6 +2197,7 @@ None
 
 ### \Contender\Elements\Node::querySelectorAll(string $selectors)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
 
 
 
@@ -2148,6 +2220,7 @@ Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\C
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -2167,6 +2240,7 @@ Evaluates the given XPath expression and returns a <a href="#contenderelementsco
 
 
 
+
 #### Parameters
 ##### `string` $query
 
@@ -2183,6 +2257,7 @@ None
 
 ### \Contender\Elements\Node::evaluate(string $query, int $offset)
 Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
+
 
 
 
@@ -2207,7 +2282,12 @@ None
 ### \Contender\Elements\Node::attr(mixed|null $name)
 if call attr('name')
 
-Alias getAttr()if call attr('name', 'value')Alias setAttr()
+Alias getAttr()
+
+if call attr('name', 'value')
+Alias setAttr()
+
+
 
 #### Parameters
 ##### `mixed|null` $name
@@ -2228,6 +2308,7 @@ get tag attribute for element.
 
 
 
+
 #### Parameters
 ##### `string` $name
 
@@ -2244,6 +2325,7 @@ None
 
 ### \Contender\Elements\Node::setAttr(string $name, string $value)
 set tag attribute for element.
+
 
 
 
@@ -2270,6 +2352,7 @@ Adds a node to the end of the list of children of a specified parent node.
 
 
 
+
 #### Parameters
 ##### `\Contender\Elements\Node` $node
 
@@ -2288,6 +2371,7 @@ Adds a node to the end of the list of children of a specified parent node.
 
 ### \Contender\Elements\Node::insertBefore(Contender\Elements\Node $node, Contender\Elements\Node|null $referenceNode)
 Inserts a node before a reference node as a child of a specified parent node.
+
 
 
 
@@ -2314,7 +2398,10 @@ Inserts a node before a reference node as a child of a specified parent node.
 ### \Contender\Elements\Node::normalize()
 Normalizes the node
 
+
 Remove empty text nodes and merge adjacent text nodes in this node and all its children.
+
+
 
 #### Parameters
 
