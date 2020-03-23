@@ -29,6 +29,23 @@ $document = Contender::loadUrl('https://www.google.com/', $options, $header);
 ``` .php
 
 $document = Contender::loadStr('<div><p>Test Html</p></div>', []);
+echo (string) $document;
+
+```
+
+Note that if you load incomplete HTML, the required elements are automatically completed.
+
+#### result html
+``` .html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body><div><p>Test Html</p></div></body>
+</html>
 
 ```
 
