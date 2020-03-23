@@ -84,8 +84,8 @@ Contender\Contender {
 
     /* Methods */
     public __construct () : void
-    public setOption (string $option) : $this
-    public setOptions (array $options) : $this
+    public setOption (string $option) : self
+    public setOptions (array $options) : self
     public load (string $html, [array $options = []]) : \Contender\Elements\Document
     public loadFromUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
     public loadStr (string $html, [array $options = []]) : \Contender\Elements\Document
@@ -253,7 +253,7 @@ Contender option const.
 
 
 #### Return Values
-$this
+self
 
 
 ### See Also
@@ -273,7 +273,7 @@ Array multiple Contender option constants
 
 
 #### Return Values
-$this
+self
 
 
 ### See Also

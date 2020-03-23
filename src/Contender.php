@@ -204,7 +204,7 @@ class Contender
      * Options for converting Html to ContenderDocument
      *
      * @param string $option Contender option const.
-     * @return $this
+     * @return self
      */
     public function setOption(string $option): self
     {
@@ -279,7 +279,7 @@ class Contender
      * Calls {@link \Contender\Contender::setOption()} as an array
      *
      * @param array $options Array multiple Contender option constants
-     * @return $this
+     * @return self
      * @link \Contender\Contender::setOption()
      */
     public function setOptions(array $options): self
