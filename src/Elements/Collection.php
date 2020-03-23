@@ -20,9 +20,9 @@ use Contender\Elements\Traits\CssSelector2XPathTrait;
 use DOMNodeList;
 
 /**
- * Class Collection
- *
  * A collection of {@link \Contender\Elements\Node} from {@link \Contender\Elements\Document}
+ *
+ *
  *
  * @category   Contender
  * @package    Contender\Elements

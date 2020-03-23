@@ -21,9 +21,9 @@ use DOMDocument;
 use DOMNode;
 
 /**
- * Class Node
- *
  * Each element accessed from the {@link \Contender\Elements\Document}
+ *
+ *
  *
  * @category   Contender
  * @package    Contender\Elements

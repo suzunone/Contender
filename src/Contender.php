@@ -20,9 +20,36 @@ use Contender\Elements\Document;
 use DOMDocument;
 
 /**
- * Class Contender
- *
  * Load Html to generate a {@link \Contender\Elements\Document} object.
+ *
+ * Easy to use
+ * ------------------------------------------
+ * ### Create {@link \Contender\Elements\Document} from url
+ *
+ * ``` .php
+ * $header = [
+ *     'http' => [
+ *     'method'        => 'GET',
+ *     'header'        => 'User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:13.0) Gecko/20100101 Firefox/13.0.1',
+ *     'ignore_errors' => true,
+ *     ],
+ * ];
+ *
+ * $options = [
+ *     Contender::OPTION_CONVERT_ENCODE
+ * ];
+ *
+ * $document = Contender::loadUrl('https://www.google.com/', $options, $header);
+ *
+ * ```
+ *
+ * ### Create {@link \Contender\Elements\Document} from html
+ *
+ * ``` .php
+ *
+ * $document = Contender::loadStr('<div><p>Test Html</p></div>', []);
+ *
+ * ```
  *
  * @category   Contender
  * @package    Contender

@@ -1,5 +1,6 @@
 DummyHead
 ==========================
+DummyClassTitle
 
 DummyClassDescription
 

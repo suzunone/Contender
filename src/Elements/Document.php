@@ -20,9 +20,9 @@ use Contender\Elements\Traits\ElementTrait;
 use DOMDocument;
 
 /**
- * Class Document
- *
  * Access each element of Html, like window.document in Javascript.
+ *
+ *
  *
  * @category   Contender
  * @package    Contender\Elements

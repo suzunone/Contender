@@ -149,6 +149,7 @@ EOT
 
         $arr = [
             'DummyName' => $ref->name,
+            'DummyClassTitle' => $parsed['title'],
             'DummyClassDescription' => $parsed['description'],
             'DummyConstants' => $DummyConstants,
             'DummyProperties' => $DummyProperties,
@@ -627,7 +628,7 @@ EOT
             } elseif ($no_annotation && $key === 1 && mb_eregi('^ *\*(.*)$', $line, $match)) {
                 $res['title'] = trim($match[1]);
             } elseif ($no_annotation && mb_eregi('^ *\*(.*)$', $line, $match)) {
-                $res['description'] .= trim($match[1]) . "\n";
+                $res['description'] .= mb_ereg_replace('^ ', '', rtrim($match[1])) . "\n";
             }
 
         }
