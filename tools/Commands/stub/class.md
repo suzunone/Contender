@@ -3,6 +3,17 @@ DummyHead
 
 DummyClassDescription
 
+
+Class synopsis
+----------------------------
+
+```
+
+DummyClassSynopsis
+
+```
+
+
 Const
 ----------------------------
 

@@ -3,6 +3,51 @@
 
 Load Html to generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object.
 
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Contender {
+
+    /* Constants */
+    const string OPTION_COMPACT = "LIBXML_COMPACT" ;
+    const string OPTION_NOBLANKS = "LIBXML_NOBLANKS" ;
+    const string OPTION_NOCDATA = "LIBXML_NOCDATA" ;
+    const string OPTION_NOEMPTYTAG = "LIBXML_NOEMPTYTAG" ;
+    const string OPTION_NOENT = "LIBXML_NOENT" ;
+    const string OPTION_NONET = "LIBXML_NONET" ;
+    const string OPTION_CONVERT_ENCODE = "CONVERT_ENCODE" ;
+    const string OPTION_CONVERT_NO_ENCODE = "CONVERT_NO_ENCODE" ;
+    const string OPTION_CONVERT_REPLACE_CHARSET = "OPTION_CONVERT_REPLACE_CHARSET" ;
+    const string OPTION_CONVERT_NO_REPLACE_CHARSET = "OPTION_CONVERT_NO_REPLACE_CHARSET" ;
+    const string OPTION_FORMAT_OUTPUT_ENABLE = "OPTION_FORMAT_OUTPUT_ENABLE" ;
+    const string OPTION_FORMAT_OUTPUT_DISABLE = "OPTION_FORMAT_OUTPUT_DISABLE" ;
+    const string OPTION_MINIFY_DISABLE = "OPTION_MINIFY_DISABLE" ;
+    const string OPTION_MINIFY_ENABLE = "OPTION_MINIFY_ENABLE" ;
+    const string OPTION_REMOVE_STYLE_ENABLE = "OPTION_REMOVE_STYLE_ENABLE" ;
+    const string OPTION_REMOVE_STYLE_DISABLE = "OPTION_REMOVE_STYLE_DISABLE" ;
+    const string OPTION_REMOVE_SCRIPT_ENABLE = "OPTION_REMOVE_SCRIPT_ENABLE" ;
+    const string OPTION_REMOVE_SCRIPT_DISABLE = "OPTION_REMOVE_SCRIPT_DISABLE" ;
+    const string OPTION_REMOVE_COMMENT_ENABLE = "OPTION_REMOVE_COMMENT_ENABLE" ;
+    const string OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE" ;
+    const integer DEFAULT_LIBXML_OPTION = 4194402 ;
+
+    /* Methods */
+    public __construct () : void
+    public setOption (string $option) : $this
+    public setOptions (array $options) : $this
+    public load (string $html, [array $options = []]) : \Contender\Elements\Document
+    public loadFromUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
+    public loadStr (string $html, [array $options = []]) : \Contender\Elements\Document
+    public loadUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
+
+ }
+
+```
+
+
 Const
 ----------------------------
 
@@ -11,10 +56,8 @@ Activate small nodes allocation optimization. This may speed up your application
 
 
 
-
 ### `string` \Contender\Contender::OPTION_NOBLANKS = "LIBXML_NOBLANKS"
 Remove blank nodes
-
 
 
 
@@ -23,10 +66,8 @@ Merge CDATA as text nodes
 
 
 
-
 ### `string` \Contender\Contender::OPTION_NOEMPTYTAG = "LIBXML_NOEMPTYTAG"
 Expand empty tags (e.g. `<br/>` to `<br></br>`)
-
 
 
 
@@ -35,10 +76,8 @@ Substitute entities
 
 
 
-
 ### `string` \Contender\Contender::OPTION_NONET = "LIBXML_NONET"
 Disable network access when loading documents
-
 
 
 
@@ -47,9 +86,7 @@ Force to UTF -8 encoding
 
 
 
-
 ### `string` \Contender\Contender::OPTION_CONVERT_NO_ENCODE = "CONVERT_NO_ENCODE"
-
 
 
 
@@ -59,9 +96,7 @@ Change charset`<meta>`tag when <a href="#string-contendercontenderoptionconverte
 
 
 
-
 ### `string` \Contender\Contender::OPTION_CONVERT_NO_REPLACE_CHARSET = "OPTION_CONVERT_NO_REPLACE_CHARSET"
-
 
 
 
@@ -71,9 +106,7 @@ Nicely formats output with indentation and extra space.
 
 
 
-
 ### `string` \Contender\Contender::OPTION_FORMAT_OUTPUT_DISABLE = "OPTION_FORMAT_OUTPUT_DISABLE"
-
 
 
 
@@ -83,9 +116,7 @@ Do not minify html, then generating to <a href="#contenderelementsdocument">\Con
 
 
 
-
 ### `string` \Contender\Contender::OPTION_MINIFY_ENABLE = "OPTION_MINIFY_ENABLE"
-
 
 
 
@@ -95,9 +126,7 @@ Remove `<style>`tags, then generating to <a href="#contenderelementsdocument">\C
 
 
 
-
 ### `string` \Contender\Contender::OPTION_REMOVE_STYLE_DISABLE = "OPTION_REMOVE_STYLE_DISABLE"
-
 
 
 
@@ -107,9 +136,7 @@ Remove `<script>`tags, then generating to <a href="#contenderelementsdocument">\
 
 
 
-
 ### `string` \Contender\Contender::OPTION_REMOVE_SCRIPT_DISABLE = "OPTION_REMOVE_SCRIPT_DISABLE"
-
 
 
 
@@ -119,16 +146,13 @@ Remove comment tags, then generating to <a href="#contenderelementsdocument">\Co
 
 
 
-
 ### `string` \Contender\Contender::OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE"
-
 
 
 
 
 ### `integer` \Contender\Contender::DEFAULT_LIBXML_OPTION = 4194402
 Default libxml options
-
 
 
 
@@ -159,8 +183,6 @@ void
 ### See Also
 None
 
-
-
 ### \Contender\Contender::setOption(string $option)
 Options for converting Html to ContenderDocument
 
@@ -180,8 +202,6 @@ $this
 ### See Also
 None
 
-
-
 ### \Contender\Contender::setOptions(array $options)
 Calls <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a> as an array
 
@@ -200,8 +220,6 @@ $this
 
 ### See Also
  - <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a>
-
-
 
 
 ### \Contender\Contender::load(string $html, array $options)
@@ -226,8 +244,6 @@ Array multiple Contender option constants
 
 ### See Also
 None
-
-
 
 ### \Contender\Contender::loadFromUrl(string $url, array $options, array|null $context_option)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL
@@ -257,8 +273,6 @@ Context options
  - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
 
 
-
-
 ### \Contender\Contender::loadStr(string $html, array $options)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a string(static call)
 
@@ -281,8 +295,6 @@ Array multiple Contender option constants
 
 ### See Also
 None
-
-
 
 ### \Contender\Contender::loadUrl(string $url, array $options, array|null $context_option)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL(static call)
@@ -313,12 +325,40 @@ Context options
 
 
 
-
-
 \Contender\Elements\Collection
 ==========================
 
 A collection of <a href="#contenderelementsnode">\Contender\Elements\Node</a> from <a href="#contenderelementsdocument">\Contender\Elements\Document</a>
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\Collection {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+
+    /* Methods */
+    public __construct ([?mixed $items = []]) : void
+    public find (string $selectors) : \Contender\Elements\Collection
+    public makeByDOMNodeList (DOMNodeList $element, Contender\Elements\ElementInterface $node) : \Contender\Elements\Collection
+    public onlyElement () : \Contender\Elements\Collection
+    public sortDom () : \Contender\Elements\Collection
+    public querySelector (string $query) : \Contender\Elements\Node|null
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public attr (?mixed $param = NULL) : string|null
+    public getAttr (string $name) : mixed
+    public setAttr (string $name, string $value) : mixed
+    public remove () : \Contender\Elements\Collection
+
+ }
+
+```
+
 
 Const
 ----------------------------
@@ -364,8 +404,6 @@ void
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Collection::find(string $selectors)
 Call <a href="#contenderelementscollectionqueryselectorallstring-selectors">\Contender\Elements\Collection::querySelectorAll()</a> and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
 
@@ -384,8 +422,6 @@ Call <a href="#contenderelementscollectionqueryselectorallstring-selectors">\Con
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Collection::makeByDOMNodeList(DOMNodeList $element, Contender\Elements\ElementInterface $node)
 
@@ -410,8 +446,6 @@ None
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Collection::onlyElement()
 HTMLElement only Node
 
@@ -427,8 +461,6 @@ HTMLElement only Node
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Collection::sortDom()
 Sort <a href="#contenderelementsnode">\Contender\Elements\Node</a> by line number and Xpath
 
@@ -443,8 +475,6 @@ Sort <a href="#contenderelementsnode">\Contender\Elements\Node</a> by line numbe
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Collection::querySelector(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
@@ -465,8 +495,6 @@ Valid CSS selector string
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Collection::querySelectorAll(string $selectors)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
@@ -485,8 +513,6 @@ Valid CSS selector string
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Collection::attr(mixed|null $param)
 if call attr('name')
@@ -507,8 +533,6 @@ string|null
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Collection::getAttr(string $name)
 get tag attribute for element.
 
@@ -527,8 +551,6 @@ mixed
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Collection::setAttr(string $name, string $value)
 set tag attribute for element.
@@ -553,8 +575,6 @@ mixed
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Collection::remove()
 Removes the object from the tree it belongs to.
 
@@ -571,12 +591,109 @@ Removes the object from the tree it belongs to.
 None
 
 
-
-
 \Contender\Elements\Document
 ==========================
 
 Access each element of Html, like window.document in Javascript.
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\Document {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node $firstChild ;
+    public \Contender\Elements\Node $first_child ;
+    public \Contender\Elements\Node $lastChild ;
+    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Document|null $firstElementChild ;
+    public \Contender\Elements\Document|null $first_element_child ;
+    public \Contender\Elements\Document|null $parentNode ;
+    public \Contender\Elements\Document|null $parent_node ;
+    public \Contender\Elements\Document|null $lastElementChild ;
+    public \Contender\Elements\Document|null $last_element_child ;
+    public \Contender\Elements\Document|null $previousElementSibling ;
+    public \Contender\Elements\Document|null $previous_element_sibling ;
+    public \Contender\Elements\Document|null $nextElementSibling ;
+    public \Contender\Elements\Document|null $next_element_sibling ;
+    public \Contender\Elements\Document|null $nextSibling ;
+    public \Contender\Elements\Document|null $next_sibling ;
+    public int $nodeType ;
+    public int $node_type ;
+    public string $nodeName ;
+    public string $node_name ;
+
+    /* Methods */
+    public __construct (DOMDocument $element) : void
+    public createElement (string $name, [?string $value = null]) : \Contender\Elements\Node
+    public __toString () : string
+    public getNextSiblingAttribute () : static|null
+    public getElementById (string $query) : \Contender\Elements\Node|null
+    public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
+    public getAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
+    public querySelector (string $selectors) : \Contender\Elements\Node|null
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public find (string $query) : \Contender\Elements\Collection
+    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
+    public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
+    public attr (?mixed $name = NULL) : string|null
+    public getAttr (string $name) : mixed
+    public setAttr (string $name, string $value) : mixed
+    public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
+    public nativeNode () : DOMNode
+
+ }
+
+```
+
 
 Const
 ----------------------------
@@ -927,8 +1044,6 @@ void
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::createElement(string $name, string|null $value)
 
 
@@ -952,8 +1067,6 @@ None
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::__toString()
 
 
@@ -969,7 +1082,20 @@ string
 ### See Also
 None
 
+### \Contender\Elements\Document::getNextSiblingAttribute()
 
+
+
+
+#### Parameters
+
+
+#### Return Values
+static|null Alias to next_element_sibling
+
+
+### See Also
+None
 
 ### \Contender\Elements\Document::getElementById(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
@@ -990,8 +1116,6 @@ tag id
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::getElementsByClassName(string $query)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
 
@@ -1010,8 +1134,6 @@ tag class name
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Document::getElementsByName(string $query)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with a given name in the document.
@@ -1032,8 +1154,6 @@ tag name attribute
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::getElementsByTagName(string $tag_name)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with the given tag name.
 
@@ -1052,8 +1172,6 @@ Elements tag name
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Document::getAttributeNodeNS(string $namespaceURI, string $localName)
 Returns the attribute node in namespace namespaceURI with local name localName for the current node.
@@ -1078,8 +1196,6 @@ The local name.
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::querySelector(string $selectors)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
@@ -1098,8 +1214,6 @@ Valid CSS selector string
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Document::querySelectorAll(string $selectors)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
@@ -1120,8 +1234,6 @@ Valid CSS selector string
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::find(string $query)
 Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
 
@@ -1141,8 +1253,6 @@ Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\C
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::evaluateToCollection(string $query)
 Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
 
@@ -1161,8 +1271,6 @@ xpath
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Document::evaluate(string $query, int $offset)
 Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
@@ -1187,8 +1295,6 @@ xpath
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::attr(mixed|null $name)
 if call attr('name')
 
@@ -1208,8 +1314,6 @@ string|null
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::getAttr(string $name)
 get tag attribute for element.
 
@@ -1228,8 +1332,6 @@ mixed
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Document::setAttr(string $name, string $value)
 set tag attribute for element.
@@ -1254,8 +1356,6 @@ mixed
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::appendChild(Contender\Elements\Node $node)
 
 
@@ -1275,8 +1375,6 @@ None
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Document::nativeNode()
 
 
@@ -1293,12 +1391,111 @@ DOMNode
 None
 
 
-
-
 \Contender\Elements\Node
 ==========================
 
 Each element accessed from the <a href="#contenderelementsdocument">\Contender\Elements\Document</a>
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\Node {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node $firstChild ;
+    public \Contender\Elements\Node $first_child ;
+    public \Contender\Elements\Node $lastChild ;
+    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Node|null $firstElementChild ;
+    public \Contender\Elements\Node|null $first_element_child ;
+    public \Contender\Elements\Node|null $parentNode ;
+    public \Contender\Elements\Node|null $parent_node ;
+    public \Contender\Elements\Node|null $lastElementChild ;
+    public \Contender\Elements\Node|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Node|null $nextSibling ;
+    public \Contender\Elements\Node|null $next_sibling ;
+    public int $nodeType ;
+    public int $node_type ;
+    public string $nodeName ;
+    public string $node_name ;
+
+    /* Methods */
+    public __construct (DOMNode $element) : void
+    public __toString () : string
+    public remove () : \Contender\Elements\Node|null
+    public after (?mixed $elements = NULL) : \Contender\Elements\Node|null
+    public before (?mixed $elements = NULL) : \Contender\Elements\Node
+    public getNextSiblingAttribute () : static|null
+    public getElementById (string $query) : \Contender\Elements\Node|null
+    public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
+    public getAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
+    public querySelector (string $selectors) : \Contender\Elements\Node|null
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public find (string $query) : \Contender\Elements\Collection
+    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
+    public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
+    public attr (?mixed $name = NULL) : string|null
+    public getAttr (string $name) : mixed
+    public setAttr (string $name, string $value) : mixed
+    public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
+    public nativeNode () : DOMNode
+
+ }
+
+```
+
 
 Const
 ----------------------------
@@ -1649,8 +1846,6 @@ void
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::__toString()
 
 
@@ -1666,8 +1861,6 @@ string
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::remove()
 Removes the object from the tree it belongs to.
 
@@ -1682,8 +1875,6 @@ Removes the object from the tree it belongs to.
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Node::after(mixed|null $elements)
 Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> or String in the children list of this ChildNode's parent, just after this ChildNode. Strings are inserted as equivalent Text nodes.
@@ -1704,8 +1895,6 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> o
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::before(mixed|null $elements)
 Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
 
@@ -1725,7 +1914,20 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  
 ### See Also
 None
 
+### \Contender\Elements\Node::getNextSiblingAttribute()
 
+
+
+
+#### Parameters
+
+
+#### Return Values
+static|null Alias to next_element_sibling
+
+
+### See Also
+None
 
 ### \Contender\Elements\Node::getElementById(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
@@ -1746,8 +1948,6 @@ tag id
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::getElementsByClassName(string $query)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
 
@@ -1766,8 +1966,6 @@ tag class name
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Node::getElementsByName(string $query)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with a given name in the document.
@@ -1788,8 +1986,6 @@ tag name attribute
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::getElementsByTagName(string $tag_name)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with the given tag name.
 
@@ -1808,8 +2004,6 @@ Elements tag name
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Node::getAttributeNodeNS(string $namespaceURI, string $localName)
 Returns the attribute node in namespace namespaceURI with local name localName for the current node.
@@ -1834,8 +2028,6 @@ The local name.
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::querySelector(string $selectors)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
 
@@ -1854,8 +2046,6 @@ Valid CSS selector string
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Node::querySelectorAll(string $selectors)
 Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
@@ -1876,8 +2066,6 @@ Valid CSS selector string
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::find(string $query)
 Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
 
@@ -1897,8 +2085,6 @@ Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\C
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::evaluateToCollection(string $query)
 Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
 
@@ -1917,8 +2103,6 @@ xpath
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Node::evaluate(string $query, int $offset)
 Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
@@ -1943,8 +2127,6 @@ xpath
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::attr(mixed|null $name)
 if call attr('name')
 
@@ -1964,8 +2146,6 @@ string|null
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::getAttr(string $name)
 get tag attribute for element.
 
@@ -1984,8 +2164,6 @@ mixed
 
 ### See Also
 None
-
-
 
 ### \Contender\Elements\Node::setAttr(string $name, string $value)
 set tag attribute for element.
@@ -2010,8 +2188,6 @@ mixed
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::appendChild(Contender\Elements\Node $node)
 
 
@@ -2031,8 +2207,6 @@ None
 ### See Also
 None
 
-
-
 ### \Contender\Elements\Node::nativeNode()
 
 
@@ -2047,7 +2221,5 @@ DOMNode
 
 ### See Also
 None
-
-
 
 

@@ -35,6 +35,7 @@ use DOMDocument;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
+ * @hideDoc
  * @mixin \Contender\Elements\Node
  * @mixin \Contender\Elements\Document
  * @property-read bool isElement true if this node is an XML_ELEMENT_NODE
@@ -107,6 +108,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_ELEMENT_NODE
+     * @hideDoc
      */
     public function getIsElementAttribute(): bool
     {
@@ -115,6 +117,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_ATTRIBUTE_NODE
+     * @hideDoc
      */
     public function getIsAttrAttribute(): bool
     {
@@ -123,6 +126,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_TEXT_NODE
+     * @hideDoc
      */
     public function getIsTextAttribute(): bool
     {
@@ -131,6 +135,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_CDATA_SECTION_NODE
+     * @hideDoc
      */
     public function getIsCharacterDataAttribute(): bool
     {
@@ -139,6 +144,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_ENTITY_REF_NODE
+     * @hideDoc
      */
     public function getIsEntityReferenceAttribute(): bool
     {
@@ -147,6 +153,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_ENTITY_NODE
+     * @hideDoc
      */
     public function getIsEntityAttribute(): bool
     {
@@ -155,6 +162,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_PI_NODE
+     * @hideDoc
      */
     public function getIsProcessingInstructionAttribute(): bool
     {
@@ -163,6 +171,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_COMMENT_NODE
+     * @hideDoc
      */
     public function getIsCommentAttribute(): bool
     {
@@ -171,6 +180,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_DOCUMENT_NODE
+     * @hideDoc
      */
     public function getIsDocumentAttribute(): bool
     {
@@ -179,6 +189,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_DOCUMENT_TYPE_NODE
+     * @hideDoc
      */
     public function getIsDocumentTypeAttribute(): bool
     {
@@ -187,6 +198,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_DOCUMENT_FRAG_NODE
+     * @hideDoc
      */
     public function getIsDocumentFragmentAttribute(): bool
     {
@@ -195,6 +207,7 @@ trait GetterTrait
 
     /**
      * @return bool true if this node is an XML_NOTATION_NODE
+     * @hideDoc
      */
     public function getIsNotationAttribute(): bool
     {
@@ -243,6 +256,7 @@ trait GetterTrait
 
     /**
      * @return string The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
+     * @hideDoc
      */
     public function getInnerTextAttribute(): string
     {
@@ -251,6 +265,7 @@ trait GetterTrait
 
     /**
      * @return string The text content of this node and its descendants.
+     * @hideDoc
      */
     public function getTextContentAttribute(): string
     {
@@ -259,6 +274,7 @@ trait GetterTrait
 
     /**
      * @return string The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+     * @hideDoc
      */
     public function getInnerHTMLAttribute(): string
     {
@@ -288,6 +304,7 @@ trait GetterTrait
 
     /**
      * @param string $html
+     * @hideDoc
      */
     public function setInnerHTMLAttribute(string $html): void
     {
@@ -302,6 +319,7 @@ trait GetterTrait
 
     /**
      * @param string $value
+     * @hideDoc
      */
     public function setInnerXMLAttribute(string $value)
     {
@@ -310,6 +328,7 @@ trait GetterTrait
 
     /**
      * @return string The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+     * @hideDoc
      */
     public function getOuterHTMLAttribute(): string
     {
@@ -324,6 +343,7 @@ trait GetterTrait
 
     /**
      * @return string The Element property innerXML gets or sets the HTML or XML markup contained within the element
+     * @hideDoc
      */
     public function getInnerXMLAttribute(): string
     {
@@ -340,6 +360,7 @@ trait GetterTrait
 
     /**
      * @return string The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+     * @hideDoc
      */
     public function getOuterXMLAttribute(): string
     {
@@ -352,6 +373,7 @@ trait GetterTrait
 
     /**
      * @return string Gets an XPath location path for the node
+     * @hideDoc
      */
     public function getNodePathAttribute(): string
     {
@@ -360,6 +382,7 @@ trait GetterTrait
 
     /**
      * @return int Get line number for a node
+     * @hideDoc
      */
     public function getLineNoAttribute(): int
     {
@@ -368,6 +391,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Collection That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
+     * @hideDoc
      */
     public function getChildrenAttribute(): Collection
     {
@@ -380,6 +404,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Collection Aliases to children
+     * @hideDoc
      */
     public function getChildNodesAttribute(): Collection
     {
@@ -388,6 +413,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Node Get a first child node.
+     * @hideDoc
      */
     public function getFirstChildAttribute(): Node
     {
@@ -396,6 +422,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Node Get a last child node.
+     * @hideDoc
      */
     public function getLastChildAttribute(): Node
     {
@@ -404,6 +431,7 @@ trait GetterTrait
 
     /**
      * @return static|null The first child of this node. If there is no such node, this returns NULL.
+     * @hideDoc
      */
     public function getFirstElementChildAttribute(): ?self
     {
@@ -412,6 +440,7 @@ trait GetterTrait
 
     /**
      * @return static|null The parent of this node. If there is no such node, this returns NULL.
+     * @hideDoc
      */
     public function getParentNodeAttribute(): ?self
     {
@@ -420,6 +449,7 @@ trait GetterTrait
 
     /**
      * @return static|null The last child of this node. If there is no such node, this returns NULL.
+     * @hideDoc
      */
     public function getLastElementChildAttribute(): ?self
     {
@@ -428,6 +458,7 @@ trait GetterTrait
 
     /**
      * @return static|null The node immediately preceding this node. If there is no such node, this returns NULL.
+     * @hideDoc
      */
     public function getPreviousElementSiblingAttribute(): ?self
     {
@@ -436,6 +467,7 @@ trait GetterTrait
 
     /**
      * @return static|null The node immediately following this node. If there is no such node, this returns NULL.
+     * @hideDoc
      */
     public function getNextElementSiblingAttribute(): ?self
     {
@@ -452,6 +484,7 @@ trait GetterTrait
 
     /**
      * @return int Gets the type of the node.
+     * @hideDoc
      */
     public function getNodeTypeAttribute(): int
     {
@@ -460,6 +493,7 @@ trait GetterTrait
 
     /**
      * @return string Returns the most accurate name for the current node type
+     * @hideDoc
      */
     public function getNodeNameAttribute(): string
     {

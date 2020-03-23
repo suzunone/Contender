@@ -32,6 +32,7 @@ use DOMNode;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
+ * @hideDoc
  */
 trait NodeTrait
 {

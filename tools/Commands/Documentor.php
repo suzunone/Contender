@@ -27,6 +27,7 @@ class Documentor extends Command
 {
     protected $ankers = [];
 
+
     /**
      * Configures the current command.
      */
@@ -106,7 +107,7 @@ EOT
                 continue;
             }
 
-            $anchor = $this->ankers[$link] ??  $this->ankers["\\".$link]??  $this->ankers[ltrim($link, "\\")]  ?? null;
+            $anchor = $this->ankers[$link] ?? $this->ankers["\\" . $link] ?? $this->ankers[ltrim($link, "\\")] ?? null;
             if ($anchor !== null) {
                 $res[$tag] = '<a href="' . $anchor . '">' . $link . '</a>';
             } else {
@@ -133,6 +134,7 @@ EOT
 
         $ref = new ReflectionClass($clazz);
 
+
         $now_doc = $ref->getDocComment();
 
         $parsed = $this->parseDocBlock($now_doc);
@@ -151,6 +153,7 @@ EOT
             'DummyConst' => $DummyConst,
             'DummyProperties' => $DummyProperties,
             'DummyMethods' => $DummyMethods,
+            'DummyClassSynopsis' =>  $this->synopsisStub($ref),
         ];
 
         $DummyHead = str_replace(
@@ -166,6 +169,180 @@ EOT
         );
 
         return $class_stub;
+    }
+
+    protected function synopsisStub(ReflectionClass $refClass)
+    {
+        $synopsis = $this->synopsisStubArray($refClass);
+        $res = [];
+
+        foreach ($synopsis['const'] as $value) {
+            $res['Constants'][] = "const {$value['type']} {$value['name']} = {$value['value']} ;";
+        }
+
+        foreach ($synopsis['properties'] as $value) {
+            $res['Properties'][] = "public {$value['type']} \${$value['name']} ;";
+        }
+
+        foreach ($synopsis['methods'] as $value) {
+            $params = [];
+
+
+            foreach ($value['parameter'] ?? [] as $parameter) {
+                $sub = "{$parameter['type']} \${$parameter['name']}";
+                if ($parameter['default_value_available']) {
+                    $sub .= " = {$parameter['default_value']}";
+                    if ($parameter['allowNull']) {
+                        $sub = '?'.$sub;
+                    }
+
+                    $sub = "[$sub]";
+                } elseif ($parameter['allowNull']) {
+                    $sub .= " = NULL";
+                    $sub = "?$sub";
+                }
+
+                $params[] = $sub;
+            }
+
+            $params = implode(', ', $params);
+            $res['Methods'][] = "public {$value['name']} ({$params}) : {$value['type']}";
+        }
+
+        $stub = $refClass->getName().' {';
+        foreach ($res as $key => $prop) {
+            $stub .= "\n\n    /* {$key} */\n    ".implode("\n    ",$prop);
+        }
+        $stub .= "\n\n }";
+
+        return $stub;
+
+    }
+
+    protected function synopsisStubArray(ReflectionClass $refClass)
+    {
+        $const = [];
+        foreach ($refClass->getReflectionConstants() as $refConst) {
+            if (!$refConst->isPublic()) {
+                continue;
+            }
+            $const[] = [
+                'name' => $refConst->getName(),
+                'value' => json_encode($refConst->getValue()),
+                'type' => gettype($refConst->getValue()),
+            ];
+        }
+
+        $properties = [];
+        foreach ($refClass->getProperties() as $reflectionProperty) {
+            if (!$reflectionProperty->isPublic()) {
+
+                continue;
+            }
+            $annotate = $this->parseDocBlock($reflectionProperty->getDocComment());
+            $type = null;
+            if (isset($annotate['return'][0])) {
+                [$type,] = preg_split('/ +/', trim($annotate['return'][0]), 2);
+            }
+
+            $properties[] = [
+                'isStatic' => $reflectionProperty->isStatic(),
+                'value' => json_encode($reflectionProperty->getValue()),
+                'type' => $type ?? ($reflectionProperty->getType() ? $reflectionProperty->getType() : gettype($reflectionProperty->getValue())),
+                'name' => $reflectionProperty->getName(),
+                'isReadOnly' => false,
+            ];
+        }
+
+        $annotate = $this->parseDocBlock($refClass->getDocComment());
+
+        foreach ($annotate['property'] as $property) {
+            [$type, $name,] = preg_split('/ +/',$property, 3);
+
+            $properties[] = [
+                'isStatic' => false,
+                'value' => '',
+                'type' => $type,
+                'name' => strpos('$', $name) === 0 ? substr($name, 1) : $name,
+                'isReadOnly' => false,
+            ];
+        }
+
+        foreach ($annotate['property-read'] as $property) {
+            [$type, $name,] = preg_split('/ +/', $property, 3);
+
+            $properties[] = [
+                'isStatic' => false,
+                'value' => '',
+                'type' => $type,
+                'name' => strpos('$', $name) === 0 ? substr($name, 1) : $name,
+                'isReadOnly' => true,
+            ];
+        }
+
+
+        $methods = [];
+        foreach ($refClass->getMethods() as $refMethod) {
+            $params = [];
+            $m_annotate = $this->parseDocBlock($refMethod->getDocComment());
+
+            if (!$refMethod->isPublic()) {
+                continue;
+            }
+
+            if ($refMethod->getDeclaringClass()->getName() !== $refClass->getName()) {
+                continue;
+            }
+
+            if (isset($m_annotate['hideDoc'])) {
+                continue;
+            }
+
+
+            foreach ($m_annotate['param'] ?? [] as $key => $value) {
+                [$type, $param, $description] = preg_split('/ +/', $value, 3);
+                $params[$param] = compact('type', 'param', 'description');
+            }
+
+
+
+            $resType = $refMethod->getReturnType();
+            if ($resType !== null) {
+                $resType = (string)$refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
+            } else {
+                $resType = 'mixed';
+            }
+
+            if (isset($m_annotate['return'][0])) {
+                [$resType,] = preg_split('/ +/', $m_annotate['return'][0]);
+            }
+
+            $parameter = [];
+            foreach ($refMethod->getParameters() as $key => $refParameter) {
+                $param_type = $params[$refMethod->name]['type'] ?? null;
+
+                $parameter[$key]['type']= $param_type ?? (string)($refParameter->getType() ?? 'mixed');
+                $parameter[$key]['allowNull'] = $refParameter->allowsNull();
+                $parameter[$key]['name'] = $refParameter->getName();
+                $parameter[$key]['default_value'] = $refParameter->isDefaultValueAvailable() ? json_encode($refParameter->getDefaultValue()) : null;
+                $parameter[$key]['default_value_available'] = $refParameter->isDefaultValueAvailable();
+
+            }
+
+            $methods[] = [
+                'isStatic' => $refMethod->isStatic(),
+                'parameter' => $parameter,
+                'type' => $resType,
+                'name' => $refMethod->name,
+                'isReadOnly' => false,
+            ];
+
+
+        }
+
+
+        return compact('const', 'properties', 'methods');
+
     }
 
 
@@ -187,17 +364,15 @@ EOT
             if ($refMethod->getDeclaringClass()->getName() !== $refClass->getName()) {
                 continue;
             }
-            if (mb_ereg('^[gs]et.*Attribute$', $refMethod->getName())) {
+            $doc = $this->parseDocBlock($refMethod->getDocComment());
+            if (isset($doc['hideDoc'])) {
                 continue;
             }
 
             $stub_contents = file_get_contents(__DIR__ . '/stub/method.md');
             $DummyHead = file_get_contents(__DIR__ . '/stub/method_head.md');
 
-            $doc = $this->parseDocBlock($refMethod->getDocComment());
-            if (isset($doc['hideDoc'])) {
-                continue;
-            }
+
 
             $resType = $refMethod->getReturnType();
             if ($resType !== null) {
@@ -207,7 +382,7 @@ EOT
             }
 
             if (isset($doc['return'][0])) {
-                [$resType,] = explode(' ', $doc['return'][0]);
+                [$resType,] = preg_split('/ +/', $doc['return'][0]);
             }
 
             $arr = [
@@ -228,7 +403,7 @@ EOT
                 $DummyHead
             );
             $arr['DummyHead'] = trim($DummyHead);
-            $this->ankers[$arr['DummyClass'] . '::' . $arr['DummyName'].'()'] = $this->toAnchor($arr['DummyHead']);
+            $this->ankers[$arr['DummyClass'] . '::' . $arr['DummyName'] . '()'] = $this->toAnchor($arr['DummyHead']);
 
             $res[] = str_replace(array_keys($arr), array_values($arr), $stub_contents);
         }
@@ -347,7 +522,7 @@ EOT
             $doc = $this->parseDocBlock($refProperty->getDocComment());
 
 
-            [$type,] = explode(' ', $doc['var'][0] ?? '', 2);
+            [$type,] = preg_split('/ +/', $doc['var'][0] ?? '', 2);
             $arr = [
                 'DummyClass' => $refClass->name,
                 'DummyName' => $refProperty->getName(),
