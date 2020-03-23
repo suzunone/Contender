@@ -476,7 +476,7 @@ trait GetterTrait
 
     /**
      * @return static|null Alias to next_element_sibling
-     z* @hideDoc
+     * @hideDoc
      */
     public function getNextSiblingAttribute(): ?self
     {

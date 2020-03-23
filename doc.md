@@ -780,7 +780,6 @@ Contender\Elements\Document {
     public __construct (DOMDocument $element) : void
     public createElement (string $name, [?string $value = null]) : \Contender\Elements\Node
     public __toString () : string
-    public getNextSiblingAttribute () : static|null
     public getElementById (string $query) : \Contender\Elements\Node|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
@@ -1186,21 +1185,6 @@ None
 
 #### Return Values
 string
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getNextSiblingAttribute()
-
-
-
-
-#### Parameters
-
-
-#### Return Values
-static|null Alias to next_element_sibling
 
 
 ### See Also
@@ -1654,7 +1638,6 @@ Contender\Elements\Node {
     public remove () : \Contender\Elements\Node|null
     public after (?mixed $elements = NULL) : \Contender\Elements\Node|null
     public before (?mixed $elements = NULL) : \Contender\Elements\Node
-    public getNextSiblingAttribute () : static|null
     public getElementById (string $query) : \Contender\Elements\Node|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
@@ -2103,21 +2086,6 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  
  - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before">https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before</a>
 
-
-### \Contender\Elements\Node::getNextSiblingAttribute()
-
-
-
-
-#### Parameters
-
-
-#### Return Values
-static|null Alias to next_element_sibling
-
-
-### See Also
-None
 
 ### \Contender\Elements\Node::getElementById(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
