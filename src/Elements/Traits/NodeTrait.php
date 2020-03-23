@@ -96,14 +96,52 @@ trait NodeTrait
     }
 
     /**
+     * Adds a node to the end of the list of children of a specified parent node.
+     *
      * @param \Contender\Elements\Node $node
      * @return \Contender\Elements\Node
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
+     * @see \Contender\Elements\Document::createElement()
      */
     public function appendChild(Node $node)
     {
         $res = $this->element->appendChild($node->nativeNode());
 
         return new Node($res);
+    }
+
+    /**
+     *  Inserts a node before a reference node as a child of a specified parent node.
+     *
+     * @param \Contender\Elements\Node $node
+     * @param \Contender\Elements\Node|null $referenceNode
+     * @return \Contender\Elements\Node
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+     * @see \Contender\Elements\Document::createElement()
+     */
+    public function insertBefore(Node $node, ?Node $referenceNode = null)
+    {
+        if ($referenceNode) {
+            $res = $this->element->insertBefore($node->nativeNode(), $referenceNode->nativeNode());
+        } else {
+
+            $res = $this->element->insertBefore($node->nativeNode());
+        }
+
+        return new Node($res);
+    }
+
+    /**
+     * Normalizes the node
+     *
+     * Remove empty text nodes and merge adjacent text nodes in this node and all its children.
+     *
+     * @see https://www.php.net/manual/en/domnode.normalize.php
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize
+     */
+    public function normalize()
+    {
+        $this->element->normalize();
     }
 
     /**

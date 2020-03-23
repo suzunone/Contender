@@ -40,6 +40,8 @@ use DOMNodeList;
  * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
  * @property string innerHTML 1st of innerHTML
  * @property string inner_h_t_m_l 1st of innerHTML
+ * @property string innerXML 1st of innerXML
+ * @property string inner_x_m_l 1st of innerXML
  */
 class Collection extends \Illuminate\Support\Collection
 {
@@ -193,6 +195,7 @@ class Collection extends \Illuminate\Support\Collection
     /**
      * @return string 1st of innerHTML
      * @hideDoc
+     * @link \Contender\Elements\Node::$innerHTML
      */
     public function getInnerHTMLAttribute(): string
     {
@@ -202,10 +205,32 @@ class Collection extends \Illuminate\Support\Collection
     /**
      * @param string $val
      * @hideDoc
+     * @link \Contender\Elements\Node::$innerHTML
      */
     public function setInnerHTMLAttribute(string $val): void
     {
         $this->sortDom()->first()->innerHTML = $val;
+    }
+
+
+    /**
+     * @return string 1st of innerXML
+     * @hideDoc
+     * @link \Contender\Elements\Node::$innerXML
+     */
+    public function getInnerXMLAttribute(): string
+    {
+        return $this->sortDom()->first()->innerXML;
+    }
+
+    /**
+     * @param string $val
+     * @hideDoc
+     * @link \Contender\Elements\Node::$innerXML
+     */
+    public function setInnerXMLAttribute(string $val): void
+    {
+        $this->sortDom()->first()->innerXML = $val;
     }
 
     /**
@@ -231,6 +256,7 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @param ...$name
      * @return string|null
+     * @link \Contender\Elements\Node::attr()
      */
     public function attr(...$param): string
     {
@@ -243,6 +269,7 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @param string $name
      * @return mixed
+     * @link \Contender\Elements\Node::getAttr()
      */
     public function getAttr(string $name)
     {
@@ -254,6 +281,7 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @param string $name
      * @param string $value
+     * @link \Contender\Elements\Node::setAttr()
      */
     public function setAttr(string $name, string $value)
     {
@@ -264,6 +292,7 @@ class Collection extends \Illuminate\Support\Collection
      * Removes the object from the tree it belongs to.
      *
      * @return \Contender\Elements\Collection
+     * @link \Contender\Elements\Node::remove()
      */
     public function remove()
     {

@@ -125,6 +125,12 @@ class Contender
 
     /**
      * Default libxml options
+     *
+     * ``` .php
+     *  DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING
+     * ```
+     *
+     * @see https://www.php.net/manual/en/dom.constants.php
      */
     public const DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING;
 
@@ -245,6 +251,8 @@ class Contender
      * @param string $html   The string containing the HTML.
      * @param array $options Array multiple Contender option constants
      * @return \Contender\Elements\Document
+     * @link \Contender\Contender::loadStr()
+     * @link \Contender\Contender::loadUrl()
      */
     public function load(string $html, array $options = []): Document
     {
@@ -386,6 +394,8 @@ HTML;
      * @param array|null $context_option Context options
      * @return \Contender\Elements\Document
      * @link https://www.php.net/manual/en/context.php
+     * @link \Contender\Contender::loadStr()
+     * @link \Contender\Contender::loadUrl()
      */
     public function loadFromUrl(string $url, array $options = [], ?array $context_option = null)
     {
@@ -405,6 +415,8 @@ HTML;
      * @param string $html   The string containing the HTML.
      * @param array $options Array multiple Contender option constants
      * @return \Contender\Elements\Document
+     * @link \Contender\Contender::load()
+     * @link \Contender\Contender::loadUrl()
      */
     public static function loadStr(string $html, array $options = []): Document
     {
@@ -421,6 +433,8 @@ HTML;
      * @param array|null $context_option Context options
      * @return \Contender\Elements\Document
      * @link https://www.php.net/manual/en/context.php
+     * @link \Contender\Contender::loadStr()
+     * @link \Contender\Contender::loadFromUrl()
      */
     public static function loadUrl(string $url, array $options = [], ?array $context_option = null): Document
     {

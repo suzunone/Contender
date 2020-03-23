@@ -141,6 +141,7 @@ class Node implements ElementInterface
      * Removes the object from the tree it belongs to.
      *
      * @return \Contender\Elements\Node|null
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
      */
     public function remove(): ?Node
     {
@@ -154,6 +155,8 @@ class Node implements ElementInterface
      *
      * @param \Contender\Elements\Node|string ...$elements
      * @return \Contender\Elements\Node|null
+     * @see \Contender\Elements\Document::createElement()
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after
      */
     public function after(...$elements)
     {
@@ -186,6 +189,8 @@ class Node implements ElementInterface
      *
      * @param \Contender\Elements\Node|string ...$elements
      * @return \Contender\Elements\Node
+     * @see \Contender\Elements\Document::createElement()
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before
      */
     public function before(...$elements)
     {

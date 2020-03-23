@@ -143,14 +143,14 @@ EOT
             return;
         }
 
-        $DummyConst = implode('', $this->constStub($ref));
+        $DummyConstants = implode('', $this->constStub($ref));
         $DummyProperties = implode('', $this->propertyStub($ref, $parsed));
         $DummyMethods = implode('', $this->methodStub($ref, $parsed));
 
         $arr = [
             'DummyName' => $ref->name,
             'DummyClassDescription' => $parsed['description'],
-            'DummyConst' => $DummyConst,
+            'DummyConstants' => $DummyConstants,
             'DummyProperties' => $DummyProperties,
             'DummyMethods' => $DummyMethods,
             'DummyClassSynopsis' =>  $this->synopsisStub($ref),

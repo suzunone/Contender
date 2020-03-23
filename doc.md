@@ -48,7 +48,7 @@ Contender\Contender {
 ```
 
 
-Const
+Constants
 ----------------------------
 
 ### `string` \Contender\Contender::OPTION_COMPACT = "LIBXML_COMPACT"
@@ -154,7 +154,7 @@ Remove comment tags, then generating to <a href="#contenderelementsdocument">\Co
 ### `integer` \Contender\Contender::DEFAULT_LIBXML_OPTION = 4194402
 Default libxml options
 
-
+``` .phpDEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING```
 
 
 
@@ -243,7 +243,9 @@ Array multiple Contender option constants
 
 
 ### See Also
-None
+ - <a href="#contendercontenderloadstrstring-html-array-options">\Contender\Contender::loadStr()</a>
+ - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
+
 
 ### \Contender\Contender::loadFromUrl(string $url, array $options, array|null $context_option)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL
@@ -271,6 +273,8 @@ Context options
 
 ### See Also
  - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
+ - <a href="#contendercontenderloadstrstring-html-array-options">\Contender\Contender::loadStr()</a>
+ - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
 
 
 ### \Contender\Contender::loadStr(string $html, array $options)
@@ -294,7 +298,9 @@ Array multiple Contender option constants
 
 
 ### See Also
-None
+ - <a href="#contendercontenderloadstring-html-array-options">\Contender\Contender::load()</a>
+ - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
+
 
 ### \Contender\Contender::loadUrl(string $url, array $options, array|null $context_option)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL(static call)
@@ -322,6 +328,8 @@ Context options
 
 ### See Also
  - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
+ - <a href="#contendercontenderloadstrstring-html-array-options">\Contender\Contender::loadStr()</a>
+ - <a href="#contendercontenderloadfromurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadFromUrl()</a>
 
 
 
@@ -341,6 +349,8 @@ Contender\Elements\Collection {
     /* Properties */
     public string $innerHTML ;
     public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
 
     /* Methods */
     public __construct ([?mixed $items = []]) : void
@@ -360,7 +370,7 @@ Contender\Elements\Collection {
 ```
 
 
-Const
+Constants
 ----------------------------
 
 
@@ -376,6 +386,16 @@ Properties
 
 ### `string` \Contender\Elements\Collection::$inner_h_t_m_l
 1st of innerHTML
+
+
+
+### `string` \Contender\Elements\Collection::$innerXML
+1st of innerXML
+
+
+
+### `string` \Contender\Elements\Collection::$inner_x_m_l
+1st of innerXML
 
 
 
@@ -531,7 +551,8 @@ string|null
 
 
 ### See Also
-None
+ - <a href="#contenderelementsnodeattrmixednull-name">\Contender\Elements\Node::attr()</a>
+
 
 ### \Contender\Elements\Collection::getAttr(string $name)
 get tag attribute for element.
@@ -550,7 +571,8 @@ mixed
 
 
 ### See Also
-None
+ - <a href="#contenderelementsnodegetattrstring-name">\Contender\Elements\Node::getAttr()</a>
+
 
 ### \Contender\Elements\Collection::setAttr(string $name, string $value)
 set tag attribute for element.
@@ -573,7 +595,8 @@ mixed
 
 
 ### See Also
-None
+ - <a href="#contenderelementsnodesetattrstring-name-string-value">\Contender\Elements\Node::setAttr()</a>
+
 
 ### \Contender\Elements\Collection::remove()
 Removes the object from the tree it belongs to.
@@ -588,7 +611,8 @@ Removes the object from the tree it belongs to.
 
 
 ### See Also
-None
+ - <a href="#contenderelementsnoderemove">\Contender\Elements\Node::remove()</a>
+
 
 
 \Contender\Elements\Document
@@ -688,6 +712,8 @@ Contender\Elements\Document {
     public getAttr (string $name) : mixed
     public setAttr (string $name, string $value) : mixed
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
+    public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
+    public normalize () : mixed
     public nativeNode () : DOMNode
 
  }
@@ -695,7 +721,7 @@ Contender\Elements\Document {
 ```
 
 
-Const
+Constants
 ----------------------------
 
 
@@ -1357,7 +1383,7 @@ mixed
 None
 
 ### \Contender\Elements\Document::appendChild(Contender\Elements\Node $node)
-
+Adds a node to the end of the list of children of a specified parent node.
 
 
 
@@ -1373,7 +1399,51 @@ None
 
 
 ### See Also
-None
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild</a>
+ - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
+
+
+### \Contender\Elements\Document::insertBefore(Contender\Elements\Node $node, Contender\Elements\Node|null $referenceNode)
+Inserts a node before a reference node as a child of a specified parent node.
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $node
+
+
+
+##### `\Contender\Elements\Node|null` $referenceNode
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore">https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore</a>
+ - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
+
+
+### \Contender\Elements\Document::normalize()
+Normalizes the node
+
+Remove empty text nodes and merge adjacent text nodes in this node and all its children.
+
+#### Parameters
+
+
+#### Return Values
+mixed
+
+
+### See Also
+ - <a href="https://www.php.net/manual/en/domnode.normalize.php">https://www.php.net/manual/en/domnode.normalize.php</a>
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize">https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize</a>
+
 
 ### \Contender\Elements\Document::nativeNode()
 
@@ -1490,6 +1560,8 @@ Contender\Elements\Node {
     public getAttr (string $name) : mixed
     public setAttr (string $name, string $value) : mixed
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
+    public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
+    public normalize () : mixed
     public nativeNode () : DOMNode
 
  }
@@ -1497,7 +1569,7 @@ Contender\Elements\Node {
 ```
 
 
-Const
+Constants
 ----------------------------
 
 
@@ -1874,7 +1946,8 @@ Removes the object from the tree it belongs to.
 
 
 ### See Also
-None
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove">https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove</a>
+
 
 ### \Contender\Elements\Node::after(mixed|null $elements)
 Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> or String in the children list of this ChildNode's parent, just after this ChildNode. Strings are inserted as equivalent Text nodes.
@@ -1893,7 +1966,9 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a> o
 
 
 ### See Also
-None
+ - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after">https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after</a>
+
 
 ### \Contender\Elements\Node::before(mixed|null $elements)
 Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
@@ -1912,7 +1987,9 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  
 
 
 ### See Also
-None
+ - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before">https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before</a>
+
 
 ### \Contender\Elements\Node::getNextSiblingAttribute()
 
@@ -2189,7 +2266,7 @@ mixed
 None
 
 ### \Contender\Elements\Node::appendChild(Contender\Elements\Node $node)
-
+Adds a node to the end of the list of children of a specified parent node.
 
 
 
@@ -2205,7 +2282,51 @@ None
 
 
 ### See Also
-None
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild</a>
+ - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
+
+
+### \Contender\Elements\Node::insertBefore(Contender\Elements\Node $node, Contender\Elements\Node|null $referenceNode)
+Inserts a node before a reference node as a child of a specified parent node.
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $node
+
+
+
+##### `\Contender\Elements\Node|null` $referenceNode
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore">https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore</a>
+ - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
+
+
+### \Contender\Elements\Node::normalize()
+Normalizes the node
+
+Remove empty text nodes and merge adjacent text nodes in this node and all its children.
+
+#### Parameters
+
+
+#### Return Values
+mixed
+
+
+### See Also
+ - <a href="https://www.php.net/manual/en/domnode.normalize.php">https://www.php.net/manual/en/domnode.normalize.php</a>
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize">https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize</a>
+
 
 ### \Contender\Elements\Node::nativeNode()
 

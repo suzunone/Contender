@@ -14,10 +14,10 @@ DummyClassSynopsis
 ```
 
 
-Const
+Constants
 ----------------------------
 
-DummyConst
+DummyConstants
 
 
 Properties
