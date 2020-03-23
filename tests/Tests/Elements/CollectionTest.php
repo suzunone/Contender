@@ -79,4 +79,21 @@ class CollectionTest extends TestCase
         $this->assertStringContainsString(/** @lang text */ '手法', $collection->offsetGet(0)->innerHTML);
         $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(1)->innerHTML);
     }
+
+
+
+    public function test_innerXML()
+    {
+        $document = Contender::loadStr('<div>aaaa<br />bbbbb</div>');
+
+        $element = $document->querySelectorAll('div');
+
+        $this->assertEquals('aaaa<br/>bbbbb', $element->innerXML);
+        $this->assertEquals('aaaa<br>bbbbb', $element->innerHTML);
+
+        $element->innerXML = 'cccc<br />ddd';
+
+        $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
+        $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
+    }
 }

@@ -112,7 +112,7 @@ trait GetterTrait
      */
     public function getIsElementAttribute(): bool
     {
-        return $this->element->nodeType === XML_ELEMENT_NODE;
+        return $this->nodeType === XML_ELEMENT_NODE;
     }
 
     /**
@@ -121,7 +121,7 @@ trait GetterTrait
      */
     public function getIsAttrAttribute(): bool
     {
-        return $this->element->nodeType === XML_ATTRIBUTE_NODE;
+        return $this->nodeType === XML_ATTRIBUTE_NODE;
     }
 
     /**
@@ -130,7 +130,7 @@ trait GetterTrait
      */
     public function getIsTextAttribute(): bool
     {
-        return $this->element->nodeType === XML_TEXT_NODE;
+        return $this->nodeType === XML_TEXT_NODE;
     }
 
     /**
@@ -139,7 +139,7 @@ trait GetterTrait
      */
     public function getIsCharacterDataAttribute(): bool
     {
-        return $this->element->nodeType === XML_CDATA_SECTION_NODE;
+        return $this->nodeType === XML_CDATA_SECTION_NODE;
     }
 
     /**
@@ -148,7 +148,7 @@ trait GetterTrait
      */
     public function getIsEntityReferenceAttribute(): bool
     {
-        return $this->element->nodeType === XML_ENTITY_REF_NODE;
+        return $this->nodeType === XML_ENTITY_REF_NODE;
     }
 
     /**
@@ -157,7 +157,7 @@ trait GetterTrait
      */
     public function getIsEntityAttribute(): bool
     {
-        return $this->element->nodeType === XML_ENTITY_NODE;
+        return $this->nodeType === XML_ENTITY_NODE;
     }
 
     /**
@@ -166,7 +166,7 @@ trait GetterTrait
      */
     public function getIsProcessingInstructionAttribute(): bool
     {
-        return $this->element->nodeType === XML_PI_NODE;
+        return $this->nodeType === XML_PI_NODE;
     }
 
     /**
@@ -175,7 +175,7 @@ trait GetterTrait
      */
     public function getIsCommentAttribute(): bool
     {
-        return $this->element->nodeType === XML_COMMENT_NODE;
+        return $this->nodeType === XML_COMMENT_NODE;
     }
 
     /**
@@ -184,7 +184,7 @@ trait GetterTrait
      */
     public function getIsDocumentAttribute(): bool
     {
-        return $this->element->nodeType === XML_DOCUMENT_NODE;
+        return $this->nodeType === XML_DOCUMENT_NODE;
     }
 
     /**
@@ -193,7 +193,7 @@ trait GetterTrait
      */
     public function getIsDocumentTypeAttribute(): bool
     {
-        return $this->element->nodeType === XML_DOCUMENT_TYPE_NODE;
+        return $this->nodeType === XML_DOCUMENT_TYPE_NODE;
     }
 
     /**
@@ -202,7 +202,7 @@ trait GetterTrait
      */
     public function getIsDocumentFragmentAttribute(): bool
     {
-        return $this->element->nodeType === XML_DOCUMENT_FRAG_NODE;
+        return $this->nodeType === XML_DOCUMENT_FRAG_NODE;
     }
 
     /**
@@ -211,7 +211,7 @@ trait GetterTrait
      */
     public function getIsNotationAttribute(): bool
     {
-        return $this->element->nodeType === XML_NOTATION_NODE;
+        return $this->nodeType === XML_NOTATION_NODE;
     }
 
     /**
@@ -369,6 +369,8 @@ trait GetterTrait
         } else {
             $res = $this->element->ownerDocument->saveXml($this->element);
         }
+
+        return $res;
     }
 
     /**

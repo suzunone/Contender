@@ -175,6 +175,10 @@ class Collection extends \Illuminate\Support\Collection
         if (strtolower($key) === 'innerhtml') {
             return $this->getInnerHtmlAttribute();
         }
+        if (strtolower($key) === 'innerxml') {
+            return $this->getInnerXMLAttribute();
+        }
+
 
         return parent::__get($key);
     }
@@ -189,6 +193,9 @@ class Collection extends \Illuminate\Support\Collection
     {
         if (strtolower($key) === 'innerhtml') {
             return $this->setInnerHtmlAttribute($value);
+        }
+        if (strtolower($key) === 'innerxml') {
+            return $this->setInnerXMLAttribute($value);
         }
     }
 
@@ -241,6 +248,9 @@ class Collection extends \Illuminate\Support\Collection
     public function __isset($key)
     {
         if (strtolower($key) === 'innerhtml') {
+            return true;
+        }
+        if (strtolower($key) === 'innerxml') {
             return true;
         }
 
@@ -297,7 +307,7 @@ class Collection extends \Illuminate\Support\Collection
     public function remove()
     {
         $collect = new Collection([]);
-        $this->each(function (Node $node) use (&$collect){
+        $this->each(static function (Node $node) use (&$collect){
             $collect->push($node->remove());
         });
 

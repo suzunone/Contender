@@ -144,4 +144,20 @@ class NodeTest extends TestCase
         $this->assertNull($res);
     }
 
+    public function test_innerXML()
+    {
+        $document = Contender::loadStr('<div>aaaa<br />bbbbb</div>');
+
+        $element = $document->querySelector('div');
+
+        $this->assertEquals('aaaa<br/>bbbbb', $element->innerXML);
+        $this->assertEquals('aaaa<br>bbbbb', $element->innerHTML);
+
+        $element->innerXML = 'cccc<br />ddd';
+
+        $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
+        $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
+
+
+    }
 }

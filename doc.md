@@ -89,6 +89,7 @@ Contender\Contender {
     public load (string $html, [array $options = []]) : \Contender\Elements\Document
     public loadFromUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
     public loadStr (string $html, [array $options = []]) : \Contender\Elements\Document
+    public loadDomDocument (DOMDocument $document) : \Contender\Elements\Document
     public loadUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
 
  }
@@ -361,6 +362,27 @@ Array multiple Contender option constants
 ### See Also
  - <a href="#contendercontenderloadstring-html-array-options">\Contender\Contender::load()</a>
  - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
+
+
+### \Contender\Contender::loadDomDocument(DOMDocument $document)
+Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a DOMDocument
+
+
+
+
+#### Parameters
+##### `\DOMDocument` $document
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Document
+
+
+### See Also
+ - <a href="https://www.php.net/manual/en/class.domdocument.php">https://www.php.net/manual/en/class.domdocument.php</a>
 
 
 ### \Contender\Contender::loadUrl(string $url, array $options, array|null $context_option)
@@ -796,7 +818,10 @@ Contender\Elements\Document {
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
     public normalize () : mixed
-    public nativeNode () : DOMNode
+    public cloneNode ([bool $deep = false]) : \Contender\Elements\Node
+    public hasChildNodes () : bool
+    public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
 
  }
 
@@ -1534,8 +1559,34 @@ mixed
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize">https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize</a>
 
 
-### \Contender\Elements\Document::nativeNode()
+### \Contender\Elements\Document::cloneNode(bool $deep)
+Clones a node
 
+
+Creates a copy of the node.
+
+
+
+#### Parameters
+##### `bool` $deep
+
+Indicates whether to copy all descendant nodes. This parameter is defaulted to FALSE.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode">https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode</a>
+
+
+### \Contender\Elements\Document::hasChildNodes()
+Checks if node has children
+
+
+This function checks if the node has children.
 
 
 
@@ -1543,11 +1594,58 @@ mixed
 
 
 #### Return Values
-DOMNode
+bool
 
 
 ### See Also
-None
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes">https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes</a>
+
+
+### \Contender\Elements\Document::removeChild(Contender\Elements\Node $oldnode)
+Removes child from list of children
+
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $oldnode
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild</a>
+
+
+### \Contender\Elements\Document::replaceChild(Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode)
+Replaces a child
+
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $newnode
+
+
+
+##### `\Contender\Elements\Node` $oldnode
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
+
 
 
 \Contender\Elements\Node
@@ -1654,7 +1752,10 @@ Contender\Elements\Node {
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
     public normalize () : mixed
-    public nativeNode () : DOMNode
+    public cloneNode ([bool $deep = false]) : \Contender\Elements\Node
+    public hasChildNodes () : bool
+    public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
 
  }
 
@@ -2431,8 +2532,34 @@ mixed
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize">https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize</a>
 
 
-### \Contender\Elements\Node::nativeNode()
+### \Contender\Elements\Node::cloneNode(bool $deep)
+Clones a node
 
+
+Creates a copy of the node.
+
+
+
+#### Parameters
+##### `bool` $deep
+
+Indicates whether to copy all descendant nodes. This parameter is defaulted to FALSE.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode">https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode</a>
+
+
+### \Contender\Elements\Node::hasChildNodes()
+Checks if node has children
+
+
+This function checks if the node has children.
 
 
 
@@ -2440,10 +2567,57 @@ mixed
 
 
 #### Return Values
-DOMNode
+bool
 
 
 ### See Also
-None
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes">https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes</a>
+
+
+### \Contender\Elements\Node::removeChild(Contender\Elements\Node $oldnode)
+Removes child from list of children
+
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $oldnode
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild</a>
+
+
+### \Contender\Elements\Node::replaceChild(Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode)
+Replaces a child
+
+
+
+
+#### Parameters
+##### `\Contender\Elements\Node` $newnode
+
+
+
+##### `\Contender\Elements\Node` $oldnode
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
+
 
 

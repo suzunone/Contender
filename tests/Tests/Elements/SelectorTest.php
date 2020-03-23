@@ -17,6 +17,7 @@
 
 namespace Tests\Suzunone\Contender\Elements;
 
+use Contender\Elements\Collection;
 use Contender\Elements\Node;
 use PHPUnit\Framework\TestCase;
 use Contender\Contender;
@@ -78,4 +79,73 @@ class SelectorTest extends TestCase
         $this->assertStringContainsString('手法', $collection->offsetGet(0)->innerHTML);
         $this->assertStringContainsString('法的問題', $collection->offsetGet(1)->innerHTML);
     }
+
+    public function test_getElementById()
+    {
+        $document = Contender::loadStr('<div><p id="test">aaaaa</p></div>');
+
+        $res = $document->getElementById('fooo');
+        $this->assertNull($res);
+
+        $res = $document->getElementById('test');
+        $this->assertInstanceOf(Node::class, $res);
+
+        $this->assertEquals('aaaaa', $res->innerText);
+    }
+
+
+    public function test_getElementsByClassName()
+    {
+        $document = Contender::loadStr('<div><p class="test">aaaaa</p><p class="test">bbbbb</p></div>');
+
+        $res = $document->getElementsByClassName('fooo');
+        $this->assertCount(0, $res);
+
+        $res = $document->getElementsByClassName('test');
+        $this->assertInstanceOf(Collection::class, $res);
+
+        $this->assertEquals('aaaaa', $res->innerHTML);
+    }
+
+    public function test_getElementsByName()
+    {
+        $document = Contender::loadStr('<div><a name="test">aaaaa</a><a name="test">bbbbb</a></div>');
+
+        $res = $document->getElementsByName('fooo');
+        $this->assertCount(0, $res);
+
+        $res = $document->getElementsByName('test');
+        $this->assertInstanceOf(Collection::class, $res);
+
+        $this->assertEquals('aaaaa', $res->innerHTML);
+    }
+
+
+    public function test_getElementsByTagName()
+    {
+        $document = Contender::loadStr('<div><p class="test">aaaaa</p><p class="test">bbbbb</p></div>');
+
+        $res = $document->getElementsByTagName('a');
+        $this->assertCount(0, $res);
+
+        $res = $document->getElementsByTagName('p');
+
+        $this->assertInstanceOf(Collection::class, $res);
+
+        $this->assertCount(2, $res);
+
+        $this->assertEquals('aaaaa', $res->innerHTML);
+
+
+        // from Element
+        $res = $document->getElementsByTagName('div')->offsetGet(0)->getElementsByTagName('p');
+
+        $this->assertInstanceOf(Collection::class, $res);
+
+        $this->assertCount(2, $res);
+
+        $this->assertEquals('aaaaa', $res->innerHTML);
+    }
+
+
 }

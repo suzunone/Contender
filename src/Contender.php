@@ -324,7 +324,7 @@ class Contender
 
         $doc = $this->cleanUpDom($doc);
 
-        return new Document($doc);
+        return static::loadDomDocument($doc);
     }
 
     /**
@@ -469,6 +469,18 @@ HTML;
         $contender = new self();
 
         return $contender->load($html, $options);
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document}  from a DOMDocument
+     *
+     * @param \DOMDocument $document
+     * @return \Contender\Elements\Document
+     * @see https://www.php.net/manual/en/class.domdocument.php
+     */
+    public static function loadDomDocument(DOMDocument $document)
+    {
+        return new Document($document);
     }
 
     /**

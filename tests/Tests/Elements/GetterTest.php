@@ -18,6 +18,8 @@
 namespace Tests\Suzunone\Contender\Elements;
 
 use Contender\Contender;
+use Contender\Elements\Node;
+use Mockery\Mock;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -136,5 +138,64 @@ class GetterTest extends TestCase
 
         $this->assertStringContainsString(/** @lang text */ '手法', $collection->offsetGet(1)->innerHTML);
         $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(3)->innerHTML);
+    }
+
+
+    public function test_nodeType()
+    {
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ELEMENT_NODE);
+        $this->assertTrue($node->is_element);
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ATTRIBUTE_NODE);
+        $this->assertTrue($node->is_attr);
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_TEXT_NODE);
+        $this->assertTrue($node->is_text);
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_CDATA_SECTION_NODE);
+        $this->assertTrue($node->is_character_data);
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ENTITY_REF_NODE);
+        $this->assertTrue($node->is_entity_reference);
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ENTITY_NODE);
+        $this->assertTrue($node->is_entity);
+
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_PI_NODE);
+        $this->assertTrue($node->is_processing_instruction);
+
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_COMMENT_NODE);
+        $this->assertTrue($node->is_comment);
+
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_NODE);
+        $this->assertTrue($node->is_document);
+
+
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_TYPE_NODE);
+        $this->assertTrue($node->is_document_type);
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_FRAG_NODE);
+        $this->assertTrue($node->is_document_fragment);
+
+
+        $node = \Mockery::mock(Node::class)->makePartial();
+        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_NOTATION_NODE);
+        $this->assertTrue($node->is_notation);
+
     }
 }

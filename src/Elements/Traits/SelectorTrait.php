@@ -75,7 +75,7 @@ trait SelectorTrait
      */
     public function getElementsByName(string $query): Collection
     {
-        return $this->querySelectorAll('[name="' . trim($query) . '"');
+        return $this->querySelectorAll('[name="' . trim($query) . '"]');
     }
 
     /**
@@ -87,12 +87,17 @@ trait SelectorTrait
     public function getElementsByTagName(string $tag_name): Collection
     {
         if ($this->isElement) {
-            return $this->element->getElementsByTagName($tag_name);
+            $res = $this->element->getElementsByTagName($tag_name);
+        } else {
+            $res = $this->document()->getElementsByTagName($tag_name);
         }
 
-        $res = $this->document()->getElementsByTagName($tag_name);
+        if ($res instanceof DOMNodeList) {
+            return Collection::makeByDOMNodeList($res, $this);
+        }
 
-        return Collection::makeByDOMNodeList($res);
+        return Collection::make([]);
+
     }
 
     /**
@@ -110,7 +115,7 @@ trait SelectorTrait
 
         $res = $this->document()->getAttributeNodeNS($namespaceURI, $localName);
 
-        return Collection::makeByDOMNodeList($res);
+        return Collection::makeByDOMNodeList($res, $this);
     }
 
     /**
