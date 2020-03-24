@@ -17,6 +17,7 @@
 namespace Contender\Elements;
 
 use Contender\Elements\Traits\ElementTrait;
+use Contender\Elements\Traits\NodeTrait;
 use DOMDocument;
 use DOMNode;
 
@@ -60,6 +61,7 @@ use DOMNode;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
+ * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -102,10 +104,10 @@ use DOMNode;
  */
 class Node implements ElementInterface
 {
-    use ElementTrait;
+    use NodeTrait;
 
     /**
-     * @var \DOMNode|\DOMElement
+     * @var \DOMNode
      */
     protected $element;
 
@@ -147,7 +149,7 @@ class Node implements ElementInterface
     {
         $res = $this->element->parentNode->removeChild($this->element);
 
-        return new Node($res);
+        return Factory::get($res, $this);
     }
 
     /**
@@ -177,7 +179,8 @@ class Node implements ElementInterface
         }
 
         if (isset($res)) {
-            return new Node($res);
+
+            return Factory::get($res, $this);
         }
 
         return null;
@@ -207,7 +210,7 @@ class Node implements ElementInterface
         }
 
         if (isset($res)) {
-            return new Node($res);
+            return Factory::get($res, $this);
         }
 
         return null;

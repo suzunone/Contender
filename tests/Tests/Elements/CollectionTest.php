@@ -36,6 +36,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Contender\Contender
  * @covers \Contender\Elements\Document
  * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Element
  * @covers \Contender\Elements\Collection
  */
 class CollectionTest extends TestCase

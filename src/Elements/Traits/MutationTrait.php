@@ -48,7 +48,7 @@ trait MutationTrait
             return $this->mutateGetAttribute($name, $this->attribute[$name] ?? null);
         }
 
-        return $this->getAttribute($name);
+        return $this->getParameterAttribute($name);
     }
 
     /**
@@ -64,7 +64,7 @@ trait MutationTrait
             return;
         }
 
-        $this->setAttribute($name, $value);
+        $this->setParameterAttribute($name, $value);
     }
 
     /**

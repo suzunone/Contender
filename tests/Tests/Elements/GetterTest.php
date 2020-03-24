@@ -38,6 +38,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Contender\Contender
  * @covers \Contender\Elements\Document
  * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Element
  * @covers \Contender\Elements\Collection
  * @covers \Contender\Elements\Traits\GetterTrait
  * @covers \Contender\Elements\Traits\MutationTrait
@@ -46,7 +47,7 @@ use PHPUnit\Framework\TestCase;
  */
 class GetterTest extends TestCase
 {
-    public function test_getAttribute()
+    public function test_getParameterAttribute()
     {
         $document = Contender::loadUrl(__DIR__ . '/../../data/wikipedia.html');
 

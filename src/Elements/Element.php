@@ -1,35 +1,41 @@
 <?php
 /**
- * ElementTrait.php
+ * Element.php
+ *
+ * Class Element
  *
  * @category   Contender
- * @package    Contender\Elements\Traits
- * @subpackage Contender\Elements\Traits
+ * @package    Contender\Elements
+ * @subpackage Contender\Elements
  * @author     suzunone<suzunone.eleven@gmail.com>
  * @copyright  Project Contender
  * @license    MIT
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/15
+ * @since      2020/03/24
  */
 
-namespace Contender\Elements\Traits;
+namespace Contender\Elements;
+
+
+use Contender\Elements\Traits\ElementTrait;
 
 /**
- * Trait ElementTrait
+ * Class Element
  *
  * @category   Contender
- * @package    Contender\Elements\Traits
- * @subpackage Contender\Elements\Traits
+ * @package    Contender\Elements
+ * @subpackage Contender\Elements
  * @author     suzunone<suzunone.eleven@gmail.com>
  * @copyright  Project Contender
  * @license    MIT
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/15
- * @hideDoc
+ * @since      2020/03/24
+ * @isdoc
+ * @property-read \Contender\Elements\NamedNodeMap attributes
  * @property-read bool isElement true if this node is an XML_ELEMENT_NODE
  * @property-read bool is_element true if this node is an XML_ELEMENT_NODE
  * @property-read bool isAttr true if this node is an XML_ATTRIBUTE_NODE
@@ -54,6 +60,7 @@ namespace Contender\Elements\Traits;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
+ * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -77,24 +84,116 @@ namespace Contender\Elements\Traits;
  * @property-read \Contender\Elements\Node first_child Get a first child node.
  * @property-read \Contender\Elements\Node lastChild Get a last child node.
  * @property-read \Contender\Elements\Node last_child Get a last child node.
- * @property-read self|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
- * @property-read self|null first_element_child The first child of this node. If there is no such node, this returns NULL.
- * @property-read self|null parentNode The parent of this node. If there is no such node, this returns NULL.
- * @property-read self|null parent_node The parent of this node. If there is no such node, this returns NULL.
- * @property-read self|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
- * @property-read self|null last_element_child The last child of this node. If there is no such node, this returns NULL.
- * @property-read self|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property-read self|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property-read self|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read self|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read self|null nextSibling Alias to next_element_sibling
- * @property-read self|null next_sibling Alias to next_element_sibling
+ * @property-read \Contender\Elements\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null first_element_child The first child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null parentNode The parent of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null parent_node The parent of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null nextSibling Alias to next_element_sibling
+ * @property-read \Contender\Elements\Element|null next_sibling Alias to next_element_sibling
  * @property-read int nodeType Gets the type of the node.
  * @property-read int node_type Gets the type of the node.
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
  */
-trait ElementTrait
+class Element extends Node
 {
+    use ElementTrait;
+    /**
+     * @var \DOMElement
+     */
+    protected $element;
+
+
+    /**
+     * if call attr('name')
+     * Alias getAttr()
+     *
+     * if call attr('name', 'value')
+     * Alias setAttr()
+     *
+     * @param ...$name
+     * @return string|null
+     */
+    public function attr(...$name): ?string
+    {
+        if (count($name) === 1) {
+            return $this->getAttribute($name[0]);
+        }
+
+        $this->setAttribute($name[0], $name[1]);
+
+        return null;
+    }
+
+    /**
+     * Get tag attribute for element.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function getAttribute(string $name)
+    {
+        return $this->element->getAttribute($name);
+    }
+
+    /**
+     * Set tag attribute for element.
+     *
+     * @param string $name
+     * @param string $value
+     */
+    public function setAttribute(string $name, string $value)
+    {
+        $this->element->setAttribute($name, $value);
+    }
+
+    /**
+     * Returns an array of strings that are attributes to an Element.
+     *
+     * If you simply want to get the attribute and its value, it is faster to combine with {@link \Contender\Elements\Element::getAttribute()}, than to use the {@link \Contender\Elements\Element::$attributes} property.
+     *
+     * @param bool $is_generator If set to true, the array will not be returned and the generator will be used.
+     * @return array|\Generator
+     */
+    public function getAttributeNames($is_generator = false)
+    {
+        if (!$this->element->attributes) {
+            return [];
+        }
+
+
+        if (!$is_generator) {
+            return iterator_to_array($this->getAttributeNamesYield());
+        }
+
+        yield from $this->getAttributeNamesYield();
+
+    }
+
+    /**
+     * @return \Generator
+     */
+    protected function getAttributeNamesYield()
+    {
+        foreach ($this->element->attributes as $attr) {
+            yield $attr->nodeName;
+        }
+    }
+
+    /**
+     * Returns the Element's Attribute. Note that it returns {@link \Contender\Elements\NamedNodeMap} rather than an array.
+     *
+     * @return \Contender\Elements\NamedNodeMap
+     */
+    public function getAttributesAttribute(): NamedNodeMap
+    {
+        return NamedNodeMap::load($this->element->attributes);
+    }
 
 }

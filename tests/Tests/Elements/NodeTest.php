@@ -36,6 +36,7 @@ use PHPUnit\Framework\TestCase;
  * @since      2020/03/22
  * @covers \Contender\Elements\Document
  * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Element
  * @covers \Contender\Elements\Collection
  * @covers \Contender\Elements\Traits\GetterTrait
  * @covers \Contender\Elements\Traits\MutationTrait

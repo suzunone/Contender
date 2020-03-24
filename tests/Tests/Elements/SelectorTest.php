@@ -37,6 +37,7 @@ use Contender\Contender;
  * @since      2020/03/22
  * @covers \Contender\Elements\Document
  * @covers \Contender\Elements\Node
+ * @covers \Contender\Elements\Element
  * @covers \Contender\Elements\Collection
  * @covers \Contender\Elements\Traits\SelectorTrait
  * @covers \Contender\Elements\Traits\MutationTrait

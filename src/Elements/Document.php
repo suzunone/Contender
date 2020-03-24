@@ -17,6 +17,7 @@
 namespace Contender\Elements;
 
 use Contender\Elements\Traits\ElementTrait;
+use Contender\Elements\Traits\NodeTrait;
 use DOMDocument;
 
 /**
@@ -59,6 +60,7 @@ use DOMDocument;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
+ * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -101,7 +103,7 @@ use DOMDocument;
  */
 class Document implements ElementInterface
 {
-    use ElementTrait;
+    use NodeTrait;
 
     /**
      * @var \DOMDocument
@@ -110,6 +112,7 @@ class Document implements ElementInterface
 
     /**
      * Node constructor.
+     *
      * @param \DOMDocument $element
      * @return void
      */
@@ -126,14 +129,14 @@ class Document implements ElementInterface
     /**
      * @param string $name
      * @param string|null $value
-     * @return \Contender\Elements\Node
+     * @return \Contender\Elements\Element
      */
-    public function createElement(string $name, ?string $value = null): Node
+    public function createElement(string $name, ?string $value = null): Element
     {
         $element = $this->element->createElement($name, $value);
         $this->element->importNode($element);
 
-        return $this->createNode($element);
+        return Factory::get($element, $this);
     }
 
     /**

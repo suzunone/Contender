@@ -35,9 +35,9 @@ use DOMNodeList;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @isdoc
- * @method \Contender\Elements\Node offsetGet($key)
- * @method \Contender\Elements\Node last(callable $callback = null, $default = null)
- * @method \Contender\Elements\Node first(callable $callback = null, $default = null)
+ * @method \Contender\Elements\Node|\Contender\Elements\Element offsetGet($key)
+ * @method \Contender\Elements\Node|\Contender\Elements\Element last(callable $callback = null, $default = null)
+ * @method \Contender\Elements\Node|\Contender\Elements\Element first(callable $callback = null, $default = null)
  * @property string innerHTML 1st of innerHTML
  * @property string inner_h_t_m_l 1st of innerHTML
  * @property string innerXML 1st of innerXML
@@ -266,7 +266,7 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @param ...$name
      * @return string|null
-     * @link \Contender\Elements\Node::attr()
+     * @link \Contender\Elements\Element::attr()
      */
     public function attr(...$param): string
     {
@@ -279,11 +279,11 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @param string $name
      * @return mixed
-     * @link \Contender\Elements\Node::getAttr()
+     * @link \Contender\Elements\Element::getAttribute()
      */
     public function getAttr(string $name)
     {
-        return $this->sortDom()->first()->getAttribute($name);
+        return $this->sortDom()->first()->getParameterAttribute($name);
     }
 
     /**
@@ -291,11 +291,11 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @param string $name
      * @param string $value
-     * @link \Contender\Elements\Node::setAttr()
+     * @link \Contender\Elements\Element::setAttribute()
      */
     public function setAttr(string $name, string $value)
     {
-        $this->sortDom()->first()->setAttribute($name, $value);
+        $this->sortDom()->first()->setParameterAttribute($name, $value);
     }
 
     /**

@@ -649,7 +649,7 @@ string|null
 
 
 ### See Also
- - <a href="#contenderelementsnodeattrmixednull-name">\Contender\Elements\Node::attr()</a>
+ - <a href="#contenderelementselementattrmixednull-name">\Contender\Elements\Element::attr()</a>
 
 
 ### \Contender\Elements\Collection::getAttr(string $name)
@@ -670,7 +670,7 @@ mixed
 
 
 ### See Also
- - <a href="#contenderelementsnodegetattrstring-name">\Contender\Elements\Node::getAttr()</a>
+ - <a href="#contenderelementselementgetattributestring-name">\Contender\Elements\Element::getAttribute()</a>
 
 
 ### \Contender\Elements\Collection::setAttr(string $name, string $value)
@@ -695,7 +695,7 @@ mixed
 
 
 ### See Also
- - <a href="#contenderelementsnodesetattrstring-name-string-value">\Contender\Elements\Node::setAttr()</a>
+ - <a href="#contenderelementselementsetattributestring-name-string-value">\Contender\Elements\Element::setAttribute()</a>
 
 
 ### \Contender\Elements\Collection::remove()
@@ -734,6 +734,7 @@ Class synopsis
 Contender\Elements\Document {
 
     /* Properties */
+    public string $parameter ;
     public string $innerHTML ;
     public string $inner_h_t_m_l ;
     public string $innerXML ;
@@ -800,21 +801,8 @@ Contender\Elements\Document {
 
     /* Methods */
     public __construct (DOMDocument $element) : void
-    public createElement (string $name, [?string $value = null]) : \Contender\Elements\Node
+    public createElement (string $name, [?string $value = null]) : \Contender\Elements\Element
     public __toString () : string
-    public getElementById (string $query) : \Contender\Elements\Node|null
-    public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
-    public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
-    public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
-    public getAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
-    public querySelector (string $selectors) : \Contender\Elements\Node|null
-    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
-    public find (string $query) : \Contender\Elements\Collection
-    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
-    public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
-    public attr (?mixed $name = NULL) : string|null
-    public getAttr (string $name) : mixed
-    public setAttr (string $name, string $value) : mixed
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
     public normalize () : mixed
@@ -822,6 +810,16 @@ Contender\Elements\Document {
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public getElementById (string $query) : \Contender\Elements\Node|null
+    public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
+    public getParameterAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
+    public querySelector (string $selectors) : \Contender\Elements\Node|null
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public find (string $query) : \Contender\Elements\Collection
+    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
+    public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
 
  }
 
@@ -1132,6 +1130,11 @@ Returns the most accurate name for the current node type
 
 
 
+### `string` \Contender\Elements\Document::$parameter
+
+
+
+
 ### `string` \Contender\Elements\Document::$innerHTML
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
@@ -1160,6 +1163,7 @@ Methods
 
 ### \Contender\Elements\Document::__construct(DOMDocument $element)
 Node constructor.
+
 
 
 
@@ -1194,7 +1198,7 @@ None
 
 
 #### Return Values
-\Contender\Elements\Node
+\Contender\Elements\Element
 
 
 ### See Also
@@ -1210,282 +1214,6 @@ None
 
 #### Return Values
 string
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getElementById(string $query)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
-
-
-
-
-#### Parameters
-##### `string` $query
-
-tag id
-
-
-
-#### Return Values
-\Contender\Elements\Node|null Selected node
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getElementsByClassName(string $query)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
-
-
-
-
-#### Parameters
-##### `string` $query
-
-tag class name
-
-
-
-#### Return Values
-\Contender\Elements\Collection|\Contender\Elements\Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getElementsByName(string $query)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with a given name in the document.
-
-
-
-
-#### Parameters
-##### `string` $query
-
-tag name attribute
-
-
-
-#### Return Values
-\Contender\Elements\Collection|\Contender\Elements\Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getElementsByTagName(string $tag_name)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with the given tag name.
-
-
-
-
-#### Parameters
-##### `string` $tag_name
-
-Elements tag name
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getAttributeNodeNS(string $namespaceURI, string $localName)
-Returns the attribute node in namespace namespaceURI with local name localName for the current node.
-
-
-
-
-#### Parameters
-##### `string` $namespaceURI
-
-The namespace URI.
-
-##### `string` $localName
-
-The local name.
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::querySelector(string $selectors)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
-
-
-
-
-#### Parameters
-##### `string` $selectors
-
-Valid CSS selector string
-
-
-
-#### Return Values
-\Contender\Elements\Node|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
-
-
-
-
-#### Parameters
-##### `string` $selectors
-
-Valid CSS selector string
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::find(string $query)
-Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
-
-
-
-
-#### Parameters
-##### `string` $query
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::evaluateToCollection(string $query)
-Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::evaluate(string $query, int $offset)
-Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-##### `int` $offset
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Node|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::attr(mixed|null $name)
-if call attr('name')
-
-Alias getAttr()
-
-if call attr('name', 'value')
-Alias setAttr()
-
-
-
-#### Parameters
-##### `mixed|null` $name
-
-
-
-
-
-#### Return Values
-string|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getAttr(string $name)
-get tag attribute for element.
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-
-
-#### Return Values
-mixed
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::setAttr(string $name, string $value)
-set tag attribute for element.
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-##### `string` $value
-
-
-
-
-
-#### Return Values
-mixed
 
 
 ### See Also
@@ -1647,6 +1375,863 @@ Replaces a child
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
 
 
+### \Contender\Elements\Document::getElementById(string $query)
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
+
+
+
+
+#### Parameters
+##### `string` $query
+
+tag id
+
+
+
+#### Return Values
+\Contender\Elements\Node|null Selected node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::getElementsByClassName(string $query)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
+
+
+
+
+#### Parameters
+##### `string` $query
+
+tag class name
+
+
+
+#### Return Values
+\Contender\Elements\Collection|\Contender\Elements\Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::getElementsByName(string $query)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with a given name in the document.
+
+
+
+
+#### Parameters
+##### `string` $query
+
+tag name attribute
+
+
+
+#### Return Values
+\Contender\Elements\Collection|\Contender\Elements\Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::getElementsByTagName(string $tag_name)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with the given tag name.
+
+
+
+
+#### Parameters
+##### `string` $tag_name
+
+Elements tag name
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::getParameterAttributeNodeNS(string $namespaceURI, string $localName)
+Returns the attribute node in namespace namespaceURI with local name localName for the current node.
+
+
+
+
+#### Parameters
+##### `string` $namespaceURI
+
+The namespace URI.
+
+##### `string` $localName
+
+The local name.
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::querySelector(string $selectors)
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Node|null
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::querySelectorAll(string $selectors)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::find(string $query)
+Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
+
+
+
+
+#### Parameters
+##### `string` $query
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::evaluateToCollection(string $query)
+Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
+
+
+
+
+#### Parameters
+##### `string` $query
+
+xpath
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::evaluate(string $query, int $offset)
+Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
+
+
+
+
+#### Parameters
+##### `string` $query
+
+xpath
+
+##### `int` $offset
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node|null
+
+
+### See Also
+None
+
+
+\Contender\Elements\Element
+==========================
+Class Element
+
+
+
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\Element {
+
+    /* Properties */
+    public string $parameter ;
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public \Contender\Elements\NamedNodeMap $attributes ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node $firstChild ;
+    public \Contender\Elements\Node $first_child ;
+    public \Contender\Elements\Node $lastChild ;
+    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
+    public \Contender\Elements\Element|null $parentNode ;
+    public \Contender\Elements\Element|null $parent_node ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Element|null $previousElementSibling ;
+    public \Contender\Elements\Element|null $previous_element_sibling ;
+    public \Contender\Elements\Element|null $nextElementSibling ;
+    public \Contender\Elements\Element|null $next_element_sibling ;
+    public \Contender\Elements\Element|null $nextSibling ;
+    public \Contender\Elements\Element|null $next_sibling ;
+    public int $nodeType ;
+    public int $node_type ;
+    public string $nodeName ;
+    public string $node_name ;
+
+    /* Methods */
+    public attr (?mixed $name = NULL) : string|null
+    public getAttribute (string $name) : mixed
+    public setAttribute (string $name, string $value) : mixed
+    public getAttributeNames ([?mixed $is_generator = false]) : array|\Generator
+    public getAttributesAttribute () : \Contender\Elements\NamedNodeMap
+
+ }
+
+```
+
+
+Constants
+----------------------------
+
+
+
+
+Properties
+----------------------------
+
+### `\Contender\Elements\NamedNodeMap` \Contender\Elements\Element::$attributes __read only__
+
+
+
+
+### `bool` \Contender\Elements\Element::$isElement __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_element __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isAttr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_attr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isText __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_text __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isCharacterData __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_character_data __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isEntityReference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_entity_reference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isEntity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_entity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isProcessingInstruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_processing_instruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isComment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_comment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isDocument __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_document __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isDocumentType __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_document_type __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isDocumentFragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_document_fragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$isNotation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `bool` \Contender\Elements\Element::$is_notation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `string` \Contender\Elements\Element::$innerText __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\Element::$inner_text __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\Element::$textContent __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\Element::$text_content __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\Element::$outerHTML __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Element::$outer_h_t_m_l __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Element::$outerXML __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Element::$outer_x_m_l __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Element::$nodePath __read only__
+Gets an XPath location path for the node
+
+
+
+### `string` \Contender\Elements\Element::$node_path __read only__
+Gets an XPath location path for the node
+
+
+
+### `int` \Contender\Elements\Element::$lineNo __read only__
+Get line number for a node
+
+
+
+### `int` \Contender\Elements\Element::$line_no __read only__
+Get line number for a node
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Element::$children __read only__
+That contains all children of this node. If there are no children, this is an empty <a href="#contenderelementscollection">\Contender\Elements\Collection</a>.
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Element::$childNodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Element::$child_nodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Node` \Contender\Elements\Element::$firstChild __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node` \Contender\Elements\Element::$first_child __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node` \Contender\Elements\Element::$lastChild __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Node` \Contender\Elements\Element::$last_child __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$firstElementChild __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$first_element_child __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$parentNode __read only__
+The parent of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$parent_node __read only__
+The parent of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$lastElementChild __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$last_element_child __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$previousElementSibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$previous_element_sibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$nextElementSibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$next_element_sibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$nextSibling __read only__
+Alias to next_element_sibling
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Element::$next_sibling __read only__
+Alias to next_element_sibling
+
+
+
+### `int` \Contender\Elements\Element::$nodeType __read only__
+Gets the type of the node.
+
+
+
+### `int` \Contender\Elements\Element::$node_type __read only__
+Gets the type of the node.
+
+
+
+### `string` \Contender\Elements\Element::$nodeName __read only__
+Returns the most accurate name for the current node type
+
+
+
+### `string` \Contender\Elements\Element::$node_name __read only__
+Returns the most accurate name for the current node type
+
+
+
+### `string` \Contender\Elements\Element::$parameter
+
+
+
+
+### `string` \Contender\Elements\Element::$innerHTML
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Element::$inner_h_t_m_l
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Element::$innerXML
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Element::$inner_x_m_l
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+
+
+
+Methods
+----------------------------
+
+### \Contender\Elements\Element::attr(mixed|null $name)
+if call attr('name')
+
+Alias getAttr()
+
+if call attr('name', 'value')
+Alias setAttr()
+
+
+
+#### Parameters
+##### `mixed|null` $name
+
+
+
+
+
+#### Return Values
+string|null
+
+
+### See Also
+None
+
+### \Contender\Elements\Element::getAttribute(string $name)
+Get tag attribute for element.
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+### \Contender\Elements\Element::setAttribute(string $name, string $value)
+Set tag attribute for element.
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+##### `string` $value
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+### \Contender\Elements\Element::getAttributeNames(mixed|null $is_generator)
+Returns an array of strings that are attributes to an Element.
+
+
+If you simply want to get the attribute and its value, it is faster to combine with <a href="#contenderelementselementgetattributestring-name">\Contender\Elements\Element::getAttribute()</a>, than to use the <a href="#contenderelementsnamednodemap-contenderelementselementattributes-read-only">\Contender\Elements\Element::$attributes</a> property.
+
+
+
+#### Parameters
+##### `bool` $is_generator
+
+If set to true, the array will not be returned and the generator will be used.
+
+
+
+#### Return Values
+array|\Generator
+
+
+### See Also
+None
+
+### \Contender\Elements\Element::getAttributesAttribute()
+Returns the Element's Attribute. Note that it returns <a href="#contenderelementsnamednodemap">\Contender\Elements\NamedNodeMap</a> rather than an array.
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Contender\Elements\NamedNodeMap
+
+
+### See Also
+None
+
+
+\Contender\Elements\NamedNodeMap
+==========================
+Class NamedNodeMap
+
+
+
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\NamedNodeMap {
+
+    /* Methods */
+    public __construct ([?mixed $items = []], [?DOMNamedNodeMap $map = null]) : mixed
+    public getNamedItem (string $name) : \Contender\Elements\Node
+    public getNamedItemNS (string $namespaceURI, string $localName) : \Contender\Elements\Node
+
+ }
+
+```
+
+
+Constants
+----------------------------
+
+
+
+
+Properties
+----------------------------
+
+
+
+
+Methods
+----------------------------
+
+### \Contender\Elements\NamedNodeMap::__construct(mixed|null $items, DOMNamedNodeMap|null $map)
+NamedNodeMap constructor.
+
+
+
+#### Parameters
+##### `array` $items
+
+
+
+##### `\DOMNamedNodeMap|null` $map
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+### \Contender\Elements\NamedNodeMap::getNamedItem(string $name)
+Retrieves a node specified by name
+
+
+
+
+#### Parameters
+##### `string` $name
+
+The nodeName of the node to retrieve.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\NamedNodeMap::getNamedItemNS(string $namespaceURI, string $localName)
+Retrieves a node specified by local name and namespace URI
+
+
+
+
+#### Parameters
+##### `string` $namespaceURI
+
+The namespace URI of the node to retrieve.
+
+##### `string` $localName
+
+The local name of the node to retrieve.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
 
 \Contender\Elements\Node
 ==========================
@@ -1666,6 +2251,7 @@ Class synopsis
 Contender\Elements\Node {
 
     /* Properties */
+    public string $parameter ;
     public string $innerHTML ;
     public string $inner_h_t_m_l ;
     public string $innerXML ;
@@ -1736,19 +2322,6 @@ Contender\Elements\Node {
     public remove () : \Contender\Elements\Node|null
     public after (?mixed $elements = NULL) : \Contender\Elements\Node|null
     public before (?mixed $elements = NULL) : \Contender\Elements\Node
-    public getElementById (string $query) : \Contender\Elements\Node|null
-    public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
-    public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
-    public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
-    public getAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
-    public querySelector (string $selectors) : \Contender\Elements\Node|null
-    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
-    public find (string $query) : \Contender\Elements\Collection
-    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
-    public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
-    public attr (?mixed $name = NULL) : string|null
-    public getAttr (string $name) : mixed
-    public setAttr (string $name, string $value) : mixed
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
     public normalize () : mixed
@@ -1756,6 +2329,16 @@ Contender\Elements\Node {
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public getElementById (string $query) : \Contender\Elements\Node|null
+    public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
+    public getParameterAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
+    public querySelector (string $selectors) : \Contender\Elements\Node|null
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public find (string $query) : \Contender\Elements\Collection
+    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
+    public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
 
  }
 
@@ -2066,6 +2649,11 @@ Returns the most accurate name for the current node type
 
 
 
+### `string` \Contender\Elements\Node::$parameter
+
+
+
+
 ### `string` \Contender\Elements\Node::$innerHTML
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
@@ -2187,282 +2775,6 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  
  - <a href="#contenderelementsdocumentcreateelementstring-name-stringnull-value">\Contender\Elements\Document::createElement()</a>
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before">https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before</a>
 
-
-### \Contender\Elements\Node::getElementById(string $query)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
-
-
-
-
-#### Parameters
-##### `string` $query
-
-tag id
-
-
-
-#### Return Values
-\Contender\Elements\Node|null Selected node
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::getElementsByClassName(string $query)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
-
-
-
-
-#### Parameters
-##### `string` $query
-
-tag class name
-
-
-
-#### Return Values
-\Contender\Elements\Collection|\Contender\Elements\Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::getElementsByName(string $query)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with a given name in the document.
-
-
-
-
-#### Parameters
-##### `string` $query
-
-tag name attribute
-
-
-
-#### Return Values
-\Contender\Elements\Collection|\Contender\Elements\Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::getElementsByTagName(string $tag_name)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with the given tag name.
-
-
-
-
-#### Parameters
-##### `string` $tag_name
-
-Elements tag name
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::getAttributeNodeNS(string $namespaceURI, string $localName)
-Returns the attribute node in namespace namespaceURI with local name localName for the current node.
-
-
-
-
-#### Parameters
-##### `string` $namespaceURI
-
-The namespace URI.
-
-##### `string` $localName
-
-The local name.
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::querySelector(string $selectors)
-Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
-
-
-
-
-#### Parameters
-##### `string` $selectors
-
-Valid CSS selector string
-
-
-
-#### Return Values
-\Contender\Elements\Node|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
-
-
-
-
-#### Parameters
-##### `string` $selectors
-
-Valid CSS selector string
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::find(string $query)
-Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
-
-
-
-
-#### Parameters
-##### `string` $query
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::evaluateToCollection(string $query)
-Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::evaluate(string $query, int $offset)
-Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-##### `int` $offset
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Node|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::attr(mixed|null $name)
-if call attr('name')
-
-Alias getAttr()
-
-if call attr('name', 'value')
-Alias setAttr()
-
-
-
-#### Parameters
-##### `mixed|null` $name
-
-
-
-
-
-#### Return Values
-string|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::getAttr(string $name)
-get tag attribute for element.
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-
-
-#### Return Values
-mixed
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::setAttr(string $name, string $value)
-set tag attribute for element.
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-##### `string` $value
-
-
-
-
-
-#### Return Values
-mixed
-
-
-### See Also
-None
 
 ### \Contender\Elements\Node::appendChild(Contender\Elements\Node $node)
 Adds a node to the end of the list of children of a specified parent node.
@@ -2619,5 +2931,213 @@ Replaces a child
 ### See Also
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
 
+
+### \Contender\Elements\Node::getElementById(string $query)
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
+
+
+
+
+#### Parameters
+##### `string` $query
+
+tag id
+
+
+
+#### Return Values
+\Contender\Elements\Node|null Selected node
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::getElementsByClassName(string $query)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of all child elements which have all of the given class name(s)
+
+
+
+
+#### Parameters
+##### `string` $query
+
+tag class name
+
+
+
+#### Return Values
+\Contender\Elements\Collection|\Contender\Elements\Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::getElementsByName(string $query)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with a given name in the document.
+
+
+
+
+#### Parameters
+##### `string` $query
+
+tag name attribute
+
+
+
+#### Return Values
+\Contender\Elements\Collection|\Contender\Elements\Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::getElementsByTagName(string $tag_name)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> object of elements with the given tag name.
+
+
+
+
+#### Parameters
+##### `string` $tag_name
+
+Elements tag name
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::getParameterAttributeNodeNS(string $namespaceURI, string $localName)
+Returns the attribute node in namespace namespaceURI with local name localName for the current node.
+
+
+
+
+#### Parameters
+##### `string` $namespaceURI
+
+The namespace URI.
+
+##### `string` $localName
+
+The local name.
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::querySelector(string $selectors)
+Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Node|null
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::querySelectorAll(string $selectors)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::find(string $query)
+Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
+
+
+
+
+#### Parameters
+##### `string` $query
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::evaluateToCollection(string $query)
+Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
+
+
+
+
+#### Parameters
+##### `string` $query
+
+xpath
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::evaluate(string $query, int $offset)
+Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
+
+
+
+
+#### Parameters
+##### `string` $query
+
+xpath
+
+##### `int` $offset
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Node|null
+
+
+### See Also
+None
 
 

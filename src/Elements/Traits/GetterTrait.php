@@ -62,6 +62,7 @@ use DOMDocument;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
+ * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -219,9 +220,9 @@ trait GetterTrait
      * @return string
      * @hideDoc
      */
-    public function getAttribute($name)
+    public function getParameterAttribute($name)
     {
-        return $this->element->getAttribute($name);
+        return $this->element->getParameterAttribute($name);
     }
 
     /**
@@ -229,9 +230,9 @@ trait GetterTrait
      * @param $value
      * @hideDoc
      */
-    public function setAttribute($name, $value)
+    public function setParameterAttribute($name, $value)
     {
-        $this->element->setAttribute($name, $value);
+        $this->element->setParameterAttribute($name, $value);
     }
 
     /**
