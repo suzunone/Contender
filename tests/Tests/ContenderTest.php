@@ -39,6 +39,7 @@ use PHPUnit\Framework\TestCase;
  * @covers     \Contender\Elements\Node
  * @covers \Contender\Elements\Element
  * @covers     \Contender\Elements\Collection
+ * @covers \Contender\Elements\Factory
  */
 class ContenderTest extends TestCase
 {
@@ -55,7 +56,7 @@ class ContenderTest extends TestCase
             ],
         ];
         $dom = Contender::loadUrl('https://www.aozora.gr.jp/cards/000148/files/789_14547.html', [
-            Contender::OPTION_CONVERT_ENCODE
+            Contender::OPTION_CONVERT_ENCODE,
         ], $header);
 
         $this->assertInstanceOf(Document::class, $dom);

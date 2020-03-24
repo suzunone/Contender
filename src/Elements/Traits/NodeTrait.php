@@ -149,7 +149,6 @@ trait NodeTrait
         if ($referenceNode) {
             $res = $this->element->insertBefore($node->nativeNode(), $referenceNode->nativeNode());
         } else {
-
             $res = $this->element->insertBefore($node->nativeNode());
         }
 
@@ -168,7 +167,6 @@ trait NodeTrait
     {
         $this->element->normalize();
     }
-
 
     /**
      * Clones a node
@@ -196,7 +194,6 @@ trait NodeTrait
     {
         return $this->document()->hasChildNodes();
     }
-
 
     /**
      * Removes child from list of children
@@ -231,6 +228,4 @@ trait NodeTrait
     {
         return $this->element;
     }
-
-
 }

@@ -17,6 +17,7 @@
 namespace Contender\Elements\Traits;
 
 use Contender\Elements\Collection;
+use Contender\Elements\Factory;
 use Contender\Elements\Node;
 use DOMNodeList;
 use DOMXPath;
@@ -93,11 +94,10 @@ trait SelectorTrait
         }
 
         if ($res instanceof DOMNodeList) {
-            return Collection::makeByDOMNodeList($res, $this);
+            return Factory::get($res, $this);
         }
 
         return Collection::make([]);
-
     }
 
     /**
@@ -115,7 +115,7 @@ trait SelectorTrait
 
         $res = $this->document()->getParameterAttributeNodeNS($namespaceURI, $localName);
 
-        return Collection::makeByDOMNodeList($res, $this);
+        return Factory::get($res, $this);
     }
 
     /**
@@ -177,7 +177,7 @@ trait SelectorTrait
             return Collection::make();
         }
         if ($res instanceof DOMNodeList) {
-            return Collection::makeByDOMNodeList($res, $this);
+            return Factory::get($res, $this);
         }
 
         return Collection::make([$this->createElement($res)]);

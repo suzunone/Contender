@@ -74,9 +74,9 @@ class NamedNodeMap extends Collection
      *  Retrieves a node specified by name
      *
      * @param string $name The nodeName of the node to retrieve.
-     * @return \Contender\Elements\Node
+     * @return \Contender\Elements\Node|null
      */
-    public function getNamedItem(string $name): Node
+    public function getNamedItem(string $name): ?Node
     {
         if ($this->nodeMap instanceof \DOMNamedNodeMap) {
             return Factory::get($this->nodeMap->getNamedItem($name), null);
@@ -90,9 +90,9 @@ class NamedNodeMap extends Collection
      *
      * @param string $namespaceURI The namespace URI of the node to retrieve.
      * @param string $localName The local name of the node to retrieve.
-     * @return \Contender\Elements\Node
+     * @return \Contender\Elements\Node|null
      */
-    public function getNamedItemNS(string $namespaceURI, string $localName): Node
+    public function getNamedItemNS(string $namespaceURI, string $localName): ?Node
     {
         if ($this->nodeMap instanceof \DOMNamedNodeMap) {
             return Factory::get($this->nodeMap->getNamedItemNS($namespaceURI, $localName), null);
@@ -100,5 +100,4 @@ class NamedNodeMap extends Collection
 
         return  null;
     }
-
 }

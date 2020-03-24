@@ -96,5 +96,4 @@ namespace Contender\Elements\Traits;
  */
 trait ElementTrait
 {
-
 }

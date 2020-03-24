@@ -179,7 +179,6 @@ class Collection extends \Illuminate\Support\Collection
             return $this->getInnerXMLAttribute();
         }
 
-
         return parent::__get($key);
     }
 
@@ -218,7 +217,6 @@ class Collection extends \Illuminate\Support\Collection
     {
         $this->sortDom()->first()->innerHTML = $val;
     }
-
 
     /**
      * @return string 1st of innerXML
@@ -273,7 +271,6 @@ class Collection extends \Illuminate\Support\Collection
         return $this->sortDom()->first()->attr(...$param);
     }
 
-
     /**
      * get tag attribute for element.
      *
@@ -307,11 +304,10 @@ class Collection extends \Illuminate\Support\Collection
     public function remove()
     {
         $collect = new Collection([]);
-        $this->each(static function (Node $node) use (&$collect){
+        $this->each(static function (Node $node) use (&$collect) {
             $collect->push($node->remove());
         });
 
         return $collect;
     }
-
 }

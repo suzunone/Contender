@@ -528,7 +528,6 @@ HTML;
         $encode = $this->getEncode($html);
         $is_add_meta = true;
 
-
         $encode = strtolower($encode);
         if ($encode === 'utf8' || $encode === 'utf-8') {
             if ($is_add_meta) {
@@ -579,7 +578,6 @@ HTML;
             }
         }
 
-
         $xpath = new \DOMXPath($doc);
         $items = $xpath->query('//head/meta[@http-equiv="Content-Type"]');
         if ($items && $items->count() >= 1) {
@@ -594,6 +592,6 @@ HTML;
             return $match[1];
         }
 
-        return mb_detect_encoding($html);;
+        return mb_detect_encoding($html);
     }
 }

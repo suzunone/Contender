@@ -19,6 +19,7 @@ namespace Contender\Elements\Traits;
 use Contender\Contender;
 use Contender\Elements\Collection;
 use Contender\Elements\Document;
+use Contender\Elements\Factory;
 use Contender\Elements\Node;
 use DOMDocument;
 
@@ -399,7 +400,7 @@ trait GetterTrait
     public function getChildrenAttribute(): Collection
     {
         if ($this->element->childNodes instanceof \DOMNodeList) {
-            return Collection::makeByDOMNodeList($this->element->childNodes, $this);
+            return Factory::get($this->element->childNodes, $this);
         }
 
         return Collection::make();

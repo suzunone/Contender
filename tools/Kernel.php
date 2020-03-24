@@ -26,7 +26,7 @@ class Kernel
     {
         $app = [
             DocComments::class,
-            Documentor::class
+            Documentor::class,
         ];
 
         return collect($app)

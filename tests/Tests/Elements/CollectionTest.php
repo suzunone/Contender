@@ -38,6 +38,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Contender\Elements\Node
  * @covers \Contender\Elements\Element
  * @covers \Contender\Elements\Collection
+ * @covers \Contender\Elements\Factory
  */
 class CollectionTest extends TestCase
 {
@@ -80,8 +81,6 @@ class CollectionTest extends TestCase
         $this->assertStringContainsString(/** @lang text */ '手法', $collection->offsetGet(0)->innerHTML);
         $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(1)->innerHTML);
     }
-
-
 
     public function test_innerXML()
     {

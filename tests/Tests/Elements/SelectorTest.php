@@ -43,6 +43,7 @@ use Contender\Contender;
  * @covers \Contender\Elements\Traits\MutationTrait
  * @covers \Contender\Elements\Traits\ElementTrait
  * @covers \Contender\Elements\Traits\NodeTrait
+ * @covers \Contender\Elements\Factory
  */
 class SelectorTest extends TestCase
 {
@@ -94,7 +95,6 @@ class SelectorTest extends TestCase
         $this->assertEquals('aaaaa', $res->innerText);
     }
 
-
     public function test_getElementsByClassName()
     {
         $document = Contender::loadStr('<div><p class="test">aaaaa</p><p class="test">bbbbb</p></div>');
@@ -121,7 +121,6 @@ class SelectorTest extends TestCase
         $this->assertEquals('aaaaa', $res->innerHTML);
     }
 
-
     public function test_getElementsByTagName()
     {
         $document = Contender::loadStr('<div><p class="test">aaaaa</p><p class="test">bbbbb</p></div>');
@@ -137,7 +136,6 @@ class SelectorTest extends TestCase
 
         $this->assertEquals('aaaaa', $res->innerHTML);
 
-
         // from Element
         $res = $document->getElementsByTagName('div')->offsetGet(0)->getElementsByTagName('p');
 
@@ -147,6 +145,4 @@ class SelectorTest extends TestCase
 
         $this->assertEquals('aaaaa', $res->innerHTML);
     }
-
-
 }

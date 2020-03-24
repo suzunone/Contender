@@ -44,6 +44,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Contender\Elements\Traits\MutationTrait
  * @covers \Contender\Elements\Traits\ElementTrait
  * @covers \Contender\Elements\Traits\NodeTrait
+ * @covers \Contender\Elements\Factory
  */
 class GetterTest extends TestCase
 {
@@ -55,8 +56,6 @@ class GetterTest extends TestCase
 
         $this->assertEquals('/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE', $element->attr('href'));
     }
-
-
 
     public function innerhtmlDataProvider()
     {
@@ -141,7 +140,6 @@ class GetterTest extends TestCase
         $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(3)->innerHTML);
     }
 
-
     public function test_nodeType()
     {
         $node = \Mockery::mock(Node::class)->makePartial();
@@ -168,22 +166,17 @@ class GetterTest extends TestCase
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ENTITY_NODE);
         $this->assertTrue($node->is_entity);
 
-
         $node = \Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_PI_NODE);
         $this->assertTrue($node->is_processing_instruction);
-
 
         $node = \Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_COMMENT_NODE);
         $this->assertTrue($node->is_comment);
 
-
         $node = \Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_NODE);
         $this->assertTrue($node->is_document);
-
-
 
         $node = \Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_TYPE_NODE);
@@ -193,10 +186,8 @@ class GetterTest extends TestCase
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_FRAG_NODE);
         $this->assertTrue($node->is_document_fragment);
 
-
         $node = \Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_NOTATION_NODE);
         $this->assertTrue($node->is_notation);
-
     }
 }

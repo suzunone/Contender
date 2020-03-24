@@ -1670,7 +1670,8 @@ Contender\Elements\Element {
     public attr (?mixed $name = NULL) : string|null
     public getAttribute (string $name) : mixed
     public setAttribute (string $name, string $value) : mixed
-    public getAttributeNames ([?mixed $is_generator = false]) : array|\Generator
+    public getAttributeNames () : array|\Generator
+    public getAttributeNamesGenerator () : \Generator|null
     public getAttributesAttribute () : \Contender\Elements\NamedNodeMap
 
  }
@@ -2086,7 +2087,7 @@ mixed
 ### See Also
 None
 
-### \Contender\Elements\Element::getAttributeNames(mixed|null $is_generator)
+### \Contender\Elements\Element::getAttributeNames()
 Returns an array of strings that are attributes to an Element.
 
 
@@ -2095,10 +2096,6 @@ If you simply want to get the attribute and its value, it is faster to combine w
 
 
 #### Parameters
-##### `bool` $is_generator
-
-If set to true, the array will not be returned and the generator will be used.
-
 
 
 #### Return Values
@@ -2106,7 +2103,25 @@ array|\Generator
 
 
 ### See Also
-None
+ - <a href="#contenderelementselementgetattributenamesgenerator">\Contender\Elements\Element::getAttributeNamesGenerator()</a>
+
+
+### \Contender\Elements\Element::getAttributeNamesGenerator()
+Returns a Generator of strings that are attributes to an Element.
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Generator|null
+
+
+### See Also
+ - <a href="#contenderelementselementgetattributenames">\Contender\Elements\Element::getAttributeNames()</a>
+
 
 ### \Contender\Elements\Element::getAttributesAttribute()
 Returns the Element's Attribute. Note that it returns <a href="#contenderelementsnamednodemap">\Contender\Elements\NamedNodeMap</a> rather than an array.
@@ -2142,8 +2157,8 @@ Contender\Elements\NamedNodeMap {
 
     /* Methods */
     public __construct ([?mixed $items = []], [?DOMNamedNodeMap $map = null]) : mixed
-    public getNamedItem (string $name) : \Contender\Elements\Node
-    public getNamedItemNS (string $namespaceURI, string $localName) : \Contender\Elements\Node
+    public getNamedItem (string $name) : \Contender\Elements\Node|null
+    public getNamedItemNS (string $namespaceURI, string $localName) : \Contender\Elements\Node|null
 
  }
 
@@ -2202,7 +2217,7 @@ The nodeName of the node to retrieve.
 
 
 #### Return Values
-\Contender\Elements\Node
+\Contender\Elements\Node|null
 
 
 ### See Also
@@ -2226,7 +2241,7 @@ The local name of the node to retrieve.
 
 
 #### Return Values
-\Contender\Elements\Node
+\Contender\Elements\Node|null
 
 
 ### See Also

@@ -42,16 +42,16 @@ use PHPUnit\Framework\TestCase;
  * @covers \Contender\Elements\Traits\MutationTrait
  * @covers \Contender\Elements\Traits\ElementTrait
  * @covers \Contender\Elements\Traits\NodeTrait
+ * @covers \Contender\Elements\Factory
  */
 class NodeTest extends TestCase
 {
-
     public function test_toString()
     {
         $document = Contender::loadStr('<div>test</div>');
         $parent = $document->querySelector('div');
 
-        $this->assertEquals('<div>test</div>', (string)$parent);
+        $this->assertEquals('<div>test</div>', (string) $parent);
     }
 
     public function test_removeAttribute()
@@ -61,7 +61,6 @@ class NodeTest extends TestCase
 
         $this->assertEquals('<strong>test</strong>', $document->querySelector('body')->innerHTML);
     }
-
 
     public function test_after_simple()
     {
@@ -82,9 +81,7 @@ class NodeTest extends TestCase
 
         $child->after('Text');
         $this->assertEquals('<div><p></p>Text<strong></strong><span></span></div>', str_replace("\n", '', $document->querySelector('body')->innerHTML));
-
     }
-
 
     public function test_after_multi()
     {
@@ -116,12 +113,9 @@ class NodeTest extends TestCase
 
         $this->assertEquals('<div><span></span><strong></strong><p></p></div>', str_replace("\n", '', $document->querySelector('body')->innerHTML));
 
-
         $child->before('Text');
         $this->assertEquals('<div><span></span><strong></strong>Text<p></p></div>', str_replace("\n", '', $document->querySelector('body')->innerHTML));
-
     }
-
 
     public function test_after_none()
     {
@@ -158,7 +152,5 @@ class NodeTest extends TestCase
 
         $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
         $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
-
-
     }
 }

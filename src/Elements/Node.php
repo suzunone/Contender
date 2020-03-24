@@ -138,7 +138,6 @@ class Node implements ElementInterface
         return $this->getOuterHTMLAttribute();
     }
 
-
     /**
      * Removes the object from the tree it belongs to.
      *
@@ -175,17 +174,14 @@ class Node implements ElementInterface
             } else {
                 $res = $this->element->parentNode->appendChild($node);
             }
-
         }
 
         if (isset($res)) {
-
             return Factory::get($res, $this);
         }
 
         return null;
     }
-
 
     /**
      * Inserts a set of {@link \Contender\Elements\Node}  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
@@ -215,6 +211,4 @@ class Node implements ElementInterface
 
         return null;
     }
-
-
 }

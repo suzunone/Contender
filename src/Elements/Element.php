@@ -18,7 +18,6 @@
 
 namespace Contender\Elements;
 
-
 use Contender\Elements\Traits\ElementTrait;
 
 /**
@@ -109,7 +108,6 @@ class Element extends Node
      */
     protected $element;
 
-
     /**
      * if call attr('name')
      * Alias getAttr()
@@ -158,31 +156,30 @@ class Element extends Node
      *
      * If you simply want to get the attribute and its value, it is faster to combine with {@link \Contender\Elements\Element::getAttribute()}, than to use the {@link \Contender\Elements\Element::$attributes} property.
      *
-     * @param bool $is_generator If set to true, the array will not be returned and the generator will be used.
+     * @see \Contender\Elements\Element::getAttributeNamesGenerator()
      * @return array|\Generator
      */
-    public function getAttributeNames($is_generator = false)
+    public function getAttributeNames()
     {
         if (!$this->element->attributes) {
             return [];
         }
 
-
-        if (!$is_generator) {
-            return iterator_to_array($this->getAttributeNamesYield());
-        }
-
-        yield from $this->getAttributeNamesYield();
-
+        return iterator_to_array($this->getAttributeNamesGenerator());
     }
 
     /**
-     * @return \Generator
+     * Returns a Generator of strings that are attributes to an Element.
+     *
+     * @see \Contender\Elements\Element::getAttributeNames()
+     * @return \Generator|null
      */
-    protected function getAttributeNamesYield()
+    public function getAttributeNamesGenerator(): ?\Generator
     {
-        foreach ($this->element->attributes as $attr) {
-            yield $attr->nodeName;
+        if ($this->element->attributes) {
+            foreach ($this->element->attributes as $attr) {
+                yield $attr->nodeName;
+            }
         }
     }
 
@@ -193,7 +190,6 @@ class Element extends Node
      */
     public function getAttributesAttribute(): NamedNodeMap
     {
-        return NamedNodeMap::load($this->element->attributes);
+        return Factory::get($this->element->attributes, $this);
     }
-
 }

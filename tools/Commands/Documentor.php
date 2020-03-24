@@ -27,7 +27,6 @@ class Documentor extends Command
 {
     protected $ankers = [];
 
-
     /**
      * Configures the current command.
      */
@@ -43,7 +42,6 @@ class Documentor extends Command
 EOT
             );
     }
-
 
     /**
      * Executes the current command.
@@ -89,12 +87,10 @@ EOT
         preg_match_all('/\{@see ([^\}]*)\}/', $class_stub, $match_see);
         $class_stub = $this->replaceLink($class_stub, $match_see[0], $match_see[1]);
 
-
         file_put_contents(dirname(__DIR__, 2) . '/doc.md', $class_stub);
 
         return 0;
     }
-
 
     protected function replaceLink(string $class_stub, array $match, array $links): string
     {
@@ -107,7 +103,7 @@ EOT
                 continue;
             }
 
-            $anchor = $this->ankers[$link] ?? $this->ankers["\\" . $link] ?? $this->ankers[ltrim($link, "\\")] ?? null;
+            $anchor = $this->ankers[$link] ?? $this->ankers['\\' . $link] ?? $this->ankers[ltrim($link, '\\')] ?? null;
             if ($anchor !== null) {
                 $res[$tag] = '<a href="' . $anchor . '">' . $link . '</a>';
             } else {
@@ -118,7 +114,6 @@ EOT
 
         return str_replace(array_keys($res), array_values($res), $class_stub);
     }
-
 
     /**
      * Create Class Markdown document
@@ -134,7 +129,6 @@ EOT
 
         $ref = new ReflectionClass($clazz);
 
-
         $now_doc = $ref->getDocComment();
 
         $parsed = $this->parseDocBlock($now_doc);
@@ -148,24 +142,26 @@ EOT
         $DummyMethods = implode('', $this->methodStub($ref, $parsed));
 
         $arr = [
-            'DummyName' => $ref->name,
-            'DummyClassTitle' => $parsed['title'],
+            'DummyName'             => $ref->name,
+            'DummyClassTitle'       => $parsed['title'],
             'DummyClassDescription' => $parsed['description'],
-            'DummyConstants' => $DummyConstants,
-            'DummyProperties' => $DummyProperties,
-            'DummyMethods' => $DummyMethods,
-            'DummyClassSynopsis' => $this->synopsisStub($ref),
+            'DummyConstants'        => $DummyConstants,
+            'DummyProperties'       => $DummyProperties,
+            'DummyMethods'          => $DummyMethods,
+            'DummyClassSynopsis'    => $this->synopsisStub($ref),
         ];
 
         $DummyHead = str_replace(
-            array_keys($arr), array_values($arr),
+            array_keys($arr),
+            array_values($arr),
             $DummyHead
         );
         $arr['DummyHead'] = trim($DummyHead);
         $this->ankers[$arr['DummyName']] = $this->toAnchor($arr['DummyHead']);
 
         $class_stub = str_replace(
-            array_keys($arr), array_values($arr),
+            array_keys($arr),
+            array_values($arr),
             $class_stub
         );
 
@@ -188,7 +184,6 @@ EOT
         foreach ($synopsis['methods'] as $value) {
             $params = [];
 
-
             foreach ($value['parameter'] ?? [] as $parameter) {
                 $sub = "{$parameter['type']} \${$parameter['name']}";
                 if ($parameter['default_value_available']) {
@@ -199,7 +194,7 @@ EOT
 
                     $sub = "[$sub]";
                 } elseif ($parameter['allowNull']) {
-                    $sub .= " = NULL";
+                    $sub .= ' = NULL';
                     $sub = "?$sub";
                 }
 
@@ -217,7 +212,6 @@ EOT
         $stub .= "\n\n }";
 
         return $stub;
-
     }
 
     protected function synopsisStubArray(ReflectionClass $refClass)
@@ -228,16 +222,15 @@ EOT
                 continue;
             }
             $const[] = [
-                'name' => $refConst->getName(),
+                'name'  => $refConst->getName(),
                 'value' => json_encode($refConst->getValue()),
-                'type' => gettype($refConst->getValue()),
+                'type'  => gettype($refConst->getValue()),
             ];
         }
 
         $properties = [];
         foreach ($refClass->getProperties() as $reflectionProperty) {
             if (!$reflectionProperty->isPublic()) {
-
                 continue;
             }
             $annotate = $this->parseDocBlock($reflectionProperty->getDocComment());
@@ -247,10 +240,10 @@ EOT
             }
 
             $properties[] = [
-                'isStatic' => $reflectionProperty->isStatic(),
-                'value' => json_encode($reflectionProperty->getValue()),
-                'type' => $type ?? ($reflectionProperty->getType() ? $reflectionProperty->getType() : gettype($reflectionProperty->getValue())),
-                'name' => $reflectionProperty->getName(),
+                'isStatic'   => $reflectionProperty->isStatic(),
+                'value'      => json_encode($reflectionProperty->getValue()),
+                'type'       => $type ?? ($reflectionProperty->getType() ? $reflectionProperty->getType() : gettype($reflectionProperty->getValue())),
+                'name'       => $reflectionProperty->getName(),
                 'isReadOnly' => false,
             ];
         }
@@ -261,10 +254,10 @@ EOT
             [$type, $name,] = preg_split('/ +/', $property, 3);
 
             $properties[] = [
-                'isStatic' => false,
-                'value' => '',
-                'type' => $type,
-                'name' => strpos('$', $name) === 0 ? substr($name, 1) : $name,
+                'isStatic'   => false,
+                'value'      => '',
+                'type'       => $type,
+                'name'       => strpos('$', $name) === 0 ? substr($name, 1) : $name,
                 'isReadOnly' => false,
             ];
         }
@@ -273,14 +266,13 @@ EOT
             [$type, $name,] = preg_split('/ +/', $property, 3);
 
             $properties[] = [
-                'isStatic' => false,
-                'value' => '',
-                'type' => $type,
-                'name' => strpos('$', $name) === 0 ? substr($name, 1) : $name,
+                'isStatic'   => false,
+                'value'      => '',
+                'type'       => $type,
+                'name'       => strpos('$', $name) === 0 ? substr($name, 1) : $name,
                 'isReadOnly' => true,
             ];
         }
-
 
         $methods = [];
         foreach ($refClass->getMethods() as $refMethod) {
@@ -299,16 +291,14 @@ EOT
                 continue;
             }
 
-
             foreach ($m_annotate['param'] ?? [] as $key => $value) {
                 [$type, $param, $description] = preg_split('/ +/', $value, 3);
                 $params[$param] = compact('type', 'param', 'description');
             }
 
-
             $resType = $refMethod->getReturnType();
             if ($resType !== null) {
-                $resType = (string)$refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
+                $resType = (string) $refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
             } else {
                 $resType = 'mixed';
             }
@@ -321,30 +311,24 @@ EOT
             foreach ($refMethod->getParameters() as $key => $refParameter) {
                 $param_type = $params[$refMethod->name]['type'] ?? null;
 
-                $parameter[$key]['type'] = $param_type ?? (string)($refParameter->getType() ?? 'mixed');
+                $parameter[$key]['type'] = $param_type ?? (string) ($refParameter->getType() ?? 'mixed');
                 $parameter[$key]['allowNull'] = $refParameter->allowsNull();
                 $parameter[$key]['name'] = $refParameter->getName();
                 $parameter[$key]['default_value'] = $refParameter->isDefaultValueAvailable() ? json_encode($refParameter->getDefaultValue()) : null;
                 $parameter[$key]['default_value_available'] = $refParameter->isDefaultValueAvailable();
-
             }
 
             $methods[] = [
-                'isStatic' => $refMethod->isStatic(),
-                'parameter' => $parameter,
-                'type' => $resType,
-                'name' => $refMethod->name,
+                'isStatic'   => $refMethod->isStatic(),
+                'parameter'  => $parameter,
+                'type'       => $resType,
+                'name'       => $refMethod->name,
                 'isReadOnly' => false,
             ];
-
-
         }
 
-
         return compact('const', 'properties', 'methods');
-
     }
-
 
     /**
      * Create Method Markdown document
@@ -372,10 +356,9 @@ EOT
             $stub_contents = file_get_contents(__DIR__ . '/stub/method.md');
             $DummyHead = file_get_contents(__DIR__ . '/stub/method_head.md');
 
-
             $resType = $refMethod->getReturnType();
             if ($resType !== null) {
-                $resType = (string)$refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
+                $resType = (string) $refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
             } else {
                 $resType = 'mixed';
             }
@@ -386,19 +369,20 @@ EOT
 
             $arr = [
                 'DummyClass' => $refClass->name,
-                'DummyName' => $refMethod->getName(),
+                'DummyName'  => $refMethod->getName(),
                 // 'DummyValue' => json_encode($refMethod->getValue()),
                 'DummyReturnValues' => $doc['return'][0] ?? $resType,
-                'DummyType' => $resType,
-                'DummyTitle' => $doc['title'],
-                'DummyDescription' => $doc['description'],
-                'DummySeeAlso' => $this->createSeeAlso(array_merge($doc['see'] ?? [], $doc['link'] ?? [])),
-                'DummyParameters' => $this->createMethodParameter($refMethod, $doc['param'] ?? []),
-                'DummyProperties' => $this->createMethodProperties($refMethod, $doc['param'] ?? []),
+                'DummyType'         => $resType,
+                'DummyTitle'        => $doc['title'],
+                'DummyDescription'  => $doc['description'],
+                'DummySeeAlso'      => $this->createSeeAlso(array_merge($doc['see'] ?? [], $doc['link'] ?? [])),
+                'DummyParameters'   => $this->createMethodParameter($refMethod, $doc['param'] ?? []),
+                'DummyProperties'   => $this->createMethodProperties($refMethod, $doc['param'] ?? []),
             ];
 
             $DummyHead = str_replace(
-                array_keys($arr), array_values($arr),
+                array_keys($arr),
+                array_values($arr),
                 $DummyHead
             );
             $arr['DummyHead'] = trim($DummyHead);
@@ -408,7 +392,6 @@ EOT
         }
 
         return $res;
-
     }
 
     public function createMethodProperties(\ReflectionMethod $reflectionMethod, array $before_params)
@@ -418,12 +401,11 @@ EOT
             if ($key !== 0) {
                 $res .= ', ';
             }
-            $res .= (string)($parameter->getType() ?? 'mixed');
+            $res .= (string) ($parameter->getType() ?? 'mixed');
             $res .= ($parameter->allowsNull() ? '|null' : '');
             $res .= ' ';
             $res .= '$' . $parameter->getName();
         }
-
 
         return $res;
     }
@@ -446,8 +428,8 @@ EOT
             $name = '$' . $parameter->getName();
             if (!isset($params[$name])) {
                 $params[$name] = [
-                    'type' => (string)($parameter->getType() ?? 'mixed'),
-                    'param' => $name,
+                    'type'        => (string) ($parameter->getType() ?? 'mixed'),
+                    'param'       => $name,
                     'description' => '',
                 ];
 
@@ -474,7 +456,6 @@ EOT
         return $res;
     }
 
-
     protected function constStub(ReflectionClass $refClass)
     {
         $res = [];
@@ -484,16 +465,17 @@ EOT
 
             $doc = $this->parseDocBlock($refConst->getDocComment());
             $arr = [
-                'DummyClass' => $refClass->name,
-                'DummyName' => $refConst->getName(),
-                'DummyValue' => json_encode($refConst->getValue()),
-                'DummyType' => gettype($refConst->getValue()),
-                'DummyTitle' => $doc['title'],
+                'DummyClass'       => $refClass->name,
+                'DummyName'        => $refConst->getName(),
+                'DummyValue'       => json_encode($refConst->getValue()),
+                'DummyType'        => gettype($refConst->getValue()),
+                'DummyTitle'       => $doc['title'],
                 'DummyDescription' => $doc['description'],
             ];
 
             $DummyHead = str_replace(
-                array_keys($arr), array_values($arr),
+                array_keys($arr),
+                array_values($arr),
                 $DummyHead
             );
             $arr['DummyHead'] = trim($DummyHead);
@@ -503,9 +485,7 @@ EOT
         }
 
         return $res;
-
     }
-
 
     protected function propertyStub(ReflectionClass $refClass, array $class_doc)
     {
@@ -520,19 +500,19 @@ EOT
 
             $doc = $this->parseDocBlock($refProperty->getDocComment());
 
-
             [$type,] = preg_split('/ +/', $doc['var'][0] ?? '', 2);
             $arr = [
-                'DummyClass' => $refClass->name,
-                'DummyName' => $refProperty->getName(),
-                'DummyType' => $type ?: 'mixed',
-                'DummyTitle' => $doc['title'],
+                'DummyClass'       => $refClass->name,
+                'DummyName'        => $refProperty->getName(),
+                'DummyType'        => $type ?: 'mixed',
+                'DummyTitle'       => $doc['title'],
                 'DummyDescription' => $doc['description'],
-                'DummyReadOnly' => '',
+                'DummyReadOnly'    => '',
             ];
 
             $DummyHead = str_replace(
-                array_keys($arr), array_values($arr),
+                array_keys($arr),
+                array_values($arr),
                 $DummyHead
             );
 
@@ -547,17 +527,17 @@ EOT
             $DummyHead = file_get_contents(__DIR__ . '/stub/property_head.md');
             [$type, $name, $title] = explode(' ', $item, 3);
 
-
             $arr = [
-                'DummyClass' => $refClass->name,
-                'DummyName' => $name,
-                'DummyType' => $type ?: 'mixed',
-                'DummyTitle' => $title ?? '',
+                'DummyClass'       => $refClass->name,
+                'DummyName'        => $name,
+                'DummyType'        => $type ?: 'mixed',
+                'DummyTitle'       => $title ?? '',
                 'DummyDescription' => '',
-                'DummyReadOnly' => '__read only__',
+                'DummyReadOnly'    => '__read only__',
             ];
             $DummyHead = str_replace(
-                array_keys($arr), array_values($arr),
+                array_keys($arr),
+                array_values($arr),
                 $DummyHead
             );
 
@@ -571,17 +551,17 @@ EOT
             $DummyHead = file_get_contents(__DIR__ . '/stub/property_head.md');
             [$type, $name, $title] = preg_split('/ +/', $item, 3);
 
-
             $arr = [
-                'DummyClass' => $refClass->name,
-                'DummyName' => $name,
-                'DummyType' => $type ?: 'mixed',
-                'DummyTitle' => $title ?? '',
+                'DummyClass'       => $refClass->name,
+                'DummyName'        => $name,
+                'DummyType'        => $type ?: 'mixed',
+                'DummyTitle'       => $title ?? '',
                 'DummyDescription' => '',
-                'DummyReadOnly' => '',
+                'DummyReadOnly'    => '',
             ];
             $DummyHead = str_replace(
-                array_keys($arr), array_values($arr),
+                array_keys($arr),
+                array_values($arr),
                 $DummyHead
             );
 
@@ -591,21 +571,18 @@ EOT
             $res[] = str_replace(array_keys($arr), array_values($arr), $stub_contents);
         }
 
-
         return $res;
-
     }
-
 
     protected function parseDocBlock(string $string)
     {
         $doc_sep = explode("\n", $string);
 
         $res = [
-            'title' => '',
-            'description' => '',
-            'method' => [],
-            'property' => [],
+            'title'         => '',
+            'description'   => '',
+            'method'        => [],
+            'property'      => [],
             'property-read' => [],
         ];
 
@@ -624,13 +601,11 @@ EOT
             } elseif (mb_eregi('^ *\* *@([a-z\-]*)$', $line, $match)) {
                 $no_annotation = false;
                 $res[$match[1]] = true;
-
             } elseif ($no_annotation && $key === 1 && mb_eregi('^ *\*(.*)$', $line, $match)) {
                 $res['title'] = trim($match[1]);
             } elseif ($no_annotation && mb_eregi('^ *\*(.*)$', $line, $match)) {
                 $res['description'] .= mb_ereg_replace('^ ', '', rtrim($match[1])) . "\n";
             }
-
         }
 
         return $res;

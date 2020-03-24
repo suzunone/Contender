@@ -38,9 +38,9 @@ use Contender\Contender;
 class Factory
 {
     /**
-     * @param \DOMNodeList|\DOMDocument|\DOMElement|\DOMNode|null $item
+     * @param \DOMNodeList|\DOMDocument|\DOMElement|\DOMNode|\DOMNamedNodeMap|null $item
      * @param \Contender\Elements\ElementInterface|null $old
-     * @return \Contender\Elements\Collection|\Contender\Elements\Document|\Contender\Elements\Element|\Contender\Elements\Node
+     * @return \Contender\Elements\Collection|\Contender\Elements\Document|\Contender\Elements\Element|\Contender\Elements\Node|\Contender\Elements\NamedNodeMap
      * @hideDoc
      */
     public static function get($item, $old)
@@ -58,19 +58,17 @@ class Factory
         }
 
         if ($item instanceof \DOMNamedNodeMap) {
-            return NamedNodeMap::load($item);
+            return NamedNodeMap::load($item, $old);
         }
 
         if ($item instanceof \DOMNode) {
             return new Node($item);
         }
 
-
         if ($item === null) {
             return null;
         }
 
         return new Node($item);
-
     }
 }
