@@ -16,10 +16,10 @@
 
 namespace Contender\Elements;
 
-use Contender\Elements\Traits\ElementTrait;
 use Contender\Elements\Traits\NodeTrait;
 use DOMDocument;
 use DOMNode;
+use DOMText;
 
 /**
  * Each element accessed from the {@link \Contender\Elements\Document}
@@ -61,7 +61,6 @@ use DOMNode;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
- * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -164,7 +163,7 @@ class Node implements ElementInterface
         krsort($elements);
         foreach ($elements as $element) {
             if (!$element instanceof Node) {
-                $node = new \DOMText($element);
+                $node = new DOMText($element);
             } else {
                 $node = $element->nativeNode();
             }
@@ -197,7 +196,7 @@ class Node implements ElementInterface
 
         foreach ($elements as $element) {
             if (!$element instanceof Node) {
-                $node = new \DOMText($element);
+                $node = new DOMText($element);
             } else {
                 $node = $element->nativeNode();
             }

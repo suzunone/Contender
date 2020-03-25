@@ -133,6 +133,8 @@ trait SelectorTrait
                 return $res;
             }
         }
+
+        return null;
     }
 
     /**

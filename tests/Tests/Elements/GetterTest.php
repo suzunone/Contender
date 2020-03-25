@@ -35,15 +35,8 @@ use PHPUnit\Framework\TestCase;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
- * @covers \Contender\Contender
- * @covers \Contender\Elements\Document
- * @covers \Contender\Elements\Node
- * @covers \Contender\Elements\Element
- * @covers \Contender\Elements\Collection
  * @covers \Contender\Elements\Traits\GetterTrait
  * @covers \Contender\Elements\Traits\MutationTrait
- * @covers \Contender\Elements\Traits\ElementTrait
- * @covers \Contender\Elements\Traits\NodeTrait
  * @covers \Contender\Elements\Factory
  */
 class GetterTest extends TestCase
@@ -82,6 +75,11 @@ class GetterTest extends TestCase
                     /** @lang text */ '<li class="toclevel-1 tocsection-3">',
                 ],
             ],
+            'none' => [
+                '<div></div>',
+                'div',
+                ['']
+            ]
         ];
     }
 
@@ -95,18 +93,67 @@ class GetterTest extends TestCase
         /**
          * @var \Contender\Contender
          */
-        $res = $parser->load($html);
+        $document = $parser->load($html);
 
-        $element = $res->querySelector($path);
+        $element = $document->querySelector($path);
+
 
         if (is_array($expect)) {
             foreach ($expect as $ck) {
                 $this->assertStringContainsString($ck, $element->innerHTML);
+                $this->assertStringContainsString($ck, $document->innerHTML);
             }
         } else {
             $this->assertStringContainsString($expect, $element->innerHTML);
+            $this->assertStringContainsString($expect, $document->innerHTML);
         }
     }
+
+    public function test_outer()
+    {
+        $document = Contender::loadStr('<div><p></p></div>');
+        $element = $document->getElementsByTagName('p')->first();
+        $element->appendChild($document->createTextNode('ExampleText'));
+
+        $this->assertStringContainsString('ExampleText', $element->outerHTML);
+        $this->assertStringContainsString('<p>', $element->outerHTML);
+        $this->assertStringNotContainsString('<p>', $element->innerHTML);
+
+        $this->assertStringContainsString($element->outerHTML, $document->outerHTML);
+        $this->assertStringContainsString('ExampleText', $element->outerXML);
+        $this->assertStringContainsString($element->outerXML, $document->outerXML);
+
+
+    }
+
+    /**
+     * @dataProvider innerhtmlDataProvider
+     */
+    public function test_innerXML($html, $path, $expect)
+    {
+        $parser = new Contender();
+
+        /**
+         * @var \Contender\Contender
+         */
+        $document = $parser->load($html);
+
+        $element = $document->querySelector($path);
+
+
+        if (is_array($expect)) {
+            foreach ($expect as $ck) {
+                $this->assertStringContainsString($ck, $element->innerXML);
+                $this->assertStringContainsString($ck, $document->innerXML);
+            }
+        } else {
+            $this->assertStringContainsString($expect, $element->innerXML);
+            $this->assertStringContainsString($expect, $document->innerXML);
+        }
+    }
+
+
+
 
     /**
      * @dataProvider innerhtmlDataProvider
@@ -125,6 +172,26 @@ class GetterTest extends TestCase
 
         $this->assertEquals('<div>aaaa</div>', $element->innerHTML);
     }
+
+
+    /**
+     * @dataProvider innerhtmlDataProvider
+     */
+    public function test_innerXml_add($html, $path, $expect)
+    {
+        $parser = new Contender();
+
+        /**
+         * @var \Contender\Contender
+         */
+        $res = $parser->load($html);
+
+        $element = $res->querySelector($path);
+        $element->innerXML = '<div>aaaa</div>';
+
+        $this->assertEquals('<div>aaaa</div>', $element->innerXML);
+    }
+
 
     public function test_children()
     {

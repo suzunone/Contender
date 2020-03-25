@@ -82,6 +82,9 @@ Contender\Contender {
     const string OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE" ;
     const integer DEFAULT_LIBXML_OPTION = 4194402 ;
 
+    /* Properties */
+    public boolean $is_add_meta ;
+
     /* Methods */
     public __construct () : void
     public setOption (string $option) : self
@@ -217,6 +220,11 @@ Default libxml options
 
 Properties
 ----------------------------
+
+### `bool` \Contender\Contender::$is_add_meta
+Auto adding charset meta
+
+
 
 
 
@@ -638,7 +646,7 @@ Alias setAttr()
 
 
 #### Parameters
-##### `mixed|null` $param
+##### `array` $param
 
 
 
@@ -734,7 +742,6 @@ Class synopsis
 Contender\Elements\Document {
 
     /* Properties */
-    public string $parameter ;
     public string $innerHTML ;
     public string $inner_h_t_m_l ;
     public string $innerXML ;
@@ -802,6 +809,13 @@ Contender\Elements\Document {
     /* Methods */
     public __construct (DOMDocument $element) : void
     public createElement (string $name, [?string $value = null]) : \Contender\Elements\Element
+    public createComment (string $value) : \Contender\Elements\Node
+    public createTextNode (string $value) : \Contender\Elements\Node
+    public createCDATASection (string $value) : \Contender\Elements\Node
+    public createProcessingInstruction (string $target, [?string $data = null]) : \Contender\Elements\Node
+    public createAttributeNS (string $namespaceURI, string $qualifiedName) : \Contender\Elements\Node
+    public createAttribute (string $value) : \Contender\Elements\Node
+    public createEntityReference (string $value) : \Contender\Elements\Node
     public __toString () : string
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
@@ -1130,11 +1144,6 @@ Returns the most accurate name for the current node type
 
 
 
-### `string` \Contender\Elements\Document::$parameter
-
-
-
-
 ### `string` \Contender\Elements\Document::$innerHTML
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
@@ -1182,6 +1191,7 @@ void
 None
 
 ### \Contender\Elements\Document::createElement(string $name, string|null $value)
+Create new element node
 
 
 
@@ -1189,11 +1199,11 @@ None
 #### Parameters
 ##### `string` $name
 
-
+The tag name of the element.
 
 ##### `string|null` $value
 
-
+The value of the element. By default, an empty element will be created. You can also set the value later with DOMElement->nodeValue.
 
 
 
@@ -1203,6 +1213,155 @@ None
 
 ### See Also
 None
+
+### \Contender\Elements\Document::createComment(string $value)
+Create new comment node
+
+
+
+
+#### Parameters
+##### `string` $value
+
+The content of the comment.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::createTextNode(string $value)
+Create new comment node
+
+
+
+
+#### Parameters
+##### `string` $value
+
+The content of the text.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::createCDATASection(string $value)
+Create new cdata node
+
+
+
+
+#### Parameters
+##### `string` $value
+
+The content of the cdata.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::createProcessingInstruction(string $target, string|null $data)
+Creates new PI node
+
+
+
+
+#### Parameters
+##### `string` $target
+
+The target of the processing instruction.
+
+##### `string|null` $data
+
+The content of the processing instruction.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::createAttributeNS(string $namespaceURI, string $qualifiedName)
+Create new attribute node with an associated namespace
+
+
+
+
+#### Parameters
+##### `string` $namespaceURI
+
+The namespace URI of the elements to match on. The special value * matches all namespaces.
+
+##### `string` $qualifiedName
+
+The local name of the elements to match on. The special value * matches all local names.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::createAttribute(string $value)
+Create new attribute
+
+
+
+
+#### Parameters
+##### `string` $value
+
+The name of the attribute.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::createEntityReference(string $value)
+Create new entity reference node
+
+
+
+
+#### Parameters
+##### `string` $value
+
+The content of the entity reference, e.g. the entity reference minusthe leading & and the trailing ; characters.
+
+
+
+#### Return Values
+\Contender\Elements\Node
+
+
+### See Also
+ - <a href="https://php.net/manual/domdocument.createentityreference.php">https://php.net/manual/domdocument.createentityreference.php</a>
+
 
 ### \Contender\Elements\Document::__toString()
 
@@ -1600,7 +1759,6 @@ Class synopsis
 Contender\Elements\Element {
 
     /* Properties */
-    public string $parameter ;
     public string $innerHTML ;
     public string $inner_h_t_m_l ;
     public string $innerXML ;
@@ -1670,7 +1828,7 @@ Contender\Elements\Element {
     public attr (?mixed $name = NULL) : string|null
     public getAttribute (string $name) : mixed
     public setAttribute (string $name, string $value) : mixed
-    public getAttributeNames () : array|\Generator
+    public getAttributeNames () : array
     public getAttributeNamesGenerator () : \Generator|null
     public getAttributesAttribute () : \Contender\Elements\NamedNodeMap
 
@@ -1988,11 +2146,6 @@ Returns the most accurate name for the current node type
 
 
 
-### `string` \Contender\Elements\Element::$parameter
-
-
-
-
 ### `string` \Contender\Elements\Element::$innerHTML
 The Element property innerHTML gets or sets the HTML or XML markup contained within the element
 
@@ -2099,7 +2252,7 @@ If you simply want to get the attribute and its value, it is faster to combine w
 
 
 #### Return Values
-array|\Generator
+array
 
 
 ### See Also
@@ -2266,7 +2419,6 @@ Class synopsis
 Contender\Elements\Node {
 
     /* Properties */
-    public string $parameter ;
     public string $innerHTML ;
     public string $inner_h_t_m_l ;
     public string $innerXML ;
@@ -2661,11 +2813,6 @@ Returns the most accurate name for the current node type
 
 ### `string` \Contender\Elements\Node::$node_name __read only__
 Returns the most accurate name for the current node type
-
-
-
-### `string` \Contender\Elements\Node::$parameter
-
 
 
 

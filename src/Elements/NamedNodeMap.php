@@ -18,6 +18,7 @@
 
 namespace Contender\Elements;
 
+use DOMNamedNodeMap;
 use Illuminate\Support\Collection;
 
 /**
@@ -44,7 +45,7 @@ class NamedNodeMap extends Collection
      * @param array $items
      * @param \DOMNamedNodeMap|null $map
      */
-    public function __construct($items = [], ?\DOMNamedNodeMap $map = null)
+    public function __construct($items = [], ?DOMNamedNodeMap $map = null)
     {
         parent::__construct($items);
         $this->nodeMap = $map;
@@ -56,7 +57,7 @@ class NamedNodeMap extends Collection
      * @return \Contender\Elements\NamedNodeMap
      * @hideDoc
      */
-    public static function load(?\DOMNamedNodeMap $map, $old): self
+    public static function load(?DOMNamedNodeMap $map, $old): self
     {
         if ($map === null) {
             return new self([]);
@@ -78,7 +79,7 @@ class NamedNodeMap extends Collection
      */
     public function getNamedItem(string $name): ?Node
     {
-        if ($this->nodeMap instanceof \DOMNamedNodeMap) {
+        if ($this->nodeMap instanceof DOMNamedNodeMap) {
             return Factory::get($this->nodeMap->getNamedItem($name), null);
         }
 
@@ -94,7 +95,7 @@ class NamedNodeMap extends Collection
      */
     public function getNamedItemNS(string $namespaceURI, string $localName): ?Node
     {
-        if ($this->nodeMap instanceof \DOMNamedNodeMap) {
+        if ($this->nodeMap instanceof DOMNamedNodeMap) {
             return Factory::get($this->nodeMap->getNamedItemNS($namespaceURI, $localName), null);
         }
 

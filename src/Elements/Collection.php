@@ -262,7 +262,7 @@ class Collection extends \Illuminate\Support\Collection
      * if call attr('name', 'value')
      * Alias setAttr()
      *
-     * @param ...$name
+     * @param array $param
      * @return string|null
      * @link \Contender\Elements\Element::attr()
      */

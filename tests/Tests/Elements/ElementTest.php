@@ -36,25 +36,16 @@ use PHPUnit\Framework\TestCase;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
  * @covers     \Contender\Contender
- * @covers     \Contender\Elements\Document
  * @covers     \Contender\Elements\Node
  * @covers     \Contender\Elements\Element
- * @covers     \Contender\Elements\Collection
- * @covers     \Contender\Elements\Traits\GetterTrait
- * @covers     \Contender\Elements\Traits\MutationTrait
- * @covers     \Contender\Elements\Traits\ElementTrait
- * @covers     \Contender\Elements\Traits\NodeTrait
- * @covers     \Contender\Elements\NamedNodeMap
- * @covers     \Contender\Elements\Factory
+ * @covers \Contender\Elements\Traits\ElementTrait
  */
 class ElementTest extends TestCase
 {
     public function dataProvider()
     {
         return [
-            ['<div>
-<a href="#aaa" class="touch btn-success btn btn-large" id="link1" title="here" aria-disabled="">
-here</a></div>'],
+            ['<div><a href="#aaa" class="touch btn-success btn btn-large" id="link1" title="here" aria-disabled="">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></li></ul></div>'],
         ];
     }
 
@@ -87,12 +78,78 @@ here</a></div>'],
 
         $this->assertEquals([
         ], $element->getAttributeNames());
+
         $this->assertEquals($element->getAttributeNames(), iterator_to_array($element->getAttributeNamesGenerator()));
+
+        // empty2
+        $element = $document->createElement('span');
+
+        $this->assertEquals('array', gettype($element->getAttributeNames()));
+
+        $this->assertEquals([
+        ], $element->getAttributeNames());
+
+    }
+
+
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_attr($html)
+    {
+        $document = Contender::loadStr($html);
+
+        // enable
+        $element = $document->getElementsByTagName('a')->first();
+
+        $this->assertEquals('#aaa', $element->attr('href'));
+
+        $element->attr('href', '#bbb');
+        $this->assertEquals('#bbb', $element->attr('href'));
+
+        $this->assertEquals('<a href="#bbb" class="touch btn-success btn btn-large" id="link1" title="here" aria-disabled="">here</a>', $document->getElementsByTagName('a')->first()->outerXML);
     }
 
     /**
      * @param $html
      * @dataProvider dataProvider
+     */
+    public function test_hasAttribute($html)
+    {
+        $document = Contender::loadStr($html);
+
+        $element = $document->getElementsByTagName('a')->first();
+
+        $this->assertTrue($element->hasAttribute('href'));
+        $this->assertFalse($element->hasAttribute('onClick'));
+
+
+    }
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_removeAttribute($html)
+    {
+        $document = Contender::loadStr($html);
+
+        // enable
+        $element = $document->getElementsByTagName('a')->first();
+        $this->assertTrue($element->hasAttribute('href'));
+        $element->removeAttribute('href');
+        $this->assertFalse($element->hasAttribute('href'));
+
+    }
+
+
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     * @covers \Contender\Elements\NamedNodeMap
      */
     public function test_attaributes($html)
     {

@@ -35,14 +35,7 @@ use Contender\Contender;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
- * @covers \Contender\Elements\Document
- * @covers \Contender\Elements\Node
- * @covers \Contender\Elements\Element
- * @covers \Contender\Elements\Collection
  * @covers \Contender\Elements\Traits\SelectorTrait
- * @covers \Contender\Elements\Traits\MutationTrait
- * @covers \Contender\Elements\Traits\ElementTrait
- * @covers \Contender\Elements\Traits\NodeTrait
  * @covers \Contender\Elements\Factory
  */
 class SelectorTest extends TestCase

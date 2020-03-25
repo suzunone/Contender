@@ -22,6 +22,8 @@ use Contender\Elements\Document;
 use Contender\Elements\Factory;
 use Contender\Elements\Node;
 use DOMDocument;
+use DOMNode;
+use DOMNodeList;
 
 /**
  * Trait GetterTrait
@@ -63,7 +65,6 @@ use DOMDocument;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
- * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -216,45 +217,6 @@ trait GetterTrait
         return $this->nodeType === XML_NOTATION_NODE;
     }
 
-    /**
-     * @param $name
-     * @return string
-     * @hideDoc
-     */
-    public function getParameterAttribute($name)
-    {
-        return $this->element->getParameterAttribute($name);
-    }
-
-    /**
-     * @param $name
-     * @param $value
-     * @hideDoc
-     */
-    public function setParameterAttribute($name, $value)
-    {
-        $this->element->setParameterAttribute($name, $value);
-    }
-
-    /**
-     * @param $name
-     * @return bool
-     * @hideDoc
-     */
-    public function removeAttribute($name)
-    {
-        return $this->element->removeAttribute($name);
-    }
-
-    /**
-     * @param $name
-     * @return bool
-     * @hideDoc
-     */
-    public function hasAttribute($name)
-    {
-        return $this->element->hasAttribute($name);
-    }
 
     /**
      * @return string The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
@@ -281,8 +243,11 @@ trait GetterTrait
     public function getInnerHTMLAttribute(): string
     {
         if (!$this->element->childNodes) {
+            // @codeCoverageIgnoreStart
             return $this->innerText;
+            // @codeCoverageIgnoreEnd
         }
+
         $res = '';
         foreach ($this->element->childNodes as $node) {
             $res .= $node->ownerDocument->saveHtml($node);
@@ -295,7 +260,7 @@ trait GetterTrait
      * @param string $html
      * @return \DOMNode
      */
-    protected function htmlToNode(string $html): \DOMNode
+    protected function htmlToNode(string $html): DOMNode
     {
         $newNode = new DOMDocument();
         $newNode->loadHtml($html, Contender::DEFAULT_LIBXML_OPTION);
@@ -312,11 +277,11 @@ trait GetterTrait
     {
         $newNode = $this->htmlToNode($html);
 
-        while ($this->element->childNodes->length > 1) {
+        while ($this->element->childNodes->length !== 0) {
             $this->element->removeChild($this->element->childNodes->item($this->element->childNodes->length - 1));
         }
 
-        $this->element->replaceChild($newNode, $this->element->childNodes->item(0));
+        $this->element->appendChild($newNode);
     }
 
     /**
@@ -350,8 +315,11 @@ trait GetterTrait
     public function getInnerXMLAttribute(): string
     {
         if (!$this->element->childNodes) {
+            // @codeCoverageIgnoreStart
             return $this->innerText;
+            // @codeCoverageIgnoreEnd
         }
+
         $res = '';
         foreach ($this->element->childNodes as $node) {
             $res .= $node->ownerDocument->saveXML($node, LIBXML_NOXMLDECL);
@@ -399,7 +367,7 @@ trait GetterTrait
      */
     public function getChildrenAttribute(): Collection
     {
-        if ($this->element->childNodes instanceof \DOMNodeList) {
+        if ($this->element->childNodes instanceof DOMNodeList) {
             return Factory::get($this->element->childNodes, $this);
         }
 
@@ -484,7 +452,7 @@ trait GetterTrait
      */
     public function getNextSiblingAttribute(): ?self
     {
-        return $this->next_element_sibling;
+        return $this->getNextElementSiblingAttribute();
     }
 
     /**

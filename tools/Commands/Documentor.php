@@ -142,13 +142,13 @@ EOT
         $DummyMethods = implode('', $this->methodStub($ref, $parsed));
 
         $arr = [
-            'DummyName'             => $ref->name,
-            'DummyClassTitle'       => $parsed['title'],
+            'DummyName' => $ref->name,
+            'DummyClassTitle' => $parsed['title'],
             'DummyClassDescription' => $parsed['description'],
-            'DummyConstants'        => $DummyConstants,
-            'DummyProperties'       => $DummyProperties,
-            'DummyMethods'          => $DummyMethods,
-            'DummyClassSynopsis'    => $this->synopsisStub($ref),
+            'DummyConstants' => $DummyConstants,
+            'DummyProperties' => $DummyProperties,
+            'DummyMethods' => $DummyMethods,
+            'DummyClassSynopsis' => $this->synopsisStub($ref),
         ];
 
         $DummyHead = str_replace(
@@ -222,9 +222,9 @@ EOT
                 continue;
             }
             $const[] = [
-                'name'  => $refConst->getName(),
+                'name' => $refConst->getName(),
                 'value' => json_encode($refConst->getValue()),
-                'type'  => gettype($refConst->getValue()),
+                'type' => gettype($refConst->getValue()),
             ];
         }
 
@@ -239,11 +239,15 @@ EOT
                 [$type,] = preg_split('/ +/', trim($annotate['return'][0]), 2);
             }
 
+            if (!method_exists($reflectionProperty, 'getValue')) {
+                dump($reflectionProperty);
+            }
+            
             $properties[] = [
-                'isStatic'   => $reflectionProperty->isStatic(),
-                'value'      => json_encode($reflectionProperty->getValue()),
-                'type'       => $type ?? ($reflectionProperty->getType() ? $reflectionProperty->getType() : gettype($reflectionProperty->getValue())),
-                'name'       => $reflectionProperty->getName(),
+                'isStatic' => $reflectionProperty->isStatic(),
+                'value' => json_encode($reflectionProperty->getValue((new $reflectionProperty->class))),
+                'type' => $type ?? (method_exists($reflectionProperty, 'getType') && $reflectionProperty->getType() ? $reflectionProperty->getType() : gettype($reflectionProperty->getValue((new $reflectionProperty->class)))),
+                'name' => $reflectionProperty->getName(),
                 'isReadOnly' => false,
             ];
         }
@@ -254,10 +258,10 @@ EOT
             [$type, $name,] = preg_split('/ +/', $property, 3);
 
             $properties[] = [
-                'isStatic'   => false,
-                'value'      => '',
-                'type'       => $type,
-                'name'       => strpos('$', $name) === 0 ? substr($name, 1) : $name,
+                'isStatic' => false,
+                'value' => '',
+                'type' => $type,
+                'name' => strpos('$', $name) === 0 ? substr($name, 1) : $name,
                 'isReadOnly' => false,
             ];
         }
@@ -266,10 +270,10 @@ EOT
             [$type, $name,] = preg_split('/ +/', $property, 3);
 
             $properties[] = [
-                'isStatic'   => false,
-                'value'      => '',
-                'type'       => $type,
-                'name'       => strpos('$', $name) === 0 ? substr($name, 1) : $name,
+                'isStatic' => false,
+                'value' => '',
+                'type' => $type,
+                'name' => strpos('$', $name) === 0 ? substr($name, 1) : $name,
                 'isReadOnly' => true,
             ];
         }
@@ -298,7 +302,7 @@ EOT
 
             $resType = $refMethod->getReturnType();
             if ($resType !== null) {
-                $resType = (string) $refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
+                $resType = (string)$refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
             } else {
                 $resType = 'mixed';
             }
@@ -311,7 +315,7 @@ EOT
             foreach ($refMethod->getParameters() as $key => $refParameter) {
                 $param_type = $params[$refMethod->name]['type'] ?? null;
 
-                $parameter[$key]['type'] = $param_type ?? (string) ($refParameter->getType() ?? 'mixed');
+                $parameter[$key]['type'] = $param_type ?? (string)($refParameter->getType() ?? 'mixed');
                 $parameter[$key]['allowNull'] = $refParameter->allowsNull();
                 $parameter[$key]['name'] = $refParameter->getName();
                 $parameter[$key]['default_value'] = $refParameter->isDefaultValueAvailable() ? json_encode($refParameter->getDefaultValue()) : null;
@@ -319,10 +323,10 @@ EOT
             }
 
             $methods[] = [
-                'isStatic'   => $refMethod->isStatic(),
-                'parameter'  => $parameter,
-                'type'       => $resType,
-                'name'       => $refMethod->name,
+                'isStatic' => $refMethod->isStatic(),
+                'parameter' => $parameter,
+                'type' => $resType,
+                'name' => $refMethod->name,
                 'isReadOnly' => false,
             ];
         }
@@ -358,7 +362,7 @@ EOT
 
             $resType = $refMethod->getReturnType();
             if ($resType !== null) {
-                $resType = (string) $refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
+                $resType = (string)$refMethod->getReturnType() . ($refMethod->getReturnType()->allowsNull() ? '|null' : '');
             } else {
                 $resType = 'mixed';
             }
@@ -369,15 +373,15 @@ EOT
 
             $arr = [
                 'DummyClass' => $refClass->name,
-                'DummyName'  => $refMethod->getName(),
+                'DummyName' => $refMethod->getName(),
                 // 'DummyValue' => json_encode($refMethod->getValue()),
                 'DummyReturnValues' => $doc['return'][0] ?? $resType,
-                'DummyType'         => $resType,
-                'DummyTitle'        => $doc['title'],
-                'DummyDescription'  => $doc['description'],
-                'DummySeeAlso'      => $this->createSeeAlso(array_merge($doc['see'] ?? [], $doc['link'] ?? [])),
-                'DummyParameters'   => $this->createMethodParameter($refMethod, $doc['param'] ?? []),
-                'DummyProperties'   => $this->createMethodProperties($refMethod, $doc['param'] ?? []),
+                'DummyType' => $resType,
+                'DummyTitle' => $doc['title'],
+                'DummyDescription' => $doc['description'],
+                'DummySeeAlso' => $this->createSeeAlso(array_merge($doc['see'] ?? [], $doc['link'] ?? [])),
+                'DummyParameters' => $this->createMethodParameter($refMethod, $doc['param'] ?? []),
+                'DummyProperties' => $this->createMethodProperties($refMethod, $doc['param'] ?? []),
             ];
 
             $DummyHead = str_replace(
@@ -401,7 +405,7 @@ EOT
             if ($key !== 0) {
                 $res .= ', ';
             }
-            $res .= (string) ($parameter->getType() ?? 'mixed');
+            $res .= (string)($parameter->getType() ?? 'mixed');
             $res .= ($parameter->allowsNull() ? '|null' : '');
             $res .= ' ';
             $res .= '$' . $parameter->getName();
@@ -428,8 +432,8 @@ EOT
             $name = '$' . $parameter->getName();
             if (!isset($params[$name])) {
                 $params[$name] = [
-                    'type'        => (string) ($parameter->getType() ?? 'mixed'),
-                    'param'       => $name,
+                    'type' => (string)($parameter->getType() ?? 'mixed'),
+                    'param' => $name,
                     'description' => '',
                 ];
 
@@ -465,11 +469,11 @@ EOT
 
             $doc = $this->parseDocBlock($refConst->getDocComment());
             $arr = [
-                'DummyClass'       => $refClass->name,
-                'DummyName'        => $refConst->getName(),
-                'DummyValue'       => json_encode($refConst->getValue()),
-                'DummyType'        => gettype($refConst->getValue()),
-                'DummyTitle'       => $doc['title'],
+                'DummyClass' => $refClass->name,
+                'DummyName' => $refConst->getName(),
+                'DummyValue' => json_encode($refConst->getValue()),
+                'DummyType' => gettype($refConst->getValue()),
+                'DummyTitle' => $doc['title'],
                 'DummyDescription' => $doc['description'],
             ];
 
@@ -502,12 +506,12 @@ EOT
 
             [$type,] = preg_split('/ +/', $doc['var'][0] ?? '', 2);
             $arr = [
-                'DummyClass'       => $refClass->name,
-                'DummyName'        => $refProperty->getName(),
-                'DummyType'        => $type ?: 'mixed',
-                'DummyTitle'       => $doc['title'],
+                'DummyClass' => $refClass->name,
+                'DummyName' => $refProperty->getName(),
+                'DummyType' => $type ?: 'mixed',
+                'DummyTitle' => $doc['title'],
                 'DummyDescription' => $doc['description'],
-                'DummyReadOnly'    => '',
+                'DummyReadOnly' => '',
             ];
 
             $DummyHead = str_replace(
@@ -528,12 +532,12 @@ EOT
             [$type, $name, $title] = explode(' ', $item, 3);
 
             $arr = [
-                'DummyClass'       => $refClass->name,
-                'DummyName'        => $name,
-                'DummyType'        => $type ?: 'mixed',
-                'DummyTitle'       => $title ?? '',
+                'DummyClass' => $refClass->name,
+                'DummyName' => $name,
+                'DummyType' => $type ?: 'mixed',
+                'DummyTitle' => $title ?? '',
                 'DummyDescription' => '',
-                'DummyReadOnly'    => '__read only__',
+                'DummyReadOnly' => '__read only__',
             ];
             $DummyHead = str_replace(
                 array_keys($arr),
@@ -552,12 +556,12 @@ EOT
             [$type, $name, $title] = preg_split('/ +/', $item, 3);
 
             $arr = [
-                'DummyClass'       => $refClass->name,
-                'DummyName'        => $name,
-                'DummyType'        => $type ?: 'mixed',
-                'DummyTitle'       => $title ?? '',
+                'DummyClass' => $refClass->name,
+                'DummyName' => $name,
+                'DummyType' => $type ?: 'mixed',
+                'DummyTitle' => $title ?? '',
                 'DummyDescription' => '',
-                'DummyReadOnly'    => '',
+                'DummyReadOnly' => '',
             ];
             $DummyHead = str_replace(
                 array_keys($arr),
@@ -579,10 +583,10 @@ EOT
         $doc_sep = explode("\n", $string);
 
         $res = [
-            'title'         => '',
-            'description'   => '',
-            'method'        => [],
-            'property'      => [],
+            'title' => '',
+            'description' => '',
+            'method' => [],
+            'property' => [],
             'property-read' => [],
         ];
 

@@ -58,7 +58,6 @@ use DOMNode;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
- * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -192,7 +191,7 @@ trait NodeTrait
      */
     public function hasChildNodes(): bool
     {
-        return $this->document()->hasChildNodes();
+        return $this->element->hasChildNodes();
     }
 
     /**
@@ -204,7 +203,7 @@ trait NodeTrait
      */
     public function removeChild(Node $oldnode): Node
     {
-        return Factory::get($this->document()->removeChild($oldnode->nativeNode()), $this);
+        return Factory::get($this->element->removeChild($oldnode->nativeNode()), $this);
     }
 
     /**
@@ -217,7 +216,9 @@ trait NodeTrait
      */
     public function replaceChild(Node $newnode, Node $oldnode): Node
     {
-        return Factory::get($this->document()->replaceChild($newnode->nativeNode(), $oldnode->nativeNode()), $this);
+       $res = $this->element->replaceChild($newnode->nativeNode(), $oldnode->nativeNode());
+
+        return Factory::get($res, $this);
     }
 
     /**

@@ -34,14 +34,8 @@ use PHPUnit\Framework\TestCase;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
- * @covers \Contender\Elements\Document
- * @covers \Contender\Elements\Node
- * @covers \Contender\Elements\Element
- * @covers \Contender\Elements\Collection
- * @covers \Contender\Elements\Traits\GetterTrait
- * @covers \Contender\Elements\Traits\MutationTrait
- * @covers \Contender\Elements\Traits\ElementTrait
  * @covers \Contender\Elements\Traits\NodeTrait
+ * @covers \Contender\Elements\Node
  * @covers \Contender\Elements\Factory
  */
 class NodeTest extends TestCase
@@ -153,4 +147,27 @@ class NodeTest extends TestCase
         $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
         $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
     }
+
+
+    public function test_removeChild()
+    {
+        $document = Contender::loadStr('<div>aaaa<br/>bbbbb</div>');
+
+        $element = $document->querySelector('div');
+        $element->removeChild($element->firstChild);
+
+        $this->assertEquals('<div><br/>bbbbb</div>', $document->getElementsByTagName('body')->first()->innerXML);
+    }
+
+
+    public function test_replaceChild()
+    {
+        $document = Contender::loadStr('<div>aaaa<br/>bbbbb</div>');
+
+        $element = $document->querySelector('div');
+        $element->replaceChild($document->createTextNode('ccccc'), $element->firstChild);
+
+        $this->assertEquals('<div>ccccc<br/>bbbbb</div>', $document->getElementsByTagName('body')->first()->innerXML);
+    }
+
 }

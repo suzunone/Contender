@@ -19,6 +19,7 @@
 namespace Contender\Elements;
 
 use Contender\Elements\Traits\ElementTrait;
+use Generator;
 
 /**
  * Class Element
@@ -59,7 +60,6 @@ use Contender\Elements\Traits\ElementTrait;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
- * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -103,6 +103,7 @@ use Contender\Elements\Traits\ElementTrait;
 class Element extends Node
 {
     use ElementTrait;
+
     /**
      * @var \DOMElement
      */
@@ -115,7 +116,7 @@ class Element extends Node
      * if call attr('name', 'value')
      * Alias setAttr()
      *
-     * @param ...$name
+     * @param mixed ...$name
      * @return string|null
      */
     public function attr(...$name): ?string
@@ -157,12 +158,14 @@ class Element extends Node
      * If you simply want to get the attribute and its value, it is faster to combine with {@link \Contender\Elements\Element::getAttribute()}, than to use the {@link \Contender\Elements\Element::$attributes} property.
      *
      * @see \Contender\Elements\Element::getAttributeNamesGenerator()
-     * @return array|\Generator
+     * @return array
      */
-    public function getAttributeNames()
+    public function getAttributeNames(): array
     {
         if (!$this->element->attributes) {
+            // @codeCoverageIgnoreStart
             return [];
+            // @codeCoverageIgnoreEnd
         }
 
         return iterator_to_array($this->getAttributeNamesGenerator());
@@ -174,7 +177,7 @@ class Element extends Node
      * @see \Contender\Elements\Element::getAttributeNames()
      * @return \Generator|null
      */
-    public function getAttributeNamesGenerator(): ?\Generator
+    public function getAttributeNamesGenerator(): ?Generator
     {
         if ($this->element->attributes) {
             foreach ($this->element->attributes as $attr) {
@@ -190,6 +193,27 @@ class Element extends Node
      */
     public function getAttributesAttribute(): NamedNodeMap
     {
-        return Factory::get($this->element->attributes, $this);
+        return NamedNodeMap::load($this->element->attributes, $this);
     }
+
+    /**
+     * @param $name
+     * @return bool
+     * @hideDoc
+     */
+    public function removeAttribute($name)
+    {
+        return $this->element->removeAttribute($name);
+    }
+
+    /**
+     * @param $name
+     * @return bool
+     * @hideDoc
+     */
+    public function hasAttribute($name)
+    {
+        return $this->element->hasAttribute($name);
+    }
+
 }

@@ -16,7 +16,6 @@
 
 namespace Contender\Elements;
 
-use Contender\Elements\Traits\ElementTrait;
 use Contender\Elements\Traits\NodeTrait;
 use DOMDocument;
 
@@ -60,7 +59,6 @@ use DOMDocument;
  * @property-read bool is_document_fragment true if this node is an XML_DOCUMENT_FRAG_NODE
  * @property-read bool isNotation true if this node is an XML_NOTATION_NODE
  * @property-read bool is_notation true if this node is an XML_NOTATION_NODE
- * @property string parameter
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string inner_text The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
  * @property-read string textContent The text content of this node and its descendants.
@@ -121,14 +119,19 @@ class Document implements ElementInterface
         $this->element = $element;
     }
 
+    /**
+     * @return \DOMDocument
+     */
     protected function document(): DOMDocument
     {
         return $this->element;
     }
 
     /**
-     * @param string $name
-     * @param string|null $value
+     * Create new element node
+     *
+     * @param string $name The tag name of the element.
+     * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with DOMElement->nodeValue.
      * @return \Contender\Elements\Element
      */
     public function createElement(string $name, ?string $value = null): Element
@@ -137,6 +140,109 @@ class Document implements ElementInterface
         $this->element->importNode($element);
 
         return Factory::get($element, $this);
+    }
+
+
+    /**
+     * Create new comment node
+     *
+     * @param string $value The content of the comment.
+     * @return \Contender\Elements\Node
+     */
+    public function createComment(string $value): Node
+    {
+        $node = $this->element->createComment($value);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
+    }
+
+    /**
+     * Create new comment node
+     *
+     * @param string $value The content of the text.
+     * @return \Contender\Elements\Node
+     */
+    public function createTextNode(string $value): Node
+    {
+        $node = $this->element->createTextNode($value);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
+    }
+
+    /**
+     * Create new cdata node
+     *
+     * @param string $value The content of the cdata.
+     * @return \Contender\Elements\Node
+     */
+    public function createCDATASection(string $value): Node
+    {
+        $node = $this->element->createCDATASection($value);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
+    }
+
+    /**
+     * Creates new PI node
+     *
+     * @param string $target    The target of the processing instruction.
+     * @param string|null $data The content of the processing instruction.
+     * @return \Contender\Elements\Node
+     */
+    public function createProcessingInstruction(string $target, ?string $data = null): Node
+    {
+        $node = $this->element->createProcessingInstruction($target, $data);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
+    }
+
+    /**
+     * Create new attribute node with an associated namespace
+     *
+     * @param string $namespaceURI  The namespace URI of the elements to match on. The special value * matches all namespaces.
+     * @param string $qualifiedName The local name of the elements to match on. The special value * matches all local names.
+     * @return \Contender\Elements\Node
+     */
+    public function createAttributeNS(string $namespaceURI, string $qualifiedName): Node
+    {
+        $node = $this->element->createAttributeNS($namespaceURI, $qualifiedName);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
+    }
+
+    /**
+     * Create new attribute
+     *
+     * @param string $value The name of the attribute.
+     * @return \Contender\Elements\Node
+     */
+    public function createAttribute(string $value): Node
+    {
+        $node = $this->element->createAttribute($value);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
+    }
+
+
+    /**
+     * Create new entity reference node
+     *
+     * @param string $value The content of the entity reference, e.g. the entity reference minusthe leading & and the trailing ; characters.
+     * @return \Contender\Elements\Node
+     * @link https://php.net/manual/domdocument.createentityreference.php
+     */
+    public function createEntityReference(string $value): Node
+    {
+        $node = $this->element->createEntityReference($value);
+        $this->element->importNode($node);
+
+        return Factory::get($node, $this);
     }
 
     /**

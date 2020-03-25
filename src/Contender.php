@@ -18,6 +18,7 @@ namespace Contender;
 
 use Contender\Elements\Document;
 use DOMDocument;
+use DOMXPath;
 
 /**
  * Load Html to generate a {@link \Contender\Elements\Document} object.
@@ -179,6 +180,12 @@ class Contender
      * @see https://www.php.net/manual/en/dom.constants.php
      */
     public const DEFAULT_LIBXML_OPTION = LIBXML_BIGLINES | LIBXML_NOERROR | LIBXML_NOXMLDECL | LIBXML_NOWARNING;
+
+    /**
+     * Auto adding charset meta
+     * @var bool
+     */
+    public $is_add_meta = true;
 
     protected $options = [];
 
@@ -419,7 +426,7 @@ HTML;
      */
     protected function removeFromXPath(string $path, DOMDocument $dom): DOMDocument
     {
-        $xpath = new \DOMXPath($dom);
+        $xpath = new DOMXPath($dom);
         $items = $xpath->query($path);
         if ($items === false) {
             return $dom;
@@ -526,7 +533,7 @@ HTML;
     protected function toUTF8(string $html): string
     {
         $encode = $this->getEncode($html);
-        $is_add_meta = true;
+        $is_add_meta = $this->is_add_meta;
 
         $encode = strtolower($encode);
         if ($encode === 'utf8' || $encode === 'utf-8') {
@@ -566,7 +573,7 @@ HTML;
     {
         $doc = new DOMDocument();
         $doc->loadHTML($html, self::DEFAULT_LIBXML_OPTION);
-        $xpath = new \DOMXPath($doc);
+        $xpath = new DOMXPath($doc);
         $items = $xpath->query('//head/meta[@charset]');
         $match = [];
 
@@ -578,7 +585,7 @@ HTML;
             }
         }
 
-        $xpath = new \DOMXPath($doc);
+        $xpath = new DOMXPath($doc);
         $items = $xpath->query('//head/meta[@http-equiv="Content-Type"]');
         if ($items && $items->count() >= 1) {
             $item = $items->item(0);

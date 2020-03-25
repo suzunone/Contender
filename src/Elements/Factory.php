@@ -19,6 +19,11 @@
 namespace Contender\Elements;
 
 use Contender\Contender;
+use DOMDocument;
+use DOMElement;
+use DOMNamedNodeMap;
+use DOMNode;
+use DOMNodeList;
 
 /**
  * Class Factory
@@ -45,23 +50,23 @@ class Factory
      */
     public static function get($item, $old)
     {
-        if ($item instanceof \DOMNodeList) {
+        if ($item instanceof DOMNodeList) {
             return Collection::makeByDOMNodeList($item, $old);
         }
 
-        if ($item instanceof \DOMDocument) {
+        if ($item instanceof DOMDocument) {
             return Contender::loadDomDocument($item);
         }
 
-        if ($item instanceof \DOMElement) {
+        if ($item instanceof DOMElement) {
             return new Element($item);
         }
 
-        if ($item instanceof \DOMNamedNodeMap) {
+        if ($item instanceof DOMNamedNodeMap) {
             return NamedNodeMap::load($item, $old);
         }
 
-        if ($item instanceof \DOMNode) {
+        if ($item instanceof DOMNode) {
             return new Node($item);
         }
 
