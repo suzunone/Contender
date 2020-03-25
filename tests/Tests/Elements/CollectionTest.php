@@ -78,7 +78,7 @@ class CollectionTest extends TestCase
         $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(1)->innerHTML);
     }
 
-    public function test_innerXML()
+    public function test_innerXML_innerHTML()
     {
         $document = Contender::loadStr('<div>aaaa<br />bbbbb</div>');
 
@@ -91,5 +91,100 @@ class CollectionTest extends TestCase
 
         $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
         $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
+
+
+        $element->innerHTML = 'eeee<br />ffff';
+
+        $this->assertEquals('<p>eeee<br/>ffff</p>', $document->querySelector('div')->innerXML);
+        $this->assertEquals('<p>eeee<br>ffff</p>', $document->querySelector('div')->innerHTML);
+
+        $this->assertTrue(isset($element->innerHTML));
+        $this->assertTrue(isset($element->innerXML));
     }
+
+    public function dataProvider()
+    {
+        return [
+            ['<div><a href="#aaa" class="touch btn-success btn btn-large" id="link1" title="here" aria-disabled="">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1">list1</li></ul>foo + bar</div>'],
+        ];
+    }
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_querySelector($html)
+    {
+        $document = Contender::loadStr($html);
+        $collection = $document->querySelector('div')->children;
+        $anchor = $collection->querySelector('a');
+        $this->assertEquals('#aaa', $anchor->attr('href'));
+
+    }
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_find($html)
+    {
+        $document = Contender::loadStr($html);
+        $collection = $document->find('div');
+        $this->assertCount(1, $collection->find('ul'));
+
+    }
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_attr($html)
+    {
+        $document = Contender::loadStr($html);
+        $collection = $document->getElementsByTagName('a');
+
+        $this->assertEquals('#aaa', $collection->attr('href'));
+
+
+        $collection->attr('href', '#bbb');
+        $this->assertEquals('#bbb', $collection->attr('href'));
+
+    }
+
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_getAttribute_setAttribute($html)
+    {
+        $document = Contender::loadStr($html);
+        $collection = $document->getElementsByTagName('a');
+
+        $this->assertEquals('#aaa', $collection->getAttribute('href'));
+
+
+        $collection->setAttribute('href', '#bbb');
+        $this->assertEquals('#bbb', $collection->getAttribute('href'));
+    }
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_remove($html)
+    {
+        $document = Contender::loadStr($html);
+        $add_element = $document->createElement('li');
+        $add_element->appendChild($document->createTextNode('example'));
+        $document->querySelector('ul')->appendChild($add_element);
+
+        $this->assertStringContainsString('<li>example</li>', $document->outerXML);
+
+        $document->getElementsByTagName('li')->remove();
+        $this->assertStringNotContainsString('<li>', $document->outerXML);
+
+    }
+
+
 }

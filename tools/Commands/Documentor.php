@@ -242,7 +242,7 @@ EOT
             if (!method_exists($reflectionProperty, 'getValue')) {
                 dump($reflectionProperty);
             }
-            
+
             $properties[] = [
                 'isStatic' => $reflectionProperty->isStatic(),
                 'value' => json_encode($reflectionProperty->getValue((new $reflectionProperty->class))),

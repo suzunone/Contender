@@ -266,9 +266,9 @@ class Collection extends \Illuminate\Support\Collection
      * @return string|null
      * @link \Contender\Elements\Element::attr()
      */
-    public function attr(...$param): string
+    public function attr(...$param): ?string
     {
-        return $this->sortDom()->first()->attr(...$param);
+        return call_user_func_array([$this->sortDom()->first(), 'attr'], $param);
     }
 
     /**
@@ -278,9 +278,9 @@ class Collection extends \Illuminate\Support\Collection
      * @return mixed
      * @link \Contender\Elements\Element::getAttribute()
      */
-    public function getAttr(string $name)
+    public function getAttribute(string $name)
     {
-        return $this->sortDom()->first()->getParameterAttribute($name);
+        return $this->sortDom()->first()->getAttribute($name);
     }
 
     /**
@@ -290,9 +290,9 @@ class Collection extends \Illuminate\Support\Collection
      * @param string $value
      * @link \Contender\Elements\Element::setAttribute()
      */
-    public function setAttr(string $name, string $value)
+    public function setAttribute(string $name, string $value)
     {
-        $this->sortDom()->first()->setParameterAttribute($name, $value);
+        $this->sortDom()->first()->setAttribute($name, $value);
     }
 
     /**
