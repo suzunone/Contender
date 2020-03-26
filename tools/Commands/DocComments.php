@@ -19,6 +19,7 @@ namespace Tools\Contender\Commands;
 
 use Illuminate\Support\Str;
 use ReflectionClass;
+use ReflectionProperty;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -125,6 +126,18 @@ EOT
                 $annotates[$snake] = $annotate . $snake . $default_comment;
             }
         }
+
+        /*
+        if (preg_match_all('/@mixin-property +(.*)/u', $now_doc, $mixins)) {
+            foreach ($mixins[1] as $mixin) {
+                $mixinClass = new ReflectionClass($mixin);
+                dump($mixinClass->getProperties());
+                foreach ($mixinClass->getProperties(ReflectionProperty::IS_PUBLIC) as $refPro) {
+                    dump($refPro);
+                }
+            }
+        }
+        */
 
         $replacement_doc = preg_replace('/ \* @property(-read)? .*?\n/u', '', $now_doc);
         // $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);

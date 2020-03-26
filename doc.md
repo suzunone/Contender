@@ -446,6 +446,7 @@ Contender\Elements\Attr {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
+    public mixed|string $parameter ;
     public string $name ;
     public \Contender\Elements\Element $ownerElement ;
     public \Contender\Elements\Element $owner_element ;
@@ -864,6 +865,11 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
+### `mixed|string` \Contender\Elements\Attr::$parameter
+
+
+
+
 
 
 
@@ -1256,6 +1262,7 @@ Contender\Elements\Document {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
+    public mixed|string $parameter ;
     public bool $isElement ;
     public bool $is_element ;
     public bool $isAttr ;
@@ -1334,6 +1341,9 @@ Contender\Elements\Document {
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public setParameterAttribute (string $name, ?mixed $value = NULL) : mixed
+    public getParameterAttribute (string $name) : mixed|string
+    public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Elements\Node|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
@@ -1671,6 +1681,11 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 ### `string` \Contender\Elements\Document::$inner_x_m_l
 The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `mixed|string` \Contender\Elements\Document::$parameter
+
 
 
 
@@ -2044,6 +2059,67 @@ Replaces a child
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
 
 
+### \Contender\Elements\Document::setParameterAttribute(string $name, mixed|null $value)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+##### `mixed|null` $value
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::getParameterAttribute(string $name)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+mixed|string
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::hasParameterAttribute(string $name)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+bool
+
+
+### See Also
+None
+
 ### \Contender\Elements\Document::getElementById(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.
 
@@ -2273,6 +2349,7 @@ Contender\Elements\Element {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
+    public mixed|string $parameter ;
     public \Contender\Elements\NamedNodeMap $attributes ;
     public bool $isElement ;
     public bool $is_element ;
@@ -2676,6 +2753,11 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
+### `mixed|string` \Contender\Elements\Element::$parameter
+
+
+
+
 
 
 
@@ -2933,6 +3015,7 @@ Contender\Elements\Node {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
+    public mixed|string $parameter ;
     public bool $isElement ;
     public bool $is_element ;
     public bool $isAttr ;
@@ -3006,6 +3089,9 @@ Contender\Elements\Node {
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public setParameterAttribute (string $name, ?mixed $value = NULL) : mixed
+    public getParameterAttribute (string $name) : mixed|string
+    public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Elements\Node|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
@@ -3346,6 +3432,11 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
+### `mixed|string` \Contender\Elements\Node::$parameter
+
+
+
+
 
 
 
@@ -3603,6 +3694,67 @@ Replaces a child
 ### See Also
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
 
+
+### \Contender\Elements\Node::setParameterAttribute(string $name, mixed|null $value)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+##### `mixed|null` $value
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::getParameterAttribute(string $name)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+mixed|string
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::hasParameterAttribute(string $name)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+bool
+
+
+### See Also
+None
 
 ### \Contender\Elements\Node::getElementById(string $query)
 Returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> object representing the element whose id property matches the specified string.

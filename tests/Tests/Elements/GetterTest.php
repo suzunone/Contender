@@ -48,7 +48,33 @@ class GetterTest extends TestCase
         $element = $document->querySelector('[title="reg"]');
 
         $this->assertEquals('/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE', $element->attr('href'));
+        $this->assertEquals('UTF-8', $document->encoding);
     }
+
+    public function test_setParameterAttribute()
+    {
+        $html = '<div><p>□■□■□■□■□■□■□■□■</p><span>♪♪♪♪</span></div>';
+        $document = Contender::loadStr($html);
+        $document->formatOutput = false;
+
+        $this->assertStringContainsString($html, (string)$document);
+        $document->formatOutput = true;
+
+        $this->assertStringNotContainsString($html, (string)$document);
+    }
+
+    public function test_hasParameterAttribute()
+    {
+        $html = '<div><p>□■□■□■□■□■□■□■□■</p><span>♪♪♪♪</span></div>';
+        $document = Contender::loadStr($html);
+        $this->assertTrue(isset($document->formatOutput));
+        $this->assertTrue(isset($document->innerHTML));
+        $this->assertFalse(isset($document->asfasdfaas));
+
+    }
+
+
+
 
     public function innerhtmlDataProvider()
     {
@@ -253,4 +279,7 @@ class GetterTest extends TestCase
         $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_NOTATION_NODE);
         $this->assertTrue($node->is_notation);
     }
+
+
+
 }

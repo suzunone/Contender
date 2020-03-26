@@ -98,6 +98,7 @@ use DOMDocument;
  * @property-read int node_type Gets the type of the node.
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
+ * @property mixed|string parameter
  */
 class Document implements ElementInterface
 {
@@ -125,6 +126,14 @@ class Document implements ElementInterface
     protected function document(): DOMDocument
     {
         return $this->element;
+    }
+
+    /**
+     * @return \Contender\Elements\Element
+     */
+    public function getDocumentElementAttribute(): Element
+    {
+        return Factory::get($this->element->documentElement);
     }
 
     /**

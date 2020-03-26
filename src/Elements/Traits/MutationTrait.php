@@ -32,6 +32,7 @@ use Illuminate\Support\Str;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @hideDoc
+ * @property mixed|string parameter
  */
 trait MutationTrait
 {
@@ -74,7 +75,40 @@ trait MutationTrait
      */
     public function __isset($name)
     {
-        return method_exists($this, $this->mutateGetAttributeName($name)) || $this->hasAttribute($name);
+        return method_exists($this, $this->mutateGetAttributeName($name)) || $this->hasParameterAttribute($name);
+    }
+
+    /**
+     * @param string $name
+     * @param $value
+     */
+    public function setParameterAttribute(string $name, $value)
+    {
+        $name = Str::camel($name);
+
+        $this->element->$name = $value;
+    }
+
+    /**
+     * @param string $name
+     * @return mixed|string
+     */
+    public function getParameterAttribute(string $name)
+    {
+        $name = Str::camel($name);
+
+        return $this->element->$name;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasParameterAttribute(string $name): bool
+    {
+        $name = Str::camel($name);
+
+        return isset($this->element->$name);
     }
 
     /**

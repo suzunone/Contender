@@ -99,6 +99,7 @@ use Generator;
  * @property-read int node_type Gets the type of the node.
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
+ * @property mixed|string parameter
  */
 class Element extends Node
 {

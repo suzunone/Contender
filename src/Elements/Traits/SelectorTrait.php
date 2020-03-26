@@ -110,10 +110,10 @@ trait SelectorTrait
     public function getAttributeNodeNS(string $namespaceURI, string $localName): Collection
     {
         if ($this->isElement) {
-            return $this->element->getParameterAttributeNodeNS($namespaceURI, $localName);
+            return $this->element->getAttributeNodeNS($namespaceURI, $localName);
         }
 
-        $res = $this->document()->getParameterAttributeNodeNS($namespaceURI, $localName);
+        $res = $this->document()->getAttributeNodeNS($namespaceURI, $localName);
 
         return Factory::get($res, $this);
     }
