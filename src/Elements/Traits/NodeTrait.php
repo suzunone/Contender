@@ -216,7 +216,7 @@ trait NodeTrait
      */
     public function replaceChild(Node $newnode, Node $oldnode): Node
     {
-       $res = $this->element->replaceChild($newnode->nativeNode(), $oldnode->nativeNode());
+        $res = $this->element->replaceChild($newnode->nativeNode(), $oldnode->nativeNode());
 
         return Factory::get($res, $this);
     }

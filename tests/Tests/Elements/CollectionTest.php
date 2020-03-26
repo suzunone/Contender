@@ -92,7 +92,6 @@ class CollectionTest extends TestCase
         $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
         $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
 
-
         $element->innerHTML = 'eeee<br />ffff';
 
         $this->assertEquals('<p>eeee<br/>ffff</p>', $document->querySelector('div')->innerXML);
@@ -119,7 +118,6 @@ class CollectionTest extends TestCase
         $collection = $document->querySelector('div')->children;
         $anchor = $collection->querySelector('a');
         $this->assertEquals('#aaa', $anchor->attr('href'));
-
     }
 
     /**
@@ -131,7 +129,6 @@ class CollectionTest extends TestCase
         $document = Contender::loadStr($html);
         $collection = $document->find('div');
         $this->assertCount(1, $collection->find('ul'));
-
     }
 
     /**
@@ -145,12 +142,9 @@ class CollectionTest extends TestCase
 
         $this->assertEquals('#aaa', $collection->attr('href'));
 
-
         $collection->attr('href', '#bbb');
         $this->assertEquals('#bbb', $collection->attr('href'));
-
     }
-
 
     /**
      * @param $html
@@ -162,7 +156,6 @@ class CollectionTest extends TestCase
         $collection = $document->getElementsByTagName('a');
 
         $this->assertEquals('#aaa', $collection->getAttribute('href'));
-
 
         $collection->setAttribute('href', '#bbb');
         $this->assertEquals('#bbb', $collection->getAttribute('href'));
@@ -183,8 +176,5 @@ class CollectionTest extends TestCase
 
         $document->getElementsByTagName('li')->remove();
         $this->assertStringNotContainsString('<li>', $document->outerXML);
-
     }
-
-
 }

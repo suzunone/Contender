@@ -107,7 +107,7 @@ trait SelectorTrait
      * @param string $localName The local name.
      * @return \Contender\Elements\Collection
      */
-    public function getParameterAttributeNodeNS(string $namespaceURI, string $localName): Collection
+    public function getAttributeNodeNS(string $namespaceURI, string $localName): Collection
     {
         if ($this->isElement) {
             return $this->element->getParameterAttributeNodeNS($namespaceURI, $localName);

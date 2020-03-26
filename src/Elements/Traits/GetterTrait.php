@@ -217,7 +217,6 @@ trait GetterTrait
         return $this->nodeType === XML_NOTATION_NODE;
     }
 
-
     /**
      * @return string The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Elements\Node::$textContent} instead of NULL.
      * @hideDoc

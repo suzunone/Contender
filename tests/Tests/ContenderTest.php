@@ -46,8 +46,8 @@ class ContenderTest extends TestCase
     {
         $header = [
             'http' => [
-                'method' => 'GET',
-                'header' => 'User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:13.0) Gecko/20100101 Firefox/13.0.1',
+                'method'        => 'GET',
+                'header'        => 'User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:13.0) Gecko/20100101 Firefox/13.0.1',
                 'ignore_errors' => true,
             ],
         ];
@@ -180,7 +180,7 @@ HTMLEND;
     public function test_remove_tag($html, $expects, $expect_ignores, $options)
     {
         $dom = Contender::loadStr($html, $options);
-        $ex_html = (string)$dom;
+        $ex_html = (string) $dom;
         foreach ($expects as $expect) {
             $this->assertStringContainsString($expect, $ex_html);
         }

@@ -309,12 +309,15 @@ class Contender
      */
     public function load(string $html, array $options = []): Document
     {
+        $is_xml = substr($html, 0, 5) === '<?xml';
         $this->setOptions($options);
         if ($this->is_encode) {
             $html = $this->toUTF8($html);
         }
 
-        $html = $this->completeHtmlTag($html);
+        if (!$is_xml) {
+            $html = $this->completeHtmlTag($html);
+        }
 
         $doc = new DOMDocument();
         if ($this->is_encode) {
@@ -327,7 +330,11 @@ class Contender
             $html = preg_replace('/[ \t]+/', ' ', $html);
         }
 
-        $doc->loadHTML($html, $this->options());
+        if ($is_xml) {
+            $doc->loadXML($html, $this->options());
+        } else {
+            $doc->loadHTML($html, $this->options());
+        }
 
         $doc = $this->cleanUpDom($doc);
 

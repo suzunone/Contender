@@ -45,7 +45,7 @@ class Factory
     /**
      * @param \DOMNodeList|\DOMDocument|\DOMElement|\DOMNode|\DOMNamedNodeMap|null $item
      * @param \Contender\Elements\ElementInterface|null $old
-     * @return \Contender\Elements\Collection|\Contender\Elements\Document|\Contender\Elements\Element|\Contender\Elements\Node|\Contender\Elements\NamedNodeMap
+     * @return \Contender\Elements\Collection|\Contender\Elements\Document|\Contender\Elements\Element|\Contender\Elements\Node|\Contender\Elements\NamedNodeMap|\Contender\Elements\Attr
      * @hideDoc
      */
     public static function get($item, $old)
@@ -64,6 +64,10 @@ class Factory
 
         if ($item instanceof DOMNamedNodeMap) {
             return NamedNodeMap::load($item, $old);
+        }
+
+        if ($item instanceof \DOMAttr) {
+            return new Attr($item);
         }
 
         if ($item instanceof DOMNode) {

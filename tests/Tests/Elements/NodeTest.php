@@ -148,7 +148,6 @@ class NodeTest extends TestCase
         $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
     }
 
-
     public function test_removeChild()
     {
         $document = Contender::loadStr('<div>aaaa<br/>bbbbb</div>');
@@ -158,7 +157,6 @@ class NodeTest extends TestCase
 
         $this->assertEquals('<div><br/>bbbbb</div>', $document->getElementsByTagName('body')->first()->innerXML);
     }
-
 
     public function test_replaceChild()
     {
@@ -170,4 +168,64 @@ class NodeTest extends TestCase
         $this->assertEquals('<div>ccccc<br/>bbbbb</div>', $document->getElementsByTagName('body')->first()->innerXML);
     }
 
+    public function dataProvider()
+    {
+        return [
+            ['<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></li></ul></div>'],
+        ];
+    }
+
+    /**
+     * @param $html
+     * @dataProvider dataProvider
+     */
+    public function test_cloneNode($html)
+    {
+        $document = Contender::loadStr($html);
+        $ul = $document->getElementsByTagName('ul')->first();
+        $clone_ul = $ul->cloneNode();
+        $document->getElementsByTagName('a')->first()->insertBefore($clone_ul);
+
+        $this->assertEquals('<div>
+<a href="#aaa">here<ul class="user-list"></ul></a><p class="plain-text"></p>
+<ul class="user-list"><li class="li-1"></ul>
+</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+
+        $document = Contender::loadStr($html);
+        $ul = $document->getElementsByTagName('ul')->first();
+        $clone_ul = $ul->cloneNode(true);
+        $ul->before($clone_ul);
+
+        $this->assertEquals('<div>
+<a href="#aaa">here</a><p class="plain-text"></p>
+<ul class="user-list"><li class="li-1"></ul>
+<ul class="user-list"><li class="li-1"></ul>
+</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+    }
+
+    public function test_normalize()
+    {
+        $document = Contender::loadStr('<div></div>');
+        $document->querySelector('div')->insertBefore($document->createTextNode('aaa'));
+        $document->querySelector('div')->insertBefore($document->createTextNode(''));
+        $document->querySelector('div')->insertBefore($document->createTextNode(''));
+        $document->querySelector('div')->insertBefore($document->createTextNode(''));
+        $document->querySelector('div')->insertBefore($document->createTextNode(''));
+        $document->querySelector('div')->insertBefore($document->createTextNode(''));
+        $document->querySelector('div')->insertBefore($document->createTextNode('bbb'));
+
+        $this->assertCount(7, $document->getElementsByTagName('div')->first()->children);
+
+        $document->getElementsByTagName('div')->first()->normalize();
+
+        $this->assertCount(1, $document->getElementsByTagName('div')->first()->children);
+    }
+
+    public function test_hasChildNodes()
+    {
+        $document = Contender::loadStr('<div></div>');
+        $this->assertFalse($document->getElementsByTagName('div')->first()->hasChildNodes());
+        $document = Contender::loadStr('<div>nekodaisuki</div>');
+        $this->assertTrue($document->getElementsByTagName('div')->first()->hasChildNodes());
+    }
 }

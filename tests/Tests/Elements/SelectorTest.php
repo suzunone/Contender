@@ -138,4 +138,29 @@ class SelectorTest extends TestCase
 
         $this->assertEquals('aaaaa', $res->innerHTML);
     }
+
+    public function test_find()
+    {
+        $document = Contender::loadStr('<div><p class="test">aaaaa</p><p class="test">bbbbb</p></div>');
+
+        $res = $document->find('a');
+        $this->assertCount(0, $res);
+
+        $res = $document->find('p');
+
+        $this->assertInstanceOf(Collection::class, $res);
+
+        $this->assertCount(2, $res);
+
+        $this->assertEquals('aaaaa', $res->innerHTML);
+
+        // from Element
+        $res = $document->find('div')->offsetGet(0)->find('p');
+
+        $this->assertInstanceOf(Collection::class, $res);
+
+        $this->assertCount(2, $res);
+
+        $this->assertEquals('aaaaa', $res->innerHTML);
+    }
 }

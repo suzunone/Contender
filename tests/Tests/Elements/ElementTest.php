@@ -18,6 +18,7 @@
 namespace Tests\Suzunone\Contender\Elements;
 
 use Contender\Contender;
+use Contender\Elements\Attr;
 use Contender\Elements\NamedNodeMap;
 use Contender\Elements\Node;
 use PHPUnit\Framework\TestCase;
@@ -88,10 +89,7 @@ class ElementTest extends TestCase
 
         $this->assertEquals([
         ], $element->getAttributeNames());
-
     }
-
-
 
     /**
      * @param $html
@@ -124,8 +122,6 @@ class ElementTest extends TestCase
 
         $this->assertTrue($element->hasAttribute('href'));
         $this->assertFalse($element->hasAttribute('onClick'));
-
-
     }
 
     /**
@@ -141,15 +137,14 @@ class ElementTest extends TestCase
         $this->assertTrue($element->hasAttribute('href'));
         $element->removeAttribute('href');
         $this->assertFalse($element->hasAttribute('href'));
-
     }
-
-
 
     /**
      * @param $html
      * @dataProvider dataProvider
      * @covers \Contender\Elements\NamedNodeMap
+     * @covers \Contender\Elements\Factory
+     * @covers \Contender\Elements\Attr
      */
     public function test_attaributes($html)
     {
@@ -163,7 +158,12 @@ class ElementTest extends TestCase
         $element = $document->getElementsByTagName('a')->first();
         $this->assertInstanceOf(NamedNodeMap::class, $element->attributes);
         $this->assertCount(5, $element->attributes);
-        $this->assertInstanceOf(Node::class, $element->attributes->getNamedItem('href'));
+        $attr = $element->attributes->getNamedItem('href');
+        $this->assertInstanceOf(Attr::class, $attr);
+        $this->assertEquals('href', $attr->name);
+        $this->assertEquals('#aaa', $attr->value);
+        $this->assertEquals('<a href="#aaa" class="touch btn-success btn btn-large" id="link1" title="here" aria-disabled="">here</a>', $attr->ownerElement->outerXML);
+
         $this->assertNull($element->attributes->getNamedItem('href2'));
     }
 }

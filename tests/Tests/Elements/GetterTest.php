@@ -78,8 +78,8 @@ class GetterTest extends TestCase
             'none' => [
                 '<div></div>',
                 'div',
-                ['']
-            ]
+                [''],
+            ],
         ];
     }
 
@@ -96,7 +96,6 @@ class GetterTest extends TestCase
         $document = $parser->load($html);
 
         $element = $document->querySelector($path);
-
 
         if (is_array($expect)) {
             foreach ($expect as $ck) {
@@ -122,8 +121,6 @@ class GetterTest extends TestCase
         $this->assertStringContainsString($element->outerHTML, $document->outerHTML);
         $this->assertStringContainsString('ExampleText', $element->outerXML);
         $this->assertStringContainsString($element->outerXML, $document->outerXML);
-
-
     }
 
     /**
@@ -140,7 +137,6 @@ class GetterTest extends TestCase
 
         $element = $document->querySelector($path);
 
-
         if (is_array($expect)) {
             foreach ($expect as $ck) {
                 $this->assertStringContainsString($ck, $element->innerXML);
@@ -151,9 +147,6 @@ class GetterTest extends TestCase
             $this->assertStringContainsString($expect, $document->innerXML);
         }
     }
-
-
-
 
     /**
      * @dataProvider innerhtmlDataProvider
@@ -173,7 +166,6 @@ class GetterTest extends TestCase
         $this->assertEquals('<div>aaaa</div>', $element->innerHTML);
     }
 
-
     /**
      * @dataProvider innerhtmlDataProvider
      */
@@ -192,8 +184,7 @@ class GetterTest extends TestCase
         $this->assertEquals('<div>aaaa</div>', $element->innerXML);
     }
 
-
-    public function test_children()
+    public function test_children_childNodes()
     {
         $parser = new Contender();
         $res = $parser->load(file_get_contents(__DIR__ . '/../../data/wikipedia.html'));
@@ -202,6 +193,11 @@ class GetterTest extends TestCase
         $this->assertEquals(1, $main->count());
 
         $collection = $main->offsetGet(0)->children;
+
+        $this->assertStringContainsString(/** @lang text */ '手法', $collection->offsetGet(1)->innerHTML);
+        $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(3)->innerHTML);
+
+        $collection = $main->offsetGet(0)->childNodes;
 
         $this->assertStringContainsString(/** @lang text */ '手法', $collection->offsetGet(1)->innerHTML);
         $this->assertStringContainsString(/** @lang text */ '法的問題', $collection->offsetGet(3)->innerHTML);

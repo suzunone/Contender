@@ -215,5 +215,4 @@ class Element extends Node
     {
         return $this->element->hasAttribute($name);
     }
-
 }
