@@ -449,6 +449,7 @@ Contender\Elements\Attr {
     public mixed|string|int $parameter ;
     public bool $schemaTypeInfo ;
     public bool $specified ;
+    public int $nodeType ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -500,8 +501,8 @@ Contender\Elements\Attr {
     public \Contender\Elements\Node|null $first_child ;
     public \Contender\Elements\Node|null $lastChild ;
     public \Contender\Elements\Node|null $last_child ;
-    public \Contender\Elements\Attr|null $firstElementChild ;
-    public \Contender\Elements\Attr|null $first_element_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
     public \Contender\Elements\Node|null $parentNode ;
     public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
@@ -767,12 +768,12 @@ Get a last child node.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$firstElementChild __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Attr::$firstElementChild __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$first_element_child __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Attr::$first_element_child __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
@@ -828,12 +829,12 @@ Alias to next_element_sibling
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Attr::$ownerDocument __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Attr::$owner_document __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
@@ -884,6 +885,11 @@ Not implemented yet, always is NULL
 
 ### `bool` \Contender\Elements\Attr::$specified
 Not implemented yet, always is NULL
+
+
+
+### `int` \Contender\Elements\Attr::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
 
 
 
@@ -1321,6 +1327,7 @@ Contender\Elements\Document {
     public string $xmlEncoding ;
     public bool $xmlStandalone ;
     public string $xmlVersion ;
+    public int $nodeType ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -1371,8 +1378,8 @@ Contender\Elements\Document {
     public \Contender\Elements\Node|null $first_child ;
     public \Contender\Elements\Node|null $lastChild ;
     public \Contender\Elements\Node|null $last_child ;
-    public \Contender\Elements\Document|null $firstElementChild ;
-    public \Contender\Elements\Document|null $first_element_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
     public \Contender\Elements\Node|null $parentNode ;
     public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
@@ -1661,12 +1668,12 @@ Get a last child node.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$firstElementChild __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Document::$firstElementChild __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$first_element_child __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Document::$first_element_child __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
@@ -1722,12 +1729,12 @@ Alias to next_element_sibling
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Document::$ownerDocument __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Document::$owner_document __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
@@ -1843,6 +1850,11 @@ An attribute specifying, as part of the XML declaration, whether this document i
 
 ### `string` \Contender\Elements\Document::$xmlVersion
 An attribute specifying, as part of the XML declaration, the version number of this document. If there is nodeclaration and if this document supports the "XML" feature, the value is "1.0".
+
+
+
+### `int` \Contender\Elements\Document::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
 
 
 
@@ -2265,7 +2277,7 @@ Replaces a child
 
 
 #### Return Values
-\Contender\Elements\Document
+\Contender\Elements\Document The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 ### See Also
@@ -2564,6 +2576,7 @@ Contender\Elements\Element {
     public mixed|string|int $parameter ;
     public bool $schemaTypeInfo ;
     public string $tagName ;
+    public int $nodeType ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -2933,12 +2946,12 @@ Alias to next_element_sibling
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Element::$ownerDocument __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Element::$owner_document __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
@@ -2984,6 +2997,11 @@ Not implemented yet, always return NULL
 
 ### `string` \Contender\Elements\Element::$tagName
 The element name
+
+
+
+### `int` \Contender\Elements\Element::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
 
 
 
@@ -3270,6 +3288,7 @@ Contender\Elements\Node {
     public string $innerXML ;
     public string $inner_x_m_l ;
     public mixed|string|int $parameter ;
+    public int $nodeType ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -3318,8 +3337,8 @@ Contender\Elements\Node {
     public \Contender\Elements\Node|null $first_child ;
     public \Contender\Elements\Node|null $lastChild ;
     public \Contender\Elements\Node|null $last_child ;
-    public \Contender\Elements\Node|null $firstElementChild ;
-    public \Contender\Elements\Node|null $first_element_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
     public \Contender\Elements\Node|null $parentNode ;
     public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
@@ -3592,12 +3611,12 @@ Get a last child node.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$firstElementChild __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Node::$firstElementChild __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$first_element_child __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Node::$first_element_child __read only__
 The first child of this node. If there is no such node, this returns NULL.
 
 
@@ -3653,12 +3672,12 @@ Alias to next_element_sibling
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Node::$ownerDocument __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
 ### `\Contender\Elements\Document` \Contender\Elements\Node::$owner_document __read only__
-
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 
@@ -3694,6 +3713,11 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 ### `mixed|string|int` \Contender\Elements\Node::$parameter
 
+
+
+
+### `int` \Contender\Elements\Node::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
 
 
 
@@ -3989,7 +4013,7 @@ Replaces a child
 
 
 #### Return Values
-\Contender\Elements\Document
+\Contender\Elements\Document The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
 
 ### See Also

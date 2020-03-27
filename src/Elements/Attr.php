@@ -84,8 +84,8 @@ namespace Contender\Elements;
  * @property-read \Contender\Elements\Node|null first_child Get a first child node.
  * @property-read \Contender\Elements\Node|null lastChild Get a last child node.
  * @property-read \Contender\Elements\Node|null last_child Get a last child node.
- * @property-read \Contender\Elements\Attr|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Attr|null first_element_child The first child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null first_element_child The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
@@ -96,13 +96,14 @@ namespace Contender\Elements;
  * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
  * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
- * @property-read \Contender\Elements\Document ownerDocument
- * @property-read \Contender\Elements\Document owner_document
+ * @property-read \Contender\Elements\Document ownerDocument The {@link \Contender\Elements\Document} object associated with this node
+ * @property-read \Contender\Elements\Document owner_document The {@link \Contender\Elements\Document} object associated with this node
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
  * @property mixed|string|int parameter
  * @property bool schemaTypeInfo Not implemented yet, always is NULL
  * @property bool specified Not implemented yet, always is NULL
+ * @property int nodeType Gets the type of the node. One of the predefined XML_xxx_NODE constants
  * @property string nodeValue The value of this node, depending on its type
  * @property string|null namespaceURI The namespace URI of this node, or NULL if it is unspecified.
  * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.

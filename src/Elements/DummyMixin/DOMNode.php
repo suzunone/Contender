@@ -19,6 +19,11 @@ namespace Contender\Elements\DummyMixin;
 class DOMNode
 {
     /**
+     * @var int
+     * Gets the type of the node. One of the predefined XML_xxx_NODE constants
+     */
+    public $nodeType;
+    /**
      * @var string
      * Returns the most accurate name for the current node type
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.nodename
