@@ -230,5 +230,4 @@ trait NodeTrait
     {
         return $this->element;
     }
-
 }

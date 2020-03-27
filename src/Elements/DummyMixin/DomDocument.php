@@ -18,7 +18,6 @@
 
 namespace Contender\Elements\DummyMixin;
 
-
 class DomDocument extends DOMNode
 {
     /**
@@ -36,7 +35,6 @@ class DomDocument extends DOMNode
      * @deprecated
      */
     public $config;
-
 
     /**
      * @var string|null
@@ -136,5 +134,4 @@ class DomDocument extends DOMNode
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.xmlversion
      */
     public $xmlVersion;
-
 }

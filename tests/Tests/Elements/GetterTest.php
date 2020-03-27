@@ -51,9 +51,7 @@ class GetterTest extends TestCase
         $element = $document->querySelector('div');
         $this->assertNull($element->firstChild);
         $this->assertNull($element->lastChild);
-
     }
-
 
     public function test_getFirstElementChildAttribute_getLastElementChildAttribute()
     {
@@ -66,7 +64,6 @@ class GetterTest extends TestCase
         $element = $document->querySelector('div');
         $this->assertNull($element->firstChild);
         $this->assertNull($element->lastChild);
-
     }
 
     public function test_getChildrenAttribute_empty()
@@ -135,7 +132,6 @@ Take a look athow this textis interpreted
 HTMLEND;
 
         $this->assertEquals($expect, $document->querySelector('body')->innerHTML);
-
     }
 
     /**
@@ -147,7 +143,6 @@ HTMLEND;
         $document = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
 
         $element = $document->getElementById('source');
-
 
         $context = <<<CONTEXT
 
@@ -171,7 +166,6 @@ INNERTEXT;
         $this->assertEquals($innerText, $element->innerText);
     }
 
-
     public function test_getParameterAttribute()
     {
         $document = Contender::loadUrl(__DIR__ . '/../../data/wikipedia.html');
@@ -188,10 +182,10 @@ INNERTEXT;
         $document = Contender::loadStr($html);
         $document->formatOutput = false;
 
-        $this->assertStringContainsString($html, (string)$document);
+        $this->assertStringContainsString($html, (string) $document);
         $document->formatOutput = true;
 
-        $this->assertStringNotContainsString($html, (string)$document);
+        $this->assertStringNotContainsString($html, (string) $document);
     }
 
     public function test_hasParameterAttribute()
@@ -201,9 +195,7 @@ INNERTEXT;
         $this->assertTrue(isset($document->formatOutput));
         $this->assertTrue(isset($document->innerHTML));
         $this->assertFalse(isset($document->asfasdfaas));
-
     }
-
 
     public function innerhtmlDataProvider()
     {
@@ -408,6 +400,4 @@ INNERTEXT;
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_NOTATION_NODE);
         $this->assertTrue($node->is_notation);
     }
-
-
 }

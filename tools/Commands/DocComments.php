@@ -127,7 +127,6 @@ EOT
             }
         }
 
-
         if (preg_match_all('/@mixin +(.*)/u', $now_doc, $mixins)) {
             foreach ($mixins[1] as $mixin) {
                 $mixinClass = new ReflectionClass($mixin);
@@ -137,17 +136,15 @@ EOT
                     }
                     $annotate = ' * @property ';
                     mb_ereg('@var ([^\n]*)', $refPro->getDocComment(), $match);
-                    $match = preg_split('/ +/', ($match[1]??''));
-                    $annotate .= (trim($match[0])?:'mixin') . ' ' . $refPro->name . ' ';
+                    $match = preg_split('/ +/', ($match[1] ?? ''));
+                    $annotate .= (trim($match[0]) ?: 'mixin') . ' ' . $refPro->name . ' ';
 
                     mb_ereg(' \\* ([^@\n]+)', $refPro->getDocComment(), $match);
 
-                    $annotates[$refPro->name] = $annotate.($match[1]??'');
-
+                    $annotates[$refPro->name] = $annotate.($match[1] ?? '');
                 }
             }
         }
-
 
         $replacement_doc = preg_replace('/ \* @property(-read)? .*?\n/u', '', $now_doc);
         // $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);

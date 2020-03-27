@@ -16,6 +16,7 @@
  */
 
 namespace Contender\Elements\DummyMixin;
+
 class DOMNode
 {
     /**
@@ -71,5 +72,4 @@ class DOMNode
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.textcontent
      */
     public $textContent;
-
 }

@@ -18,8 +18,6 @@
 
 namespace Contender\Elements\DummyMixin;
 
-
 class DOMNamedNodeMap
 {
-
 }

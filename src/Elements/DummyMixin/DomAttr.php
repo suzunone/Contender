@@ -18,7 +18,6 @@
 
 namespace Contender\Elements\DummyMixin;
 
-
 class DomAttr extends DOMNode
 {
     /**
@@ -48,5 +47,4 @@ class DomAttr extends DOMNode
      * @link https://php.net/manual/en/class.domattr.php#domattr.props.value
      */
     public $value;
-
 }

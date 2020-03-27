@@ -16,6 +16,7 @@
  */
 
 namespace Contender\Elements\DummyMixin;
+
 class DOMElement extends DOMNode
 {
     /**
@@ -31,6 +32,4 @@ class DOMElement extends DOMNode
      * @link  https://php.net/manual/en/class.domelement.php#domelement.props.tagname
      */
     public $tagName;
-
-
 }

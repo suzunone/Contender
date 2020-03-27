@@ -230,7 +230,7 @@ trait GetterTrait
      */
     public function getInnerTextAttribute(): string
     {
-        return (string)$this->element->nodeValue;
+        return (string) $this->element->nodeValue;
     }
 
     /**
@@ -239,7 +239,7 @@ trait GetterTrait
      */
     public function getTextContentAttribute(): string
     {
-        return (string)$this->element->textContent;
+        return (string) $this->element->textContent;
     }
 
     /**
@@ -463,7 +463,6 @@ trait GetterTrait
     {
         return $this->getNextElementSiblingAttribute();
     }
-
 
     /**
      * @return \Contender\Elements\Document The {@link \Contender\Elements\Document} object associated with this node
