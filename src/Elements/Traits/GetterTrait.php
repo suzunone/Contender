@@ -19,6 +19,7 @@ namespace Contender\Elements\Traits;
 use Contender\Contender;
 use Contender\Elements\Collection;
 use Contender\Elements\Document;
+use Contender\Elements\Element;
 use Contender\Elements\Factory;
 use Contender\Elements\Node;
 use DOMDocument;
@@ -41,6 +42,7 @@ use DOMNodeList;
  * @hideDoc
  * @mixin \Contender\Elements\Node
  * @mixin \Contender\Elements\Document
+ * @mixin \Contender\Elements\DummyMixin\DOMNode
  * @property-read bool isElement true if this node is an XML_ELEMENT_NODE
  * @property-read bool is_element true if this node is an XML_ELEMENT_NODE
  * @property-read bool isAttr true if this node is an XML_ATTRIBUTE_NODE
@@ -84,27 +86,32 @@ use DOMNodeList;
  * @property-read \Contender\Elements\Collection children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
  * @property-read \Contender\Elements\Collection childNodes Aliases to children
  * @property-read \Contender\Elements\Collection child_nodes Aliases to children
- * @property-read \Contender\Elements\Node firstChild Get a first child node.
- * @property-read \Contender\Elements\Node first_child Get a first child node.
- * @property-read \Contender\Elements\Node lastChild Get a last child node.
- * @property-read \Contender\Elements\Node last_child Get a last child node.
+ * @property-read \Contender\Elements\Node|null firstChild Get a first child node.
+ * @property-read \Contender\Elements\Node|null first_child Get a first child node.
+ * @property-read \Contender\Elements\Node|null lastChild Get a last child node.
+ * @property-read \Contender\Elements\Node|null last_child Get a last child node.
  * @property-read self|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read self|null first_element_child The first child of this node. If there is no such node, this returns NULL.
- * @property-read self|null parentNode The parent of this node. If there is no such node, this returns NULL.
- * @property-read self|null parent_node The parent of this node. If there is no such node, this returns NULL.
- * @property-read self|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
- * @property-read self|null last_element_child The last child of this node. If there is no such node, this returns NULL.
- * @property-read self|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property-read self|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property-read self|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read self|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read self|null nextSibling Alias to next_element_sibling
- * @property-read self|null next_sibling Alias to next_element_sibling
- * @property-read int nodeType Gets the type of the node.
- * @property-read int node_type Gets the type of the node.
+ * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
+ * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
+ * @property-read \Contender\Elements\Document ownerDocument
+ * @property-read \Contender\Elements\Document owner_document
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
- * @property mixed|string parameter
+ * @property mixed|string|int parameter
+ * @property string nodeValue The value of this node, depending on its type
+ * @property string|null namespaceURI The namespace URI of this node, or NULL if it is unspecified.
+ * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
+ * @property string localName Returns the local part of the qualified name of this node.
+ * @property string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  */
 trait GetterTrait
 {
@@ -258,15 +265,12 @@ trait GetterTrait
 
     /**
      * @param string $html
-     * @return \DOMNode
+     * @return Collection
      */
-    protected function htmlToNode(string $html): DOMNode
+    protected function htmlToNodes(string $html): Collection
     {
-        $newNode = new DOMDocument();
-        $newNode->loadHtml($html, Contender::DEFAULT_LIBXML_OPTION);
-        $newNode = $newNode->getElementsByTagName('body')->item(0)->childNodes->item(0);
-
-        return $this->document()->importNode($newNode, true);
+        $newNode = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
+        return $newNode->querySelector('body')->children;
     }
 
     /**
@@ -275,13 +279,16 @@ trait GetterTrait
      */
     public function setInnerHTMLAttribute(string $html): void
     {
-        $newNode = $this->htmlToNode($html);
+        $newNodes = $this->htmlToNodes($html);
 
         while ($this->element->childNodes->length !== 0) {
             $this->element->removeChild($this->element->childNodes->item($this->element->childNodes->length - 1));
         }
 
-        $this->element->appendChild($newNode);
+        $newNodes->each(function (Node $newNode) {
+            $node = $this->document()->importNode($newNode->nativeNode(), true);
+            $this->element->insertBefore($node);
+        });
     }
 
     /**
@@ -371,7 +378,9 @@ trait GetterTrait
             return Factory::get($this->element->childNodes, $this);
         }
 
+        // @codeCoverageIgnoreStart
         return Collection::make();
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -384,19 +393,19 @@ trait GetterTrait
     }
 
     /**
-     * @return \Contender\Elements\Node Get a first child node.
+     * @return \Contender\Elements\Node|null Get a first child node.
      * @hideDoc
      */
-    public function getFirstChildAttribute(): Node
+    public function getFirstChildAttribute(): ?Node
     {
         return $this->children->first();
     }
 
     /**
-     * @return \Contender\Elements\Node Get a last child node.
+     * @return \Contender\Elements\Node|null Get a last child node.
      * @hideDoc
      */
-    public function getLastChildAttribute(): Node
+    public function getLastChildAttribute(): ?Node
     {
         return $this->children->last();
     }
@@ -407,41 +416,41 @@ trait GetterTrait
      */
     public function getFirstElementChildAttribute(): ?self
     {
-        return $this->createNode($this->element->firstChild);
+        return $this->children->onlyElement()->first();
     }
 
     /**
      * @return static|null The parent of this node. If there is no such node, this returns NULL.
      * @hideDoc
      */
-    public function getParentNodeAttribute(): ?self
+    public function getParentNodeAttribute(): ?Node
     {
-        return $this->createNode($this->element->parentNode);
+        return Factory::get($this->element->parentNode);
     }
 
     /**
      * @return static|null The last child of this node. If there is no such node, this returns NULL.
      * @hideDoc
      */
-    public function getLastElementChildAttribute(): ?self
+    public function getLastElementChildAttribute(): ?Element
     {
-        return $this->createNode($this->element->lastChild);
+        return $this->children->onlyElement()->last();
     }
 
     /**
      * @return static|null The node immediately preceding this node. If there is no such node, this returns NULL.
      * @hideDoc
      */
-    public function getPreviousElementSiblingAttribute(): ?self
+    public function getPreviousElementSiblingAttribute(): ?Node
     {
-        return $this->createNode($this->element->previousSibling);
+        return Factory::get($this->element->previousSibling);
     }
 
     /**
      * @return static|null The node immediately following this node. If there is no such node, this returns NULL.
      * @hideDoc
      */
-    public function getNextElementSiblingAttribute(): ?self
+    public function getNextElementSiblingAttribute(): ?Node
     {
         return $this->createNode($this->element->nextSibling);
     }
@@ -450,18 +459,18 @@ trait GetterTrait
      * @return static|null Alias to next_element_sibling
      * @hideDoc
      */
-    public function getNextSiblingAttribute(): ?self
+    public function getNextSiblingAttribute(): ?Node
     {
         return $this->getNextElementSiblingAttribute();
     }
 
+
     /**
-     * @return int Gets the type of the node.
-     * @hideDoc
+     * @return \Contender\Elements\Document
      */
-    public function getNodeTypeAttribute(): int
+    public function getOwnerDocumentAttribute()
     {
-        return $this->element->nodeType;
+        return Factory::get($this->document(), $this);
     }
 
     /**

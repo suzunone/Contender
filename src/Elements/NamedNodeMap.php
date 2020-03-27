@@ -35,6 +35,7 @@ use Illuminate\Support\Collection;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/25
+ * @mixin \Contender\Elements\DummyMixin\DOMNamedNodeMap
  */
 class NamedNodeMap extends Collection
 {

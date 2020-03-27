@@ -77,27 +77,27 @@ use DOMNode;
  * @property-read \Contender\Elements\Collection children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
  * @property-read \Contender\Elements\Collection childNodes Aliases to children
  * @property-read \Contender\Elements\Collection child_nodes Aliases to children
- * @property-read \Contender\Elements\Node firstChild Get a first child node.
- * @property-read \Contender\Elements\Node first_child Get a first child node.
- * @property-read \Contender\Elements\Node lastChild Get a last child node.
- * @property-read \Contender\Elements\Node last_child Get a last child node.
+ * @property-read \Contender\Elements\Node|null firstChild Get a first child node.
+ * @property-read \Contender\Elements\Node|null first_child Get a first child node.
+ * @property-read \Contender\Elements\Node|null lastChild Get a last child node.
+ * @property-read \Contender\Elements\Node|null last_child Get a last child node.
  * @property-read self|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read self|null first_element_child The first child of this node. If there is no such node, this returns NULL.
- * @property-read self|null parentNode The parent of this node. If there is no such node, this returns NULL.
- * @property-read self|null parent_node The parent of this node. If there is no such node, this returns NULL.
- * @property-read self|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
- * @property-read self|null last_element_child The last child of this node. If there is no such node, this returns NULL.
- * @property-read self|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property-read self|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property-read self|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read self|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read self|null nextSibling Alias to next_element_sibling
- * @property-read self|null next_sibling Alias to next_element_sibling
- * @property-read int nodeType Gets the type of the node.
- * @property-read int node_type Gets the type of the node.
+ * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
+ * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
+ * @property-read \Contender\Elements\Document ownerDocument
+ * @property-read \Contender\Elements\Document owner_document
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
- * @property mixed|string parameter
+ * @property mixed|string|int parameter
  */
 trait NodeTrait
 {
@@ -230,4 +230,5 @@ trait NodeTrait
     {
         return $this->element;
     }
+
 }

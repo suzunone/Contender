@@ -16,6 +16,7 @@
 
 namespace Contender\Elements\Traits;
 
+use Contender\Elements\Factory;
 use Illuminate\Support\Str;
 
 /**
@@ -32,7 +33,7 @@ use Illuminate\Support\Str;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @hideDoc
- * @property mixed|string parameter
+ * @property mixed|string|int parameter
  */
 trait MutationTrait
 {
@@ -91,13 +92,15 @@ trait MutationTrait
 
     /**
      * @param string $name
-     * @return mixed|string
+     * @return mixed|string|int
      */
     public function getParameterAttribute(string $name)
     {
         $name = Str::camel($name);
 
-        return $this->element->$name;
+        $res = $this->element->$name;
+
+        return is_object($res) ? Factory::get($res, $this) : $res;
     }
 
     /**

@@ -102,7 +102,7 @@ class Collection extends \Illuminate\Support\Collection
      */
     public function sortDom()
     {
-        return $this->sort(function (Node $item_a, Node $item_b) {
+        return $this->sort(static function (Node $item_a, Node $item_b) {
             $line_no_a = $item_a->lineNo;
             $line_no_b = $item_b->lineNo;
 

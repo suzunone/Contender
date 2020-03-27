@@ -89,13 +89,13 @@ class CollectionTest extends TestCase
 
         $element->innerXML = 'cccc<br />ddd';
 
-        $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
-        $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
+        $this->assertEquals('cccc<br/>ddd', $document->querySelector('div')->innerXML);
+        $this->assertEquals('cccc<br>ddd', $document->querySelector('div')->innerHTML);
 
         $element->innerHTML = 'eeee<br />ffff';
 
-        $this->assertEquals('<p>eeee<br/>ffff</p>', $document->querySelector('div')->innerXML);
-        $this->assertEquals('<p>eeee<br>ffff</p>', $document->querySelector('div')->innerHTML);
+        $this->assertEquals('eeee<br/>ffff', $document->querySelector('div')->innerXML);
+        $this->assertEquals('eeee<br>ffff', $document->querySelector('div')->innerHTML);
 
         $this->assertTrue(isset($element->innerHTML));
         $this->assertTrue(isset($element->innerXML));

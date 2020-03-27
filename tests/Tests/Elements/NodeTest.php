@@ -144,8 +144,8 @@ class NodeTest extends TestCase
 
         $element->innerXML = 'cccc<br />ddd';
 
-        $this->assertEquals('<p>cccc<br/>ddd</p>', $document->querySelector('div')->innerXML);
-        $this->assertEquals('<p>cccc<br>ddd</p>', $document->querySelector('div')->innerHTML);
+        $this->assertEquals('cccc<br/>ddd', $document->querySelector('div')->innerXML);
+        $this->assertEquals('cccc<br>ddd', $document->querySelector('div')->innerHTML);
     }
 
     public function test_removeChild()

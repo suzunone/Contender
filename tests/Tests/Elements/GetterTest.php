@@ -19,7 +19,6 @@ namespace Tests\Suzunone\Contender\Elements;
 
 use Contender\Contender;
 use Contender\Elements\Node;
-use Mockery\Mock;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,12 +34,144 @@ use PHPUnit\Framework\TestCase;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
- * @covers \Contender\Elements\Traits\GetterTrait
- * @covers \Contender\Elements\Traits\MutationTrait
- * @covers \Contender\Elements\Factory
+ * @covers     \Contender\Elements\Traits\GetterTrait
+ * @covers     \Contender\Elements\Traits\MutationTrait
+ * @covers     \Contender\Elements\Factory
  */
 class GetterTest extends TestCase
 {
+    public function test_getFirstChildAttribute_getLastChildAttribute()
+    {
+        $document = Contender::loadStr('<div>aaa<br><ul><li>list text</li></ul>bbb</div>');
+        $element = $document->querySelector('div');
+        $this->assertEquals('aaa', $element->firstChild->outerHTML);
+        $this->assertEquals('bbb', $element->lastChild->outerHTML);
+
+        $document = Contender::loadStr('<div></div>');
+        $element = $document->querySelector('div');
+        $this->assertNull($element->firstChild);
+        $this->assertNull($element->lastChild);
+
+    }
+
+
+    public function test_getFirstElementChildAttribute_getLastElementChildAttribute()
+    {
+        $document = Contender::loadStr('<div>aaa<br><ul><li>list text</li></ul><p>last text</p>bbb</div>');
+        $element = $document->querySelector('div');
+        $this->assertEquals('<br>', $element->firstElementChild->outerHTML);
+        $this->assertEquals('<p>last text</p>', $element->lastElementChild->outerHTML);
+
+        $document = Contender::loadStr('<div></div>');
+        $element = $document->querySelector('div');
+        $this->assertNull($element->firstChild);
+        $this->assertNull($element->lastChild);
+
+    }
+
+    public function test_getChildrenAttribute_empty()
+    {
+        $document = Contender::loadStr('<div></div>');
+        $element = $document->querySelector('div');
+
+        $this->assertCount(0, $element->children);
+    }
+
+    public function innerTextDataProvider()
+    {
+        $html = <<<ENDHTML
+<h3>Source element:</h3>
+<p id="source">
+  <style>#source { color: red; }</style>
+Take a look at<br>how this text<br>is interpreted
+       below.
+  <span style="display:none">○△■</span>
+</p>
+<h3>Result of textContent:</h3>
+<textarea id="textContentOutput" rows="6" cols="30" readonly>...</textarea>
+<h3>Result of innerText:</h3>
+<textarea id="innerTextOutput" rows="6" cols="30" readonly>...</textarea>
+ENDHTML;
+
+        return [[$html]];
+    }
+
+    /**
+     * @param $html
+     * @dataProvider innerTextDataProvider
+     */
+    public function test_setInnerTextAttribute($html)
+    {
+        $document = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
+
+        $element = $document->getElementById('source');
+        $textContentOutput = $document->getElementById('textContentOutput');
+        $innerTextOutput = $document->getElementById('innerTextOutput');
+        $textContentOutput->innerHTML = $element->textContent;
+        $innerTextOutput->innerHTML = $element->innerText;
+
+        $expect = <<<HTMLEND
+<h3>Source element:</h3>
+<p id="source">
+  <style>#source { color: red; }</style>
+Take a look at<br>how this text<br>is interpreted
+       below.
+  <span style="display:none">○△■</span>
+</p>
+<h3>Result of textContent:</h3>
+<textarea id="textContentOutput" rows="6" cols="30" readonly>
+  #source { color: red; }
+Take a look athow this textis interpreted
+       below.
+  ○△■
+</textarea>
+<h3>Result of innerText:</h3>
+<textarea id="innerTextOutput" rows="6" cols="30" readonly>
+  #source { color: red; }
+Take a look athow this textis interpreted
+       below.
+  ○△■
+</textarea>
+HTMLEND;
+
+        $this->assertEquals($expect, $document->querySelector('body')->innerHTML);
+
+    }
+
+    /**
+     * @param $html
+     * @dataProvider innerTextDataProvider
+     */
+    public function test_getInnerTextAttribute_getTextContentAttribute($html)
+    {
+        $document = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
+
+        $element = $document->getElementById('source');
+
+
+        $context = <<<CONTEXT
+
+  #source { color: red; }
+Take a look athow this textis interpreted
+       below.
+  ○△■
+
+CONTEXT;
+
+        $innerText = <<<INNERTEXT
+
+  #source { color: red; }
+Take a look athow this textis interpreted
+       below.
+  ○△■
+
+INNERTEXT;
+
+        $this->assertEquals($context, $element->textContent);
+        $this->assertEquals($innerText, $element->innerText);
+    }
+
+
     public function test_getParameterAttribute()
     {
         $document = Contender::loadUrl(__DIR__ . '/../../data/wikipedia.html');
@@ -72,8 +203,6 @@ class GetterTest extends TestCase
         $this->assertFalse(isset($document->asfasdfaas));
 
     }
-
-
 
 
     public function innerhtmlDataProvider()
@@ -232,54 +361,53 @@ class GetterTest extends TestCase
     public function test_nodeType()
     {
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ELEMENT_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_ELEMENT_NODE);
         $this->assertTrue($node->is_element);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ATTRIBUTE_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_ATTRIBUTE_NODE);
         $this->assertTrue($node->is_attr);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_TEXT_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_TEXT_NODE);
         $this->assertTrue($node->is_text);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_CDATA_SECTION_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_CDATA_SECTION_NODE);
         $this->assertTrue($node->is_character_data);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ENTITY_REF_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_ENTITY_REF_NODE);
         $this->assertTrue($node->is_entity_reference);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_ENTITY_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_ENTITY_NODE);
         $this->assertTrue($node->is_entity);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_PI_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_PI_NODE);
         $this->assertTrue($node->is_processing_instruction);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_COMMENT_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_COMMENT_NODE);
         $this->assertTrue($node->is_comment);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_DOCUMENT_NODE);
         $this->assertTrue($node->is_document);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_TYPE_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_DOCUMENT_TYPE_NODE);
         $this->assertTrue($node->is_document_type);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_DOCUMENT_FRAG_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_DOCUMENT_FRAG_NODE);
         $this->assertTrue($node->is_document_fragment);
 
         $node = \Mockery::mock(Node::class)->makePartial();
-        $node->shouldReceive('getNodeTypeAttribute')->andReturn(XML_NOTATION_NODE);
+        $node->shouldReceive('getParameterAttribute')->andReturn(XML_NOTATION_NODE);
         $this->assertTrue($node->is_notation);
     }
-
 
 
 }

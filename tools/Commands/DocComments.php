@@ -110,7 +110,7 @@ EOT
             $document = $method->getDocComment();
             $default_comment = '';
             if (preg_match('/@return +[^\s]+( [^\n]*)/u', $document, $return_annotate_match)) {
-                $default_comment = ' '.trim($return_annotate_match[1]);
+                $default_comment = ' ' . trim($return_annotate_match[1]);
             }
 
             $annotate = ' * @property';
@@ -127,17 +127,27 @@ EOT
             }
         }
 
-        /*
-        if (preg_match_all('/@mixin-property +(.*)/u', $now_doc, $mixins)) {
+
+        if (preg_match_all('/@mixin +(.*)/u', $now_doc, $mixins)) {
             foreach ($mixins[1] as $mixin) {
                 $mixinClass = new ReflectionClass($mixin);
-                dump($mixinClass->getProperties());
                 foreach ($mixinClass->getProperties(ReflectionProperty::IS_PUBLIC) as $refPro) {
-                    dump($refPro);
+                    if (isset($annotates[$refPro->name])) {
+                        continue;
+                    }
+                    $annotate = ' * @property ';
+                    mb_ereg('@var ([^\n]*)', $refPro->getDocComment(), $match);
+                    $match = preg_split('/ +/', ($match[1]??''));
+                    $annotate .= (trim($match[0])?:'mixin') . ' ' . $refPro->name . ' ';
+
+                    mb_ereg(' \\* ([^@\n]+)', $refPro->getDocComment(), $match);
+
+                    $annotates[$refPro->name] = $annotate.($match[1]??'');
+
                 }
             }
         }
-        */
+
 
         $replacement_doc = preg_replace('/ \* @property(-read)? .*?\n/u', '', $now_doc);
         // $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);

@@ -37,6 +37,7 @@ use DOMText;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @isdoc
+ * @mixin \Contender\Elements\DummyMixin\DOMNode
  * @property-read bool isElement true if this node is an XML_ELEMENT_NODE
  * @property-read bool is_element true if this node is an XML_ELEMENT_NODE
  * @property-read bool isAttr true if this node is an XML_ATTRIBUTE_NODE
@@ -80,27 +81,32 @@ use DOMText;
  * @property-read \Contender\Elements\Collection children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
  * @property-read \Contender\Elements\Collection childNodes Aliases to children
  * @property-read \Contender\Elements\Collection child_nodes Aliases to children
- * @property-read \Contender\Elements\Node firstChild Get a first child node.
- * @property-read \Contender\Elements\Node first_child Get a first child node.
- * @property-read \Contender\Elements\Node lastChild Get a last child node.
- * @property-read \Contender\Elements\Node last_child Get a last child node.
+ * @property-read \Contender\Elements\Node|null firstChild Get a first child node.
+ * @property-read \Contender\Elements\Node|null first_child Get a first child node.
+ * @property-read \Contender\Elements\Node|null lastChild Get a last child node.
+ * @property-read \Contender\Elements\Node|null last_child Get a last child node.
  * @property-read \Contender\Elements\Node|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null first_element_child The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null last_element_child The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
+ * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
  * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
- * @property-read int nodeType Gets the type of the node.
- * @property-read int node_type Gets the type of the node.
+ * @property-read \Contender\Elements\Document ownerDocument
+ * @property-read \Contender\Elements\Document owner_document
  * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string node_name Returns the most accurate name for the current node type
- * @property mixed|string parameter
+ * @property mixed|string|int parameter
+ * @property string nodeValue The value of this node, depending on its type
+ * @property string|null namespaceURI The namespace URI of this node, or NULL if it is unspecified.
+ * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
+ * @property string localName Returns the local part of the qualified name of this node.
+ * @property string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  */
 class Node implements ElementInterface
 {

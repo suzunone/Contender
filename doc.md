@@ -446,7 +446,14 @@ Contender\Elements\Attr {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
-    public mixed|string $parameter ;
+    public mixed|string|int $parameter ;
+    public bool $schemaTypeInfo ;
+    public bool $specified ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
     public string $name ;
     public \Contender\Elements\Element $ownerElement ;
     public \Contender\Elements\Element $owner_element ;
@@ -489,24 +496,24 @@ Contender\Elements\Attr {
     public \Contender\Elements\Collection $children ;
     public \Contender\Elements\Collection $childNodes ;
     public \Contender\Elements\Collection $child_nodes ;
-    public \Contender\Elements\Node $firstChild ;
-    public \Contender\Elements\Node $first_child ;
-    public \Contender\Elements\Node $lastChild ;
-    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Attr|null $firstElementChild ;
     public \Contender\Elements\Attr|null $first_element_child ;
-    public \Contender\Elements\Attr|null $parentNode ;
-    public \Contender\Elements\Attr|null $parent_node ;
-    public \Contender\Elements\Attr|null $lastElementChild ;
-    public \Contender\Elements\Attr|null $last_element_child ;
-    public \Contender\Elements\Attr|null $previousElementSibling ;
-    public \Contender\Elements\Attr|null $previous_element_sibling ;
-    public \Contender\Elements\Attr|null $nextElementSibling ;
-    public \Contender\Elements\Attr|null $next_element_sibling ;
-    public \Contender\Elements\Attr|null $nextSibling ;
-    public \Contender\Elements\Attr|null $next_sibling ;
-    public int $nodeType ;
-    public int $node_type ;
+    public \Contender\Elements\Node|null $parentNode ;
+    public \Contender\Elements\Node|null $parent_node ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Node|null $nextSibling ;
+    public \Contender\Elements\Node|null $next_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
     public string $nodeName ;
     public string $node_name ;
 
@@ -740,22 +747,22 @@ Aliases to children
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Attr::$firstChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$firstChild __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Attr::$first_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$first_child __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Attr::$lastChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$lastChild __read only__
 Get a last child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Attr::$last_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$last_child __read only__
 Get a last child node.
 
 
@@ -770,63 +777,63 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$parentNode __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$parentNode __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$parent_node __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$parent_node __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$lastElementChild __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Attr::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$last_element_child __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Attr::$last_element_child __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$previousElementSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$previousElementSibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$previous_element_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$previous_element_sibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$nextElementSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$nextElementSibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$next_element_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$next_element_sibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$nextSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$nextSibling __read only__
 Alias to next_element_sibling
 
 
 
-### `\Contender\Elements\Attr|null` \Contender\Elements\Attr::$next_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$next_sibling __read only__
 Alias to next_element_sibling
 
 
 
-### `int` \Contender\Elements\Attr::$nodeType __read only__
-Gets the type of the node.
+### `\Contender\Elements\Document` \Contender\Elements\Attr::$ownerDocument __read only__
 
 
 
-### `int` \Contender\Elements\Attr::$node_type __read only__
-Gets the type of the node.
+
+### `\Contender\Elements\Document` \Contender\Elements\Attr::$owner_document __read only__
+
 
 
 
@@ -865,8 +872,43 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
-### `mixed|string` \Contender\Elements\Attr::$parameter
+### `mixed|string|int` \Contender\Elements\Attr::$parameter
 
+
+
+
+### `bool` \Contender\Elements\Attr::$schemaTypeInfo
+Not implemented yet, always is NULL
+
+
+
+### `bool` \Contender\Elements\Attr::$specified
+Not implemented yet, always is NULL
+
+
+
+### `string` \Contender\Elements\Attr::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\Attr::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\Attr::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\Attr::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\Attr::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
 
 
 
@@ -1262,7 +1304,30 @@ Contender\Elements\Document {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
-    public mixed|string $parameter ;
+    public mixed|string|int $parameter ;
+    public string $actualEncoding ;
+    public \DOMConfiguration $config ;
+    public string|null $documentURI ;
+    public string $encoding ;
+    public bool $formatOutput ;
+    public bool $preserveWhiteSpace ;
+    public bool $recover ;
+    public bool $resolveExternals ;
+    public bool $standalone ;
+    public bool $strictErrorChecking ;
+    public bool $substituteEntities ;
+    public bool $validateOnParse ;
+    public string $version ;
+    public string $xmlEncoding ;
+    public bool $xmlStandalone ;
+    public string $xmlVersion ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
+    public \Contender\Elements\Element $documentElement ;
+    public \Contender\Elements\Element $document_element ;
     public bool $isElement ;
     public bool $is_element ;
     public bool $isAttr ;
@@ -1302,29 +1367,30 @@ Contender\Elements\Document {
     public \Contender\Elements\Collection $children ;
     public \Contender\Elements\Collection $childNodes ;
     public \Contender\Elements\Collection $child_nodes ;
-    public \Contender\Elements\Node $firstChild ;
-    public \Contender\Elements\Node $first_child ;
-    public \Contender\Elements\Node $lastChild ;
-    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Document|null $firstElementChild ;
     public \Contender\Elements\Document|null $first_element_child ;
-    public \Contender\Elements\Document|null $parentNode ;
-    public \Contender\Elements\Document|null $parent_node ;
-    public \Contender\Elements\Document|null $lastElementChild ;
-    public \Contender\Elements\Document|null $last_element_child ;
-    public \Contender\Elements\Document|null $previousElementSibling ;
-    public \Contender\Elements\Document|null $previous_element_sibling ;
-    public \Contender\Elements\Document|null $nextElementSibling ;
-    public \Contender\Elements\Document|null $next_element_sibling ;
-    public \Contender\Elements\Document|null $nextSibling ;
-    public \Contender\Elements\Document|null $next_sibling ;
-    public int $nodeType ;
-    public int $node_type ;
+    public \Contender\Elements\Node|null $parentNode ;
+    public \Contender\Elements\Node|null $parent_node ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Node|null $nextSibling ;
+    public \Contender\Elements\Node|null $next_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
     public string $nodeName ;
     public string $node_name ;
 
     /* Methods */
     public __construct (DOMDocument $element) : void
+    public getDocumentElementAttribute () : \Contender\Elements\Element
     public createElement (string $name, [?string $value = null]) : \Contender\Elements\Element
     public createComment (string $value) : \Contender\Elements\Node
     public createTextNode (string $value) : \Contender\Elements\Node
@@ -1341,8 +1407,9 @@ Contender\Elements\Document {
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public getOwnerDocumentAttribute () : \Contender\Elements\Document
     public setParameterAttribute (string $name, ?mixed $value = NULL) : mixed
-    public getParameterAttribute (string $name) : mixed|string
+    public getParameterAttribute (string $name) : mixed|string|int
     public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Elements\Node|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
@@ -1368,6 +1435,16 @@ Constants
 
 Properties
 ----------------------------
+
+### `\Contender\Elements\Element` \Contender\Elements\Document::$documentElement __read only__
+
+
+
+
+### `\Contender\Elements\Element` \Contender\Elements\Document::$document_element __read only__
+
+
+
 
 ### `bool` \Contender\Elements\Document::$isElement __read only__
 true if this node is an XML_ELEMENT_NODE
@@ -1564,22 +1641,22 @@ Aliases to children
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Document::$firstChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$firstChild __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Document::$first_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$first_child __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Document::$lastChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$lastChild __read only__
 Get a last child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Document::$last_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$last_child __read only__
 Get a last child node.
 
 
@@ -1594,63 +1671,63 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$parentNode __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$parentNode __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$parent_node __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$parent_node __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$lastElementChild __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Document::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$last_element_child __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Document::$last_element_child __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$previousElementSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$previousElementSibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$previous_element_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$previous_element_sibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$nextElementSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$nextElementSibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$next_element_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$next_element_sibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$nextSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$nextSibling __read only__
 Alias to next_element_sibling
 
 
 
-### `\Contender\Elements\Document|null` \Contender\Elements\Document::$next_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Document::$next_sibling __read only__
 Alias to next_element_sibling
 
 
 
-### `int` \Contender\Elements\Document::$nodeType __read only__
-Gets the type of the node.
+### `\Contender\Elements\Document` \Contender\Elements\Document::$ownerDocument __read only__
 
 
 
-### `int` \Contender\Elements\Document::$node_type __read only__
-Gets the type of the node.
+
+### `\Contender\Elements\Document` \Contender\Elements\Document::$owner_document __read only__
+
 
 
 
@@ -1684,8 +1761,113 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
-### `mixed|string` \Contender\Elements\Document::$parameter
+### `mixed|string|int` \Contender\Elements\Document::$parameter
 
+
+
+
+### `string` \Contender\Elements\Document::$actualEncoding
+Deprecated. Actual encoding of the document, is a readonly equivalent to encoding.
+
+
+
+### `\DOMConfiguration` \Contender\Elements\Document::$config
+Deprecated. Configuration used when {
+
+
+
+### `string|null` \Contender\Elements\Document::$documentURI
+The location of the document or NULL if undefined.
+
+
+
+### `string` \Contender\Elements\Document::$encoding
+Encoding of the document, as specified by the XML declaration. This attribute is not present in the final DOM Level 3 specification, but is the only way of manipulating XML document encoding in this implementation.
+
+
+
+### `bool` \Contender\Elements\Document::$formatOutput
+Nicely formats output with indentation and extra space.
+
+
+
+### `bool` \Contender\Elements\Document::$preserveWhiteSpace
+Do not remove redundant white space. Default to TRUE.
+
+
+
+### `bool` \Contender\Elements\Document::$recover
+Proprietary. Enables recovery mode, i.e. trying to parse non-well formed documents.This attribute is not part of the DOM specification and is specific to libxml.
+
+
+
+### `bool` \Contender\Elements\Document::$resolveExternals
+Set it to TRUE to load external entities from a doctype declaration. This is useful for including character entities in your XML document.
+
+
+
+### `bool` \Contender\Elements\Document::$standalone
+Deprecated. Whether or not the document is standalone, as specified by the XML declaration,corresponds to xmlStandalone.
+
+
+
+### `bool` \Contender\Elements\Document::$strictErrorChecking
+Throws <classname>DOMException</classname> on errors. Default to TRUE.
+
+
+
+### `bool` \Contender\Elements\Document::$substituteEntities
+Proprietary. Whether or not to substitute entities. This attribute is not part of the DOMspecification and is specific to libxml.
+
+
+
+### `bool` \Contender\Elements\Document::$validateOnParse
+Loads and validates against the DTD. Default to FALSE.
+
+
+
+### `string` \Contender\Elements\Document::$version
+Deprecated. Version of XML, corresponds to xmlVersion
+
+
+
+### `string` \Contender\Elements\Document::$xmlEncoding
+An attribute specifying, as part of the XML declaration, the encoding of this document. This is NULL whenunspecified or when it is not known, such as when the Document was created in memory.
+
+
+
+### `bool` \Contender\Elements\Document::$xmlStandalone
+An attribute specifying, as part of the XML declaration, whether this document is standalone.This is FALSE when unspecified.
+
+
+
+### `string` \Contender\Elements\Document::$xmlVersion
+An attribute specifying, as part of the XML declaration, the version number of this document. If there is nodeclaration and if this document supports the "XML" feature, the value is "1.0".
+
+
+
+### `string` \Contender\Elements\Document::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\Document::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\Document::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\Document::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\Document::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
 
 
 
@@ -1710,6 +1892,21 @@ Node constructor.
 
 #### Return Values
 void
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::getDocumentElementAttribute()
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Contender\Elements\Element
 
 
 ### See Also
@@ -2059,6 +2256,21 @@ Replaces a child
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
 
 
+### \Contender\Elements\Document::getOwnerDocumentAttribute()
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Contender\Elements\Document
+
+
+### See Also
+None
+
 ### \Contender\Elements\Document::setParameterAttribute(string $name, mixed|null $value)
 
 
@@ -2095,7 +2307,7 @@ None
 
 
 #### Return Values
-mixed|string
+mixed|string|int
 
 
 ### See Also
@@ -2349,7 +2561,14 @@ Contender\Elements\Element {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
-    public mixed|string $parameter ;
+    public mixed|string|int $parameter ;
+    public bool $schemaTypeInfo ;
+    public string $tagName ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
     public \Contender\Elements\NamedNodeMap $attributes ;
     public bool $isElement ;
     public bool $is_element ;
@@ -2390,24 +2609,24 @@ Contender\Elements\Element {
     public \Contender\Elements\Collection $children ;
     public \Contender\Elements\Collection $childNodes ;
     public \Contender\Elements\Collection $child_nodes ;
-    public \Contender\Elements\Node $firstChild ;
-    public \Contender\Elements\Node $first_child ;
-    public \Contender\Elements\Node $lastChild ;
-    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Element|null $firstElementChild ;
     public \Contender\Elements\Element|null $first_element_child ;
-    public \Contender\Elements\Element|null $parentNode ;
-    public \Contender\Elements\Element|null $parent_node ;
+    public \Contender\Elements\Node|null $parentNode ;
+    public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
     public \Contender\Elements\Element|null $last_element_child ;
-    public \Contender\Elements\Element|null $previousElementSibling ;
-    public \Contender\Elements\Element|null $previous_element_sibling ;
-    public \Contender\Elements\Element|null $nextElementSibling ;
-    public \Contender\Elements\Element|null $next_element_sibling ;
-    public \Contender\Elements\Element|null $nextSibling ;
-    public \Contender\Elements\Element|null $next_sibling ;
-    public int $nodeType ;
-    public int $node_type ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Node|null $nextSibling ;
+    public \Contender\Elements\Node|null $next_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
     public string $nodeName ;
     public string $node_name ;
 
@@ -2633,22 +2852,22 @@ Aliases to children
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Element::$firstChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$firstChild __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Element::$first_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$first_child __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Element::$lastChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$lastChild __read only__
 Get a last child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Element::$last_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$last_child __read only__
 Get a last child node.
 
 
@@ -2663,12 +2882,12 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$parentNode __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$parentNode __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$parent_node __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$parent_node __read only__
 The parent of this node. If there is no such node, this returns NULL.
 
 
@@ -2683,43 +2902,43 @@ The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$previousElementSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$previousElementSibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$previous_element_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$previous_element_sibling __read only__
 The node immediately preceding this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$nextElementSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$nextElementSibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$next_element_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$next_element_sibling __read only__
 The node immediately following this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$nextSibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$nextSibling __read only__
 Alias to next_element_sibling
 
 
 
-### `\Contender\Elements\Element|null` \Contender\Elements\Element::$next_sibling __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Element::$next_sibling __read only__
 Alias to next_element_sibling
 
 
 
-### `int` \Contender\Elements\Element::$nodeType __read only__
-Gets the type of the node.
+### `\Contender\Elements\Document` \Contender\Elements\Element::$ownerDocument __read only__
 
 
 
-### `int` \Contender\Elements\Element::$node_type __read only__
-Gets the type of the node.
+
+### `\Contender\Elements\Document` \Contender\Elements\Element::$owner_document __read only__
+
 
 
 
@@ -2753,8 +2972,43 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
-### `mixed|string` \Contender\Elements\Element::$parameter
+### `mixed|string|int` \Contender\Elements\Element::$parameter
 
+
+
+
+### `bool` \Contender\Elements\Element::$schemaTypeInfo
+Not implemented yet, always return NULL
+
+
+
+### `string` \Contender\Elements\Element::$tagName
+The element name
+
+
+
+### `string` \Contender\Elements\Element::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\Element::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\Element::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\Element::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\Element::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
 
 
 
@@ -3015,7 +3269,12 @@ Contender\Elements\Node {
     public string $inner_h_t_m_l ;
     public string $innerXML ;
     public string $inner_x_m_l ;
-    public mixed|string $parameter ;
+    public mixed|string|int $parameter ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
     public bool $isElement ;
     public bool $is_element ;
     public bool $isAttr ;
@@ -3055,24 +3314,24 @@ Contender\Elements\Node {
     public \Contender\Elements\Collection $children ;
     public \Contender\Elements\Collection $childNodes ;
     public \Contender\Elements\Collection $child_nodes ;
-    public \Contender\Elements\Node $firstChild ;
-    public \Contender\Elements\Node $first_child ;
-    public \Contender\Elements\Node $lastChild ;
-    public \Contender\Elements\Node $last_child ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Node|null $firstElementChild ;
     public \Contender\Elements\Node|null $first_element_child ;
     public \Contender\Elements\Node|null $parentNode ;
     public \Contender\Elements\Node|null $parent_node ;
-    public \Contender\Elements\Node|null $lastElementChild ;
-    public \Contender\Elements\Node|null $last_element_child ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
     public \Contender\Elements\Node|null $previousElementSibling ;
     public \Contender\Elements\Node|null $previous_element_sibling ;
     public \Contender\Elements\Node|null $nextElementSibling ;
     public \Contender\Elements\Node|null $next_element_sibling ;
     public \Contender\Elements\Node|null $nextSibling ;
     public \Contender\Elements\Node|null $next_sibling ;
-    public int $nodeType ;
-    public int $node_type ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
     public string $nodeName ;
     public string $node_name ;
 
@@ -3089,8 +3348,9 @@ Contender\Elements\Node {
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
+    public getOwnerDocumentAttribute () : \Contender\Elements\Document
     public setParameterAttribute (string $name, ?mixed $value = NULL) : mixed
-    public getParameterAttribute (string $name) : mixed|string
+    public getParameterAttribute (string $name) : mixed|string|int
     public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Elements\Node|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
@@ -3312,22 +3572,22 @@ Aliases to children
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Node::$firstChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Node::$firstChild __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Node::$first_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Node::$first_child __read only__
 Get a first child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Node::$lastChild __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Node::$lastChild __read only__
 Get a last child node.
 
 
 
-### `\Contender\Elements\Node` \Contender\Elements\Node::$last_child __read only__
+### `\Contender\Elements\Node|null` \Contender\Elements\Node::$last_child __read only__
 Get a last child node.
 
 
@@ -3352,12 +3612,12 @@ The parent of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$lastElementChild __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Node::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$last_element_child __read only__
+### `\Contender\Elements\Element|null` \Contender\Elements\Node::$last_element_child __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
 
@@ -3392,13 +3652,13 @@ Alias to next_element_sibling
 
 
 
-### `int` \Contender\Elements\Node::$nodeType __read only__
-Gets the type of the node.
+### `\Contender\Elements\Document` \Contender\Elements\Node::$ownerDocument __read only__
 
 
 
-### `int` \Contender\Elements\Node::$node_type __read only__
-Gets the type of the node.
+
+### `\Contender\Elements\Document` \Contender\Elements\Node::$owner_document __read only__
+
 
 
 
@@ -3432,8 +3692,33 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 
 
-### `mixed|string` \Contender\Elements\Node::$parameter
+### `mixed|string|int` \Contender\Elements\Node::$parameter
 
+
+
+
+### `string` \Contender\Elements\Node::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\Node::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\Node::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\Node::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\Node::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
 
 
 
@@ -3695,6 +3980,21 @@ Replaces a child
  - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>
 
 
+### \Contender\Elements\Node::getOwnerDocumentAttribute()
+
+
+
+
+#### Parameters
+
+
+#### Return Values
+\Contender\Elements\Document
+
+
+### See Also
+None
+
 ### \Contender\Elements\Node::setParameterAttribute(string $name, mixed|null $value)
 
 
@@ -3731,7 +4031,7 @@ None
 
 
 #### Return Values
-mixed|string
+mixed|string|int
 
 
 ### See Also
