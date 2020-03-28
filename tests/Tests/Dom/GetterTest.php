@@ -21,6 +21,7 @@ use Contender\Contender;
 use Contender\Dom\Document;
 use Contender\Dom\Element;
 use Contender\Dom\Node;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -234,6 +235,9 @@ INNERTEXT;
 
     /**
      * @dataProvider innerhtmlDataProvider
+     * @param $html
+     * @param $path
+     * @param $expect
      */
     public function test_innerHtml($html, $path, $expect)
     {
@@ -274,6 +278,9 @@ INNERTEXT;
 
     /**
      * @dataProvider innerhtmlDataProvider
+     * @param $html
+     * @param $path
+     * @param $expect
      */
     public function test_innerXML($html, $path, $expect)
     {
@@ -299,6 +306,9 @@ INNERTEXT;
 
     /**
      * @dataProvider innerhtmlDataProvider
+     * @param $html
+     * @param $path
+     * @param $expect
      */
     public function test_innerHtml_add($html, $path, $expect)
     {
@@ -317,6 +327,9 @@ INNERTEXT;
 
     /**
      * @dataProvider innerhtmlDataProvider
+     * @param $html
+     * @param $path
+     * @param $expect
      */
     public function test_innerXml_add($html, $path, $expect)
     {
@@ -354,51 +367,51 @@ INNERTEXT;
 
     public function test_nodeType()
     {
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_ELEMENT_NODE);
         $this->assertTrue($node->is_element);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_ATTRIBUTE_NODE);
         $this->assertTrue($node->is_attr);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_TEXT_NODE);
         $this->assertTrue($node->is_text);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_CDATA_SECTION_NODE);
         $this->assertTrue($node->is_character_data);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_ENTITY_REF_NODE);
         $this->assertTrue($node->is_entity_reference);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_ENTITY_NODE);
         $this->assertTrue($node->is_entity);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_PI_NODE);
         $this->assertTrue($node->is_processing_instruction);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_COMMENT_NODE);
         $this->assertTrue($node->is_comment);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_DOCUMENT_NODE);
         $this->assertTrue($node->is_document);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_DOCUMENT_TYPE_NODE);
         $this->assertTrue($node->is_document_type);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_DOCUMENT_FRAG_NODE);
         $this->assertTrue($node->is_document_fragment);
 
-        $node = \Mockery::mock(Node::class)->makePartial();
+        $node = Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_NOTATION_NODE);
         $this->assertTrue($node->is_notation);
     }

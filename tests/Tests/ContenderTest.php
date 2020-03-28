@@ -19,6 +19,7 @@ namespace Tests\Contender;
 
 use Contender\Contender;
 use Contender\Dom\Document;
+use Contender\Dom\Element;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -84,6 +85,8 @@ class ContenderTest extends TestCase
 
     /**
      * @dataProvider loadUnescapedDataProvider
+     * @param $html
+     * @param $expect
      */
     public function test_load_un_escaped($html, $expect)
     {
@@ -178,6 +181,10 @@ HTMLEND;
 
     /**
      * @dataProvider loadRemoveTagProvider
+     * @param $html
+     * @param $expects
+     * @param $expect_ignores
+     * @param $options
      */
     public function test_remove_tag($html, $expects, $expect_ignores, $options)
     {
@@ -215,6 +222,9 @@ HTMLEND;
 
     /**
      * @dataProvider setOptionLibxmlDataProvider
+     * @param $param
+     * @param $option
+     * @throws \ReflectionException
      */
     public function test_setOption_libxml($param, $option)
     {
@@ -227,7 +237,7 @@ HTMLEND;
         $this->assertEquals($option, $options[$option]);
     }
 
-    public function setOptionContenderParameterlDataProvider()
+    public function setOptionContenderParameterDataProvider()
     {
         return [
             Contender::OPTION_CONVERT_NO_ENCODE => [Contender::OPTION_CONVERT_NO_ENCODE , 'is_encode', false],
@@ -254,7 +264,11 @@ HTMLEND;
     }
 
     /**
-     * @dataProvider setOptionContenderParameterlDataProvider
+     * @dataProvider setOptionContenderParameterDataProvider
+     * @param $param
+     * @param $key
+     * @param $expect
+     * @throws \ReflectionException
      */
     public function test_setOption_contender_Parameter($param, $key, $expect)
     {
@@ -264,5 +278,16 @@ HTMLEND;
         $value = $this->invokeGetProperty($contender, $key);
 
         $this->assertEquals($expect, $value);
+    }
+
+    public function test_sjis_file()
+    {
+        $document = Contender::loadUrl(__DIR__.'/../data/59231_67732.html', [Contender::OPTION_CONVERT_ENCODE, Contender::OPTION_CONVERT_REPLACE_CHARSET]);
+        //$document = Contender::loadStr('<div>aaa</div><div>aaa</div><div>aaa</div><div>aaa</div><div>aaa</div>', [Contender::OPTION_CONVERT_ENCODE, Contender::OPTION_CONVERT_REPLACE_CHARSET]);
+
+        $this->assertEquals('UTF-8', $document->encoding);
+        $element = $document->querySelector('div');
+
+        $this->assertInstanceOf(Element::class, $element);
     }
 }

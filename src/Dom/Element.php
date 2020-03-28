@@ -118,12 +118,12 @@ class Element extends Node
 
     /**
      * if call attr('name')
-     * Alias getAttr()
+     * Alias getAttribute()
      *
      * if call attr('name', 'value')
-     * Alias setAttr()
+     * Alias setAttribute()
      *
-     * @param mixed ...$name
+     * @param string[] ...$name
      * @return string|null
      */
     public function attr(...$name): ?string

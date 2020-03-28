@@ -372,6 +372,7 @@ class Contender
         $encode = strtolower($encode);
         if ($encode === 'utf8' || $encode === 'utf-8') {
             if ($is_add_meta) {
+                $html = mb_ereg_replace('^<\\?xml.*?>', '', $html);
                 $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>', $html);
             }
 
@@ -388,11 +389,12 @@ class Contender
 
         $html = mb_convert_encoding($html, 'utf8', $encode);
         if ($this->is_replace_charset) {
-            $html = mb_eregi_replace('charset=[^ "\']+', 'charset=utf-8', $html);
-            $html = mb_eregi_replace('encoding="[^"]*"', 'encoding="utf-8"', $html);
+            $html = mb_eregi_replace('charset=[^ "\']+', 'charset=UTF-8', $html);
+            $html = mb_eregi_replace('encoding="[^"]*"', 'encoding="UTF-8"', $html);
         }
 
         if ($is_add_meta) {
+            $html = mb_ereg_replace('^<\\?xml.*?>', '', $html);
             $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>', $html);
         }
 

@@ -258,12 +258,12 @@ class NodeList extends \Illuminate\Support\Collection
 
     /**
      * if call attr('name')
-     * Alias getAttr()
+     * Alias getAttribute()
      *
      * if call attr('name', 'value')
-     * Alias setAttr()
+     * Alias setAttribute()
      *
-     * @param array $param
+     * @param string[] ...$param
      * @return string|null
      * @link \Contender\Dom\Element::attr()
      */

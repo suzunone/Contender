@@ -37,12 +37,13 @@ trait CssSelector2XPathTrait
 {
     /**
      * @param string $css_selector
+     * @param string $prefix
      * @return string
      */
-    protected function cssSelector2XPath(string $css_selector): string
+    protected function cssSelector2XPath(string $css_selector, string $prefix = '//descendant-or-self::'): string
     {
         $converter = new CssSelectorConverter();
 
-        return $converter->toXPath($css_selector);
+        return $converter->toXPath($css_selector, $prefix);
     }
 }

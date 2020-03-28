@@ -48,6 +48,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateCDATASection($html)
     {
@@ -66,6 +67,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateTextNode($html)
     {
@@ -85,6 +87,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateAttributeNS($html)
     {
@@ -93,6 +96,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateProcessingInstruction($html)
     {
@@ -101,6 +105,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateElement($html)
     {
@@ -113,6 +118,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateAttribute($html)
     {
@@ -121,6 +127,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateComment($html)
     {
@@ -133,6 +140,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function testCreateEntityReference($html)
     {
@@ -145,6 +153,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param $html
      */
     public function test_createProcessingInstruction($html)
     {
@@ -181,7 +190,8 @@ XML;
 
     /**
      * @dataProvider dataProvider
-     * @covers \Contender\Dom\Attr
+     * @covers       \Contender\Dom\Attr
+     * @param $html
      */
     public function test_createAttribute($html)
     {

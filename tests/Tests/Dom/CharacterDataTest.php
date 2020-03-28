@@ -48,6 +48,7 @@ class CharacterDataTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param \Contender\Dom\Text $text
      */
     public function testSubstringData(Text $text)
     {
@@ -56,6 +57,7 @@ class CharacterDataTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param \Contender\Dom\Text $text
      */
     public function testInsertData(Text $text)
     {
@@ -65,6 +67,7 @@ class CharacterDataTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param \Contender\Dom\Text $text
      */
     public function testDeleteData(Text $text)
     {
@@ -74,6 +77,7 @@ class CharacterDataTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param \Contender\Dom\Text $text
      */
     public function testReplaceData(Text $text)
     {
@@ -83,6 +87,7 @@ class CharacterDataTest extends TestCase
 
     /**
      * @dataProvider dataProvider
+     * @param \Contender\Dom\Text $text
      */
     public function testAppendData(Text $text)
     {

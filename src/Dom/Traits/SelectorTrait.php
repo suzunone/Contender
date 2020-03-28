@@ -115,11 +115,12 @@ trait SelectorTrait
     protected function domXPathQuery(string $query): DOMNodeList
     {
         $xpath = new DOMXPath($this->document());
+
         if ($this->element->ownerDocument === null) {
-            return $xpath->evaluate('//' . $query);
+            return $xpath->evaluate($query);
         }
 
-        return $xpath->evaluate($this->element->getNodePath() . '//' . $query);
+        return $xpath->evaluate($this->element->getNodePath() . $query);
     }
 
     /**

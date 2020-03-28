@@ -4679,10 +4679,10 @@ Methods
 ### \Contender\Dom\Element::attr(mixed|null $name)
 if call attr('name')
 
-Alias getAttr()
+Alias getAttribute()
 
 if call attr('name', 'value')
-Alias setAttr()
+Alias setAttribute()
 
 
 
@@ -7146,15 +7146,15 @@ None
 ### \Contender\Dom\NodeList::attr(mixed|null $param)
 if call attr('name')
 
-Alias getAttr()
+Alias getAttribute()
 
 if call attr('name', 'value')
-Alias setAttr()
+Alias setAttribute()
 
 
 
 #### Parameters
-##### `array` $param
+##### `mixed|null` $param
 
 
 
