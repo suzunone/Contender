@@ -71,6 +71,14 @@ class Factory
             return new Entity($item);
         }
 
+        if ($item instanceof \DOMNotation) {
+            return new Notation($item);
+        }
+
+        if ($item instanceof \DOMEntityReference) {
+            return new EntityReference($item);
+        }
+
         if ($item instanceof \DOMImplementation) {
             return new Implementation($item);
         }
