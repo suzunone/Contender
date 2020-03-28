@@ -450,6 +450,7 @@ Contender\Elements\Attr {
     public bool $schemaTypeInfo ;
     public bool $specified ;
     public int $nodeType ;
+    public string $nodeName ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -503,25 +504,19 @@ Contender\Elements\Attr {
     public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Element|null $firstElementChild ;
     public \Contender\Elements\Element|null $first_element_child ;
-    public \Contender\Elements\Node|null $parentNode ;
-    public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
     public \Contender\Elements\Element|null $last_element_child ;
     public \Contender\Elements\Node|null $previousElementSibling ;
     public \Contender\Elements\Node|null $previous_element_sibling ;
     public \Contender\Elements\Node|null $nextElementSibling ;
     public \Contender\Elements\Node|null $next_element_sibling ;
-    public \Contender\Elements\Node|null $nextSibling ;
-    public \Contender\Elements\Node|null $next_sibling ;
     public \Contender\Elements\Document $ownerDocument ;
     public \Contender\Elements\Document $owner_document ;
-    public string $nodeName ;
-    public string $node_name ;
 
     /* Methods */
     public getNameAttribute () : string
     public getValueAttribute () : string
-    public setValueAttribute (string $value) : mixed
+    public setValueAttribute (string $value) : void
     public getOwnerElementAttribute () : \Contender\Elements\Element
 
  }
@@ -778,16 +773,6 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$parentNode __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$parent_node __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
 ### `\Contender\Elements\Element|null` \Contender\Elements\Attr::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
@@ -818,16 +803,6 @@ The node immediately following this node. If there is no such node, this returns
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$nextSibling __read only__
-Alias to next_element_sibling
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Attr::$next_sibling __read only__
-Alias to next_element_sibling
-
-
-
 ### `\Contender\Elements\Document` \Contender\Elements\Attr::$ownerDocument __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
@@ -835,16 +810,6 @@ The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object
 
 ### `\Contender\Elements\Document` \Contender\Elements\Attr::$owner_document __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
-
-
-
-### `string` \Contender\Elements\Attr::$nodeName __read only__
-Returns the most accurate name for the current node type
-
-
-
-### `string` \Contender\Elements\Attr::$node_name __read only__
-Returns the most accurate name for the current node type
 
 
 
@@ -890,6 +855,11 @@ Not implemented yet, always is NULL
 
 ### `int` \Contender\Elements\Attr::$nodeType
 Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\Attr::$nodeName
+Returns the most accurate name for the current node type
 
 
 
@@ -967,7 +937,7 @@ None
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -987,6 +957,1019 @@ None
 
 ### See Also
 None
+
+
+\Contender\Elements\CdataSection
+==========================
+Class CdataSection
+
+
+
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\CdataSection {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public mixed|string|int $parameter ;
+    public string $wholeText ;
+    public string $data ;
+    public int $length ;
+    public int $nodeType ;
+    public string $nodeName ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
+
+ }
+
+```
+
+
+Constants
+----------------------------
+
+
+
+
+Properties
+----------------------------
+
+### `bool` \Contender\Elements\CdataSection::$isElement __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_element __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isAttr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_attr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isText __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_text __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isCharacterData __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_character_data __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isEntityReference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_entity_reference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isEntity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_entity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isProcessingInstruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_processing_instruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isComment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_comment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isDocument __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_document __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isDocumentType __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_document_type __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isDocumentFragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_document_fragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$isNotation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `bool` \Contender\Elements\CdataSection::$is_notation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `string` \Contender\Elements\CdataSection::$innerText __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\CdataSection::$inner_text __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\CdataSection::$textContent __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\CdataSection::$text_content __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\CdataSection::$outerHTML __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CdataSection::$outer_h_t_m_l __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CdataSection::$outerXML __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CdataSection::$outer_x_m_l __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CdataSection::$nodePath __read only__
+Gets an XPath location path for the node
+
+
+
+### `string` \Contender\Elements\CdataSection::$node_path __read only__
+Gets an XPath location path for the node
+
+
+
+### `int` \Contender\Elements\CdataSection::$lineNo __read only__
+Get line number for a node
+
+
+
+### `int` \Contender\Elements\CdataSection::$line_no __read only__
+Get line number for a node
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\CdataSection::$children __read only__
+That contains all children of this node. If there are no children, this is an empty <a href="#contenderelementscollection">\Contender\Elements\Collection</a>.
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\CdataSection::$childNodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\CdataSection::$child_nodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$firstChild __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$first_child __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$lastChild __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$last_child __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CdataSection::$firstElementChild __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CdataSection::$first_element_child __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CdataSection::$lastElementChild __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CdataSection::$last_element_child __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$previousElementSibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$previous_element_sibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$nextElementSibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CdataSection::$next_element_sibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\CdataSection::$ownerDocument __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\CdataSection::$owner_document __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `string` \Contender\Elements\CdataSection::$innerHTML
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\CdataSection::$inner_h_t_m_l
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\CdataSection::$innerXML
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\CdataSection::$inner_x_m_l
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `mixed|string|int` \Contender\Elements\CdataSection::$parameter
+
+
+
+
+### `string` \Contender\Elements\CdataSection::$wholeText
+Holds all the text of logically-adjacent (not separated by Element, Comment or Processing Instruction) Text nodes.
+
+
+
+### `string` \Contender\Elements\CdataSection::$data
+The contents of the node.
+
+
+
+### `int` \Contender\Elements\CdataSection::$length
+The length of the contents.
+
+
+
+### `int` \Contender\Elements\CdataSection::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\CdataSection::$nodeName
+Returns the most accurate name for the current node type
+
+
+
+### `string` \Contender\Elements\CdataSection::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\CdataSection::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\CdataSection::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\CdataSection::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\CdataSection::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
+
+
+
+
+
+
+Methods
+----------------------------
+
+
+\Contender\Elements\CharacterData
+==========================
+Class CharacterData
+
+
+
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\CharacterData {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public mixed|string|int $parameter ;
+    public string $data ;
+    public int $length ;
+    public int $nodeType ;
+    public string $nodeName ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
+
+    /* Methods */
+    public substringData (?mixed $offset = NULL, ?mixed $count = NULL) : string
+    public appendData (?mixed $data = NULL) : void
+    public insertData (?mixed $offset = NULL, ?mixed $data = NULL) : void
+    public deleteData (?mixed $offset = NULL, ?mixed $count = NULL) : void
+    public replaceData (?mixed $offset = NULL, ?mixed $count = NULL, ?mixed $data = NULL) : void
+
+ }
+
+```
+
+
+Constants
+----------------------------
+
+
+
+
+Properties
+----------------------------
+
+### `bool` \Contender\Elements\CharacterData::$isElement __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_element __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isAttr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_attr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isText __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_text __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isCharacterData __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_character_data __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isEntityReference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_entity_reference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isEntity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_entity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isProcessingInstruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_processing_instruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isComment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_comment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isDocument __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_document __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isDocumentType __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_document_type __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isDocumentFragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_document_fragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$isNotation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `bool` \Contender\Elements\CharacterData::$is_notation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `string` \Contender\Elements\CharacterData::$innerText __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\CharacterData::$inner_text __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\CharacterData::$textContent __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\CharacterData::$text_content __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\CharacterData::$outerHTML __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CharacterData::$outer_h_t_m_l __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CharacterData::$outerXML __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CharacterData::$outer_x_m_l __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\CharacterData::$nodePath __read only__
+Gets an XPath location path for the node
+
+
+
+### `string` \Contender\Elements\CharacterData::$node_path __read only__
+Gets an XPath location path for the node
+
+
+
+### `int` \Contender\Elements\CharacterData::$lineNo __read only__
+Get line number for a node
+
+
+
+### `int` \Contender\Elements\CharacterData::$line_no __read only__
+Get line number for a node
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\CharacterData::$children __read only__
+That contains all children of this node. If there are no children, this is an empty <a href="#contenderelementscollection">\Contender\Elements\Collection</a>.
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\CharacterData::$childNodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\CharacterData::$child_nodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$firstChild __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$first_child __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$lastChild __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$last_child __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CharacterData::$firstElementChild __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CharacterData::$first_element_child __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CharacterData::$lastElementChild __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\CharacterData::$last_element_child __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$previousElementSibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$previous_element_sibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$nextElementSibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\CharacterData::$next_element_sibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\CharacterData::$ownerDocument __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\CharacterData::$owner_document __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `string` \Contender\Elements\CharacterData::$innerHTML
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\CharacterData::$inner_h_t_m_l
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\CharacterData::$innerXML
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\CharacterData::$inner_x_m_l
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `mixed|string|int` \Contender\Elements\CharacterData::$parameter
+
+
+
+
+### `string` \Contender\Elements\CharacterData::$data
+The contents of the node.
+
+
+
+### `int` \Contender\Elements\CharacterData::$length
+The length of the contents.
+
+
+
+### `int` \Contender\Elements\CharacterData::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\CharacterData::$nodeName
+Returns the most accurate name for the current node type
+
+
+
+### `string` \Contender\Elements\CharacterData::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\CharacterData::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\CharacterData::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\CharacterData::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\CharacterData::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
+
+
+
+
+
+
+Methods
+----------------------------
+
+### \Contender\Elements\CharacterData::substringData(mixed|null $offset, mixed|null $count)
+Extracts a range of data from the node
+
+
+
+#### Parameters
+##### `int` $offset
+
+Start offset of substring to extract.
+
+##### `int` $count
+
+The number of characters to extract.
+
+
+
+#### Return Values
+string The specified substring. If the sum of offset and count exceeds the length, then all 16-bit units to the end of the data are returned.
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domcharacterdata.substringdata.php">https://php.net/manual/en/domcharacterdata.substringdata.php</a>
+
+
+### \Contender\Elements\CharacterData::appendData(mixed|null $data)
+Append the string to the end of the character data of the node
+
+
+
+#### Parameters
+##### `string` $data
+
+The string to append.
+
+
+
+#### Return Values
+void
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domcharacterdata.appenddata.php">https://php.net/manual/en/domcharacterdata.appenddata.php</a>
+
+
+### \Contender\Elements\CharacterData::insertData(mixed|null $offset, mixed|null $data)
+Insert a string at the specified 16-bit unit offset
+
+
+
+#### Parameters
+##### `int` $offset
+
+The character offset at which to insert.
+
+##### `string` $data
+
+The string to insert.
+
+
+
+#### Return Values
+void
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domcharacterdata.insertdata.php">https://php.net/manual/en/domcharacterdata.insertdata.php</a>
+
+
+### \Contender\Elements\CharacterData::deleteData(mixed|null $offset, mixed|null $count)
+Remove a range of characters from the node
+
+
+
+#### Parameters
+##### `int` $offset
+
+The offset from which to start removing.
+
+##### `int` $count
+
+The number of characters to delete. If the sum of offset and count exceeds the length, then all characters to the end of the data are deleted.
+
+
+
+#### Return Values
+void
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domcharacterdata.deletedata.php">https://php.net/manual/en/domcharacterdata.deletedata.php</a>
+
+
+### \Contender\Elements\CharacterData::replaceData(mixed|null $offset, mixed|null $count, mixed|null $data)
+Replace a substring within the DOMCharacterData node
+
+
+
+#### Parameters
+##### `int` $offset
+
+The offset from which to start replacing.
+
+##### `int` $count
+
+The number of characters to replace. If the sum of offset and count exceeds the length, then all characters to the end of the data are replaced.
+
+##### `string` $data
+
+The string with which the range must be replaced.
+
+
+
+#### Return Values
+void
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domcharacterdata.replacedata.php">https://php.net/manual/en/domcharacterdata.replacedata.php</a>
+
 
 
 \Contender\Elements\Collection
@@ -1022,7 +2005,7 @@ Contender\Elements\Collection {
     public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
     public attr (?mixed $param = NULL) : string|null
     public getAttribute (string $name) : mixed
-    public setAttribute (string $name, string $value) : mixed
+    public setAttribute (string $name, string $value) : void
     public remove () : \Contender\Elements\Collection
 
  }
@@ -1263,7 +2246,7 @@ set tag attribute for element.
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -1286,6 +2269,530 @@ Removes the object from the tree it belongs to.
 ### See Also
  - <a href="#contenderelementsnoderemove">\Contender\Elements\Node::remove()</a>
 
+
+
+\Contender\Elements\Comment
+==========================
+Class Comment
+
+
+
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\Comment {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public mixed|string|int $parameter ;
+    public string $actualEncoding ;
+    public \DOMConfiguration $config ;
+    public string|null $documentURI ;
+    public string $encoding ;
+    public bool $formatOutput ;
+    public bool $preserveWhiteSpace ;
+    public bool $recover ;
+    public bool $resolveExternals ;
+    public bool $standalone ;
+    public bool $strictErrorChecking ;
+    public bool $substituteEntities ;
+    public bool $validateOnParse ;
+    public string $version ;
+    public string $xmlEncoding ;
+    public bool $xmlStandalone ;
+    public string $xmlVersion ;
+    public int $nodeType ;
+    public string $nodeName ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
+
+ }
+
+```
+
+
+Constants
+----------------------------
+
+
+
+
+Properties
+----------------------------
+
+### `bool` \Contender\Elements\Comment::$isElement __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_element __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isAttr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_attr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isText __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_text __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isCharacterData __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_character_data __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isEntityReference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_entity_reference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isEntity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_entity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isProcessingInstruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_processing_instruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isComment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_comment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isDocument __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_document __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isDocumentType __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_document_type __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isDocumentFragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_document_fragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$isNotation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `bool` \Contender\Elements\Comment::$is_notation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `string` \Contender\Elements\Comment::$innerText __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\Comment::$inner_text __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\Comment::$textContent __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\Comment::$text_content __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\Comment::$outerHTML __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Comment::$outer_h_t_m_l __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Comment::$outerXML __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Comment::$outer_x_m_l __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Comment::$nodePath __read only__
+Gets an XPath location path for the node
+
+
+
+### `string` \Contender\Elements\Comment::$node_path __read only__
+Gets an XPath location path for the node
+
+
+
+### `int` \Contender\Elements\Comment::$lineNo __read only__
+Get line number for a node
+
+
+
+### `int` \Contender\Elements\Comment::$line_no __read only__
+Get line number for a node
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Comment::$children __read only__
+That contains all children of this node. If there are no children, this is an empty <a href="#contenderelementscollection">\Contender\Elements\Collection</a>.
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Comment::$childNodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Comment::$child_nodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$firstChild __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$first_child __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$lastChild __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$last_child __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Comment::$firstElementChild __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Comment::$first_element_child __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Comment::$lastElementChild __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Comment::$last_element_child __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$previousElementSibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$previous_element_sibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$nextElementSibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Comment::$next_element_sibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\Comment::$ownerDocument __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\Comment::$owner_document __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `string` \Contender\Elements\Comment::$innerHTML
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Comment::$inner_h_t_m_l
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Comment::$innerXML
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Comment::$inner_x_m_l
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `mixed|string|int` \Contender\Elements\Comment::$parameter
+
+
+
+
+### `string` \Contender\Elements\Comment::$actualEncoding
+Deprecated. Actual encoding of the document, is a readonly equivalent to encoding.
+
+
+
+### `\DOMConfiguration` \Contender\Elements\Comment::$config
+Deprecated. Configuration used when {
+
+
+
+### `string|null` \Contender\Elements\Comment::$documentURI
+The location of the document or NULL if undefined.
+
+
+
+### `string` \Contender\Elements\Comment::$encoding
+Encoding of the document, as specified by the XML declaration. This attribute is not present in the final DOM Level 3 specification, but is the only way of manipulating XML document encoding in this implementation.
+
+
+
+### `bool` \Contender\Elements\Comment::$formatOutput
+Nicely formats output with indentation and extra space.
+
+
+
+### `bool` \Contender\Elements\Comment::$preserveWhiteSpace
+Do not remove redundant white space. Default to TRUE.
+
+
+
+### `bool` \Contender\Elements\Comment::$recover
+Proprietary. Enables recovery mode, i.e. trying to parse non-well formed documents.This attribute is not part of the DOM specification and is specific to libxml.
+
+
+
+### `bool` \Contender\Elements\Comment::$resolveExternals
+Set it to TRUE to load external entities from a doctype declaration. This is useful for including character entities in your XML document.
+
+
+
+### `bool` \Contender\Elements\Comment::$standalone
+Deprecated. Whether or not the document is standalone, as specified by the XML declaration,corresponds to xmlStandalone.
+
+
+
+### `bool` \Contender\Elements\Comment::$strictErrorChecking
+Throws <classname>DOMException</classname> on errors. Default to TRUE.
+
+
+
+### `bool` \Contender\Elements\Comment::$substituteEntities
+Proprietary. Whether or not to substitute entities. This attribute is not part of the DOMspecification and is specific to libxml.
+
+
+
+### `bool` \Contender\Elements\Comment::$validateOnParse
+Loads and validates against the DTD. Default to FALSE.
+
+
+
+### `string` \Contender\Elements\Comment::$version
+Deprecated. Version of XML, corresponds to xmlVersion
+
+
+
+### `string` \Contender\Elements\Comment::$xmlEncoding
+An attribute specifying, as part of the XML declaration, the encoding of this document. This is NULL whenunspecified or when it is not known, such as when the Document was created in memory.
+
+
+
+### `bool` \Contender\Elements\Comment::$xmlStandalone
+An attribute specifying, as part of the XML declaration, whether this document is standalone.This is FALSE when unspecified.
+
+
+
+### `string` \Contender\Elements\Comment::$xmlVersion
+An attribute specifying, as part of the XML declaration, the version number of this document. If there is nodeclaration and if this document supports the "XML" feature, the value is "1.0".
+
+
+
+### `int` \Contender\Elements\Comment::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\Comment::$nodeName
+Returns the most accurate name for the current node type
+
+
+
+### `string` \Contender\Elements\Comment::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\Comment::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\Comment::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\Comment::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\Comment::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
+
+
+
+
+
+
+Methods
+----------------------------
 
 
 \Contender\Elements\Document
@@ -1328,6 +2835,7 @@ Contender\Elements\Document {
     public bool $xmlStandalone ;
     public string $xmlVersion ;
     public int $nodeType ;
+    public string $nodeName ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -1380,20 +2888,14 @@ Contender\Elements\Document {
     public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Element|null $firstElementChild ;
     public \Contender\Elements\Element|null $first_element_child ;
-    public \Contender\Elements\Node|null $parentNode ;
-    public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
     public \Contender\Elements\Element|null $last_element_child ;
     public \Contender\Elements\Node|null $previousElementSibling ;
     public \Contender\Elements\Node|null $previous_element_sibling ;
     public \Contender\Elements\Node|null $nextElementSibling ;
     public \Contender\Elements\Node|null $next_element_sibling ;
-    public \Contender\Elements\Node|null $nextSibling ;
-    public \Contender\Elements\Node|null $next_sibling ;
     public \Contender\Elements\Document $ownerDocument ;
     public \Contender\Elements\Document $owner_document ;
-    public string $nodeName ;
-    public string $node_name ;
 
     /* Methods */
     public __construct (DOMDocument $element) : void
@@ -1409,16 +2911,16 @@ Contender\Elements\Document {
     public __toString () : string
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
-    public normalize () : mixed
+    public normalize () : void
     public cloneNode ([bool $deep = false]) : \Contender\Elements\Node
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public getOwnerDocumentAttribute () : \Contender\Elements\Document
-    public setParameterAttribute (string $name, ?mixed $value = NULL) : mixed
+    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public getParameterAttribute (string $name) : mixed|string|int
     public hasParameterAttribute (string $name) : bool
-    public getElementById (string $query) : \Contender\Elements\Node|null
+    public getElementById (string $query) : \Contender\Elements\Element|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
@@ -1678,16 +3180,6 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Document::$parentNode __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Document::$parent_node __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
 ### `\Contender\Elements\Element|null` \Contender\Elements\Document::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
@@ -1718,16 +3210,6 @@ The node immediately following this node. If there is no such node, this returns
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Document::$nextSibling __read only__
-Alias to next_element_sibling
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Document::$next_sibling __read only__
-Alias to next_element_sibling
-
-
-
 ### `\Contender\Elements\Document` \Contender\Elements\Document::$ownerDocument __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
@@ -1735,16 +3217,6 @@ The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object
 
 ### `\Contender\Elements\Document` \Contender\Elements\Document::$owner_document __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
-
-
-
-### `string` \Contender\Elements\Document::$nodeName __read only__
-Returns the most accurate name for the current node type
-
-
-
-### `string` \Contender\Elements\Document::$node_name __read only__
-Returns the most accurate name for the current node type
 
 
 
@@ -1855,6 +3327,11 @@ An attribute specifying, as part of the XML declaration, the version number of t
 
 ### `int` \Contender\Elements\Document::$nodeType
 Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\Document::$nodeName
+Returns the most accurate name for the current node type
 
 
 
@@ -2172,7 +3649,7 @@ Remove empty text nodes and merge adjacent text nodes in this node and all its c
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -2300,7 +3777,7 @@ None
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -2358,7 +3835,7 @@ tag id
 
 
 #### Return Values
-\Contender\Elements\Node|null Selected node
+\Contender\Elements\Element|null Selected node
 
 
 ### See Also
@@ -2577,6 +4054,7 @@ Contender\Elements\Element {
     public bool $schemaTypeInfo ;
     public string $tagName ;
     public int $nodeType ;
+    public string $nodeName ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -2628,25 +4106,19 @@ Contender\Elements\Element {
     public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Element|null $firstElementChild ;
     public \Contender\Elements\Element|null $first_element_child ;
-    public \Contender\Elements\Node|null $parentNode ;
-    public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
     public \Contender\Elements\Element|null $last_element_child ;
     public \Contender\Elements\Node|null $previousElementSibling ;
     public \Contender\Elements\Node|null $previous_element_sibling ;
     public \Contender\Elements\Node|null $nextElementSibling ;
     public \Contender\Elements\Node|null $next_element_sibling ;
-    public \Contender\Elements\Node|null $nextSibling ;
-    public \Contender\Elements\Node|null $next_sibling ;
     public \Contender\Elements\Document $ownerDocument ;
     public \Contender\Elements\Document $owner_document ;
-    public string $nodeName ;
-    public string $node_name ;
 
     /* Methods */
     public attr (?mixed $name = NULL) : string|null
     public getAttribute (string $name) : mixed
-    public setAttribute (string $name, string $value) : mixed
+    public setAttribute (string $name, string $value) : void
     public getAttributeNames () : array
     public getAttributeNamesGenerator () : \Generator|null
     public getAttributesAttribute () : \Contender\Elements\NamedNodeMap
@@ -2895,16 +4367,6 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Element::$parentNode __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Element::$parent_node __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
 ### `\Contender\Elements\Element|null` \Contender\Elements\Element::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
@@ -2935,16 +4397,6 @@ The node immediately following this node. If there is no such node, this returns
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Element::$nextSibling __read only__
-Alias to next_element_sibling
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Element::$next_sibling __read only__
-Alias to next_element_sibling
-
-
-
 ### `\Contender\Elements\Document` \Contender\Elements\Element::$ownerDocument __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
@@ -2952,16 +4404,6 @@ The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object
 
 ### `\Contender\Elements\Document` \Contender\Elements\Element::$owner_document __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
-
-
-
-### `string` \Contender\Elements\Element::$nodeName __read only__
-Returns the most accurate name for the current node type
-
-
-
-### `string` \Contender\Elements\Element::$node_name __read only__
-Returns the most accurate name for the current node type
 
 
 
@@ -3002,6 +4444,11 @@ The element name
 
 ### `int` \Contender\Elements\Element::$nodeType
 Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\Element::$nodeName
+Returns the most accurate name for the current node type
 
 
 
@@ -3098,7 +4545,7 @@ Set tag attribute for element.
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -3289,6 +4736,7 @@ Contender\Elements\Node {
     public string $inner_x_m_l ;
     public mixed|string|int $parameter ;
     public int $nodeType ;
+    public string $nodeName ;
     public string $nodeValue ;
     public string|null $namespaceURI ;
     public string|null $prefix ;
@@ -3339,39 +4787,33 @@ Contender\Elements\Node {
     public \Contender\Elements\Node|null $last_child ;
     public \Contender\Elements\Element|null $firstElementChild ;
     public \Contender\Elements\Element|null $first_element_child ;
-    public \Contender\Elements\Node|null $parentNode ;
-    public \Contender\Elements\Node|null $parent_node ;
     public \Contender\Elements\Element|null $lastElementChild ;
     public \Contender\Elements\Element|null $last_element_child ;
     public \Contender\Elements\Node|null $previousElementSibling ;
     public \Contender\Elements\Node|null $previous_element_sibling ;
     public \Contender\Elements\Node|null $nextElementSibling ;
     public \Contender\Elements\Node|null $next_element_sibling ;
-    public \Contender\Elements\Node|null $nextSibling ;
-    public \Contender\Elements\Node|null $next_sibling ;
     public \Contender\Elements\Document $ownerDocument ;
     public \Contender\Elements\Document $owner_document ;
-    public string $nodeName ;
-    public string $node_name ;
 
     /* Methods */
     public __construct (DOMNode $element) : void
     public __toString () : string
     public remove () : \Contender\Elements\Node|null
     public after (?mixed $elements = NULL) : \Contender\Elements\Node|null
-    public before (?mixed $elements = NULL) : \Contender\Elements\Node
+    public before (?mixed $elements = NULL) : \Contender\Elements\Node|null
     public appendChild (Contender\Elements\Node $node) : \Contender\Elements\Node
     public insertBefore (Contender\Elements\Node $node, [?Contender\Elements\Node $referenceNode = null]) : \Contender\Elements\Node
-    public normalize () : mixed
+    public normalize () : void
     public cloneNode ([bool $deep = false]) : \Contender\Elements\Node
     public hasChildNodes () : bool
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public getOwnerDocumentAttribute () : \Contender\Elements\Document
-    public setParameterAttribute (string $name, ?mixed $value = NULL) : mixed
+    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public getParameterAttribute (string $name) : mixed|string|int
     public hasParameterAttribute (string $name) : bool
-    public getElementById (string $query) : \Contender\Elements\Node|null
+    public getElementById (string $query) : \Contender\Elements\Element|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
@@ -3621,16 +5063,6 @@ The first child of this node. If there is no such node, this returns NULL.
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$parentNode __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$parent_node __read only__
-The parent of this node. If there is no such node, this returns NULL.
-
-
-
 ### `\Contender\Elements\Element|null` \Contender\Elements\Node::$lastElementChild __read only__
 The last child of this node. If there is no such node, this returns NULL.
 
@@ -3661,16 +5093,6 @@ The node immediately following this node. If there is no such node, this returns
 
 
 
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$nextSibling __read only__
-Alias to next_element_sibling
-
-
-
-### `\Contender\Elements\Node|null` \Contender\Elements\Node::$next_sibling __read only__
-Alias to next_element_sibling
-
-
-
 ### `\Contender\Elements\Document` \Contender\Elements\Node::$ownerDocument __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
 
@@ -3678,16 +5100,6 @@ The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object
 
 ### `\Contender\Elements\Document` \Contender\Elements\Node::$owner_document __read only__
 The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
-
-
-
-### `string` \Contender\Elements\Node::$nodeName __read only__
-Returns the most accurate name for the current node type
-
-
-
-### `string` \Contender\Elements\Node::$node_name __read only__
-Returns the most accurate name for the current node type
 
 
 
@@ -3718,6 +5130,11 @@ The Element property innerXML gets or sets the HTML or XML markup contained with
 
 ### `int` \Contender\Elements\Node::$nodeType
 Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\Node::$nodeName
+Returns the most accurate name for the current node type
 
 
 
@@ -3840,7 +5257,7 @@ Inserts a set of <a href="#contenderelementsnode">\Contender\Elements\Node</a>  
 
 
 #### Return Values
-\Contender\Elements\Node
+\Contender\Elements\Node|null
 
 
 ### See Also
@@ -3908,7 +5325,7 @@ Remove empty text nodes and merge adjacent text nodes in this node and all its c
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -4036,7 +5453,7 @@ None
 
 
 #### Return Values
-mixed
+void
 
 
 ### See Also
@@ -4094,7 +5511,7 @@ tag id
 
 
 #### Return Values
-\Contender\Elements\Node|null Selected node
+\Contender\Elements\Element|null Selected node
 
 
 ### See Also
@@ -4287,5 +5704,492 @@ xpath
 
 ### See Also
 None
+
+
+\Contender\Elements\Text
+==========================
+Class Text
+
+
+
+
+
+Class synopsis
+----------------------------
+
+```
+
+Contender\Elements\Text {
+
+    /* Properties */
+    public string $innerHTML ;
+    public string $inner_h_t_m_l ;
+    public string $innerXML ;
+    public string $inner_x_m_l ;
+    public mixed|string|int $parameter ;
+    public string $wholeText ;
+    public string $data ;
+    public int $length ;
+    public int $nodeType ;
+    public string $nodeName ;
+    public string $nodeValue ;
+    public string|null $namespaceURI ;
+    public string|null $prefix ;
+    public string $localName ;
+    public string|null $baseURI ;
+    public bool $isElement ;
+    public bool $is_element ;
+    public bool $isAttr ;
+    public bool $is_attr ;
+    public bool $isText ;
+    public bool $is_text ;
+    public bool $isCharacterData ;
+    public bool $is_character_data ;
+    public bool $isEntityReference ;
+    public bool $is_entity_reference ;
+    public bool $isEntity ;
+    public bool $is_entity ;
+    public bool $isProcessingInstruction ;
+    public bool $is_processing_instruction ;
+    public bool $isComment ;
+    public bool $is_comment ;
+    public bool $isDocument ;
+    public bool $is_document ;
+    public bool $isDocumentType ;
+    public bool $is_document_type ;
+    public bool $isDocumentFragment ;
+    public bool $is_document_fragment ;
+    public bool $isNotation ;
+    public bool $is_notation ;
+    public string $innerText ;
+    public string $inner_text ;
+    public string $textContent ;
+    public string $text_content ;
+    public string $outerHTML ;
+    public string $outer_h_t_m_l ;
+    public string $outerXML ;
+    public string $outer_x_m_l ;
+    public string $nodePath ;
+    public string $node_path ;
+    public int $lineNo ;
+    public int $line_no ;
+    public \Contender\Elements\Collection $children ;
+    public \Contender\Elements\Collection $childNodes ;
+    public \Contender\Elements\Collection $child_nodes ;
+    public \Contender\Elements\Node|null $firstChild ;
+    public \Contender\Elements\Node|null $first_child ;
+    public \Contender\Elements\Node|null $lastChild ;
+    public \Contender\Elements\Node|null $last_child ;
+    public \Contender\Elements\Element|null $firstElementChild ;
+    public \Contender\Elements\Element|null $first_element_child ;
+    public \Contender\Elements\Element|null $lastElementChild ;
+    public \Contender\Elements\Element|null $last_element_child ;
+    public \Contender\Elements\Node|null $previousElementSibling ;
+    public \Contender\Elements\Node|null $previous_element_sibling ;
+    public \Contender\Elements\Node|null $nextElementSibling ;
+    public \Contender\Elements\Node|null $next_element_sibling ;
+    public \Contender\Elements\Document $ownerDocument ;
+    public \Contender\Elements\Document $owner_document ;
+
+    /* Methods */
+    public splitText (?mixed $offset = NULL) : \Contender\Elements\Text
+    public isWhitespaceInElementContent () : void
+
+ }
+
+```
+
+
+Constants
+----------------------------
+
+
+
+
+Properties
+----------------------------
+
+### `bool` \Contender\Elements\Text::$isElement __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_element __read only__
+true if this node is an XML_ELEMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isAttr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_attr __read only__
+true if this node is an XML_ATTRIBUTE_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isText __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_text __read only__
+true if this node is an XML_TEXT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isCharacterData __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_character_data __read only__
+true if this node is an XML_CDATA_SECTION_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isEntityReference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_entity_reference __read only__
+true if this node is an XML_ENTITY_REF_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isEntity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_entity __read only__
+true if this node is an XML_ENTITY_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isProcessingInstruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_processing_instruction __read only__
+true if this node is an XML_PI_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isComment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_comment __read only__
+true if this node is an XML_COMMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isDocument __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_document __read only__
+true if this node is an XML_DOCUMENT_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isDocumentType __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_document_type __read only__
+true if this node is an XML_DOCUMENT_TYPE_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isDocumentFragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_document_fragment __read only__
+true if this node is an XML_DOCUMENT_FRAG_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$isNotation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `bool` \Contender\Elements\Text::$is_notation __read only__
+true if this node is an XML_NOTATION_NODE
+
+
+
+### `string` \Contender\Elements\Text::$innerText __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\Text::$inner_text __read only__
+The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to <a href="#string-contenderelementsnodetextcontent-read-only">\Contender\Elements\Node::$textContent</a> instead of NULL.
+
+
+
+### `string` \Contender\Elements\Text::$textContent __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\Text::$text_content __read only__
+The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Elements\Text::$outerHTML __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Text::$outer_h_t_m_l __read only__
+The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Text::$outerXML __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Text::$outer_x_m_l __read only__
+The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
+
+
+
+### `string` \Contender\Elements\Text::$nodePath __read only__
+Gets an XPath location path for the node
+
+
+
+### `string` \Contender\Elements\Text::$node_path __read only__
+Gets an XPath location path for the node
+
+
+
+### `int` \Contender\Elements\Text::$lineNo __read only__
+Get line number for a node
+
+
+
+### `int` \Contender\Elements\Text::$line_no __read only__
+Get line number for a node
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Text::$children __read only__
+That contains all children of this node. If there are no children, this is an empty <a href="#contenderelementscollection">\Contender\Elements\Collection</a>.
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Text::$childNodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Collection` \Contender\Elements\Text::$child_nodes __read only__
+Aliases to children
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$firstChild __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$first_child __read only__
+Get a first child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$lastChild __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$last_child __read only__
+Get a last child node.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Text::$firstElementChild __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Text::$first_element_child __read only__
+The first child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Text::$lastElementChild __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Element|null` \Contender\Elements\Text::$last_element_child __read only__
+The last child of this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$previousElementSibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$previous_element_sibling __read only__
+The node immediately preceding this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$nextElementSibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Node|null` \Contender\Elements\Text::$next_element_sibling __read only__
+The node immediately following this node. If there is no such node, this returns NULL.
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\Text::$ownerDocument __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `\Contender\Elements\Document` \Contender\Elements\Text::$owner_document __read only__
+The <a href="#contenderelementsdocument">\Contender\Elements\Document</a> object associated with this node
+
+
+
+### `string` \Contender\Elements\Text::$innerHTML
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Text::$inner_h_t_m_l
+The Element property innerHTML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Text::$innerXML
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `string` \Contender\Elements\Text::$inner_x_m_l
+The Element property innerXML gets or sets the HTML or XML markup contained within the element
+
+
+
+### `mixed|string|int` \Contender\Elements\Text::$parameter
+
+
+
+
+### `string` \Contender\Elements\Text::$wholeText
+Holds all the text of logically-adjacent (not separated by Element, Comment or Processing Instruction) Text nodes.
+
+
+
+### `string` \Contender\Elements\Text::$data
+The contents of the node.
+
+
+
+### `int` \Contender\Elements\Text::$length
+The length of the contents.
+
+
+
+### `int` \Contender\Elements\Text::$nodeType
+Gets the type of the node. One of the predefined XML_xxx_NODE constants
+
+
+
+### `string` \Contender\Elements\Text::$nodeName
+Returns the most accurate name for the current node type
+
+
+
+### `string` \Contender\Elements\Text::$nodeValue
+The value of this node, depending on its type
+
+
+
+### `string|null` \Contender\Elements\Text::$namespaceURI
+The namespace URI of this node, or NULL if it is unspecified.
+
+
+
+### `string|null` \Contender\Elements\Text::$prefix
+The namespace prefix of this node, or NULL if it is unspecified.
+
+
+
+### `string` \Contender\Elements\Text::$localName
+Returns the local part of the qualified name of this node.
+
+
+
+### `string|null` \Contender\Elements\Text::$baseURI
+The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
+
+
+
+
+
+
+Methods
+----------------------------
+
+### \Contender\Elements\Text::splitText(mixed|null $offset)
+Breaks this node into two nodes at the specified offset
+
+
+
+
+#### Parameters
+##### `int` $offset
+
+The offset at which to split, starting from 0.
+
+
+
+#### Return Values
+\Contender\Elements\Text The new node of the same type, which contains all the content at and after the offset.
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domtext.splittext.php">https://php.net/manual/en/domtext.splittext.php</a>
+
+
+### \Contender\Elements\Text::isWhitespaceInElementContent()
+Indicates whether this text node contains whitespace
+
+
+
+#### Parameters
+
+
+#### Return Values
+void true on success or false on failure.
+
+
+### See Also
+ - <a href="https://php.net/manual/en/domtext.iswhitespaceinelementcontent.php">https://php.net/manual/en/domtext.iswhitespaceinelementcontent.php</a>
+
 
 

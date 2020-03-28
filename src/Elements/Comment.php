@@ -1,6 +1,8 @@
 <?php
 /**
- * Document.php
+ * Comment.php
+ *
+ * Class Comment
  *
  * @category   Contender
  * @package    Contender\Elements
@@ -11,18 +13,13 @@
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/15
+ * @since      2020/03/28
  */
 
 namespace Contender\Elements;
 
-use Contender\Elements\Traits\NodeTrait;
-use DOMDocument;
-
 /**
- * Access each element of Html, like window.document in Javascript.
- *
- *
+ * Class Comment
  *
  * @category   Contender
  * @package    Contender\Elements
@@ -33,11 +30,9 @@ use DOMDocument;
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/15
+ * @since      2020/03/28
  * @isdoc
  * @mixin \Contender\Elements\DummyMixin\DomDocument
- * @property-read \Contender\Elements\Element documentElement
- * @property-read \Contender\Elements\Element document_element
  * @property-read bool isElement true if this node is an XML_ELEMENT_NODE
  * @property-read bool is_element true if this node is an XML_ELEMENT_NODE
  * @property-read bool isAttr true if this node is an XML_ATTRIBUTE_NODE
@@ -120,156 +115,10 @@ use DOMDocument;
  * @property string localName Returns the local part of the qualified name of this node.
  * @property string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  */
-class Document implements ElementInterface
+class Comment extends CharacterData
 {
-    use NodeTrait;
-
     /**
-     * @var \DOMDocument
+     * @var \DOMComment
      */
     protected $element;
-
-    /**
-     * Node constructor.
-     *
-     * @param \DOMDocument $element
-     * @return void
-     */
-    public function __construct(DOMDocument $element)
-    {
-        $this->element = $element;
-    }
-
-    /**
-     * @return \DOMDocument
-     */
-    protected function document(): DOMDocument
-    {
-        return $this->element;
-    }
-
-    /**
-     * @return \Contender\Elements\Element
-*/
-    public function getDocumentElementAttribute(): Element
-    {
-        return Factory::get($this->element->documentElement, $this);
-    }
-
-    /**
-     * Create new element node
-     *
-     * @param string $name       The tag name of the element.
-     * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with DOMElement->nodeValue.
-     * @return \Contender\Elements\Element
-*/
-    public function createElement(string $name, ?string $value = null): Element
-    {
-        $element = $this->element->createElement($name, $value);
-
-        return Factory::get($element, $this);
-    }
-
-    /**
-     * Create new comment node
-     *
-     * @param string $value The content of the comment.
-     * @return \Contender\Elements\Node
-*/
-    public function createComment(string $value): Node
-    {
-        $node = $this->element->createComment($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new comment node
-     *
-     * @param string $value The content of the text.
-     * @return \Contender\Elements\Node
-*/
-    public function createTextNode(string $value): Node
-    {
-        $node = $this->element->createTextNode($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new cdata node
-     *
-     * @param string $value The content of the cdata.
-     * @return \Contender\Elements\Node
-*/
-    public function createCDATASection(string $value): Node
-    {
-        $node = $this->element->createCDATASection($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Creates new PI node
-     *
-     * @param string $target    The target of the processing instruction.
-     * @param string|null $data The content of the processing instruction.
-     * @return \Contender\Elements\Node
-*/
-    public function createProcessingInstruction(string $target, ?string $data = null): Node
-    {
-        $node = $this->element->createProcessingInstruction($target, $data);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new attribute node with an associated namespace
-     *
-     * @param string $namespaceURI  The namespace URI of the elements to match on. The special value * matches all namespaces.
-     * @param string $qualifiedName The local name of the elements to match on. The special value * matches all local names.
-     * @return \Contender\Elements\Node
-*/
-    public function createAttributeNS(string $namespaceURI, string $qualifiedName): Node
-    {
-        $node = $this->element->createAttributeNS($namespaceURI, $qualifiedName);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new attribute
-     *
-     * @param string $value The name of the attribute.
-     * @return \Contender\Elements\Attr
-*/
-    public function createAttribute(string $value): Attr
-    {
-        $node = $this->element->createAttribute($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new entity reference node
-     *
-     * @param string $value The content of the entity reference, e.g. the entity reference minusthe leading & and the trailing ; characters.
-     * @return \Contender\Elements\Node
-* @link https://php.net/manual/domdocument.createentityreference.php
-     */
-    public function createEntityReference(string $value): Node
-    {
-        $node = $this->element->createEntityReference($value);
-        $this->element->importNode($node);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getOuterHTMLAttribute();
-    }
 }

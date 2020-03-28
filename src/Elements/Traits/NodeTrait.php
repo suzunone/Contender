@@ -83,20 +83,14 @@ use DOMNode;
  * @property-read \Contender\Elements\Node|null last_child Get a last child node.
  * @property-read \Contender\Elements\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null first_element_child The first child of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
- * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
  * @property-read \Contender\Elements\Document ownerDocument The {@link \Contender\Elements\Document} object associated with this node
  * @property-read \Contender\Elements\Document owner_document The {@link \Contender\Elements\Document} object associated with this node
- * @property-read string nodeName Returns the most accurate name for the current node type
- * @property-read string node_name Returns the most accurate name for the current node type
  * @property mixed|string|int parameter
  */
 trait NodeTrait
@@ -105,30 +99,14 @@ trait NodeTrait
     use SelectorTrait;
 
     /**
-     * Create {@link \Contender\Elements\Node} From \DomNode
-     *
-     * @param \DOMNode|null $element
-     * @return Node|null
-     * @hideDoc
-     */
-    public function createNode(?DOMNode $element): ?Node
-    {
-        if ($element === null) {
-            return $element;
-        }
-
-        return Factory::get($element, $this);
-    }
-
-    /**
      * Adds a node to the end of the list of children of a specified parent node.
      *
      * @param \Contender\Elements\Node $node
      * @return \Contender\Elements\Node
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
+* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
      * @see \Contender\Elements\Document::createElement()
      */
-    public function appendChild(Node $node)
+    public function appendChild(Node $node): Node
     {
         $res = $this->element->appendChild($node->nativeNode());
 
@@ -141,10 +119,10 @@ trait NodeTrait
      * @param \Contender\Elements\Node $node
      * @param \Contender\Elements\Node|null $referenceNode
      * @return \Contender\Elements\Node
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
      * @see \Contender\Elements\Document::createElement()
      */
-    public function insertBefore(Node $node, ?Node $referenceNode = null)
+    public function insertBefore(Node $node, ?Node $referenceNode = null): Node
     {
         if ($referenceNode) {
             $res = $this->element->insertBefore($node->nativeNode(), $referenceNode->nativeNode());
@@ -163,7 +141,7 @@ trait NodeTrait
      * @see https://www.php.net/manual/en/domnode.normalize.php
      * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize
      */
-    public function normalize()
+    public function normalize(): void
     {
         $this->element->normalize();
     }
@@ -175,7 +153,7 @@ trait NodeTrait
      *
      * @param bool $deep Indicates whether to copy all descendant nodes. This parameter is defaulted to FALSE.
      * @return \Contender\Elements\Node
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode
+* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode
      */
     public function cloneNode(bool $deep = false): Node
     {
@@ -200,7 +178,7 @@ trait NodeTrait
      *
      * @param \Contender\Elements\Node $oldnode
      * @return \Contender\Elements\Node
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
+* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
      */
     public function removeChild(Node $oldnode): Node
     {
@@ -213,7 +191,7 @@ trait NodeTrait
      * @param \Contender\Elements\Node $newnode
      * @param \Contender\Elements\Node $oldnode
      * @return \Contender\Elements\Node
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild
+* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild
      */
     public function replaceChild(Node $newnode, Node $oldnode): Node
     {
@@ -226,7 +204,7 @@ trait NodeTrait
      * @return DOMNode
      * @hideDoc
      */
-    public function nativeNode()
+    public function nativeNode(): DOMNode
     {
         return $this->element;
     }

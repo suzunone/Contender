@@ -90,22 +90,17 @@ use DOMNodeList;
  * @property-read \Contender\Elements\Node|null last_child Get a last child node.
  * @property-read \Contender\Elements\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null first_element_child The first child of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
- * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
  * @property-read \Contender\Elements\Document ownerDocument The {@link \Contender\Elements\Document} object associated with this node
  * @property-read \Contender\Elements\Document owner_document The {@link \Contender\Elements\Document} object associated with this node
- * @property-read string nodeName Returns the most accurate name for the current node type
- * @property-read string node_name Returns the most accurate name for the current node type
  * @property mixed|string|int parameter
  * @property int nodeType Gets the type of the node. One of the predefined XML_xxx_NODE constants
+ * @property string nodeName Returns the most accurate name for the current node type
  * @property string nodeValue The value of this node, depending on its type
  * @property string|null namespaceURI The namespace URI of this node, or NULL if it is unspecified.
  * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
@@ -265,7 +260,7 @@ trait GetterTrait
     /**
      * @param string $html
      * @return Collection
-     */
+*/
     protected function htmlToNodes(string $html): Collection
     {
         $newNode = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
@@ -276,7 +271,7 @@ trait GetterTrait
     /**
      * @param string $html
      * @hideDoc
-     */
+*/
     public function setInnerHTMLAttribute(string $html): void
     {
         $newNodes = $this->htmlToNodes($html);
@@ -294,8 +289,8 @@ trait GetterTrait
     /**
      * @param string $value
      * @hideDoc
-     */
-    public function setInnerXMLAttribute(string $value)
+*/
+    public function setInnerXMLAttribute(string $value): void
     {
         $this->setInnerHTMLAttribute($value);
     }
@@ -370,7 +365,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Collection That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
-     * @hideDoc
+* @hideDoc
      */
     public function getChildrenAttribute(): Collection
     {
@@ -420,15 +415,6 @@ trait GetterTrait
     }
 
     /**
-     * @return \Contender\Elements\Node|null The parent of this node. If there is no such node, this returns NULL.
-     * @hideDoc
-     */
-    public function getParentNodeAttribute(): ?Node
-    {
-        return Factory::get($this->element->parentNode);
-    }
-
-    /**
      * @return \Contender\Elements\Element|null The last child of this node. If there is no such node, this returns NULL.
      * @hideDoc
      */
@@ -439,45 +425,51 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Node|null The node immediately preceding this node. If there is no such node, this returns NULL.
-     * @hideDoc
+* @hideDoc
      */
     public function getPreviousElementSiblingAttribute(): ?Node
     {
-        return Factory::get($this->element->previousSibling);
+        $node = $this->element->previousSibling;
+        if ($node === null) {
+            return null;
+        }
+
+        while ($node->nodeType !== XML_ELEMENT_NODE) {
+            $node = $node->previousSibling;
+            if ($node === null) {
+                return null;
+            }
+        }
+
+        return Factory::get($node, $this);
     }
 
     /**
      * @return \Contender\Elements\Node|null The node immediately following this node. If there is no such node, this returns NULL.
-     * @hideDoc
+* @hideDoc
      */
     public function getNextElementSiblingAttribute(): ?Node
     {
-        return $this->createNode($this->element->nextSibling);
-    }
+        $node = $this->element->nextSibling;
+        if ($node === null) {
+            return null;
+        }
 
-    /**
-     * @return \Contender\Elements\Node|null Alias to next_element_sibling
-     * @hideDoc
-     */
-    public function getNextSiblingAttribute(): ?Node
-    {
-        return $this->getNextElementSiblingAttribute();
+        while ($node->nodeType !== XML_ELEMENT_NODE) {
+            $node = $node->nextSibling;
+            if ($node === null) {
+                return null;
+            }
+        }
+
+        return Factory::get($node, $this);
     }
 
     /**
      * @return \Contender\Elements\Document The {@link \Contender\Elements\Document} object associated with this node
-     */
+*/
     public function getOwnerDocumentAttribute(): Document
     {
         return Factory::get($this->document(), $this);
-    }
-
-    /**
-     * @return string Returns the most accurate name for the current node type
-     * @hideDoc
-     */
-    public function getNodeNameAttribute(): string
-    {
-        return $this->element->nodeName;
     }
 }

@@ -77,7 +77,7 @@ class Collection extends \Illuminate\Support\Collection
     {
         $res = [];
         foreach ($element as $dom) {
-            $res[] = $node->createNode($dom);
+            $res[] = Factory::get($dom, $node);
         }
 
         return static::make($res);
@@ -100,7 +100,7 @@ class Collection extends \Illuminate\Support\Collection
      *
      * @return \Contender\Elements\Collection Sorted Collection
      */
-    public function sortDom()
+    public function sortDom(): Collection
     {
         return $this->sort(static function (Node $item_a, Node $item_b) {
             $line_no_a = $item_a->lineNo;
@@ -185,16 +185,15 @@ class Collection extends \Illuminate\Support\Collection
     /**
      * @param $key
      * @param $value
-     * @return void|mixed
+     * @return void
      * @hideDoc
      */
     public function __set($key, $value)
     {
         if (strtolower($key) === 'innerhtml') {
-            return $this->setInnerHtmlAttribute($value);
-        }
-        if (strtolower($key) === 'innerxml') {
-            return $this->setInnerXMLAttribute($value);
+            $this->setInnerHtmlAttribute($value);
+        } elseif (strtolower($key) === 'innerxml') {
+            $this->setInnerXMLAttribute($value);
         }
     }
 
@@ -290,7 +289,7 @@ class Collection extends \Illuminate\Support\Collection
      * @param string $value
      * @link \Contender\Elements\Element::setAttribute()
      */
-    public function setAttribute(string $name, string $value)
+    public function setAttribute(string $name, string $value): void
     {
         $this->sortDom()->first()->setAttribute($name, $value);
     }
@@ -301,7 +300,7 @@ class Collection extends \Illuminate\Support\Collection
      * @return \Contender\Elements\Collection
      * @link \Contender\Elements\Node::remove()
      */
-    public function remove()
+    public function remove(): Collection
     {
         $collect = new Collection([]);
         $this->each(static function (Node $node) use (&$collect) {

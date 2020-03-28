@@ -36,6 +36,7 @@ use DOMXPath;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @hideDoc
+ * @mixin Node
  */
 trait SelectorTrait
 {
@@ -45,8 +46,8 @@ trait SelectorTrait
      *  Returns a {@link \Contender\Elements\Node} object representing the element whose id property matches the specified string.
      *
      * @param string $query tag id
-     * @return \Contender\Elements\Node|null Selected node
-     */
+     * @return \Contender\Elements\Element|null Selected node
+*/
     public function getElementById(string $query): ?Node
     {
         $res = $this->document()->getElementById($query);
@@ -54,7 +55,7 @@ trait SelectorTrait
             return null;
         }
 
-        return $this->createNode($res);
+        return Factory::get($res, $this);
     }
 
     /**
@@ -62,7 +63,7 @@ trait SelectorTrait
      *
      * @param string $query tag class name
      * @return \Contender\Elements\Collection|\Contender\Elements\Node[]
-     */
+*/
     public function getElementsByClassName(string $query): Collection
     {
         return $this->querySelectorAll('.' . trim($query));
@@ -73,7 +74,7 @@ trait SelectorTrait
      *
      * @param string $query tag name attribute
      * @return \Contender\Elements\Collection|\Contender\Elements\Node[]
-     */
+*/
     public function getElementsByName(string $query): Collection
     {
         return $this->querySelectorAll('[name="' . trim($query) . '"]');
@@ -84,7 +85,7 @@ trait SelectorTrait
      *
      * @param string $tag_name Elements tag name
      * @return \Contender\Elements\Collection
-     */
+*/
     public function getElementsByTagName(string $tag_name): Collection
     {
         if ($this->isElement) {
@@ -104,15 +105,16 @@ trait SelectorTrait
      * Returns the attribute node in namespace namespaceURI with local name localName for the current node.
      *
      * @param string $namespaceURI The namespace URI.
-     * @param string $localName The local name.
+     * @param string $localName    The local name.
      * @return \Contender\Elements\Collection
-     */
+*/
     public function getAttributeNodeNS(string $namespaceURI, string $localName): Collection
     {
         if ($this->isElement) {
             return $this->element->getAttributeNodeNS($namespaceURI, $localName);
         }
 
+        /** @noinspection PhpUndefinedMethodInspection */
         $res = $this->document()->getAttributeNodeNS($namespaceURI, $localName);
 
         return Factory::get($res, $this);
@@ -123,7 +125,7 @@ trait SelectorTrait
      *
      * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Node|null
-     */
+*/
     public function querySelector(string $selectors): ?Node
     {
         $queries = explode(',', $selectors);
@@ -142,7 +144,7 @@ trait SelectorTrait
      *
      * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Collection|Node[]
-     */
+*/
     public function querySelectorAll(string $selectors): Collection
     {
         $queries = explode(',', $selectors);
@@ -159,7 +161,7 @@ trait SelectorTrait
      *
      * @param string $query
      * @return \Contender\Elements\Collection
-     */
+*/
     public function find(string $query): Collection
     {
         return $this->querySelectorAll($query)->onlyElement();
@@ -170,7 +172,7 @@ trait SelectorTrait
      *
      * @param string $query xpath
      * @return \Contender\Elements\Collection|Node[]
-     */
+*/
     public function evaluateToCollection(string $query): Collection
     {
         $res = $this->domXPathQuery($query);
@@ -191,7 +193,7 @@ trait SelectorTrait
      * @param string $query xpath
      * @param int $offset
      * @return \Contender\Elements\Node|null
-     */
+*/
     public function evaluate(string $query, int $offset = 0): ?Node
     {
         $res = $this->domXPathQuery($query);
@@ -204,7 +206,7 @@ trait SelectorTrait
             return null;
         }
 
-        return $this->createNode($res->item($offset));
+        return Factory::get($res->item($offset), $this);
     }
 
     /**
@@ -213,7 +215,7 @@ trait SelectorTrait
      * @param string $query
      * @return  DOMNodeList
      */
-    protected function domXPathQuery(string $query)
+    protected function domXPathQuery(string $query): DOMNodeList
     {
         $xpath = new DOMXPath($this->document());
         if ($this->element->ownerDocument === null) {

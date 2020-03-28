@@ -87,22 +87,17 @@ use DOMText;
  * @property-read \Contender\Elements\Node|null last_child Get a last child node.
  * @property-read \Contender\Elements\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null first_element_child The first child of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null parentNode The parent of this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null parent_node The parent of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null lastElementChild The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read \Contender\Elements\Node|null nextSibling Alias to next_element_sibling
- * @property-read \Contender\Elements\Node|null next_sibling Alias to next_element_sibling
  * @property-read \Contender\Elements\Document ownerDocument The {@link \Contender\Elements\Document} object associated with this node
  * @property-read \Contender\Elements\Document owner_document The {@link \Contender\Elements\Document} object associated with this node
- * @property-read string nodeName Returns the most accurate name for the current node type
- * @property-read string node_name Returns the most accurate name for the current node type
  * @property mixed|string|int parameter
  * @property int nodeType Gets the type of the node. One of the predefined XML_xxx_NODE constants
+ * @property string nodeName Returns the most accurate name for the current node type
  * @property string nodeValue The value of this node, depending on its type
  * @property string|null namespaceURI The namespace URI of this node, or NULL if it is unspecified.
  * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
@@ -149,7 +144,7 @@ class Node implements ElementInterface
      * Removes the object from the tree it belongs to.
      *
      * @return \Contender\Elements\Node|null
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
+* @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
      */
     public function remove(): ?Node
     {
@@ -163,14 +158,14 @@ class Node implements ElementInterface
      *
      * @param \Contender\Elements\Node|string ...$elements
      * @return \Contender\Elements\Node|null
-     * @see \Contender\Elements\Document::createElement()
+* @see \Contender\Elements\Document::createElement()
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after
      */
-    public function after(...$elements)
+    public function after(...$elements): ?Node
     {
         krsort($elements);
         foreach ($elements as $element) {
-            if (!$element instanceof Node) {
+            if (!$element instanceof ElementInterface) {
                 $node = new DOMText($element);
             } else {
                 $node = $element->nativeNode();
@@ -194,16 +189,16 @@ class Node implements ElementInterface
      * Inserts a set of {@link \Contender\Elements\Node}  or String in the children list of this ChildNode's parent, just before this ChildNode. Strings are inserted as equivalent Text nodes.
      *
      * @param \Contender\Elements\Node|string ...$elements
-     * @return \Contender\Elements\Node
-     * @see \Contender\Elements\Document::createElement()
+     * @return \Contender\Elements\Node|null
+* @see \Contender\Elements\Document::createElement()
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before
      */
-    public function before(...$elements)
+    public function before(...$elements): ?Node
     {
         krsort($elements);
 
         foreach ($elements as $element) {
-            if (!$element instanceof Node) {
+            if (!$element instanceof ElementInterface) {
                 $node = new DOMText($element);
             } else {
                 $node = $element->nativeNode();

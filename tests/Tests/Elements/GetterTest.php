@@ -18,6 +18,8 @@
 namespace Tests\Suzunone\Contender\Elements;
 
 use Contender\Contender;
+use Contender\Elements\Document;
+use Contender\Elements\Element;
 use Contender\Elements\Node;
 use PHPUnit\Framework\TestCase;
 
@@ -399,5 +401,42 @@ INNERTEXT;
         $node = \Mockery::mock(Node::class)->makePartial();
         $node->shouldReceive('getParameterAttribute')->andReturn(XML_NOTATION_NODE);
         $this->assertTrue($node->is_notation);
+    }
+
+    public function test_getParameterAttribute_object()
+    {
+        $html = <<<ENDHTML
+<div>■□■<ul class="list-group">
+        <li class="list-1">list 1</li>
+        <li class="list-2">list 2</li>
+        <li class="list-3">list 3</li>
+    </ul>○●○<p>sample text</p><strong>strong text</strong>
+</div>
+ENDHTML;
+        $document = Contender::loadStr($html);
+
+        $this->assertInstanceOf(Document::class, $document->ownerDocument);
+        $this->assertInstanceOf(Document::class, $document->querySelector('div')->ownerDocument);
+
+        $this->assertInstanceOf(Element::class, $document->querySelector('p')->nextSibling);
+        $this->assertEquals('<strong>strong text</strong>', (string) $document->querySelector('p')->nextSibling);
+        $this->assertInstanceOf(Node::class, $document->querySelector('ul')->nextSibling);
+        $this->assertEquals('○●○', (string) $document->querySelector('ul')->nextSibling);
+    }
+
+    public function test_getNextElementSiblingAttribute()
+    {
+        $html = <<<ENDHTML
+<div>■□■<ul class="list-group">
+        <li class="list-1">list 1</li>
+        <li class="list-2">list 2</li>
+        <li class="list-3">list 3</li>
+    </ul>○●○<p>sample text</p><strong>strong text</strong>
+</div>
+ENDHTML;
+        $document = Contender::loadStr($html);
+        $li_1 = $document->querySelector('.list-1');
+
+        $this->assertEquals('<li class="list-2">list 2</li>', (string) $li_1->nextElementSibling);
     }
 }

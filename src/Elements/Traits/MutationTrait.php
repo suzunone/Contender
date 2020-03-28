@@ -42,7 +42,7 @@ trait MutationTrait
     /**
      * @param $name
      * @return mixed|string
-     * @hideDoc
+* @hideDoc
      */
     public function __get($name)
     {
@@ -83,7 +83,7 @@ trait MutationTrait
      * @param string $name
      * @param $value
      */
-    public function setParameterAttribute(string $name, $value)
+    public function setParameterAttribute(string $name, $value): void
     {
         $name = Str::camel($name);
 
@@ -93,7 +93,7 @@ trait MutationTrait
     /**
      * @param string $name
      * @return mixed|string|int
-     */
+*/
     public function getParameterAttribute(string $name)
     {
         $name = Str::camel($name);

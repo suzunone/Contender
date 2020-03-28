@@ -1,6 +1,8 @@
 <?php
 /**
- * Document.php
+ * CharacterData.php
+ *
+ * Class CharacterData
  *
  * @category   Contender
  * @package    Contender\Elements
@@ -11,18 +13,13 @@
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/15
+ * @since      2020/03/28
  */
 
 namespace Contender\Elements;
 
-use Contender\Elements\Traits\NodeTrait;
-use DOMDocument;
-
 /**
- * Access each element of Html, like window.document in Javascript.
- *
- *
+ * Class CharacterData
  *
  * @category   Contender
  * @package    Contender\Elements
@@ -33,11 +30,9 @@ use DOMDocument;
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/15
+ * @since      2020/03/28
  * @isdoc
- * @mixin \Contender\Elements\DummyMixin\DomDocument
- * @property-read \Contender\Elements\Element documentElement
- * @property-read \Contender\Elements\Element document_element
+ * @mixin \Contender\Elements\DummyMixin\DOMCharacterData
  * @property-read bool isElement true if this node is an XML_ELEMENT_NODE
  * @property-read bool is_element true if this node is an XML_ELEMENT_NODE
  * @property-read bool isAttr true if this node is an XML_ATTRIBUTE_NODE
@@ -96,22 +91,8 @@ use DOMDocument;
  * @property-read \Contender\Elements\Document ownerDocument The {@link \Contender\Elements\Document} object associated with this node
  * @property-read \Contender\Elements\Document owner_document The {@link \Contender\Elements\Document} object associated with this node
  * @property mixed|string|int parameter
- * @property string actualEncoding Deprecated. Actual encoding of the document, is a readonly equivalent to encoding.
- * @property \DOMConfiguration config Deprecated. Configuration used when {
- * @property string|null documentURI The location of the document or NULL if undefined.
- * @property string encoding Encoding of the document, as specified by the XML declaration. This attribute is not present in the final DOM Level 3 specification, but is the only way of manipulating XML document encoding in this implementation.
- * @property bool formatOutput Nicely formats output with indentation and extra space.
- * @property bool preserveWhiteSpace Do not remove redundant white space. Default to TRUE.
- * @property bool recover Proprietary. Enables recovery mode, i.e. trying to parse non-well formed documents.This attribute is not part of the DOM specification and is specific to libxml.
- * @property bool resolveExternals Set it to TRUE to load external entities from a doctype declaration. This is useful for including character entities in your XML document.
- * @property bool standalone Deprecated. Whether or not the document is standalone, as specified by the XML declaration,corresponds to xmlStandalone.
- * @property bool strictErrorChecking Throws <classname>DOMException</classname> on errors. Default to TRUE.
- * @property bool substituteEntities Proprietary. Whether or not to substitute entities. This attribute is not part of the DOMspecification and is specific to libxml.
- * @property bool validateOnParse Loads and validates against the DTD. Default to FALSE.
- * @property string version Deprecated. Version of XML, corresponds to xmlVersion
- * @property string xmlEncoding An attribute specifying, as part of the XML declaration, the encoding of this document. This is NULL whenunspecified or when it is not known, such as when the Document was created in memory.
- * @property bool xmlStandalone An attribute specifying, as part of the XML declaration, whether this document is standalone.This is FALSE when unspecified.
- * @property string xmlVersion An attribute specifying, as part of the XML declaration, the version number of this document. If there is nodeclaration and if this document supports the "XML" feature, the value is "1.0".
+ * @property string data The contents of the node.
+ * @property int length The length of the contents.
  * @property int nodeType Gets the type of the node. One of the predefined XML_xxx_NODE constants
  * @property string nodeName Returns the most accurate name for the current node type
  * @property string nodeValue The value of this node, depending on its type
@@ -120,156 +101,74 @@ use DOMDocument;
  * @property string localName Returns the local part of the qualified name of this node.
  * @property string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  */
-class Document implements ElementInterface
+class CharacterData extends Node
 {
-    use NodeTrait;
-
     /**
-     * @var \DOMDocument
+     * @var \DOMCharacterData
      */
     protected $element;
 
     /**
-     * Node constructor.
-     *
-     * @param \DOMDocument $element
+     * Extracts a range of data from the node
+     * @link  https://php.net/manual/en/domcharacterdata.substringdata.php
+     * @param int $offset Start offset of substring to extract.
+     * @param int $count  The number of characters to extract.
+     * @return string The specified substring. If the sum of offset and count exceeds the length, then all 16-bit units to the end of the data are returned.
+     */
+    public function substringData($offset, $count): string
+    {
+        return $this->element->substringData($offset, $count);
+    }
+
+    /**
+     * Append the string to the end of the character data of the node
+     * @link  https://php.net/manual/en/domcharacterdata.appenddata.php
+     * @param string $data The string to append.
      * @return void
+     * @since 5.0
      */
-    public function __construct(DOMDocument $element)
+    public function appendData($data): void
     {
-        $this->element = $element;
+        $this->element->appendData($data);
     }
 
     /**
-     * @return \DOMDocument
+     * Insert a string at the specified 16-bit unit offset
+     * @link  https://php.net/manual/en/domcharacterdata.insertdata.php
+     * @param int $offset  The character offset at which to insert.
+     * @param string $data The string to insert.
+     * @return void
+     * @since 5.0
      */
-    protected function document(): DOMDocument
+    public function insertData($offset, $data): void
     {
-        return $this->element;
+        $this->element->insertData($offset, $data);
     }
 
     /**
-     * @return \Contender\Elements\Element
-*/
-    public function getDocumentElementAttribute(): Element
-    {
-        return Factory::get($this->element->documentElement, $this);
-    }
-
-    /**
-     * Create new element node
-     *
-     * @param string $name       The tag name of the element.
-     * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with DOMElement->nodeValue.
-     * @return \Contender\Elements\Element
-*/
-    public function createElement(string $name, ?string $value = null): Element
-    {
-        $element = $this->element->createElement($name, $value);
-
-        return Factory::get($element, $this);
-    }
-
-    /**
-     * Create new comment node
-     *
-     * @param string $value The content of the comment.
-     * @return \Contender\Elements\Node
-*/
-    public function createComment(string $value): Node
-    {
-        $node = $this->element->createComment($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new comment node
-     *
-     * @param string $value The content of the text.
-     * @return \Contender\Elements\Node
-*/
-    public function createTextNode(string $value): Node
-    {
-        $node = $this->element->createTextNode($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new cdata node
-     *
-     * @param string $value The content of the cdata.
-     * @return \Contender\Elements\Node
-*/
-    public function createCDATASection(string $value): Node
-    {
-        $node = $this->element->createCDATASection($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Creates new PI node
-     *
-     * @param string $target    The target of the processing instruction.
-     * @param string|null $data The content of the processing instruction.
-     * @return \Contender\Elements\Node
-*/
-    public function createProcessingInstruction(string $target, ?string $data = null): Node
-    {
-        $node = $this->element->createProcessingInstruction($target, $data);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new attribute node with an associated namespace
-     *
-     * @param string $namespaceURI  The namespace URI of the elements to match on. The special value * matches all namespaces.
-     * @param string $qualifiedName The local name of the elements to match on. The special value * matches all local names.
-     * @return \Contender\Elements\Node
-*/
-    public function createAttributeNS(string $namespaceURI, string $qualifiedName): Node
-    {
-        $node = $this->element->createAttributeNS($namespaceURI, $qualifiedName);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new attribute
-     *
-     * @param string $value The name of the attribute.
-     * @return \Contender\Elements\Attr
-*/
-    public function createAttribute(string $value): Attr
-    {
-        $node = $this->element->createAttribute($value);
-
-        return Factory::get($node, $this);
-    }
-
-    /**
-     * Create new entity reference node
-     *
-     * @param string $value The content of the entity reference, e.g. the entity reference minusthe leading & and the trailing ; characters.
-     * @return \Contender\Elements\Node
-* @link https://php.net/manual/domdocument.createentityreference.php
+     * Remove a range of characters from the node
+     * @link  https://php.net/manual/en/domcharacterdata.deletedata.php
+     * @param int $offset The offset from which to start removing.
+     * @param int $count  The number of characters to delete. If the sum of offset and count exceeds the length, then all characters to the end of the data are deleted.
+     * @return void
+     * @since 5.0
      */
-    public function createEntityReference(string $value): Node
+    public function deleteData($offset, $count): void
     {
-        $node = $this->element->createEntityReference($value);
-        $this->element->importNode($node);
-
-        return Factory::get($node, $this);
+        $this->element->deleteData($offset, $count);
     }
 
     /**
-     * @return string
+     * Replace a substring within the DOMCharacterData node
+     * @link  https://php.net/manual/en/domcharacterdata.replacedata.php
+     * @param int $offset  The offset from which to start replacing.
+     * @param int $count   The number of characters to replace. If the sum of offset and count exceeds the length, then all characters to the end of the data are replaced.
+     * @param string $data The string with which the range must be replaced.
+     * @return void
+     * @since 5.0
      */
-    public function __toString()
+    public function replaceData($offset, $count, $data): void
     {
-        return $this->getOuterHTMLAttribute();
+        $this->element->replaceData($offset, $count, $data);
     }
 }

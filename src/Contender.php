@@ -87,86 +87,86 @@ class Contender
      * Activate small nodes allocation optimization. This may speed up your application without needing to change the code.
      * @var string Contender Load Option.
      */
-    const OPTION_COMPACT = 'LIBXML_COMPACT';
+    public const OPTION_COMPACT = 'LIBXML_COMPACT';
 
     /**
      * Remove blank nodes
      * @var string Contender Load Option.
      */
-    const OPTION_NOBLANKS = 'LIBXML_NOBLANKS';
+    public const OPTION_NOBLANKS = 'LIBXML_NOBLANKS';
 
     /**
      * Merge CDATA as text nodes
      * @var string Contender Load Option.
      */
-    const OPTION_NOCDATA = 'LIBXML_NOCDATA';
+    public const OPTION_NOCDATA = 'LIBXML_NOCDATA';
 
     /**
      * Expand empty tags (e.g. `<br/>` to `<br></br>`)
      * @var string Contender Load Option.
      */
-    const OPTION_NOEMPTYTAG = 'LIBXML_NOEMPTYTAG';
+    public const OPTION_NOEMPTYTAG = 'LIBXML_NOEMPTYTAG';
 
     /**
      * Substitute entities
      * @var string Contender Load Option.
      */
-    const OPTION_NOENT = 'LIBXML_NOENT';
+    public const OPTION_NOENT = 'LIBXML_NOENT';
 
     /**
      * Disable network access when loading documents
      * @var string Contender Load Option.
      */
-    const OPTION_NONET = 'LIBXML_NONET';
+    public const OPTION_NONET = 'LIBXML_NONET';
 
     /**
      * Force to UTF -8 encoding
      * @var string Contender Load Option.
      */
-    const OPTION_CONVERT_ENCODE = 'CONVERT_ENCODE';
-    const OPTION_CONVERT_NO_ENCODE = 'CONVERT_NO_ENCODE';
+    public const OPTION_CONVERT_ENCODE = 'CONVERT_ENCODE';
+    public const OPTION_CONVERT_NO_ENCODE = 'CONVERT_NO_ENCODE';
 
     /**
      * Change charset`<meta>`tag when {@link \Contender\Contender::OPTION_CONVERT_ENCODE} option is enabled
      * @var string Contender Load Option.
      */
-    const OPTION_CONVERT_REPLACE_CHARSET = 'OPTION_CONVERT_REPLACE_CHARSET';
-    const OPTION_CONVERT_NO_REPLACE_CHARSET = 'OPTION_CONVERT_NO_REPLACE_CHARSET';
+    public const OPTION_CONVERT_REPLACE_CHARSET = 'OPTION_CONVERT_REPLACE_CHARSET';
+    public const OPTION_CONVERT_NO_REPLACE_CHARSET = 'OPTION_CONVERT_NO_REPLACE_CHARSET';
 
     /**
      * Nicely formats output with indentation and extra space.
      * @var string Contender Load Option.
      */
-    const OPTION_FORMAT_OUTPUT_ENABLE = 'OPTION_FORMAT_OUTPUT_ENABLE';
-    const OPTION_FORMAT_OUTPUT_DISABLE = 'OPTION_FORMAT_OUTPUT_DISABLE';
+    public const OPTION_FORMAT_OUTPUT_ENABLE = 'OPTION_FORMAT_OUTPUT_ENABLE';
+    public const OPTION_FORMAT_OUTPUT_DISABLE = 'OPTION_FORMAT_OUTPUT_DISABLE';
 
     /**
      * Do not minify html, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
-    const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
-    const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
+    public const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
+    public const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
 
     /**
      * Remove `<style>`tags, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
-    const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
-    const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
+    public const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
+    public const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
 
     /**
      * Remove `<script>`tags, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
-    const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
-    const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
+    public const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
+    public const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
 
     /**
      * Remove comment tags, then generating to {@link \Contender\Elements\Document}
      * @var string Contender Load Option.
      */
-    const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
-    const OPTION_REMOVE_COMMENT_DISABLE = 'OPTION_REMOVE_COMMENT_DISABLE';
+    public const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
+    public const OPTION_REMOVE_COMMENT_DISABLE = 'OPTION_REMOVE_COMMENT_DISABLE';
 
     /**
      * Default libxml options
@@ -309,7 +309,7 @@ class Contender
      */
     public function load(string $html, array $options = []): Document
     {
-        $is_xml = substr($html, 0, 5) === '<?xml';
+        $is_xml = strpos($html, '<?xml') === 0;
         $this->setOptions($options);
         if ($this->is_encode) {
             $html = $this->toUTF8($html);
@@ -457,7 +457,7 @@ HTML;
      * @link \Contender\Contender::loadStr()
      * @link \Contender\Contender::loadUrl()
      */
-    public function loadFromUrl(string $url, array $options = [], ?array $context_option = null)
+    public function loadFromUrl(string $url, array $options = [], ?array $context_option = null): Document
     {
         if ($context_option) {
             $context = stream_context_create($context_option);
@@ -492,7 +492,7 @@ HTML;
      * @return \Contender\Elements\Document
      * @see https://www.php.net/manual/en/class.domdocument.php
      */
-    public static function loadDomDocument(DOMDocument $document)
+    public static function loadDomDocument(DOMDocument $document): Document
     {
         return new Document($document);
     }
@@ -584,8 +584,7 @@ HTML;
         $items = $xpath->query('//head/meta[@charset]');
         $match = [];
 
-        if ($items && $items->count() >= 1) {
-            $item = $items->item(0);
+        if ($items && $item = $items->item(0)) {
             $encode = $item->getAttribute('charset');
             if ($encode) {
                 return $encode;
@@ -594,8 +593,7 @@ HTML;
 
         $xpath = new DOMXPath($doc);
         $items = $xpath->query('//head/meta[@http-equiv="Content-Type"]');
-        if ($items && $items->count() >= 1) {
-            $item = $items->item(0);
+        if ($items && $item = $items->item(0)) {
             $encode = $item->getAttribute('content');
             if ($encode && mb_ereg('charset=([^ ]*)', $encode, $match)) {
                 return $match[1];
