@@ -48,9 +48,9 @@ use DOMText;
 class Factory
 {
     /**
-     * @param \DOMNodeList|\DOMDocument|\DOMElement|\DOMNode|\DOMNamedNodeMap|\DOMText|null $item
-     * @param \Contender\Elements\Traits\SelectorTrait|\Contender\Elements\Traits\MutationTrait|\Contender\Elements\Traits\GetterTrait|\Contender\Elements\ElementInterface|null $old
-     * @return \Contender\Elements\Attr|\Contender\Elements\CdataSection|\Contender\Elements\CharacterData|\Contender\Elements\Collection|\Contender\Elements\Comment|\Contender\Elements\Document|\Contender\Elements\DocumentFragment|\Contender\Elements\Element|\Contender\Elements\NamedNodeMap|\Contender\Elements\Node|\Contender\Elements\Text
+     * @param \DOMNodeList|\DOMDocument|\DOMElement|\DOMImplementation|\DOMNode|\DOMNamedNodeMap|\DOMText|\DOMDocumentType|null $item
+     * @param \Contender\Elements\Traits\SelectorTrait|\Contender\Elements\Traits\MutationTrait|\Contender\Elements\Traits\GetterTrait|\Contender\Elements\ElementInterface|\Contender\Elements\Implementation|null $old
+     * @return \Contender\Elements\Attr|\Contender\Elements\CdataSection|\Contender\Elements\CharacterData|\Contender\Elements\Collection|\Contender\Elements\Comment|\Contender\Elements\Document|\Contender\Elements\DocumentType|\Contender\Elements\DocumentFragment|\Contender\Elements\Element|\Contender\Elements\Implementation|\Contender\Elements\NamedNodeMap|\Contender\Elements\Node|\Contender\Elements\Text
      * @hideDoc
      */
     public static function get($item, $old)
@@ -65,6 +65,18 @@ class Factory
 
         if ($item instanceof DOMElement) {
             return new Element($item);
+        }
+
+        if ($item instanceof \DOMEntity) {
+            return new Entity($item);
+        }
+
+        if ($item instanceof \DOMImplementation) {
+            return new Implementation($item);
+        }
+
+        if ($item instanceof \DOMDocumentType) {
+            return new DocumentType($item);
         }
 
         if ($item instanceof DOMNamedNodeMap) {

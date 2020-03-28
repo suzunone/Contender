@@ -36,6 +36,7 @@ class DomDocument extends DOMNode
 {
     /**
      * @var string
+     * @read-only
      * Deprecated. Actual encoding of the document, is a readonly equivalent to encoding.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.actualencoding
      * @deprecated
@@ -43,6 +44,7 @@ class DomDocument extends DOMNode
     public $actualEncoding;
 
     /**
+     * @read-only
      * @var \DOMConfiguration
      * Deprecated. Configuration used when {@link DOMDocument::normalizeDocument()} is invoked.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.config
@@ -70,6 +72,11 @@ class DomDocument extends DOMNode
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.formatoutput
      */
     public $formatOutput;
+
+    /**
+     * @var
+     */
+    public $implementation;
 
     /**
      * @var bool
@@ -129,6 +136,7 @@ class DomDocument extends DOMNode
     public $version;
 
     /**
+     * @read-only
      * @var string
      * An attribute specifying, as part of the XML declaration, the encoding of this document. This is NULL whenunspecified or when it is not known, such as when the Document was created in memory.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.xmlencoding

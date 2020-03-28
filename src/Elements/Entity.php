@@ -1,8 +1,8 @@
 <?php
 /**
- * Element.php
+ * Entity.php
  *
- * Class Element
+ * Class Entity
  *
  * @category   Contender
  * @package    Contender\Elements
@@ -13,16 +13,13 @@
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/24
+ * @since      2020/03/28
  */
 
 namespace Contender\Elements;
 
-use Contender\Elements\Traits\ElementTrait;
-use Generator;
-
 /**
- * Class Element
+ * Class Entity
  *
  * @category   Contender
  * @package    Contender\Elements
@@ -33,14 +30,15 @@ use Generator;
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/24
+ * @since      2020/03/28
  * @isdoc
- * @mixin \Contender\Elements\DummyMixin\DOMElement
- * @property-read \Contender\Elements\NamedNodeMap attributes
+ * @mixin \Contender\Elements\DummyMixin\DOMEntity
+ * @property string|null actualEncoding An attribute specifying the encoding used for this entity at the time of parsing, when it is an external
  * @property-read string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  * @property-read \Contender\Elements\Collection childNodes Aliases to children
  * @property-read \Contender\Elements\Collection child_nodes Aliases to children
  * @property-read \Contender\Elements\Collection children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
+ * @property string|null encoding An attribute specifying, as part of the text declaration, the encoding of this entity, when it is an external
  * @property-read \Contender\Elements\Node|null firstChild Get a first child node.
  * @property-read \Contender\Elements\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null first_child Get a first child node.
@@ -90,6 +88,7 @@ use Generator;
  * @property-read int nodeType Gets the type of the node. One of the predefined XML_xxx_NODE constants
  * @property string nodeValue The value of this node, depending on its type
  * @property-read string node_path Gets an XPath location path for the node
+ * @property string|null notationName For unparsed entities, the name of the notation for the entity. For parsed entities, this is NULL.
  * @property-read string outerHTML The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
  * @property-read string outerXML The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
  * @property-read string outer_h_t_m_l The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
@@ -100,124 +99,16 @@ use Generator;
  * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
  * @property-read \Contender\Elements\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Elements\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
- * @property bool schemaTypeInfo Not implemented yet, always return NULL
- * @property string tagName The element name
+ * @property string|null publicId The public identifier associated with the entity if specified, and NULL otherwise.
+ * @property string|null systemId The system identifier associated with the entity if specified, and NULL otherwise. This may be an
  * @property-read string textContent The text content of this node and its descendants.
  * @property-read string text_content The text content of this node and its descendants.
+ * @property string|null version An attribute specifying, as part of the text declaration, the version number of this entity, when it is an
  */
-class Element extends Node
+class Entity extends Node
 {
-    use ElementTrait;
-
     /**
-     * @var \DOMElement
+     * @var \DOMEntity
      */
     protected $element;
-
-    /**
-     * if call attr('name')
-     * Alias getAttr()
-     *
-     * if call attr('name', 'value')
-     * Alias setAttr()
-     *
-     * @param mixed ...$name
-     * @return string|null
-     */
-    public function attr(...$name): ?string
-    {
-        if (count($name) === 1) {
-            return $this->getAttribute($name[0]);
-        }
-
-        $this->setAttribute($name[0], $name[1]);
-
-        return null;
-    }
-
-    /**
-     * Get tag attribute for element.
-     *
-     * @param string $name
-     * @return mixed
-     */
-    public function getAttribute(string $name)
-    {
-        return $this->element->getAttribute($name);
-    }
-
-    /**
-     * Set tag attribute for element.
-     *
-     * @param string $name
-     * @param string $value
-     */
-    public function setAttribute(string $name, string $value): void
-    {
-        $this->element->setAttribute($name, $value);
-    }
-
-    /**
-     * Returns an array of strings that are attributes to an Element.
-     *
-     * If you simply want to get the attribute and its value, it is faster to combine with {@link \Contender\Elements\Element::getAttribute()}, than to use the {@link \Contender\Elements\Element::$attributes} property.
-     *
-     * @return array
-     * @see \Contender\Elements\Element::getAttributeNamesGenerator()
-     */
-    public function getAttributeNames(): array
-    {
-        if (!$this->element->attributes) {
-            // @codeCoverageIgnoreStart
-            return [];
-            // @codeCoverageIgnoreEnd
-        }
-
-        return iterator_to_array($this->getAttributeNamesGenerator());
-    }
-
-    /**
-     * Returns a Generator of strings that are attributes to an Element.
-     *
-     * @return \Generator|null
-     * @see \Contender\Elements\Element::getAttributeNames()
-     */
-    public function getAttributeNamesGenerator(): ?Generator
-    {
-        if ($this->element->attributes) {
-            foreach ($this->element->attributes as $attr) {
-                yield $attr->nodeName;
-            }
-        }
-    }
-
-    /**
-     * Returns the Element's Attribute. Note that it returns {@link \Contender\Elements\NamedNodeMap} rather than an array.
-     *
-     * @return \Contender\Elements\NamedNodeMap
-     */
-    public function getAttributesAttribute(): NamedNodeMap
-    {
-        return NamedNodeMap::load($this->element->attributes, $this);
-    }
-
-    /**
-     * @param $name
-     * @return bool
-     * @hideDoc
-     */
-    public function removeAttribute($name): bool
-    {
-        return $this->element->removeAttribute($name);
-    }
-
-    /**
-     * @param $name
-     * @return bool
-     * @hideDoc
-     */
-    public function hasAttribute($name): bool
-    {
-        return $this->element->hasAttribute($name);
-    }
 }

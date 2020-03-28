@@ -39,8 +39,8 @@ use DOMNodeList;
  * @method Node|Element last(callable $callback = null, $default = null)
  * @method Node|Element first(callable $callback = null, $default = null)
  * @property string innerHTML 1st of innerHTML
- * @property string inner_h_t_m_l 1st of innerHTML
  * @property string innerXML 1st of innerXML
+ * @property string inner_h_t_m_l 1st of innerHTML
  * @property string inner_x_m_l 1st of innerXML
  */
 class Collection extends \Illuminate\Support\Collection

@@ -134,8 +134,15 @@ EOT
                     if (isset($annotates[$refPro->name])) {
                         continue;
                     }
-                    $annotate = ' * @property ';
+                    $annotate = ' * @property';
                     mb_ereg('@var ([^\n]*)', $refPro->getDocComment(), $match);
+
+                    if (mb_ereg('@read-only', $refPro->getDocComment())) {
+                        $annotate .= '-read';
+                    }
+
+                    $annotate .= ' ';
+
                     $match = preg_split('/ +/', ($match[1] ?? ''));
                     $annotate .= (trim($match[0]) ?: 'mixin') . ' ' . $refPro->name . ' ';
 
@@ -145,6 +152,8 @@ EOT
                 }
             }
         }
+
+        ksort($annotates);
 
         $replacement_doc = preg_replace('/ \* @property(-read)? .*?\n/u', '', $now_doc);
         // $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);

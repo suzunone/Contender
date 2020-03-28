@@ -39,6 +39,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ContenderTest extends TestCase
 {
+    use InvokeTrait;
+
     /**
      *
      */
@@ -197,5 +199,70 @@ HTMLEND;
         $element = $document->querySelector('[title="reg"]');
 
         $this->assertEquals('/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE', $element->attr('href'));
+    }
+
+    public function setOptionLibxmlDataProvider()
+    {
+        return [
+            Contender::OPTION_COMPACT    => [Contender::OPTION_COMPACT, LIBXML_COMPACT],
+            Contender::OPTION_NOBLANKS   => [Contender::OPTION_NOBLANKS, LIBXML_NOBLANKS],
+            Contender::OPTION_NOCDATA    => [Contender::OPTION_NOCDATA, LIBXML_NOCDATA],
+            Contender::OPTION_NOEMPTYTAG => [Contender::OPTION_NOEMPTYTAG, LIBXML_NOEMPTYTAG],
+            Contender::OPTION_NOENT      => [Contender::OPTION_NOENT, LIBXML_NOENT],
+            Contender::OPTION_NONET      => [Contender::OPTION_NONET, LIBXML_NONET],
+        ];
+    }
+
+    /**
+     * @dataProvider setOptionLibxmlDataProvider
+     */
+    public function test_setOption_libxml($param, $option)
+    {
+        $contender = new Contender();
+        $contender->setOption($param);
+
+        $options = $this->invokeGetProperty($contender, 'options');
+
+        $this->assertTrue(isset($options[$option]));
+        $this->assertEquals($option, $options[$option]);
+    }
+
+    public function setOptionContenderParameterlDataProvider()
+    {
+        return [
+            Contender::OPTION_CONVERT_NO_ENCODE => [Contender::OPTION_CONVERT_NO_ENCODE , 'is_encode', false],
+            Contender::OPTION_CONVERT_ENCODE    => [Contender::OPTION_CONVERT_ENCODE , 'is_encode', true],
+
+            Contender::OPTION_CONVERT_REPLACE_CHARSET    => [Contender::OPTION_CONVERT_REPLACE_CHARSET , 'is_replace_charset', true],
+            Contender::OPTION_CONVERT_NO_REPLACE_CHARSET => [Contender::OPTION_CONVERT_NO_REPLACE_CHARSET , 'is_replace_charset', false],
+
+            Contender::OPTION_FORMAT_OUTPUT_ENABLE  => [Contender::OPTION_FORMAT_OUTPUT_ENABLE , 'format_output', true],
+            Contender::OPTION_FORMAT_OUTPUT_DISABLE => [Contender::OPTION_FORMAT_OUTPUT_DISABLE , 'format_output', false],
+
+            Contender::OPTION_MINIFY_ENABLE  => [Contender::OPTION_MINIFY_ENABLE , 'is_minify', true],
+            Contender::OPTION_MINIFY_DISABLE => [Contender::OPTION_MINIFY_DISABLE , 'is_minify', false],
+
+            Contender::OPTION_REMOVE_STYLE_ENABLE  => [Contender::OPTION_REMOVE_STYLE_ENABLE , 'is_style_remove', true],
+            Contender::OPTION_REMOVE_STYLE_DISABLE => [Contender::OPTION_REMOVE_STYLE_DISABLE , 'is_style_remove', false],
+
+            Contender::OPTION_REMOVE_SCRIPT_ENABLE  => [Contender::OPTION_REMOVE_SCRIPT_ENABLE , 'is_script_remove', true],
+            Contender::OPTION_REMOVE_SCRIPT_DISABLE => [Contender::OPTION_REMOVE_SCRIPT_DISABLE , 'is_script_remove', false],
+
+            Contender::OPTION_REMOVE_COMMENT_ENABLE  => [Contender::OPTION_REMOVE_COMMENT_ENABLE , 'is_comment_remove', true],
+            Contender::OPTION_REMOVE_COMMENT_DISABLE => [Contender::OPTION_REMOVE_COMMENT_DISABLE , 'is_comment_remove', false],
+        ];
+    }
+
+    /**
+     * @dataProvider setOptionContenderParameterlDataProvider
+     */
+    public function test_setOption_contender_Parameter($param, $key, $expect)
+    {
+        $contender = new Contender();
+        $contender->setOption($param);
+
+        $value = $this->invokeGetProperty($contender, $key);
+
+        $this->assertEquals($expect, $value);
     }
 }

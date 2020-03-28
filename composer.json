@@ -35,5 +35,12 @@
       "Tools\\Contender\\": "tools",
       "Tests\\Contender\\": "tests/Tests"
     }
+  },
+  "scripts" :{
+    "fix": [
+      "php ./bin/tool.php doc-comments",
+      "php ./bin/tool.php doc-md",
+      "php-cs-fixer fix"
+    ]
   }
 }

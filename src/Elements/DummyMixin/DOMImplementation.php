@@ -1,8 +1,8 @@
 <?php
 /**
- * DOMCharacterData.php
+ * DOMImplementation.php
  *
- * Class DOMCharacterData
+ * Class DOMImplementation
  *
  * @category   Contender
  * @package    Contender\Elements\DummyMixin
@@ -19,7 +19,7 @@
 namespace Contender\Elements\DummyMixin;
 
 /**
- * Class DOMCharacterData
+ * Class DOMImplementation
  *
  * @category   Contender
  * @package    Contender\Elements\DummyMixin
@@ -31,21 +31,8 @@ namespace Contender\Elements\DummyMixin;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/28
+ * @mixin \DOMImplementation
  */
-class DOMCharacterData extends DOMNode
+class DOMImplementation
 {
-    /**
-     * @var string
-     * The contents of the node.
-     * @link https://php.net/manual/en/class.domcharacterdata.php#domcharacterdata.props.data
-     */
-    public $data;
-
-    /**
-     * @var int
-     * @read-only
-     * The length of the contents.
-     * @link https://php.net/manual/en/class.domcharacterdata.php#domcharacterdata.props.length
-     */
-    public $length;
 }

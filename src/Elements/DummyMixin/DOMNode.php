@@ -35,11 +35,13 @@ class DOMNode
 {
     /**
      * @var int
+     * @read-only
      * Gets the type of the node. One of the predefined XML_xxx_NODE constants
      */
     public $nodeType;
     /**
      * @var string
+     * @read-only
      * Returns the most accurate name for the current node type
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.nodename
      */
@@ -54,6 +56,7 @@ class DOMNode
 
     /**
      * @var string|null
+     * @read-only
      * The namespace URI of this node, or NULL if it is unspecified.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.namespaceuri
      */
@@ -68,6 +71,7 @@ class DOMNode
 
     /**
      * @var string
+     * @read-only
      * Returns the local part of the qualified name of this node.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.localname
      */
@@ -75,6 +79,7 @@ class DOMNode
 
     /**
      * @var string|null
+     * @read-only
      * The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.baseuri
      */
