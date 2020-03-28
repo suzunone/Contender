@@ -56,19 +56,12 @@ class DocumentTest extends TestCase
 
         $tag->insertBefore($document->createCDATASection('Example Data'));
 
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-Example Data
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul>Example Data</div>', $document->getElementsByTagName('body')->first()->innerHTML);
 
         $document = Contender::loadStr($html);
         $tag = $document->getElementsByTagName('ul')->first();
         $tag->before($document->createCDATASection('Example Data'));
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-Example Data<ul class="user-list"><li class="li-1"></ul>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p>Example Data<ul class="user-list"><li class="li-1"></ul></div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     /**
@@ -81,19 +74,13 @@ Example Data<ul class="user-list"><li class="li-1"></ul>
 
         $tag->insertBefore($document->createTextNode('Example Text Data'));
 
-        $this->assertEquals('<div>
-<a href="#aaa">hereExample Text Data</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">hereExample Text Data</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul></div>', $document->getElementsByTagName('body')->first()->innerHTML);
 
         $document = Contender::loadStr($html);
         $tag = $document->getElementsByTagName('a')->first();
         $tag->replaceChild($document->createTextNode('Example Text Data'), $tag->children->first());
 
-        $this->assertEquals('<div>
-<a href="#aaa">Example Text Data</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">Example Text Data</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul></div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     /**
@@ -121,11 +108,7 @@ Example Data<ul class="user-list"><li class="li-1"></ul>
         $element = $document->createElement('hr');
         $document->querySelector('div')->appendChild($element);
 
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-<hr>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul><hr></div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     /**
@@ -145,11 +128,7 @@ Example Data<ul class="user-list"><li class="li-1"></ul>
         $element = $document->createComment('comment is here');
         $document->querySelector('div')->appendChild($element);
 
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-<!--comment is here-->
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul><!--comment is here--></div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     /**
@@ -161,9 +140,7 @@ Example Data<ul class="user-list"><li class="li-1"></ul>
         $element = $document->createEntityReference('nbsp');
         $document->querySelector('div')->appendChild($element);
 
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>&nbsp;</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul>&nbsp;</div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     /**
@@ -176,11 +153,7 @@ Example Data<ul class="user-list"><li class="li-1"></ul>
         $element = $document->createProcessingInstruction('xml-stylesheet', $PItext);
         $document->querySelector('div')->appendChild($element);
 
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-<?xml-stylesheet type=\'text/xsl\' href=\'book.xsl\'>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul><?xml-stylesheet type=\'text/xsl\' href=\'book.xsl\'></div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     public function test_createAttributeNS()

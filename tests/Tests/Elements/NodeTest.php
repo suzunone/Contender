@@ -186,21 +186,14 @@ class NodeTest extends TestCase
         $clone_ul = $ul->cloneNode();
         $document->getElementsByTagName('a')->first()->insertBefore($clone_ul);
 
-        $this->assertEquals('<div>
-<a href="#aaa">here<ul class="user-list"></ul></a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here<ul class="user-list"></ul></a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul></div>', $document->getElementsByTagName('body')->first()->innerHTML);
 
         $document = Contender::loadStr($html);
         $ul = $document->getElementsByTagName('ul')->first();
         $clone_ul = $ul->cloneNode(true);
         $ul->before($clone_ul);
 
-        $this->assertEquals('<div>
-<a href="#aaa">here</a><p class="plain-text"></p>
-<ul class="user-list"><li class="li-1"></ul>
-<ul class="user-list"><li class="li-1"></ul>
-</div>', $document->getElementsByTagName('body')->first()->innerHTML);
+        $this->assertEquals('<div><a href="#aaa">here</a><p class="plain-text"></p><ul class="user-list"><li class="li-1"></ul><ul class="user-list"><li class="li-1"></ul></div>', $document->getElementsByTagName('body')->first()->innerHTML);
     }
 
     public function test_normalize()

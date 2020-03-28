@@ -320,6 +320,7 @@ class Contender
         }
 
         $doc = new DOMDocument();
+        $doc->preserveWhiteSpace = true;
         if ($this->is_encode) {
             $doc->encoding = 'UTF-8';
         }
