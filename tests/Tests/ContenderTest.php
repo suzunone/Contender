@@ -18,7 +18,7 @@
 namespace Tests\Contender;
 
 use Contender\Contender;
-use Contender\Elements\Document;
+use Contender\Dom\Document;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/22
  * @covers     \Contender\Contender
- * @covers     \Contender\Elements\Factory
+ * @covers     \Contender\Service\Factory
  */
 class ContenderTest extends TestCase
 {

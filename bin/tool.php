@@ -3,8 +3,8 @@
  * tool.php
  *
  * @category   Contender
- * @package    Contender\Elements
- * @subpackage Contender\Elements
+ * @package    Contender\Dom
+ * @subpackage Contender\Dom
  * @author     suzunone<suzunone.eleven@gmail.com>
  * @copyright  Project Contender
  * @license    MIT

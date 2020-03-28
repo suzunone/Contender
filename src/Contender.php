@@ -16,16 +16,16 @@
 
 namespace Contender;
 
-use Contender\Elements\Document;
+use Contender\Dom\Document;
 use DOMDocument;
 use DOMXPath;
 
 /**
- * Load Html to generate a {@link \Contender\Elements\Document} object.
+ * Load Html to generate a {@link \Contender\Dom\Document} object.
  *
  * Easy to use
  * ------------------------------------------
- * ### Create {@link \Contender\Elements\Document} from url
+ * ### Create {@link \Contender\Dom\Document} from url
  *
  * ``` .php
  * $header = [
@@ -44,7 +44,7 @@ use DOMXPath;
  *
  * ```
  *
- * ### Create {@link \Contender\Elements\Document} from html
+ * ### Create {@link \Contender\Dom\Document} from html
  *
  * ``` .php
  *
@@ -141,28 +141,28 @@ class Contender
     public const OPTION_FORMAT_OUTPUT_DISABLE = 'OPTION_FORMAT_OUTPUT_DISABLE';
 
     /**
-     * Do not minify html, then generating to {@link \Contender\Elements\Document}
+     * Do not minify html, then generating to {@link \Contender\Dom\Document}
      * @var string Contender Load Option.
      */
     public const OPTION_MINIFY_DISABLE = 'OPTION_MINIFY_DISABLE';
     public const OPTION_MINIFY_ENABLE = 'OPTION_MINIFY_ENABLE';
 
     /**
-     * Remove `<style>`tags, then generating to {@link \Contender\Elements\Document}
+     * Remove `<style>`tags, then generating to {@link \Contender\Dom\Document}
      * @var string Contender Load Option.
      */
     public const OPTION_REMOVE_STYLE_ENABLE = 'OPTION_REMOVE_STYLE_ENABLE';
     public const OPTION_REMOVE_STYLE_DISABLE = 'OPTION_REMOVE_STYLE_DISABLE';
 
     /**
-     * Remove `<script>`tags, then generating to {@link \Contender\Elements\Document}
+     * Remove `<script>`tags, then generating to {@link \Contender\Dom\Document}
      * @var string Contender Load Option.
      */
     public const OPTION_REMOVE_SCRIPT_ENABLE = 'OPTION_REMOVE_SCRIPT_ENABLE';
     public const OPTION_REMOVE_SCRIPT_DISABLE = 'OPTION_REMOVE_SCRIPT_DISABLE';
 
     /**
-     * Remove comment tags, then generating to {@link \Contender\Elements\Document}
+     * Remove comment tags, then generating to {@link \Contender\Dom\Document}
      * @var string Contender Load Option.
      */
     public const OPTION_REMOVE_COMMENT_ENABLE = 'OPTION_REMOVE_COMMENT_ENABLE';
@@ -208,11 +208,11 @@ class Contender
     }
 
     /**
-     * Generate a {@link \Contender\Elements\Document}  from a string(static call)
+     * Generate a {@link \Contender\Dom\Document}  from a string(static call)
      *
      * @param string $html   The string containing the HTML.
      * @param array $options Array multiple Contender option constants
-     * @return \Contender\Elements\Document
+     * @return \Contender\Dom\Document
      * @link \Contender\Contender::load()
      * @link \Contender\Contender::loadUrl()
      */
@@ -224,11 +224,11 @@ class Contender
     }
 
     /**
-     * Generate a {@link \Contender\Elements\Document} from a string
+     * Generate a {@link \Contender\Dom\Document} from a string
      *
      * @param string $html   The string containing the HTML.
      * @param array $options Array multiple Contender option constants
-     * @return \Contender\Elements\Document
+     * @return \Contender\Dom\Document
      * @link \Contender\Contender::loadStr()
      * @link \Contender\Contender::loadUrl()
      */
@@ -556,10 +556,10 @@ HTML;
     }
 
     /**
-     * Generate a {@link \Contender\Elements\Document}  from a DOMDocument
+     * Generate a {@link \Contender\Dom\Document}  from a DOMDocument
      *
      * @param \DOMDocument $document
-     * @return \Contender\Elements\Document
+     * @return \Contender\Dom\Document
      * @see https://www.php.net/manual/en/class.domdocument.php
      */
     public static function loadDomDocument(DOMDocument $document): Document
@@ -568,12 +568,12 @@ HTML;
     }
 
     /**
-     * Generate a {@link \Contender\Elements\Document}  from a URL(static call)
+     * Generate a {@link \Contender\Dom\Document}  from a URL(static call)
      *
      * @param string $url                The path to the HTML document.
      * @param array $options             Array multiple Contender option constants
      * @param array|null $context_option Context options
-     * @return \Contender\Elements\Document
+     * @return \Contender\Dom\Document
      * @link https://www.php.net/manual/en/context.php
      * @link \Contender\Contender::loadStr()
      * @link \Contender\Contender::loadFromUrl()
@@ -586,12 +586,12 @@ HTML;
     }
 
     /**
-     * Generate a {@link \Contender\Elements\Document}  from a URL
+     * Generate a {@link \Contender\Dom\Document}  from a URL
      *
      * @param string $url                The path to the HTML document.
      * @param array $options             Array multiple Contender option constants
      * @param array|null $context_option Context options
-     * @return \Contender\Elements\Document
+     * @return \Contender\Dom\Document
      * @link https://www.php.net/manual/en/context.php
      * @link \Contender\Contender::loadStr()
      * @link \Contender\Contender::loadUrl()
