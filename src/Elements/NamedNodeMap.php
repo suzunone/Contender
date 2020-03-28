@@ -77,14 +77,14 @@ class NamedNodeMap extends Collection
      *
      * @param string $name The nodeName of the node to retrieve.
      * @return \Contender\Elements\Attr|null
-*/
+     */
     public function getNamedItem(string $name): ?Attr
     {
         if ($this->nodeMap instanceof DOMNamedNodeMap) {
             return Factory::get($this->nodeMap->getNamedItem($name), null);
         }
 
-        return  null;
+        return null;
     }
 
     /**
@@ -93,13 +93,13 @@ class NamedNodeMap extends Collection
      * @param string $namespaceURI The namespace URI of the node to retrieve.
      * @param string $localName    The local name of the node to retrieve.
      * @return \Contender\Elements\Attr|null
-*/
+     */
     public function getNamedItemNS(string $namespaceURI, string $localName): ?Attr
     {
         if ($this->nodeMap instanceof DOMNamedNodeMap) {
             return Factory::get($this->nodeMap->getNamedItemNS($namespaceURI, $localName), null);
         }
 
-        return  null;
+        return null;
     }
 }

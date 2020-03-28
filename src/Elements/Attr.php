@@ -138,8 +138,8 @@ class Attr extends Node
 
     /**
      * @return \Contender\Elements\Element
-*/
-    public function getOwnerElementAttribute():Element
+     */
+    public function getOwnerElementAttribute(): Element
     {
         return Factory::get($this->element->ownerElement, $this);
     }

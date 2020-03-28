@@ -162,8 +162,8 @@ class Element extends Node
      *
      * If you simply want to get the attribute and its value, it is faster to combine with {@link \Contender\Elements\Element::getAttribute()}, than to use the {@link \Contender\Elements\Element::$attributes} property.
      *
-     * @see \Contender\Elements\Element::getAttributeNamesGenerator()
      * @return array
+     * @see \Contender\Elements\Element::getAttributeNamesGenerator()
      */
     public function getAttributeNames(): array
     {
@@ -179,8 +179,8 @@ class Element extends Node
     /**
      * Returns a Generator of strings that are attributes to an Element.
      *
-     * @see \Contender\Elements\Element::getAttributeNames()
      * @return \Generator|null
+     * @see \Contender\Elements\Element::getAttributeNames()
      */
     public function getAttributeNamesGenerator(): ?Generator
     {
@@ -195,7 +195,7 @@ class Element extends Node
      * Returns the Element's Attribute. Note that it returns {@link \Contender\Elements\NamedNodeMap} rather than an array.
      *
      * @return \Contender\Elements\NamedNodeMap
-*/
+     */
     public function getAttributesAttribute(): NamedNodeMap
     {
         return NamedNodeMap::load($this->element->attributes, $this);

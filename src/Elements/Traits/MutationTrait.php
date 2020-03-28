@@ -42,7 +42,7 @@ trait MutationTrait
     /**
      * @param $name
      * @return mixed|string
-* @hideDoc
+     * @hideDoc
      */
     public function __get($name)
     {
@@ -70,51 +70,6 @@ trait MutationTrait
     }
 
     /**
-     * @param $name
-     * @return bool
-     * @hideDoc
-     */
-    public function __isset($name)
-    {
-        return method_exists($this, $this->mutateGetAttributeName($name)) || $this->hasParameterAttribute($name);
-    }
-
-    /**
-     * @param string $name
-     * @param $value
-     */
-    public function setParameterAttribute(string $name, $value): void
-    {
-        $name = Str::camel($name);
-
-        $this->element->$name = $value;
-    }
-
-    /**
-     * @param string $name
-     * @return mixed|string|int
-*/
-    public function getParameterAttribute(string $name)
-    {
-        $name = Str::camel($name);
-
-        $res = $this->element->$name;
-
-        return is_object($res) ? Factory::get($res, $this) : $res;
-    }
-
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public function hasParameterAttribute(string $name): bool
-    {
-        $name = Str::camel($name);
-
-        return isset($this->element->$name);
-    }
-
-    /**
      * @param $key
      * @return string
      */
@@ -134,6 +89,19 @@ trait MutationTrait
     }
 
     /**
+     * @param string $name
+     * @return mixed|string|int
+     */
+    public function getParameterAttribute(string $name)
+    {
+        $name = Str::camel($name);
+
+        $res = $this->element->$name;
+
+        return is_object($res) ? Factory::get($res, $this) : $res;
+    }
+
+    /**
      * @param $key
      * @return string
      */
@@ -150,5 +118,37 @@ trait MutationTrait
     protected function mutateSetAttribute($key, $value = null)
     {
         return $this->{$this->mutateSetAttributeName($key)}($value);
+    }
+
+    /**
+     * @param string $name
+     * @param $value
+     */
+    public function setParameterAttribute(string $name, $value): void
+    {
+        $name = Str::camel($name);
+
+        $this->element->$name = $value;
+    }
+
+    /**
+     * @param $name
+     * @return bool
+     * @hideDoc
+     */
+    public function __isset($name)
+    {
+        return method_exists($this, $this->mutateGetAttributeName($name)) || $this->hasParameterAttribute($name);
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasParameterAttribute(string $name): bool
+    {
+        $name = Str::camel($name);
+
+        return isset($this->element->$name);
     }
 }

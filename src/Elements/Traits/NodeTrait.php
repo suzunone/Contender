@@ -103,7 +103,7 @@ trait NodeTrait
      *
      * @param \Contender\Elements\Node $node
      * @return \Contender\Elements\Node
-* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
      * @see \Contender\Elements\Document::createElement()
      */
     public function appendChild(Node $node): Node
@@ -114,12 +114,21 @@ trait NodeTrait
     }
 
     /**
+     * @return DOMNode
+     * @hideDoc
+     */
+    public function nativeNode(): DOMNode
+    {
+        return $this->element;
+    }
+
+    /**
      *  Inserts a node before a reference node as a child of a specified parent node.
      *
      * @param \Contender\Elements\Node $node
      * @param \Contender\Elements\Node|null $referenceNode
      * @return \Contender\Elements\Node
-* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
      * @see \Contender\Elements\Document::createElement()
      */
     public function insertBefore(Node $node, ?Node $referenceNode = null): Node
@@ -153,7 +162,7 @@ trait NodeTrait
      *
      * @param bool $deep Indicates whether to copy all descendant nodes. This parameter is defaulted to FALSE.
      * @return \Contender\Elements\Node
-* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode
      */
     public function cloneNode(bool $deep = false): Node
     {
@@ -178,7 +187,7 @@ trait NodeTrait
      *
      * @param \Contender\Elements\Node $oldnode
      * @return \Contender\Elements\Node
-* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
      */
     public function removeChild(Node $oldnode): Node
     {
@@ -191,21 +200,12 @@ trait NodeTrait
      * @param \Contender\Elements\Node $newnode
      * @param \Contender\Elements\Node $oldnode
      * @return \Contender\Elements\Node
-* @see https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild
      */
     public function replaceChild(Node $newnode, Node $oldnode): Node
     {
         $res = $this->element->replaceChild($newnode->nativeNode(), $oldnode->nativeNode());
 
         return Factory::get($res, $this);
-    }
-
-    /**
-     * @return DOMNode
-     * @hideDoc
-     */
-    public function nativeNode(): DOMNode
-    {
-        return $this->element;
     }
 }

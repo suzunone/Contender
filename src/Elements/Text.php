@@ -115,7 +115,7 @@ class Text extends CharacterData
      * @link  https://php.net/manual/en/domtext.splittext.php
      * @param int $offset The offset at which to split, starting from 0.
      * @return \Contender\Elements\Text The new node of the same type, which contains all the content at and after the offset.
-* @since 5.0
+     * @since 5.0
      */
     public function splitText($offset): Text
     {

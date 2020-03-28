@@ -87,13 +87,13 @@ Contender\Contender {
 
     /* Methods */
     public __construct () : void
-    public setOption (string $option) : self
-    public setOptions (array $options) : self
-    public load (string $html, [array $options = []]) : \Contender\Elements\Document
-    public loadFromUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
     public loadStr (string $html, [array $options = []]) : \Contender\Elements\Document
+    public load (string $html, [array $options = []]) : \Contender\Elements\Document
+    public setOptions (array $options) : self
+    public setOption (string $option) : self
     public loadDomDocument (DOMDocument $document) : \Contender\Elements\Document
     public loadUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
+    public loadFromUrl (string $url, [array $options = []], [?array $context_option = null]) : \Contender\Elements\Document
 
  }
 
@@ -248,33 +248,17 @@ void
 ### See Also
 None
 
-### \Contender\Contender::setOption(string $option)
-Options for converting Html to ContenderDocument
+### \Contender\Contender::loadStr(string $html, array $options)
+Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a string(static call)
 
 
 
 
 #### Parameters
-##### `string` $option
+##### `string` $html
 
-Contender option const.
+The string containing the HTML.
 
-
-
-#### Return Values
-self
-
-
-### See Also
-None
-
-### \Contender\Contender::setOptions(array $options)
-Calls <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a> as an array
-
-
-
-
-#### Parameters
 ##### `array` $options
 
 Array multiple Contender option constants
@@ -282,11 +266,12 @@ Array multiple Contender option constants
 
 
 #### Return Values
-self
+\Contender\Elements\Document
 
 
 ### See Also
- - <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a>
+ - <a href="#contendercontenderloadstring-html-array-options">\Contender\Contender::load()</a>
+ - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
 
 
 ### \Contender\Contender::load(string $html, array $options)
@@ -315,48 +300,13 @@ Array multiple Contender option constants
  - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
 
 
-### \Contender\Contender::loadFromUrl(string $url, array $options, array|null $context_option)
-Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL
+### \Contender\Contender::setOptions(array $options)
+Calls <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a> as an array
 
 
 
 
 #### Parameters
-##### `string` $url
-
-The path to the HTML document.
-
-##### `array` $options
-
-Array multiple Contender option constants
-
-##### `array|null` $context_option
-
-Context options
-
-
-
-#### Return Values
-\Contender\Elements\Document
-
-
-### See Also
- - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
- - <a href="#contendercontenderloadstrstring-html-array-options">\Contender\Contender::loadStr()</a>
- - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
-
-
-### \Contender\Contender::loadStr(string $html, array $options)
-Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a string(static call)
-
-
-
-
-#### Parameters
-##### `string` $html
-
-The string containing the HTML.
-
 ##### `array` $options
 
 Array multiple Contender option constants
@@ -364,13 +314,32 @@ Array multiple Contender option constants
 
 
 #### Return Values
-\Contender\Elements\Document
+self
 
 
 ### See Also
- - <a href="#contendercontenderloadstring-html-array-options">\Contender\Contender::load()</a>
- - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
+ - <a href="#contendercontendersetoptionstring-option">\Contender\Contender::setOption()</a>
 
+
+### \Contender\Contender::setOption(string $option)
+Options for converting Html to ContenderDocument
+
+
+
+
+#### Parameters
+##### `string` $option
+
+Contender option const.
+
+
+
+#### Return Values
+self
+
+
+### See Also
+None
 
 ### \Contender\Contender::loadDomDocument(DOMDocument $document)
 Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a DOMDocument
@@ -422,6 +391,37 @@ Context options
  - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
  - <a href="#contendercontenderloadstrstring-html-array-options">\Contender\Contender::loadStr()</a>
  - <a href="#contendercontenderloadfromurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadFromUrl()</a>
+
+
+### \Contender\Contender::loadFromUrl(string $url, array $options, array|null $context_option)
+Generate a <a href="#contenderelementsdocument">\Contender\Elements\Document</a>  from a URL
+
+
+
+
+#### Parameters
+##### `string` $url
+
+The path to the HTML document.
+
+##### `array` $options
+
+Array multiple Contender option constants
+
+##### `array|null` $context_option
+
+Context options
+
+
+
+#### Return Values
+\Contender\Elements\Document
+
+
+### See Also
+ - <a href="https://www.php.net/manual/en/context.php">https://www.php.net/manual/en/context.php</a>
+ - <a href="#contendercontenderloadstrstring-html-array-options">\Contender\Contender::loadStr()</a>
+ - <a href="#contendercontenderloadurlstring-url-array-options-arraynull-contextoption">\Contender\Contender::loadUrl()</a>
 
 
 
@@ -1997,12 +1997,12 @@ Contender\Elements\Collection {
 
     /* Methods */
     public __construct ([?mixed $items = []]) : void
-    public find (string $selectors) : \Contender\Elements\Collection
     public makeByDOMNodeList (DOMNodeList $element, Contender\Elements\ElementInterface $node) : \Contender\Elements\Collection
+    public find (string $selectors) : \Contender\Elements\Collection
     public onlyElement () : \Contender\Elements\Collection
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
     public sortDom () : \Contender\Elements\Collection
     public querySelector (string $query) : \Contender\Elements\Node|null
-    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
     public attr (?mixed $param = NULL) : string|null
     public getAttribute (string $name) : mixed
     public setAttribute (string $name, string $value) : void
@@ -2067,26 +2067,6 @@ void
 ### See Also
 None
 
-### \Contender\Elements\Collection::find(string $selectors)
-Call <a href="#contenderelementscollectionqueryselectorallstring-selectors">\Contender\Elements\Collection::querySelectorAll()</a> and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
-
-
-
-
-#### Parameters
-##### `string` $selectors
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Collection
-
-
-### See Also
-None
-
 ### \Contender\Elements\Collection::makeByDOMNodeList(DOMNodeList $element, Contender\Elements\ElementInterface $node)
 
 
@@ -2110,6 +2090,26 @@ None
 ### See Also
 None
 
+### \Contender\Elements\Collection::find(string $selectors)
+Call <a href="#contenderelementscollectionqueryselectorallstring-selectors">\Contender\Elements\Collection::querySelectorAll()</a> and <a href="#contenderelementscollectiononlyelement">\Contender\Elements\Collection::onlyElement()</a>
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+
+
+
+
+#### Return Values
+\Contender\Elements\Collection
+
+
+### See Also
+None
+
 ### \Contender\Elements\Collection::onlyElement()
 HTMLElement only Node
 
@@ -2121,6 +2121,26 @@ HTMLElement only Node
 
 #### Return Values
 \Contender\Elements\Collection Filtered Collection
+
+
+### See Also
+None
+
+### \Contender\Elements\Collection::querySelectorAll(string $selectors)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
 
 
 ### See Also
@@ -2157,26 +2177,6 @@ Valid CSS selector string
 
 #### Return Values
 \Contender\Elements\Node|null
-
-
-### See Also
-None
-
-### \Contender\Elements\Collection::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
-
-
-
-
-#### Parameters
-##### `string` $selectors
-
-Valid CSS selector string
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
 
 
 ### See Also
@@ -2917,19 +2917,19 @@ Contender\Elements\Document {
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public getOwnerDocumentAttribute () : \Contender\Elements\Document
-    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public getParameterAttribute (string $name) : mixed|string|int
+    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Elements\Element|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
     public getAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
     public querySelector (string $selectors) : \Contender\Elements\Node|null
-    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
-    public find (string $query) : \Contender\Elements\Collection
-    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
     public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
+    public find (string $query) : \Contender\Elements\Collection
 
  }
 
@@ -3760,6 +3760,25 @@ Replaces a child
 ### See Also
 None
 
+### \Contender\Elements\Document::getParameterAttribute(string $name)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+mixed|string|int
+
+
+### See Also
+None
+
 ### \Contender\Elements\Document::setParameterAttribute(string $name, mixed|null $value)
 
 
@@ -3778,25 +3797,6 @@ None
 
 #### Return Values
 void
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::getParameterAttribute(string $name)
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-
-
-#### Return Values
-mixed|string|int
 
 
 ### See Also
@@ -3856,6 +3856,46 @@ tag class name
 
 #### Return Values
 \Contender\Elements\Collection|\Contender\Elements\Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::querySelectorAll(string $selectors)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Document::evaluateToCollection(string $query)
+Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
+
+
+
+
+#### Parameters
+##### `string` $query
+
+xpath
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
 
 
 ### See Also
@@ -3945,21 +3985,25 @@ Valid CSS selector string
 ### See Also
 None
 
-### \Contender\Elements\Document::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+### \Contender\Elements\Document::evaluate(string $query, int $offset)
+Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
 
 
 
 
 #### Parameters
-##### `string` $selectors
+##### `string` $query
 
-Valid CSS selector string
+xpath
+
+##### `int` $offset
+
+
 
 
 
 #### Return Values
-\Contender\Elements\Collection|Node[]
+\Contender\Elements\Node|null
 
 
 ### See Also
@@ -3980,50 +4024,6 @@ Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\C
 
 #### Return Values
 \Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::evaluateToCollection(string $query)
-Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Document::evaluate(string $query, int $offset)
-Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-##### `int` $offset
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Node|null
 
 
 ### See Also
@@ -4810,19 +4810,19 @@ Contender\Elements\Node {
     public removeChild (Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public replaceChild (Contender\Elements\Node $newnode, Contender\Elements\Node $oldnode) : \Contender\Elements\Node
     public getOwnerDocumentAttribute () : \Contender\Elements\Document
-    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public getParameterAttribute (string $name) : mixed|string|int
+    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Elements\Element|null
     public getElementsByClassName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
+    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
+    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
     public getElementsByName (string $query) : \Contender\Elements\Collection|\Contender\Elements\Node[]
     public getElementsByTagName (string $tag_name) : \Contender\Elements\Collection
     public getAttributeNodeNS (string $namespaceURI, string $localName) : \Contender\Elements\Collection
     public querySelector (string $selectors) : \Contender\Elements\Node|null
-    public querySelectorAll (string $selectors) : \Contender\Elements\Collection|Node[]
-    public find (string $query) : \Contender\Elements\Collection
-    public evaluateToCollection (string $query) : \Contender\Elements\Collection|Node[]
     public evaluate (string $query, [int $offset = 0]) : \Contender\Elements\Node|null
+    public find (string $query) : \Contender\Elements\Collection
 
  }
 
@@ -5436,6 +5436,25 @@ Replaces a child
 ### See Also
 None
 
+### \Contender\Elements\Node::getParameterAttribute(string $name)
+
+
+
+
+#### Parameters
+##### `string` $name
+
+
+
+
+
+#### Return Values
+mixed|string|int
+
+
+### See Also
+None
+
 ### \Contender\Elements\Node::setParameterAttribute(string $name, mixed|null $value)
 
 
@@ -5454,25 +5473,6 @@ None
 
 #### Return Values
 void
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::getParameterAttribute(string $name)
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-
-
-#### Return Values
-mixed|string|int
 
 
 ### See Also
@@ -5532,6 +5532,46 @@ tag class name
 
 #### Return Values
 \Contender\Elements\Collection|\Contender\Elements\Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::querySelectorAll(string $selectors)
+Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+
+
+
+
+#### Parameters
+##### `string` $selectors
+
+Valid CSS selector string
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
+
+
+### See Also
+None
+
+### \Contender\Elements\Node::evaluateToCollection(string $query)
+Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
+
+
+
+
+#### Parameters
+##### `string` $query
+
+xpath
+
+
+
+#### Return Values
+\Contender\Elements\Collection|Node[]
 
 
 ### See Also
@@ -5621,21 +5661,25 @@ Valid CSS selector string
 ### See Also
 None
 
-### \Contender\Elements\Node::querySelectorAll(string $selectors)
-Returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> of <a href="#contenderelementsnode">\Contender\Elements\Node</a> matching CSS selector.
+### \Contender\Elements\Node::evaluate(string $query, int $offset)
+Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
 
 
 
 
 #### Parameters
-##### `string` $selectors
+##### `string` $query
 
-Valid CSS selector string
+xpath
+
+##### `int` $offset
+
+
 
 
 
 #### Return Values
-\Contender\Elements\Collection|Node[]
+\Contender\Elements\Node|null
 
 
 ### See Also
@@ -5656,50 +5700,6 @@ Call querySelectorAll() and <a href="#contenderelementscollectiononlyelement">\C
 
 #### Return Values
 \Contender\Elements\Collection
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::evaluateToCollection(string $query)
-Evaluates the given XPath expression and returns a <a href="#contenderelementscollection">\Contender\Elements\Collection</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-
-
-#### Return Values
-\Contender\Elements\Collection|Node[]
-
-
-### See Also
-None
-
-### \Contender\Elements\Node::evaluate(string $query, int $offset)
-Evaluates the given XPath expression and returns a <a href="#contenderelementsnode">\Contender\Elements\Node</a> result if possible
-
-
-
-
-#### Parameters
-##### `string` $query
-
-xpath
-
-##### `int` $offset
-
-
-
-
-
-#### Return Values
-\Contender\Elements\Node|null
 
 
 ### See Also

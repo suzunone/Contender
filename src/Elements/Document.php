@@ -141,16 +141,8 @@ class Document implements ElementInterface
     }
 
     /**
-     * @return \DOMDocument
-     */
-    protected function document(): DOMDocument
-    {
-        return $this->element;
-    }
-
-    /**
      * @return \Contender\Elements\Element
-*/
+     */
     public function getDocumentElementAttribute(): Element
     {
         return Factory::get($this->element->documentElement, $this);
@@ -162,7 +154,7 @@ class Document implements ElementInterface
      * @param string $name       The tag name of the element.
      * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with DOMElement->nodeValue.
      * @return \Contender\Elements\Element
-*/
+     */
     public function createElement(string $name, ?string $value = null): Element
     {
         $element = $this->element->createElement($name, $value);
@@ -175,7 +167,7 @@ class Document implements ElementInterface
      *
      * @param string $value The content of the comment.
      * @return \Contender\Elements\Node
-*/
+     */
     public function createComment(string $value): Node
     {
         $node = $this->element->createComment($value);
@@ -188,7 +180,7 @@ class Document implements ElementInterface
      *
      * @param string $value The content of the text.
      * @return \Contender\Elements\Node
-*/
+     */
     public function createTextNode(string $value): Node
     {
         $node = $this->element->createTextNode($value);
@@ -201,7 +193,7 @@ class Document implements ElementInterface
      *
      * @param string $value The content of the cdata.
      * @return \Contender\Elements\Node
-*/
+     */
     public function createCDATASection(string $value): Node
     {
         $node = $this->element->createCDATASection($value);
@@ -215,7 +207,7 @@ class Document implements ElementInterface
      * @param string $target    The target of the processing instruction.
      * @param string|null $data The content of the processing instruction.
      * @return \Contender\Elements\Node
-*/
+     */
     public function createProcessingInstruction(string $target, ?string $data = null): Node
     {
         $node = $this->element->createProcessingInstruction($target, $data);
@@ -229,7 +221,7 @@ class Document implements ElementInterface
      * @param string $namespaceURI  The namespace URI of the elements to match on. The special value * matches all namespaces.
      * @param string $qualifiedName The local name of the elements to match on. The special value * matches all local names.
      * @return \Contender\Elements\Node
-*/
+     */
     public function createAttributeNS(string $namespaceURI, string $qualifiedName): Node
     {
         $node = $this->element->createAttributeNS($namespaceURI, $qualifiedName);
@@ -242,7 +234,7 @@ class Document implements ElementInterface
      *
      * @param string $value The name of the attribute.
      * @return \Contender\Elements\Attr
-*/
+     */
     public function createAttribute(string $value): Attr
     {
         $node = $this->element->createAttribute($value);
@@ -255,7 +247,7 @@ class Document implements ElementInterface
      *
      * @param string $value The content of the entity reference, e.g. the entity reference minusthe leading & and the trailing ; characters.
      * @return \Contender\Elements\Node
-* @link https://php.net/manual/domdocument.createentityreference.php
+     * @link https://php.net/manual/domdocument.createentityreference.php
      */
     public function createEntityReference(string $value): Node
     {
@@ -271,5 +263,13 @@ class Document implements ElementInterface
     public function __toString()
     {
         return $this->getOuterHTMLAttribute();
+    }
+
+    /**
+     * @return \DOMDocument
+     */
+    protected function document(): DOMDocument
+    {
+        return $this->element;
     }
 }

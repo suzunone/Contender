@@ -258,20 +258,18 @@ trait GetterTrait
     }
 
     /**
-     * @param string $html
-     * @return Collection
-*/
-    protected function htmlToNodes(string $html): Collection
+     * @param string $value
+     * @hideDoc
+     */
+    public function setInnerXMLAttribute(string $value): void
     {
-        $newNode = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
-
-        return $newNode->querySelector('body')->children;
+        $this->setInnerHTMLAttribute($value);
     }
 
     /**
      * @param string $html
      * @hideDoc
-*/
+     */
     public function setInnerHTMLAttribute(string $html): void
     {
         $newNodes = $this->htmlToNodes($html);
@@ -287,12 +285,14 @@ trait GetterTrait
     }
 
     /**
-     * @param string $value
-     * @hideDoc
-*/
-    public function setInnerXMLAttribute(string $value): void
+     * @param string $html
+     * @return Collection
+     */
+    protected function htmlToNodes(string $html): Collection
     {
-        $this->setInnerHTMLAttribute($value);
+        $newNode = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
+
+        return $newNode->querySelector('body')->children;
     }
 
     /**
@@ -365,7 +365,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Collection That contains all children of this node. If there are no children, this is an empty {@link \Contender\Elements\Collection}.
-* @hideDoc
+     * @hideDoc
      */
     public function getChildrenAttribute(): Collection
     {
@@ -425,7 +425,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Node|null The node immediately preceding this node. If there is no such node, this returns NULL.
-* @hideDoc
+     * @hideDoc
      */
     public function getPreviousElementSiblingAttribute(): ?Node
     {
@@ -446,7 +446,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Node|null The node immediately following this node. If there is no such node, this returns NULL.
-* @hideDoc
+     * @hideDoc
      */
     public function getNextElementSiblingAttribute(): ?Node
     {
@@ -467,7 +467,7 @@ trait GetterTrait
 
     /**
      * @return \Contender\Elements\Document The {@link \Contender\Elements\Document} object associated with this node
-*/
+     */
     public function getOwnerDocumentAttribute(): Document
     {
         return Factory::get($this->document(), $this);

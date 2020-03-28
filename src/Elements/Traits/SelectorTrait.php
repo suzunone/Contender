@@ -47,7 +47,7 @@ trait SelectorTrait
      *
      * @param string $query tag id
      * @return \Contender\Elements\Element|null Selected node
-*/
+     */
     public function getElementById(string $query): ?Node
     {
         $res = $this->document()->getElementById($query);
@@ -63,10 +63,63 @@ trait SelectorTrait
      *
      * @param string $query tag class name
      * @return \Contender\Elements\Collection|\Contender\Elements\Node[]
-*/
+     */
     public function getElementsByClassName(string $query): Collection
     {
         return $this->querySelectorAll('.' . trim($query));
+    }
+
+    /**
+     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching CSS selector.
+     *
+     * @param string $selectors Valid CSS selector string
+     * @return \Contender\Elements\Collection|Node[]
+     */
+    public function querySelectorAll(string $selectors): Collection
+    {
+        $queries = explode(',', $selectors);
+        $res = Collection::make();
+        foreach ($queries as $selector) {
+            $res = $res->merge($this->evaluateToCollection($this->cssSelector2XPath(trim($selector))));
+        }
+
+        return $res->sortDom();
+    }
+
+    /**
+     * Evaluates the given XPath expression and returns a {@link \Contender\Elements\Collection} result if possible
+     *
+     * @param string $query xpath
+     * @return \Contender\Elements\Collection|Node[]
+     */
+    public function evaluateToCollection(string $query): Collection
+    {
+        $res = $this->domXPathQuery($query);
+
+        if ($res === false) {
+            return Collection::make();
+        }
+        if ($res instanceof DOMNodeList) {
+            return Factory::get($res, $this);
+        }
+
+        return Collection::make([$this->createElement($res)]);
+    }
+
+    /**
+     * alias DOMXPath::evaluate
+     *
+     * @param string $query
+     * @return  DOMNodeList
+     */
+    protected function domXPathQuery(string $query): DOMNodeList
+    {
+        $xpath = new DOMXPath($this->document());
+        if ($this->element->ownerDocument === null) {
+            return $xpath->evaluate('//' . $query);
+        }
+
+        return $xpath->evaluate($this->element->getNodePath() . '//' . $query);
     }
 
     /**
@@ -74,7 +127,7 @@ trait SelectorTrait
      *
      * @param string $query tag name attribute
      * @return \Contender\Elements\Collection|\Contender\Elements\Node[]
-*/
+     */
     public function getElementsByName(string $query): Collection
     {
         return $this->querySelectorAll('[name="' . trim($query) . '"]');
@@ -85,7 +138,7 @@ trait SelectorTrait
      *
      * @param string $tag_name Elements tag name
      * @return \Contender\Elements\Collection
-*/
+     */
     public function getElementsByTagName(string $tag_name): Collection
     {
         if ($this->isElement) {
@@ -107,7 +160,7 @@ trait SelectorTrait
      * @param string $namespaceURI The namespace URI.
      * @param string $localName    The local name.
      * @return \Contender\Elements\Collection
-*/
+     */
     public function getAttributeNodeNS(string $namespaceURI, string $localName): Collection
     {
         if ($this->isElement) {
@@ -125,7 +178,7 @@ trait SelectorTrait
      *
      * @param string $selectors Valid CSS selector string
      * @return \Contender\Elements\Node|null
-*/
+     */
     public function querySelector(string $selectors): ?Node
     {
         $queries = explode(',', $selectors);
@@ -140,60 +193,12 @@ trait SelectorTrait
     }
 
     /**
-     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching CSS selector.
-     *
-     * @param string $selectors Valid CSS selector string
-     * @return \Contender\Elements\Collection|Node[]
-*/
-    public function querySelectorAll(string $selectors): Collection
-    {
-        $queries = explode(',', $selectors);
-        $res = Collection::make();
-        foreach ($queries as $selector) {
-            $res = $res->merge($this->evaluateToCollection($this->cssSelector2XPath(trim($selector))));
-        }
-
-        return $res->sortDom();
-    }
-
-    /**
-     * Call querySelectorAll() and {@link \Contender\Elements\Collection::onlyElement()}
-     *
-     * @param string $query
-     * @return \Contender\Elements\Collection
-*/
-    public function find(string $query): Collection
-    {
-        return $this->querySelectorAll($query)->onlyElement();
-    }
-
-    /**
-     * Evaluates the given XPath expression and returns a {@link \Contender\Elements\Collection} result if possible
-     *
-     * @param string $query xpath
-     * @return \Contender\Elements\Collection|Node[]
-*/
-    public function evaluateToCollection(string $query): Collection
-    {
-        $res = $this->domXPathQuery($query);
-
-        if ($res === false) {
-            return Collection::make();
-        }
-        if ($res instanceof DOMNodeList) {
-            return Factory::get($res, $this);
-        }
-
-        return Collection::make([$this->createElement($res)]);
-    }
-
-    /**
      * Evaluates the given XPath expression and returns a {@link \Contender\Elements\Node} result if possible
      *
      * @param string $query xpath
      * @param int $offset
      * @return \Contender\Elements\Node|null
-*/
+     */
     public function evaluate(string $query, int $offset = 0): ?Node
     {
         $res = $this->domXPathQuery($query);
@@ -210,18 +215,13 @@ trait SelectorTrait
     }
 
     /**
-     * alias DOMXPath::evaluate
+     * Call querySelectorAll() and {@link \Contender\Elements\Collection::onlyElement()}
      *
      * @param string $query
-     * @return  DOMNodeList
+     * @return \Contender\Elements\Collection
      */
-    protected function domXPathQuery(string $query): DOMNodeList
+    public function find(string $query): Collection
     {
-        $xpath = new DOMXPath($this->document());
-        if ($this->element->ownerDocument === null) {
-            return $xpath->evaluate('//' . $query);
-        }
-
-        return $xpath->evaluate($this->element->getNodePath() . '//' . $query);
+        return $this->querySelectorAll($query)->onlyElement();
     }
 }

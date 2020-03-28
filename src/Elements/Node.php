@@ -125,14 +125,6 @@ class Node implements ElementInterface
     }
 
     /**
-     * @return \DOMDocument
-     */
-    protected function document(): DOMDocument
-    {
-        return $this->element->ownerDocument;
-    }
-
-    /**
      * @return string
      */
     public function __toString()
@@ -144,7 +136,7 @@ class Node implements ElementInterface
      * Removes the object from the tree it belongs to.
      *
      * @return \Contender\Elements\Node|null
-* @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
      */
     public function remove(): ?Node
     {
@@ -158,7 +150,7 @@ class Node implements ElementInterface
      *
      * @param \Contender\Elements\Node|string ...$elements
      * @return \Contender\Elements\Node|null
-* @see \Contender\Elements\Document::createElement()
+     * @see \Contender\Elements\Document::createElement()
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after
      */
     public function after(...$elements): ?Node
@@ -190,7 +182,7 @@ class Node implements ElementInterface
      *
      * @param \Contender\Elements\Node|string ...$elements
      * @return \Contender\Elements\Node|null
-* @see \Contender\Elements\Document::createElement()
+     * @see \Contender\Elements\Document::createElement()
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before
      */
     public function before(...$elements): ?Node
@@ -212,5 +204,13 @@ class Node implements ElementInterface
         }
 
         return null;
+    }
+
+    /**
+     * @return \DOMDocument
+     */
+    protected function document(): DOMDocument
+    {
+        return $this->element->ownerDocument;
     }
 }

@@ -35,9 +35,9 @@ use DOMNodeList;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @isdoc
- * @method \Contender\Elements\Node|\Contender\Elements\Element offsetGet($key)
- * @method \Contender\Elements\Node|\Contender\Elements\Element last(callable $callback = null, $default = null)
- * @method \Contender\Elements\Node|\Contender\Elements\Element first(callable $callback = null, $default = null)
+ * @method Node|Element offsetGet($key)
+ * @method Node|Element last(callable $callback = null, $default = null)
+ * @method Node|Element first(callable $callback = null, $default = null)
  * @property string innerHTML 1st of innerHTML
  * @property string inner_h_t_m_l 1st of innerHTML
  * @property string innerXML 1st of innerXML
@@ -58,17 +58,6 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * Call {@link \Contender\Elements\Collection::querySelectorAll()} and {@link \Contender\Elements\Collection::onlyElement()}
-     *
-     * @param string $selectors
-     * @return \Contender\Elements\Collection
-     */
-    public function find(string $selectors): Collection
-    {
-        return $this->querySelectorAll($selectors)->onlyElement();
-    }
-
-    /**
      * @param \DOMNodeList $element
      * @param \Contender\Elements\ElementInterface $node
      * @return \Contender\Elements\Collection
@@ -84,6 +73,17 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
+     * Call {@link \Contender\Elements\Collection::querySelectorAll()} and {@link \Contender\Elements\Collection::onlyElement()}
+     *
+     * @param string $selectors
+     * @return \Contender\Elements\Collection
+     */
+    public function find(string $selectors): Collection
+    {
+        return $this->querySelectorAll($selectors)->onlyElement();
+    }
+
+    /**
      * HTMLElement only Node
      *
      * @return \Contender\Elements\Collection Filtered Collection
@@ -93,6 +93,26 @@ class Collection extends \Illuminate\Support\Collection
         return $this->filter(static function (Node $node) {
             return $node->is_element;
         })->values();
+    }
+
+    /**
+     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching CSS selector.
+     *
+     * @param string $selectors Valid CSS selector string
+     * @return \Contender\Elements\Collection|Node[]
+     */
+    public function querySelectorAll(string $selectors): Collection
+    {
+        $queries = explode(',', $selectors);
+        $res = self::make();
+
+        $this->each(function (Node $item) use ($queries, &$res) {
+            foreach ($queries as $selector) {
+                $res = $res->merge($item->evaluateToCollection($this->cssSelector2XPath(trim($selector))));
+            }
+        });
+
+        return $res->sortDom();
     }
 
     /**
@@ -145,26 +165,6 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * Returns a {@link \Contender\Elements\Collection} of {@link \Contender\Elements\Node} matching CSS selector.
-     *
-     * @param string $selectors Valid CSS selector string
-     * @return \Contender\Elements\Collection|Node[]
-     */
-    public function querySelectorAll(string $selectors): Collection
-    {
-        $queries = explode(',', $selectors);
-        $res = self::make();
-
-        $this->each(function (Node $item) use ($queries, &$res) {
-            foreach ($queries as $selector) {
-                $res = $res->merge($item->evaluateToCollection($this->cssSelector2XPath(trim($selector))));
-            }
-        });
-
-        return $res->sortDom();
-    }
-
-    /**
      * @param string $key
      * @return mixed|string
      * @throws \Exception
@@ -208,16 +208,6 @@ class Collection extends \Illuminate\Support\Collection
     }
 
     /**
-     * @param string $val
-     * @hideDoc
-     * @link \Contender\Elements\Node::$innerHTML
-     */
-    public function setInnerHTMLAttribute(string $val): void
-    {
-        $this->sortDom()->first()->innerHTML = $val;
-    }
-
-    /**
      * @return string 1st of innerXML
      * @hideDoc
      * @link \Contender\Elements\Node::$innerXML
@@ -225,6 +215,16 @@ class Collection extends \Illuminate\Support\Collection
     public function getInnerXMLAttribute(): string
     {
         return $this->sortDom()->first()->innerXML;
+    }
+
+    /**
+     * @param string $val
+     * @hideDoc
+     * @link \Contender\Elements\Node::$innerHTML
+     */
+    public function setInnerHTMLAttribute(string $val): void
+    {
+        $this->sortDom()->first()->innerHTML = $val;
     }
 
     /**

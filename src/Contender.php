@@ -208,6 +208,82 @@ class Contender
     }
 
     /**
+     * Generate a {@link \Contender\Elements\Document}  from a string(static call)
+     *
+     * @param string $html   The string containing the HTML.
+     * @param array $options Array multiple Contender option constants
+     * @return \Contender\Elements\Document
+     * @link \Contender\Contender::load()
+     * @link \Contender\Contender::loadUrl()
+     */
+    public static function loadStr(string $html, array $options = []): Document
+    {
+        $contender = new self();
+
+        return $contender->load($html, $options);
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document} from a string
+     *
+     * @param string $html   The string containing the HTML.
+     * @param array $options Array multiple Contender option constants
+     * @return \Contender\Elements\Document
+     * @link \Contender\Contender::loadStr()
+     * @link \Contender\Contender::loadUrl()
+     */
+    public function load(string $html, array $options = []): Document
+    {
+        $is_xml = strpos($html, '<?xml') === 0;
+        $this->setOptions($options);
+        if ($this->is_encode) {
+            $html = $this->toUTF8($html);
+        }
+
+        if (!$is_xml) {
+            $html = $this->completeHtmlTag($html);
+        }
+
+        $doc = new DOMDocument();
+        $doc->preserveWhiteSpace = true;
+        if ($this->is_encode) {
+            $doc->encoding = 'UTF-8';
+        }
+        $doc->formatOutput = $this->format_output;
+        $doc->substituteEntities = false;
+
+        if ($this->is_minify) {
+            $html = preg_replace('/[ \t]+/', ' ', $html);
+        }
+
+        if ($is_xml) {
+            $doc->loadXML($html, $this->options());
+        } else {
+            $doc->loadHTML($html, $this->options());
+        }
+
+        $doc = $this->cleanUpDom($doc);
+
+        return static::loadDomDocument($doc);
+    }
+
+    /**
+     * Calls {@link \Contender\Contender::setOption()} as an array
+     *
+     * @param array $options Array multiple Contender option constants
+     * @return self
+     * @link \Contender\Contender::setOption()
+     */
+    public function setOptions(array $options): self
+    {
+        foreach ($options as $option) {
+            $this->setOption($option);
+        }
+
+        return $this;
+    }
+
+    /**
      * Options for converting Html to ContenderDocument
      *
      * @param string $option Contender option const.
@@ -280,256 +356,6 @@ class Contender
         }
 
         return $this;
-    }
-
-    /**
-     * Calls {@link \Contender\Contender::setOption()} as an array
-     *
-     * @param array $options Array multiple Contender option constants
-     * @return self
-     * @link \Contender\Contender::setOption()
-     */
-    public function setOptions(array $options): self
-    {
-        foreach ($options as $option) {
-            $this->setOption($option);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Generate a {@link \Contender\Elements\Document} from a string
-     *
-     * @param string $html   The string containing the HTML.
-     * @param array $options Array multiple Contender option constants
-     * @return \Contender\Elements\Document
-     * @link \Contender\Contender::loadStr()
-     * @link \Contender\Contender::loadUrl()
-     */
-    public function load(string $html, array $options = []): Document
-    {
-        $is_xml = strpos($html, '<?xml') === 0;
-        $this->setOptions($options);
-        if ($this->is_encode) {
-            $html = $this->toUTF8($html);
-        }
-
-        if (!$is_xml) {
-            $html = $this->completeHtmlTag($html);
-        }
-
-        $doc = new DOMDocument();
-        $doc->preserveWhiteSpace = true;
-        if ($this->is_encode) {
-            $doc->encoding = 'UTF-8';
-        }
-        $doc->formatOutput = $this->format_output;
-        $doc->substituteEntities = false;
-
-        if ($this->is_minify) {
-            $html = preg_replace('/[ \t]+/', ' ', $html);
-        }
-
-        if ($is_xml) {
-            $doc->loadXML($html, $this->options());
-        } else {
-            $doc->loadHTML($html, $this->options());
-        }
-
-        $doc = $this->cleanUpDom($doc);
-
-        return static::loadDomDocument($doc);
-    }
-
-    /**
-     * Complete <html> and <body> tags.
-     * @param string $html
-     * @return string
-     */
-    protected function completeHtmlTag(string $html): string
-    {
-        if (strpos($html, '</body>') === false) {
-            $html = "<body>{$html}</body>";
-        }
-
-        if (strpos($html, '</html>') === false) {
-            $internal_encoding = mb_internal_encoding();
-            $html = /** @lang html */
-                <<<HTML
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="{$internal_encoding}">
-<meta http-equiv="Content-Type" content="text/html; charset={$internal_encoding}">
-</head>
-{$html}
-</html>
-HTML;
-        }
-
-        return $html;
-    }
-
-    /**
-     * Clean dom according to configured options
-     *
-     * @param \DOMDocument $dom
-     * @return \DOMDocument
-     */
-    protected function cleanUpDom(DOMDocument $dom): DOMDocument
-    {
-        if ($this->is_comment_remove) {
-            $dom = $this->removeComment($dom);
-        }
-        if ($this->is_style_remove) {
-            $dom = $this->removeStyle($dom);
-        }
-        if ($this->is_script_remove) {
-            $dom = $this->removeScript($dom);
-        }
-
-        return $dom;
-    }
-
-    /**
-     * Remove html comment
-     *
-     * @param \DOMDocument $dom
-     * @return \DOMDocument
-     */
-    protected function removeComment(DOMDocument $dom): DOMDocument
-    {
-        return $this->removeFromXPath('//comment()', $dom);
-    }
-
-    /**
-     * Remove `<style>` tags
-     *
-     * @param \DOMDocument $dom
-     * @return \DOMDocument
-     */
-    protected function removeStyle(DOMDocument $dom): DOMDocument
-    {
-        return $this->removeFromXPath('//style', $dom);
-    }
-
-    /**
-     * Remove `<script>` tags
-     *
-     * @param \DOMDocument $dom
-     * @return \DOMDocument
-     */
-    protected function removeScript(DOMDocument $dom): DOMDocument
-    {
-        return $this->removeFromXPath('//script', $dom);
-    }
-
-    /**
-     * Removes a DomNode by specifying an Xpath
-     *
-     * @param string $path
-     * @param \DOMDocument $dom
-     * @return \DOMDocument
-     */
-    protected function removeFromXPath(string $path, DOMDocument $dom): DOMDocument
-    {
-        $xpath = new DOMXPath($dom);
-        $items = $xpath->query($path);
-        if ($items === false) {
-            return $dom;
-        }
-
-        foreach ($items as $node) {
-            $node->parentNode->removeChild($node);
-        }
-
-        return $dom;
-    }
-
-    /**
-     * Generate a {@link \Contender\Elements\Document}  from a URL
-     *
-     * @param string $url                The path to the HTML document.
-     * @param array $options             Array multiple Contender option constants
-     * @param array|null $context_option Context options
-     * @return \Contender\Elements\Document
-     * @link https://www.php.net/manual/en/context.php
-     * @link \Contender\Contender::loadStr()
-     * @link \Contender\Contender::loadUrl()
-     */
-    public function loadFromUrl(string $url, array $options = [], ?array $context_option = null): Document
-    {
-        if ($context_option) {
-            $context = stream_context_create($context_option);
-            $html = file_get_contents($url, false, $context);
-        } else {
-            $html = file_get_contents($url);
-        }
-
-        return $this->load($html, $options);
-    }
-
-    /**
-     * Generate a {@link \Contender\Elements\Document}  from a string(static call)
-     *
-     * @param string $html   The string containing the HTML.
-     * @param array $options Array multiple Contender option constants
-     * @return \Contender\Elements\Document
-     * @link \Contender\Contender::load()
-     * @link \Contender\Contender::loadUrl()
-     */
-    public static function loadStr(string $html, array $options = []): Document
-    {
-        $contender = new self();
-
-        return $contender->load($html, $options);
-    }
-
-    /**
-     * Generate a {@link \Contender\Elements\Document}  from a DOMDocument
-     *
-     * @param \DOMDocument $document
-     * @return \Contender\Elements\Document
-     * @see https://www.php.net/manual/en/class.domdocument.php
-     */
-    public static function loadDomDocument(DOMDocument $document): Document
-    {
-        return new Document($document);
-    }
-
-    /**
-     * Generate a {@link \Contender\Elements\Document}  from a URL(static call)
-     *
-     * @param string $url                The path to the HTML document.
-     * @param array $options             Array multiple Contender option constants
-     * @param array|null $context_option Context options
-     * @return \Contender\Elements\Document
-     * @link https://www.php.net/manual/en/context.php
-     * @link \Contender\Contender::loadStr()
-     * @link \Contender\Contender::loadFromUrl()
-     */
-    public static function loadUrl(string $url, array $options = [], ?array $context_option = null): Document
-    {
-        $contender = new self();
-
-        return $contender->loadFromUrl($url, $options, $context_option);
-    }
-
-    /**
-     * Generate options for libxml
-     *
-     * @return int
-     */
-    protected function options(): int
-    {
-        $option = self::DEFAULT_LIBXML_OPTION;
-
-        foreach ($this->options as $val) {
-            $option |= $val;
-        }
-
-        return $option;
     }
 
     /**
@@ -606,5 +432,179 @@ HTML;
         }
 
         return mb_detect_encoding($html);
+    }
+
+    /**
+     * Complete <html> and <body> tags.
+     * @param string $html
+     * @return string
+     */
+    protected function completeHtmlTag(string $html): string
+    {
+        if (strpos($html, '</body>') === false) {
+            $html = "<body>{$html}</body>";
+        }
+
+        if (strpos($html, '</html>') === false) {
+            $internal_encoding = mb_internal_encoding();
+            $html = /** @lang html */
+                <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="{$internal_encoding}">
+<meta http-equiv="Content-Type" content="text/html; charset={$internal_encoding}">
+</head>
+{$html}
+</html>
+HTML;
+        }
+
+        return $html;
+    }
+
+    /**
+     * Generate options for libxml
+     *
+     * @return int
+     */
+    protected function options(): int
+    {
+        $option = self::DEFAULT_LIBXML_OPTION;
+
+        foreach ($this->options as $val) {
+            $option |= $val;
+        }
+
+        return $option;
+    }
+
+    /**
+     * Clean dom according to configured options
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function cleanUpDom(DOMDocument $dom): DOMDocument
+    {
+        if ($this->is_comment_remove) {
+            $dom = $this->removeComment($dom);
+        }
+        if ($this->is_style_remove) {
+            $dom = $this->removeStyle($dom);
+        }
+        if ($this->is_script_remove) {
+            $dom = $this->removeScript($dom);
+        }
+
+        return $dom;
+    }
+
+    /**
+     * Remove html comment
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function removeComment(DOMDocument $dom): DOMDocument
+    {
+        return $this->removeFromXPath('//comment()', $dom);
+    }
+
+    /**
+     * Removes a DomNode by specifying an Xpath
+     *
+     * @param string $path
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function removeFromXPath(string $path, DOMDocument $dom): DOMDocument
+    {
+        $xpath = new DOMXPath($dom);
+        $items = $xpath->query($path);
+        if ($items === false) {
+            return $dom;
+        }
+
+        foreach ($items as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        return $dom;
+    }
+
+    /**
+     * Remove `<style>` tags
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function removeStyle(DOMDocument $dom): DOMDocument
+    {
+        return $this->removeFromXPath('//style', $dom);
+    }
+
+    /**
+     * Remove `<script>` tags
+     *
+     * @param \DOMDocument $dom
+     * @return \DOMDocument
+     */
+    protected function removeScript(DOMDocument $dom): DOMDocument
+    {
+        return $this->removeFromXPath('//script', $dom);
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document}  from a DOMDocument
+     *
+     * @param \DOMDocument $document
+     * @return \Contender\Elements\Document
+     * @see https://www.php.net/manual/en/class.domdocument.php
+     */
+    public static function loadDomDocument(DOMDocument $document): Document
+    {
+        return new Document($document);
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document}  from a URL(static call)
+     *
+     * @param string $url                The path to the HTML document.
+     * @param array $options             Array multiple Contender option constants
+     * @param array|null $context_option Context options
+     * @return \Contender\Elements\Document
+     * @link https://www.php.net/manual/en/context.php
+     * @link \Contender\Contender::loadStr()
+     * @link \Contender\Contender::loadFromUrl()
+     */
+    public static function loadUrl(string $url, array $options = [], ?array $context_option = null): Document
+    {
+        $contender = new self();
+
+        return $contender->loadFromUrl($url, $options, $context_option);
+    }
+
+    /**
+     * Generate a {@link \Contender\Elements\Document}  from a URL
+     *
+     * @param string $url                The path to the HTML document.
+     * @param array $options             Array multiple Contender option constants
+     * @param array|null $context_option Context options
+     * @return \Contender\Elements\Document
+     * @link https://www.php.net/manual/en/context.php
+     * @link \Contender\Contender::loadStr()
+     * @link \Contender\Contender::loadUrl()
+     */
+    public function loadFromUrl(string $url, array $options = [], ?array $context_option = null): Document
+    {
+        if ($context_option) {
+            $context = stream_context_create($context_option);
+            $html = file_get_contents($url, false, $context);
+        } else {
+            $html = file_get_contents($url);
+        }
+
+        return $this->load($html, $options);
     }
 }
