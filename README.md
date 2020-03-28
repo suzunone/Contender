@@ -1,5 +1,6 @@
 Contender
 ============================================
+![CircleCI](https://circleci.com/gh/suzunone/Contender.svg?style=svg)](https://circleci.com/gh/suzunone/Contender)
 Contender is a very simple, fast, and flexible HTMLParser.
 You can scrape using Xpath or Css Selector.
 
