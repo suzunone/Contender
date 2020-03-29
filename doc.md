@@ -80,6 +80,8 @@ Contender\Contender {
     const string OPTION_REMOVE_SCRIPT_DISABLE = "OPTION_REMOVE_SCRIPT_DISABLE" ;
     const string OPTION_REMOVE_COMMENT_ENABLE = "OPTION_REMOVE_COMMENT_ENABLE" ;
     const string OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE" ;
+    const string OPTION_FROM_XML_ENABLE = "OPTION_FROM_XML_ENABLE" ;
+    const string OPTION_FROM_XML_DISABLE = "OPTION_FROM_XML_DISABLE" ;
     const integer DEFAULT_LIBXML_OPTION = 4194402 ;
 
     /* Properties */
@@ -199,6 +201,16 @@ Remove comment tags, then generating to <a href="#contenderdomdocument">\Contend
 
 
 ### `string` \Contender\Contender::OPTION_REMOVE_COMMENT_DISABLE = "OPTION_REMOVE_COMMENT_DISABLE"
+
+
+
+
+### `string` \Contender\Contender::OPTION_FROM_XML_ENABLE = "OPTION_FROM_XML_ENABLE"
+Remove comment tags, then generating to <a href="#contenderdomdocument">\Contender\Dom\Document</a>
+
+
+
+### `string` \Contender\Contender::OPTION_FROM_XML_DISABLE = "OPTION_FROM_XML_DISABLE"
 
 
 

@@ -110,7 +110,7 @@ class NodeList extends \Illuminate\Support\Collection
 
         $this->each(function (Node $item) use ($queries, &$res) {
             foreach ($queries as $selector) {
-                $res = $res->merge($item->evaluateToCollection($this->cssSelector2XPath(trim($selector))));
+                $res = $res->merge($item->evaluateToCollection($item->cssSelector2XPath(trim($selector))));
             }
         });
 

@@ -39,8 +39,9 @@ trait CssSelector2XPathTrait
      * @param string $css_selector
      * @param string $prefix
      * @return string
+     * @hideDoc
      */
-    protected function cssSelector2XPath(string $css_selector, string $prefix = '//descendant-or-self::'): string
+    public function cssSelector2XPath(string $css_selector, string $prefix = 'descendant-or-self::'): string
     {
         $converter = new CssSelectorConverter();
 

@@ -116,11 +116,7 @@ trait SelectorTrait
     {
         $xpath = new DOMXPath($this->document());
 
-        if ($this->element->ownerDocument === null) {
-            return $xpath->evaluate($query);
-        }
-
-        return $xpath->evaluate($this->element->getNodePath() . $query);
+        return $xpath->evaluate($query, $this->element);
     }
 
     /**

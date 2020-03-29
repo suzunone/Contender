@@ -169,6 +169,13 @@ class Contender
     public const OPTION_REMOVE_COMMENT_DISABLE = 'OPTION_REMOVE_COMMENT_DISABLE';
 
     /**
+     * Remove comment tags, then generating to {@link \Contender\Dom\Document}
+     * @var string Contender Load Option.
+     */
+    public const OPTION_FROM_XML_ENABLE = 'OPTION_FROM_XML_ENABLE';
+    public const OPTION_FROM_XML_DISABLE = 'OPTION_FROM_XML_DISABLE';
+
+    /**
      * Default libxml options
      *
      * ``` .php
@@ -196,6 +203,7 @@ class Contender
     protected $is_style_remove = false;
     protected $is_script_remove = false;
     protected $is_comment_remove = false;
+    protected $xml_load = false;
 
     /**
      * Contender constructor.
@@ -234,13 +242,12 @@ class Contender
      */
     public function load(string $html, array $options = []): Document
     {
-        $is_xml = strpos($html, '<?xml') === 0;
         $this->setOptions($options);
         if ($this->is_encode) {
             $html = $this->toUTF8($html);
         }
 
-        if (!$is_xml) {
+        if (!$this->xml_load) {
             $html = $this->completeHtmlTag($html);
         }
 
@@ -256,7 +263,7 @@ class Contender
             $html = preg_replace('/[ \t]+/', ' ', $html);
         }
 
-        if ($is_xml) {
+        if ($this->xml_load) {
             $doc->loadXML($html, $this->options());
         } else {
             $doc->loadHTML($html, $this->options());
@@ -353,6 +360,12 @@ class Contender
             case self::OPTION_REMOVE_COMMENT_DISABLE:
                 $this->is_comment_remove = false;
                 break;
+            case self::OPTION_FROM_XML_ENABLE:
+                $this->xml_load = true;
+                break;
+            case self::OPTION_FROM_XML_DISABLE:
+                $this->xml_load = false;
+                break;
         }
 
         return $this;
@@ -372,8 +385,7 @@ class Contender
         $encode = strtolower($encode);
         if ($encode === 'utf8' || $encode === 'utf-8') {
             if ($is_add_meta) {
-                $html = mb_ereg_replace('^<\\?xml.*?>', '', $html);
-                $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>', $html);
+                $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>', $html);
             }
 
             return $html;
@@ -394,8 +406,7 @@ class Contender
         }
 
         if ($is_add_meta) {
-            $html = mb_ereg_replace('^<\\?xml.*?>', '', $html);
-            $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>', $html);
+            $html = mb_ereg_replace('</head>', '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>', $html);
         }
 
         return $html;

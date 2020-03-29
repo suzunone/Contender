@@ -240,26 +240,29 @@ HTMLEND;
     public function setOptionContenderParameterDataProvider()
     {
         return [
-            Contender::OPTION_CONVERT_NO_ENCODE => [Contender::OPTION_CONVERT_NO_ENCODE , 'is_encode', false],
-            Contender::OPTION_CONVERT_ENCODE    => [Contender::OPTION_CONVERT_ENCODE , 'is_encode', true],
+            Contender::OPTION_CONVERT_NO_ENCODE => [Contender::OPTION_CONVERT_NO_ENCODE, 'is_encode', false],
+            Contender::OPTION_CONVERT_ENCODE    => [Contender::OPTION_CONVERT_ENCODE, 'is_encode', true],
 
-            Contender::OPTION_CONVERT_REPLACE_CHARSET    => [Contender::OPTION_CONVERT_REPLACE_CHARSET , 'is_replace_charset', true],
-            Contender::OPTION_CONVERT_NO_REPLACE_CHARSET => [Contender::OPTION_CONVERT_NO_REPLACE_CHARSET , 'is_replace_charset', false],
+            Contender::OPTION_CONVERT_REPLACE_CHARSET    => [Contender::OPTION_CONVERT_REPLACE_CHARSET, 'is_replace_charset', true],
+            Contender::OPTION_CONVERT_NO_REPLACE_CHARSET => [Contender::OPTION_CONVERT_NO_REPLACE_CHARSET, 'is_replace_charset', false],
 
-            Contender::OPTION_FORMAT_OUTPUT_ENABLE  => [Contender::OPTION_FORMAT_OUTPUT_ENABLE , 'format_output', true],
-            Contender::OPTION_FORMAT_OUTPUT_DISABLE => [Contender::OPTION_FORMAT_OUTPUT_DISABLE , 'format_output', false],
+            Contender::OPTION_FORMAT_OUTPUT_ENABLE  => [Contender::OPTION_FORMAT_OUTPUT_ENABLE, 'format_output', true],
+            Contender::OPTION_FORMAT_OUTPUT_DISABLE => [Contender::OPTION_FORMAT_OUTPUT_DISABLE, 'format_output', false],
 
-            Contender::OPTION_MINIFY_ENABLE  => [Contender::OPTION_MINIFY_ENABLE , 'is_minify', true],
-            Contender::OPTION_MINIFY_DISABLE => [Contender::OPTION_MINIFY_DISABLE , 'is_minify', false],
+            Contender::OPTION_MINIFY_ENABLE  => [Contender::OPTION_MINIFY_ENABLE, 'is_minify', true],
+            Contender::OPTION_MINIFY_DISABLE => [Contender::OPTION_MINIFY_DISABLE, 'is_minify', false],
 
-            Contender::OPTION_REMOVE_STYLE_ENABLE  => [Contender::OPTION_REMOVE_STYLE_ENABLE , 'is_style_remove', true],
-            Contender::OPTION_REMOVE_STYLE_DISABLE => [Contender::OPTION_REMOVE_STYLE_DISABLE , 'is_style_remove', false],
+            Contender::OPTION_REMOVE_STYLE_ENABLE  => [Contender::OPTION_REMOVE_STYLE_ENABLE, 'is_style_remove', true],
+            Contender::OPTION_REMOVE_STYLE_DISABLE => [Contender::OPTION_REMOVE_STYLE_DISABLE, 'is_style_remove', false],
 
-            Contender::OPTION_REMOVE_SCRIPT_ENABLE  => [Contender::OPTION_REMOVE_SCRIPT_ENABLE , 'is_script_remove', true],
-            Contender::OPTION_REMOVE_SCRIPT_DISABLE => [Contender::OPTION_REMOVE_SCRIPT_DISABLE , 'is_script_remove', false],
+            Contender::OPTION_REMOVE_SCRIPT_ENABLE  => [Contender::OPTION_REMOVE_SCRIPT_ENABLE, 'is_script_remove', true],
+            Contender::OPTION_REMOVE_SCRIPT_DISABLE => [Contender::OPTION_REMOVE_SCRIPT_DISABLE, 'is_script_remove', false],
 
-            Contender::OPTION_REMOVE_COMMENT_ENABLE  => [Contender::OPTION_REMOVE_COMMENT_ENABLE , 'is_comment_remove', true],
-            Contender::OPTION_REMOVE_COMMENT_DISABLE => [Contender::OPTION_REMOVE_COMMENT_DISABLE , 'is_comment_remove', false],
+            Contender::OPTION_REMOVE_COMMENT_ENABLE  => [Contender::OPTION_REMOVE_COMMENT_ENABLE, 'is_comment_remove', true],
+            Contender::OPTION_REMOVE_COMMENT_DISABLE => [Contender::OPTION_REMOVE_COMMENT_DISABLE, 'is_comment_remove', false],
+
+            Contender::OPTION_FROM_XML_ENABLE  => [Contender::OPTION_FROM_XML_ENABLE, 'xml_load', true],
+            Contender::OPTION_FROM_XML_DISABLE => [Contender::OPTION_FROM_XML_DISABLE, 'xml_load', false],
         ];
     }
 
@@ -280,14 +283,68 @@ HTMLEND;
         $this->assertEquals($expect, $value);
     }
 
-    public function test_sjis_file()
+    public function encodeDataProvider()
     {
-        $document = Contender::loadUrl(__DIR__.'/../data/59231_67732.html', [Contender::OPTION_CONVERT_ENCODE, Contender::OPTION_CONVERT_REPLACE_CHARSET]);
-        //$document = Contender::loadStr('<div>aaa</div><div>aaa</div><div>aaa</div><div>aaa</div><div>aaa</div>', [Contender::OPTION_CONVERT_ENCODE, Contender::OPTION_CONVERT_REPLACE_CHARSET]);
+        return [
+            'single_byte' => [
+                '<div class="metadata">aaa</div><div>aaa</div><div>aaa</div><div>aaa</div><div>aaa</div>',
+                'div.metadata',
+            ],
+            'multi_byte' => [
+                <<<HTMLEND
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="content-style-type" content="text/css" />
+	<link rel="stylesheet" type="text/css" href="../../aozora.css" />
+	<title>レオナルド・ダ・ヴインチ　Leonardo da Vinci 芥川龍之介訳 レオナルド・ダ・ヴインチの手記 —— Leonardo da Vinci ——</title>
+	<script type="text/javascript" src="../../jquery-1.4.2.min.js"></script>
+  <link rel="Schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.Title" content="レオナルド・ダ・ヴインチの手記" />
+	<meta name="DC.Creator" content="レオナルド・ダ・ヴインチ　Leonardo da Vinci" />
+	<meta name="DC.Publisher" content="青空文庫" />
+</head>
+<body>
+<div class="metadata">
+<h1 class="title">レオナルド・ダ・ヴインチの手記</h1>
+<h2 class="original_title">—— Leonardo da Vinci ——</h2>
+<h2 class="author">レオナルド・ダ・ヴインチ　Leonardo da Vinci</h2>
+<h2 class="translator">芥川龍之介訳</h2>
+<br />
+<br />
+</div>
+</html>
+HTMLEND,
+                'div.metadata',
+
+            ],
+            'sjis-xhtml' => [
+                file_get_contents(__DIR__ . '/../data/59231_67732.html'),
+                'div.metadata',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider encodeDataProvider
+     */
+    public function test_encode($html, $query)
+    {
+        $document = Contender::loadStr($html, [Contender::OPTION_CONVERT_ENCODE, Contender::OPTION_CONVERT_REPLACE_CHARSET]);
 
         $this->assertEquals('UTF-8', $document->encoding);
-        $element = $document->querySelector('div');
+        $element = $document->querySelector($query);
+        $this->assertInstanceOf(Element::class, $element);
 
+        $body = $document->find('body');
+        $element = $body->querySelector($query);
+        $this->assertInstanceOf(Element::class, $element);
+
+        $body = $document->querySelector('body');
+        $element = $body->querySelector($query);
         $this->assertInstanceOf(Element::class, $element);
     }
 }
