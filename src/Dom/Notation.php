@@ -33,7 +33,7 @@ use Contender\Service\Factory;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/28
- * @isDoc
+ * @isdoc
  * @mixin \Contender\DummyMixin\DOMNotation
  * @property-read string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  * @property-read \Contender\Dom\NodeList childNodes Aliases to children
@@ -105,4 +105,8 @@ use Contender\Service\Factory;
  */
 class Notation extends Node
 {
+    /**
+     * @var \DOMNotation
+     */
+    protected $element;
 }

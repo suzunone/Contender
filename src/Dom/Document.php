@@ -17,8 +17,8 @@
 namespace Contender\Dom;
 
 use Contender\Dom\Traits\NodeTrait;
-use DOMDocument;
 use Contender\Service\Factory;
+use DOMDocument;
 
 /**
  * Access each element of Html, like window.document in Javascript.
@@ -39,6 +39,7 @@ use Contender\Service\Factory;
  * @mixin \Contender\DummyMixin\DomDocument
  * @property-read string actualEncoding Deprecated. Actual encoding of the document, is a readonly equivalent to encoding.
  * @property-read string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
+ * @property-read \Contender\Dom\Element|null body Get <body>
  * @property-read \Contender\Dom\NodeList childNodes Aliases to children
  * @property-read \Contender\Dom\NodeList child_nodes Aliases to children
  * @property-read \Contender\Dom\NodeList children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Dom\NodeList}.
@@ -154,7 +155,7 @@ class Document implements ElementInterface
      * Create new element node
      *
      * @param string $name       The tag name of the element.
-     * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with DOMElement->nodeValue.
+     * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with {@link \Contender\Dom\Element::$nodeValue}.
      * @return \Contender\Dom\Element
      */
     public function createElement(string $name, ?string $value = null): Element
@@ -165,14 +166,43 @@ class Document implements ElementInterface
     }
 
     /**
+     * Create new element node with an associated namespace
+     * @link  https://php.net/manual/domdocument.createelementns.php
+     * @param string $namespaceURI  The URI of the namespace.
+     * @param string $qualifiedName The qualified name of the element, as prefix:tagname.
+     * @param string $value         [optional] The value of the element. By default, an empty element will be created. You can also set the value later with {@link \Contender\Dom\Element::$nodeValue}.
+     * @return \Contender\Dom\Element|null The new {@link \Contender\Dom\Element} or null if an error occured.
+     */
+    public function createElementNS($namespaceURI, $qualifiedName, $value = null):?Element
+    {
+        $element = $this->element->createElementNS($namespaceURI, $qualifiedName, $value);
+
+        if ($element === false) {
+            return null;
+        }
+
+        return Factory::get($element, $this);
+    }
+
+    /**
      * Create new comment node
      *
      * @param string $value The content of the comment.
-     * @return \Contender\Dom\Node
+     * @return \Contender\Dom\Comment
      */
-    public function createComment(string $value): Node
+    public function createComment(string $value): Comment
     {
         $node = $this->element->createComment($value);
+
+        return Factory::get($node, $this);
+    }
+
+    /**
+     * @return \Contender\Dom\DocumentFragment
+     */
+    public function createDocumentFragment(): DocumentFragment
+    {
+        $node = $this->element->createDocumentFragment();
 
         return Factory::get($node, $this);
     }
@@ -181,9 +211,9 @@ class Document implements ElementInterface
      * Create new comment node
      *
      * @param string $value The content of the text.
-     * @return \Contender\Dom\Node
+     * @return \Contender\Dom\Text
      */
-    public function createTextNode(string $value): Node
+    public function createTextNode(string $value): Text
     {
         $node = $this->element->createTextNode($value);
 
@@ -194,9 +224,9 @@ class Document implements ElementInterface
      * Create new cdata node
      *
      * @param string $value The content of the cdata.
-     * @return \Contender\Dom\Node
+     * @return \Contender\Dom\CdataSection
      */
-    public function createCDATASection(string $value): Node
+    public function createCDATASection(string $value): CdataSection
     {
         $node = $this->element->createCDATASection($value);
 
@@ -208,9 +238,9 @@ class Document implements ElementInterface
      *
      * @param string $target    The target of the processing instruction.
      * @param string|null $data The content of the processing instruction.
-     * @return \Contender\Dom\Node
+     * @return \Contender\Dom\ProcessingInstruction
      */
-    public function createProcessingInstruction(string $target, ?string $data = null): Node
+    public function createProcessingInstruction(string $target, ?string $data = null): ProcessingInstruction
     {
         $node = $this->element->createProcessingInstruction($target, $data);
 
@@ -222,9 +252,9 @@ class Document implements ElementInterface
      *
      * @param string $namespaceURI  The namespace URI of the elements to match on. The special value * matches all namespaces.
      * @param string $qualifiedName The local name of the elements to match on. The special value * matches all local names.
-     * @return \Contender\Dom\Node
+     * @return \Contender\Dom\Attr
      */
-    public function createAttributeNS(string $namespaceURI, string $qualifiedName): Node
+    public function createAttributeNS(string $namespaceURI, string $qualifiedName): Attr
     {
         $node = $this->element->createAttributeNS($namespaceURI, $qualifiedName);
 
@@ -248,15 +278,23 @@ class Document implements ElementInterface
      * Create new entity reference node
      *
      * @param string $value The content of the entity reference, e.g. the entity reference minusthe leading & and the trailing ; characters.
-     * @return \Contender\Dom\Node
+     * @return \Contender\Dom\EntityReference
      * @link https://php.net/manual/domdocument.createentityreference.php
      */
-    public function createEntityReference(string $value): Node
+    public function createEntityReference(string $value): EntityReference
     {
         $node = $this->element->createEntityReference($value);
         $this->element->importNode($node);
 
         return Factory::get($node, $this);
+    }
+
+    /**
+     * @return \Contender\Dom\Element|null Get <body>
+     */
+    public function getBodyAttribute(): ?Element
+    {
+        return Factory::get($this->element->getElementsByTagName('body')->item(0), $this);
     }
 
     /**

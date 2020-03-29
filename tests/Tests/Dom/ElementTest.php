@@ -142,9 +142,6 @@ class ElementTest extends TestCase
     /**
      * @param $html
      * @dataProvider dataProvider
-     * @covers \Contender\Dom\NamedNodeMap
-     * @covers \Contender\Service\Factory
-     * @covers \Contender\Dom\Attr
      */
     public function test_attaributes($html)
     {
@@ -158,12 +155,5 @@ class ElementTest extends TestCase
         $element = $document->getElementsByTagName('a')->first();
         $this->assertInstanceOf(NamedNodeMap::class, $element->attributes);
         $this->assertCount(5, $element->attributes);
-        $attr = $element->attributes->getNamedItem('href');
-        $this->assertInstanceOf(Attr::class, $attr);
-        $this->assertEquals('href', $attr->name);
-        $this->assertEquals('#aaa', $attr->value);
-        $this->assertEquals('<a href="#aaa" class="touch btn-success btn btn-large" id="link1" title="here" aria-disabled="">here</a>', $attr->ownerElement->outerXML);
-
-        $this->assertNull($element->attributes->getNamedItem('href2'));
     }
 }

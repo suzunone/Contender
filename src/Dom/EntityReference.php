@@ -103,4 +103,8 @@ use Contender\Service\Factory;
  */
 class EntityReference extends Node
 {
+    /**
+     * @var \DOMEntityReference
+     */
+    protected $element;
 }

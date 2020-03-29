@@ -1,40 +1,38 @@
 <?php
 /**
- * DocumentFragment.php
+ * ProcessingInstruction.php
  *
- * Class DocumentFragment
+ * Class ProcessingInstruction
  *
  * @category   Contender
- * @package    Contender\Dom
- * @subpackage Contender\Dom
+ * @package    Tests\Suzunone\Contender\Dom
+ * @subpackage Tests\Suzunone\Contender\Dom
  * @author     suzunone<suzunone.eleven@gmail.com>
  * @copyright  Project Contender
  * @license    MIT
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/28
+ * @since      2020/03/29
  */
 
 namespace Contender\Dom;
 
-use Contender\Service\Factory;
-
 /**
- * Class DocumentFragment
+ * Class ProcessingInstruction
  *
  * @category   Contender
- * @package    Contender\Dom
- * @subpackage Contender\Dom
+ * @package    Tests\Suzunone\Contender\Dom
+ * @subpackage Tests\Suzunone\Contender\Dom
  * @author     suzunone<suzunone.eleven@gmail.com>
  * @copyright  Project Contender
  * @license    MIT
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/28
+ * @since      2020/03/29
  * @isdoc
- * @mixin \Contender\DummyMixin\DOMDocumentFragment
+ * @mixin \Contender\DummyMixin\DOMProcessingInstruction
  * @property-read string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  * @property-read \Contender\Dom\NodeList childNodes Aliases to children
  * @property-read \Contender\Dom\NodeList child_nodes Aliases to children
@@ -101,22 +99,10 @@ use Contender\Service\Factory;
  * @property-read string textContent The text content of this node and its descendants.
  * @property-read string text_content The text content of this node and its descendants.
  */
-class DocumentFragment extends Node
+class ProcessingInstruction extends Node
 {
     /**
-     * @var \DOMDocumentFragment
+     * @var \DOMProcessingInstruction
      */
     protected $element;
-
-    /**
-     * Append raw XML data
-     * @link  https://php.net/manual/en/domdocumentfragment.appendxml.php
-     * @param string $data XML to append.
-     * @return bool true on success or false on failure.
-     * @since 5.1
-     */
-    public function appendXML(string $data): bool
-    {
-        return $this->element->appendXML($data);
-    }
 }

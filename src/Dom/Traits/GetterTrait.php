@@ -272,27 +272,14 @@ trait GetterTrait
      */
     public function setInnerHTMLAttribute(string $html): void
     {
-        $newNodes = $this->htmlToNodes($html);
+        $fragment = $this->document()->createDocumentFragment();
+        $fragment->appendXML($html);
 
         while ($this->element->childNodes->length !== 0) {
             $this->element->removeChild($this->element->childNodes->item($this->element->childNodes->length - 1));
         }
 
-        $newNodes->each(function (Node $newNode) {
-            $node = $this->document()->importNode($newNode->nativeNode(), true);
-            $this->element->insertBefore($node);
-        });
-    }
-
-    /**
-     * @param string $html
-     * @return NodeList
-     */
-    protected function htmlToNodes(string $html): NodeList
-    {
-        $newNode = Contender::loadStr($html, [Contender::OPTION_MINIFY_DISABLE]);
-
-        return $newNode->querySelector('body')->children;
+        $this->element->insertBefore($fragment);
     }
 
     /**

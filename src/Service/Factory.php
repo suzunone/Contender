@@ -32,6 +32,7 @@ use Contender\Dom\NamedNodeMap;
 use Contender\Dom\Node;
 use Contender\Dom\NodeList;
 use Contender\Dom\Notation;
+use Contender\Dom\ProcessingInstruction;
 use Contender\Dom\Text;
 use DOMAttr;
 use DOMCdataSection;
@@ -68,7 +69,7 @@ class Factory
     /**
      * @param \DOMNodeList|\DOMDocument|\DOMElement|\DOMImplementation|\DOMNode|\DOMNamedNodeMap|\DOMText|\DOMDocumentType|null $item
      * @param \Contender\Dom\Traits\SelectorTrait|\Contender\Dom\Traits\MutationTrait|\Contender\Dom\Traits\GetterTrait|\Contender\Dom\ElementInterface|\Contender\Dom\Implementation|null $old
-     * @return \Contender\Dom\Attr|\Contender\Dom\CdataSection|\Contender\Dom\CharacterData|\Contender\Dom\NodeList|\Contender\Dom\Comment|\Contender\Dom\Document|\Contender\Dom\DocumentType|\Contender\Dom\DocumentFragment|\Contender\Dom\Element|\Contender\Dom\Implementation|\Contender\Dom\NamedNodeMap|\Contender\Dom\Node|\Contender\Dom\Text
+     * @return \Contender\Dom\Attr|\Contender\Dom\CdataSection|\Contender\Dom\CharacterData|\Contender\Dom\NodeList|\Contender\Dom\Comment|\Contender\Dom\Document|\Contender\Dom\DocumentType|\Contender\Dom\DocumentFragment|\Contender\Dom\Element|\Contender\Dom\Implementation|\Contender\Dom\NamedNodeMap|\Contender\Dom\Node|\Contender\Dom\Notation|ProcessingInstruction|\Contender\Dom\Text
      * @hideDoc
      */
     public static function get($item, $old)
@@ -87,6 +88,10 @@ class Factory
 
         if ($item instanceof DOMEntity) {
             return new Entity($item);
+        }
+
+        if ($item instanceof \DOMProcessingInstruction) {
+            return new ProcessingInstruction($item);
         }
 
         if ($item instanceof \DOMNotation) {
