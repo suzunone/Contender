@@ -7465,8 +7465,6 @@ A collection of <a href="#contenderdomnode">\Contender\Dom\Node</a> from <a href
 
 
 
-
-
 Class synopsis
 ----------------------------
 
@@ -7482,7 +7480,6 @@ Contender\Dom\NodeList {
 
     /* Methods */
     public __construct ([?mixed $items = []]) : void
-    public makeByDOMNodeList (DOMNodeList $element, Contender\Dom\ElementInterface $node) : \Contender\Dom\NodeList
     public find (string $selectors) : \Contender\Dom\NodeList
     public onlyElement () : \Contender\Dom\NodeList
     public querySelectorAll (string $selectors) : \Contender\Dom\NodeList|Node[]
@@ -7547,29 +7544,6 @@ NodeList constructor.
 
 #### Return Values
 void
-
-
-### See Also
-None
-
-### \Contender\Dom\NodeList::makeByDOMNodeList(DOMNodeList $element, Contender\Dom\ElementInterface $node)
-
-
-
-
-#### Parameters
-##### `\DOMNodeList` $element
-
-
-
-##### `\Contender\Dom\ElementInterface` $node
-
-
-
-
-
-#### Return Values
-\Contender\Dom\NodeList
 
 
 ### See Also

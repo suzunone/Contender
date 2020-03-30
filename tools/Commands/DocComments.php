@@ -77,18 +77,67 @@ EOT
         return 0;
     }
 
+    public function methodToAnntate(\ReflectionMethod $reflectionMethod, bool $is_static = false)
+    {
+        $res = ' * @method';
+        if ($is_static) {
+            $res .= ' static';
+        }
+
+        $retType = $reflectionMethod->getReturnType();
+
+        if ($retType instanceof \ReflectionType) {
+            $res .= ' ' ;
+
+            if (!$retType->isBuiltin()) {
+                $res .= '\\';
+            }
+
+            $res .= (string) $retType;
+            if ($retType->allowsNull()) {
+                $res .= '|null';
+            }
+        } elseif (preg_match('/@return +([^\s]+)/u', $reflectionMethod->getDocComment(), $return_annotate_match)) {
+            $res .= ' ' . $return_annotate_match[1];
+        }
+
+        $res .= ' ' . $reflectionMethod->getName() . '(';
+
+        foreach ($reflectionMethod->getParameters() as $key => $parameter) {
+            if ($key !== 0) {
+                $res .= ',';
+            }
+            if ($parameter->getType()) {
+                $res .= ' ';
+
+                if ($parameter->getType()->allowsNull()) {
+                    $res .= '?';
+                }
+                if (!$parameter->getType()->isBuiltin()) {
+                    $res .= '\\';
+                }
+                $res .= (string) $parameter->getType();
+            }
+
+            $res .= ' $' . $parameter->getName();
+        }
+
+        $res .= ')';
+
+        return $res;
+    }
+
     protected function createDoc($clazz, $file)
     {
         $ref = new ReflectionClass($clazz);
 
         $now_doc = $ref->getDocComment();
 
-        if ($now_doc === false) {
-            return;
-        }
+        throw_if($now_doc === false, \Exception::class);
 
         $getter = [];
         $setter = [];
+        $method_annotates = [];
         foreach ($ref->getMethods() as $method) {
             $match = [];
             if (preg_match('/^get([A-Z].*)Attribute$/u', $method->name, $match)) {
@@ -96,10 +145,13 @@ EOT
             } elseif (preg_match('/^set([A-Z].*)Attribute$/u', $method->name, $match)) {
                 $setter[$match[1]] = $method;
             }
-        }
 
-        if (count($getter) === 0) {
-            return;
+            if (strpos($method->getDocComment(), '@public-call') !== false) {
+                $method_annotates[$method->getName().'()'] = $this->methodToAnntate($method, false);
+            }
+            if (strpos($method->getDocComment(), '@public-static-call') !== false) {
+                $method_annotates[$method->getName().'()'] = $this->methodToAnntate($method, true);
+            }
         }
 
         $annotates = [];
@@ -148,16 +200,24 @@ EOT
 
                     mb_ereg(' \\* ([^@\n]+)', $refPro->getDocComment(), $match);
 
-                    $annotates[$refPro->name] = $annotate.($match[1] ?? '');
+                    $annotates[$refPro->name] = $annotate . ($match[1] ?? '');
+                }
+                foreach ($mixinClass->getMethods() as $reflectionMethod) {
+                    $method_annotates[$reflectionMethod->getName() . '()'] = $this->methodToAnntate($reflectionMethod, $reflectionMethod->isStatic());
                 }
             }
         }
 
         ksort($annotates);
+        ksort($method_annotates);
 
-        $replacement_doc = preg_replace('/ \* @property(-read)? .*?\n/u', '', $now_doc);
-        // $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);
+        $annotates = array_merge($annotates, $method_annotates);
+        if (count($annotates) === 0) {
+            return;
+        }
 
+        $replacement_doc = preg_replace('/ \* @(property|method)(-read)? .*?\n/u', '', $now_doc);
+        $replacement_doc = mb_eregi_replace(' \* @method? .*?\n', '', $replacement_doc);
         $replacement_doc = str_replace("\n */", "\n" . implode("\n", $annotates) . "\n */", $replacement_doc);
 
         dump($file);

@@ -29,7 +29,6 @@ namespace Contender\Dom\Traits;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
- * @mixin \Contender\Dom\Element
  * @hideDoc
  * @property-read bool isElement                             true if this node is an XML_ELEMENT_NODE
  * @property-read bool is_element                            true if this node is an XML_ELEMENT_NODE

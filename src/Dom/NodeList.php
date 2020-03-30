@@ -23,8 +23,6 @@ use DOMNodeList;
 /**
  * A collection of {@link \Contender\Dom\Node} from {@link \Contender\Dom\Document}
  *
- *
- *
  * @category   Contender
  * @package    Contender\Dom
  * @subpackage Contender\Dom
@@ -36,9 +34,6 @@ use DOMNodeList;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @isdoc
- * @method Node|Element offsetGet($key)
- * @method Node|Element last(callable $callback = null, $default = null)
- * @method Node|Element first(callable $callback = null, $default = null)
  * @property string innerHTML 1st of innerHTML
  * @property string innerXML 1st of innerXML
  * @property string inner_h_t_m_l 1st of innerHTML
@@ -59,9 +54,42 @@ class NodeList extends \Illuminate\Support\Collection
     }
 
     /**
+     * @param callable|null $callback
+     * @param \Contender\Dom\Node|\Contender\Dom\Element|null $default
+     * @return \Contender\Dom\Node|\Contender\Dom\Element
+     * @hideDoc
+     */
+    public function last(callable $callback = null, $default = null)
+    {
+        return parent::last($callback, $default);
+    }
+
+    /**
+     * @param callable|null $callback
+     * @param \Contender\Dom\Node|\Contender\Dom\Element|null $default
+     * @return \Contender\Dom\Node|\Contender\Dom\Element
+     * @hideDoc
+     */
+    public function first(callable $callback = null, $default = null)
+    {
+        return parent::first($callback, $default);
+    }
+
+    /**
+     * @param string $key
+     * @return \Contender\Dom\Node|\Contender\Dom\Element
+     * @hideDoc
+     */
+    public function offsetGet($key)
+    {
+        return parent::offsetGet($key);
+    }
+
+    /**
      * @param \DOMNodeList $element
      * @param \Contender\Dom\ElementInterface $node
      * @return \Contender\Dom\NodeList
+     * @hideDoc
      */
     public static function makeByDOMNodeList(DOMNodeList $element, ElementInterface $node): NodeList
     {

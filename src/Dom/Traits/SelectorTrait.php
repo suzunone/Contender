@@ -36,7 +36,6 @@ use DOMXPath;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @hideDoc
- * @mixin Node
  */
 trait SelectorTrait
 {

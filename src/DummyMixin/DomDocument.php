@@ -32,7 +32,6 @@ namespace Contender\DummyMixin;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/28
  * @codeCoverageIgnore
- * @mixin \DOMDocument
  * @hideDoc
  */
 class DomDocument extends DOMNode

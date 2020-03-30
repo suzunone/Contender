@@ -37,10 +37,6 @@ use DOMNodeList;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/15
  * @hideDoc
- * @mixin \Contender\Dom\Node
- * @mixin \Contender\Dom\Document
- * @mixin \Contender\DummyMixin\DOMNode
- * @property-read string|null baseURI The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
  * @property-read \Contender\Dom\NodeList childNodes Aliases to children
  * @property-read \Contender\Dom\NodeList child_nodes Aliases to children
  * @property-read \Contender\Dom\NodeList children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Dom\NodeList}.
@@ -84,14 +80,9 @@ use DOMNodeList;
  * @property-read \Contender\Dom\Element|null last_element_child The last child of this node. If there is no such node, this returns NULL.
  * @property-read int lineNo Get line number for a node
  * @property-read int line_no Get line number for a node
- * @property-read string localName Returns the local part of the qualified name of this node.
- * @property-read string|null namespaceURI The namespace URI of this node, or NULL if it is unspecified.
  * @property-read \Contender\Dom\Node|null nextElementSibling The node immediately following this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Dom\Node|null next_element_sibling The node immediately following this node. If there is no such node, this returns NULL.
- * @property-read string nodeName Returns the most accurate name for the current node type
  * @property-read string nodePath Gets an XPath location path for the node
- * @property-read int nodeType Gets the type of the node. One of the predefined XML_xxx_NODE constants
- * @property string nodeValue The value of this node, depending on its type
  * @property-read string node_path Gets an XPath location path for the node
  * @property-read string outerHTML The outerHTML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
  * @property-read string outerXML The outerXML attribute of the Element DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
@@ -100,7 +91,6 @@ use DOMNodeList;
  * @property-read \Contender\Dom\Document ownerDocument The {@link \Contender\Dom\Document} object associated with this node
  * @property-read \Contender\Dom\Document owner_document The {@link \Contender\Dom\Document} object associated with this node
  * @property mixed|string|int parameter
- * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
  * @property-read \Contender\Dom\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Dom\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read string textContent The text content of this node and its descendants.

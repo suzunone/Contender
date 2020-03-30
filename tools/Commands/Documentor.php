@@ -55,6 +55,7 @@ EOT
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @return int 0 if everything went fine, or an exit code
      *
+     * @throws \ReflectionException
      * @see setCode()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -139,7 +140,14 @@ EOT
 
         $DummyConstants = implode('', $this->constStub($ref));
         $DummyProperties = implode('', $this->propertyStub($ref, $parsed));
-        $DummyMethods = implode('', $this->methodStub($ref, $parsed));
+        $DummyMethods = implode('', $this->methodStub($ref));
+
+        if (preg_match_all('/@mixin +(.*)/u', $ref->getDocComment(), $mixins)) {
+            foreach ($mixins[1] as $mixin) {
+                $mixinClass = new ReflectionClass($mixin);
+                $DummyMethods .= implode('', $this->methodStub($mixinClass, $ref));
+            }
+        }
 
         $arr = [
             'DummyName'             => $ref->name,
@@ -338,18 +346,22 @@ EOT
      * Create Method Markdown document
      *
      * @param \ReflectionClass $refClass
-     * @param array $class_doc
+     * @param \ReflectionClass|null $baseClass
      * @return array
      */
-    protected function methodStub(ReflectionClass $refClass, array $class_doc): array
+    protected function methodStub(ReflectionClass $refClass, ?ReflectionClass $baseClass = null): array
     {
+        if ($baseClass === null) {
+            $baseClass = $refClass;
+        }
+
         $res = [];
         foreach ($refClass->getMethods() as $refMethod) {
             if (!$refMethod->isPublic()) {
                 continue;
             }
 
-            if ($refMethod->getDeclaringClass()->getName() !== $refClass->getName()) {
+            if ($refMethod->getDeclaringClass()->getName() !== $baseClass->getName()) {
                 continue;
             }
             $doc = $this->parseDocBlock($refMethod->getDocComment());
@@ -372,7 +384,7 @@ EOT
             }
 
             $arr = [
-                'DummyClass' => $refClass->name,
+                'DummyClass' => $baseClass->name,
                 'DummyName'  => $refMethod->getName(),
                 // 'DummyValue' => json_encode($refMethod->getValue()),
                 'DummyReturnValues' => $doc['return'][0] ?? $resType,
