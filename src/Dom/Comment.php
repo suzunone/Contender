@@ -41,6 +41,8 @@ use Contender\Dom\Exceptions\CreateErrorException;
  * @property-read \Contender\Dom\NodeList child_nodes Aliases to children
  * @property-read \Contender\Dom\NodeList children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Dom\NodeList}.
  * @property-read \DOMConfiguration config Deprecated. Configuration used when {
+ * @property-read \Contender\Dom\DocumentType doctype The Document Type Declaration associated with this document.
+ * @property-read \Contender\Dom\Element documentElement This is a convenience attribute that allows direct access to the child node that is the document element of the document.
  * @property string|null documentURI The location of the document or NULL if undefined.
  * @property string encoding Encoding of the document, as specified by the XML declaration. This attribute is not present in the final DOM Level 3 specification, but is the only way of manipulating XML document encoding in this implementation.
  * @property-read \Contender\Dom\Node|null firstChild Get a first child node.
@@ -48,7 +50,7 @@ use Contender\Dom\Exceptions\CreateErrorException;
  * @property-read \Contender\Dom\Node|null first_child Get a first child node.
  * @property-read \Contender\Dom\Element|null first_element_child The first child of this node. If there is no such node, this returns NULL.
  * @property bool formatOutput Nicely formats output with indentation and extra space.
- * @property \Contender\Dom\Implementation implementation
+ * @property \Contender\Dom\Implementation implementation The {
  * @property string innerHTML The Element property innerHTML gets or sets the HTML or XML markup contained within the element
  * @property-read string innerText The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to {@link \Contender\Dom\Node::$textContent} instead of NULL.
  * @property string innerXML The Element property innerXML gets or sets the HTML or XML markup contained within the element

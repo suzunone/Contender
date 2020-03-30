@@ -32,6 +32,7 @@ namespace Contender\DummyMixin;
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/28
  * @codeCoverageIgnore
+ * @mixin \DOMDocument
  * @hideDoc
  */
 class DomDocument extends DOMNode
@@ -55,6 +56,20 @@ class DomDocument extends DOMNode
     public $config;
 
     /**
+     * @read-only
+     * This is a convenience attribute that allows direct access to the child node that is the document element of the document.
+     * @var \Contender\Dom\Element
+     */
+    public $documentElement;
+
+    /**
+     * @read-only
+     * The Document Type Declaration associated with this document.
+     * @var \Contender\Dom\DocumentType
+     */
+    public $doctype;
+
+    /**
      * @var string|null
      * The location of the document or NULL if undefined.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.documenturi
@@ -76,6 +91,7 @@ class DomDocument extends DOMNode
     public $formatOutput;
 
     /**
+     * The {@link \Contender\Dom\Implementation} object that handles this document.
      * @var \Contender\Dom\Implementation
      */
     public $implementation;

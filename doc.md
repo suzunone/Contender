@@ -2085,6 +2085,8 @@ Contender\Dom\Comment {
     public \Contender\Dom\NodeList $child_nodes ;
     public \Contender\Dom\NodeList $children ;
     public \DOMConfiguration $config ;
+    public \Contender\Dom\DocumentType $doctype ;
+    public \Contender\Dom\Element $documentElement ;
     public \Contender\Dom\Node|null $firstChild ;
     public \Contender\Dom\Element|null $firstElementChild ;
     public \Contender\Dom\Node|null $first_child ;
@@ -2185,6 +2187,16 @@ That contains all children of this node. If there are no children, this is an em
 
 ### `\DOMConfiguration` \Contender\Dom\Comment::$config __read only__
 Deprecated. Configuration used when {
+
+
+
+### `\Contender\Dom\DocumentType` \Contender\Dom\Comment::$doctype __read only__
+The Document Type Declaration associated with this document.
+
+
+
+### `\Contender\Dom\Element` \Contender\Dom\Comment::$documentElement __read only__
+This is a convenience attribute that allows direct access to the child node that is the document element of the document.
 
 
 
@@ -2479,7 +2491,7 @@ Nicely formats output with indentation and extra space.
 
 
 ### `\Contender\Dom\Implementation` \Contender\Dom\Comment::$implementation
-
+The {
 
 
 
@@ -2640,8 +2652,8 @@ Contender\Dom\Document {
     public \Contender\Dom\NodeList $child_nodes ;
     public \Contender\Dom\NodeList $children ;
     public \DOMConfiguration $config ;
+    public \Contender\Dom\DocumentType $doctype ;
     public \Contender\Dom\Element $documentElement ;
-    public \Contender\Dom\Element $document_element ;
     public \Contender\Dom\Node|null $firstChild ;
     public \Contender\Dom\Element|null $firstElementChild ;
     public \Contender\Dom\Node|null $first_child ;
@@ -2700,7 +2712,6 @@ Contender\Dom\Document {
 
     /* Methods */
     public __construct (DOMDocument $element) : void
-    public getDocumentElementAttribute () : \Contender\Dom\Element
     public createElement (string $name, [?string $value = null]) : \Contender\Dom\Element
     public createElementNS (?mixed $namespaceURI = NULL, ?mixed $qualifiedName = NULL, [?mixed $value = null]) : \Contender\Dom\Element|null
     public createComment (string $value) : \Contender\Dom\Comment
@@ -2782,13 +2793,13 @@ Deprecated. Configuration used when {
 
 
 
+### `\Contender\Dom\DocumentType` \Contender\Dom\Document::$doctype __read only__
+The Document Type Declaration associated with this document.
+
+
+
 ### `\Contender\Dom\Element` \Contender\Dom\Document::$documentElement __read only__
-
-
-
-
-### `\Contender\Dom\Element` \Contender\Dom\Document::$document_element __read only__
-
+This is a convenience attribute that allows direct access to the child node that is the document element of the document.
 
 
 
@@ -3083,7 +3094,7 @@ Nicely formats output with indentation and extra space.
 
 
 ### `\Contender\Dom\Implementation` \Contender\Dom\Document::$implementation
-
+The {
 
 
 
@@ -3193,21 +3204,6 @@ Node constructor.
 
 #### Return Values
 void
-
-
-### See Also
-None
-
-### \Contender\Dom\Document::getDocumentElementAttribute()
-
-
-
-
-#### Parameters
-
-
-#### Return Values
-\Contender\Dom\Element
 
 
 ### See Also
@@ -6361,10 +6357,7 @@ Class synopsis
 Contender\Dom\Implementation {
 
     /* Methods */
-    public hasFeature (?mixed $feature = NULL, ?mixed $version = NULL) : bool
-    public createDocumentType ([?mixed $qualifiedName = null], [?mixed $publicId = null], [?mixed $systemId = null]) : \Contender\Dom\DocumentType
-    public createHTMLDocument ([?string $title = null]) : \Contender\Dom\Document
-    public createDocument ([?mixed $namespaceURI = null], [?mixed $qualifiedName = null], [?Contender\Dom\DocumentType $doctype = null]) : \Contender\Dom\Document
+    public __construct ([?DOMImplementation $implementation = null]) : mixed
 
  }
 
@@ -6386,106 +6379,24 @@ Properties
 Methods
 ----------------------------
 
-### \Contender\Dom\Implementation::hasFeature(mixed|null $feature, mixed|null $version)
-Test if the DOM implementation implements a specific feature
+### \Contender\Dom\Implementation::__construct(DOMImplementation|null $implementation)
+Implementation constructor.
 
 
 
 #### Parameters
-##### `string` $feature
-
-The feature to test.
-
-##### `string` $version
-
-The version number of the feature to test. In level 2, this can be either 2.0 or 1.0.
-
-
-
-#### Return Values
-bool true on success or false on failure.
-
-
-### See Also
- - <a href="https://php.net/manual/en/domimplementation.hasfeature.php">https://php.net/manual/en/domimplementation.hasfeature.php</a>
- - <a href="https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance">https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance</a>
-
-
-### \Contender\Dom\Implementation::createDocumentType(mixed|null $qualifiedName, mixed|null $publicId, mixed|null $systemId)
-Creates an empty DOMDocumentType object
-
-
-
-#### Parameters
-##### `string` $qualifiedName
-
-[optional] The qualified name of the document type to create.
-
-##### `string` $publicId
-
-[optional] The external subset public identifier.
-
-##### `string` $systemId
-
-[optional] The external subset system identifier.
-
-
-
-#### Return Values
-\Contender\Dom\DocumentType A new DOMDocumentType node with its ownerDocument set to &null;.
-
-
-### See Also
- - <a href="https://php.net/manual/en/domimplementation.createdocumenttype.php">https://php.net/manual/en/domimplementation.createdocumenttype.php</a>
-
-
-### \Contender\Dom\Implementation::createHTMLDocument(string|null $title)
-The DOMImplementation.createHTMLDocument() method creates a new HTML
-
-
-
-
-#### Parameters
-##### `string|null` $title
+##### `\DOMImplementation|null` $implementation
 
 
 
 
 
 #### Return Values
-\Contender\Dom\Document
+mixed
 
 
 ### See Also
 None
-
-### \Contender\Dom\Implementation::createDocument(mixed|null $namespaceURI, mixed|null $qualifiedName, Contender\Dom\DocumentType|null $doctype)
-Creates a DOMDocument object of the specified type with its document element
-
-
-
-#### Parameters
-##### `string` $namespaceURI
-
-[optional] The namespace URI of the document element to create.
-
-##### `string` $qualifiedName
-
-[optional]The qualified name of the document element to create.
-
-##### `\Contender\Dom\DocumentType` $doctype
-
-[optional] The type of document to create or &null;.
-
-
-
-#### Return Values
-\Contender\Dom\Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
-
-
-### See Also
- - <a href="https://php.net/manual/en/domimplementation.createdocument.php">https://php.net/manual/en/domimplementation.createdocument.php</a>
-
 
 
 \Contender\Dom\NamedNodeMap

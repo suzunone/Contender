@@ -66,6 +66,9 @@ class ImplementationTest extends TestCase
     public function testHasFeature($feature, $expect)
     {
         $this->assertEquals($expect, Implementation::hasFeature($feature, '2.0'));
+
+        $Implementation = new Implementation();
+        $this->assertEquals($expect, $Implementation->hasFeature($feature, '2.0'));
     }
 
     public function testCreateHTMLDocument()

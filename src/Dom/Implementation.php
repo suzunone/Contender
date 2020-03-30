@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use Contender\Service\Factory;
+use DOMImplementation;
 
 /**
  * Class Implementation
@@ -38,18 +39,55 @@ use Contender\Service\Factory;
  */
 class Implementation
 {
+    protected $implementation;
+
+    /**
+     * Implementation constructor.
+     * @param \DOMImplementation|null $implementation
+     */
+    public function __construct(?DOMImplementation $implementation = null)
+    {
+        $this->implementation = $implementation ?? new DOMImplementation();
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     * @hideDoc
+     */
+    public static function __callStatic($name, $arguments)
+    {
+        $_this = new self(new DOMImplementation());
+
+        return call_user_func_array([$_this,  $name], $arguments);
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     * @hideDoc
+     */
+    public function __call($name, $arguments)
+    {
+        return call_user_func_array([$this,  $name], $arguments);
+    }
+
     /**
      * Test if the DOM implementation implements a specific feature
      * @link  https://php.net/manual/en/domimplementation.hasfeature.php
-     * @link https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance
+     * @link  https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance
      * @param string $feature The feature to test.
      * @param string $version The version number of the feature to test. In level 2, this can be either 2.0 or 1.0.
      * @return bool true on success or false on failure.
      * @since 5.0
+     * @public-call
+     * @public-static-call
      */
-    public static function hasFeature($feature, $version): bool
+    protected function hasFeature($feature, $version): bool
     {
-        return (new \DOMImplementation())->hasFeature($feature, $version);
+        return $this->implementation->hasFeature($feature, $version);
     }
 
     /**
@@ -60,10 +98,12 @@ class Implementation
      * @param string $systemId      [optional] The external subset system identifier.
      * @return \Contender\Dom\DocumentType A new DOMDocumentType node with its ownerDocument set to &null;.
      * @since 5.0
+     * @public-call
+     * @public-static-call
      */
-    public static function createDocumentType($qualifiedName = null, $publicId = null, $systemId = null): ?DocumentType
+    protected function createDocumentType($qualifiedName = null, $publicId = null, $systemId = null): ?DocumentType
     {
-        return Factory::get((new \DOMImplementation())->createDocumentType($qualifiedName, $publicId, $systemId), null);
+        return Factory::get($this->implementation->createDocumentType($qualifiedName, $publicId, $systemId), null);
     }
 
     /**
@@ -71,20 +111,21 @@ class Implementation
      *
      * @param string|null $title
      * @return \Contender\Dom\Document
+     * @public-call
+     * @public-static-call
      */
-    public static function createHTMLDocument(string $title = null): Document
+    protected function createHTMLDocument(string $title = null): Document
     {
-        $document = self::createDocument(
+        $document = $this->createDocument(
             null,
             'html',
-            self::createDocumentType(
+            $this->createDocumentType(
                 'html',
                 '-//W3C//DTD XHTML 1.0 Transitional//EN',
                 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
             )
         );
         $document->encoding = 'UTF-8';
-        $document->standalone = false;
 
         $node = $document->createDocumentFragment();
         $node->appendXML('<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title></title></head>');
@@ -106,14 +147,16 @@ class Implementation
      * @param \Contender\Dom\DocumentType $doctype [optional] The type of document to create or &null;.
      * @return \Contender\Dom\Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
      * @since 5.0
+     * @public-call
+     * @public-static-call
      */
-    public static function createDocument($namespaceURI = null, $qualifiedName = null, DocumentType $doctype = null): Document
+    protected function createDocument($namespaceURI = null, $qualifiedName = null, DocumentType $doctype = null): Document
     {
         $type = null;
         if ($doctype instanceof DocumentType) {
             $type = $doctype->nativeNode();
         }
 
-        return Factory::get((new \DOMImplementation())->createDocument($namespaceURI, $qualifiedName, $type), null);
+        return Factory::get($this->implementation->createDocument($namespaceURI, $qualifiedName, $type), null);
     }
 }
