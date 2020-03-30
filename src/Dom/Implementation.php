@@ -84,8 +84,8 @@ class Implementation
     /**
      * Creates a DOMDocument object of the specified type with its document element
      * @link  https://php.net/manual/en/domimplementation.createdocument.php
-     * @param string $namespaceURI     [optional] The namespace URI of the document element to create.
-     * @param string $qualifiedName    [optional]The qualified name of the document element to create.
+     * @param string $namespaceURI                 [optional] The namespace URI of the document element to create.
+     * @param string $qualifiedName                [optional]The qualified name of the document element to create.
      * @param \Contender\Dom\DocumentType $doctype [optional] The type of document to create or &null;.
      * @return \Contender\Dom\Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
      * @since 5.0

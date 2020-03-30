@@ -1,8 +1,8 @@
 <?php
 /**
- * DocumentFragmentTest.php
+ * CommentTest.php
  *
- * Class DocumentFragmentTest
+ * Class CommentTest
  *
  * @category   Contender
  * @package    Tests\Suzunone\Contender\Dom
@@ -13,16 +13,17 @@
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/29
+ * @since      2020/03/30
  */
 
 namespace Tests\Suzunone\Contender\Dom;
 
 use Contender\Contender;
+use Contender\Dom\DocumentType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class DocumentFragmentTest
+ * Class CommentTest
  *
  * @category   Contender
  * @package    Tests\Suzunone\Contender\Dom
@@ -33,23 +34,31 @@ use PHPUnit\Framework\TestCase;
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/29
- * @covers \Contender\Dom\DocumentFragment
+ * @since      2020/03/30
+ * @covers \Contender\Dom\DocumentType
  * @covers \Contender\Service\Factory
- * @covers \Contender\Contender
- * @covers \Contender\Dom\Document
  */
-class DocumentFragmentTest extends TestCase
+class DocumentTypeTest extends TestCase
 {
-    public function test_appendXML()
+    public function test_factory()
     {
-        $document = Contender::loadStr('<div></div>');
+        $document = Contender::loadStr(<<<HTMLEND
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="content-style-type" content="text/css" />
+</head>
+<body>
+</div>
+</html>
+HTMLEND
+        );
+        $element = $document->firstChild;
+        $this->assertInstanceOf(DocumentType::class, $element);
 
-        $fragment = $document->createDocumentFragment();
-        $fragment->appendXML('<h1>Header</h1><section><p>section text</p><span>○△□</span></section>');
-
-        $document->querySelector('div')->appendChild($fragment);
-
-        $this->assertEquals('<body><div><h1>Header</h1><section><p>section text</p><span>○△□</span></section></div></body>', (string) $document->body);
     }
+
 }

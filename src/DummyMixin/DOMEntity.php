@@ -31,7 +31,7 @@ namespace Contender\DummyMixin;
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
  * @since      2020/03/28
- * @see \DOMEntity
+ * @see        \DOMEntity
  * @codeCoverageIgnore
  * @hideDoc
  */
@@ -41,51 +41,51 @@ class DOMEntity extends DOMNode
      * @var string|null
      * @since 5.0
      * The public identifier associated with the entity if specified, and NULL otherwise.
-     * @link https://php.net/manual/en/class.domentity.php#domentity.props.publicid
+     * @link  https://php.net/manual/en/class.domentity.php#domentity.props.publicid
      */
-    public $publicId ;
+    public $publicId;
 
     /**
      * @var string|null
      * @since 5.0
      * The system identifier associated with the entity if specified, and NULL otherwise. This may be an
      * absolute URI or not.
-     * @link https://php.net/manual/en/class.domentity.php#domentity.props.systemid
+     * @link  https://php.net/manual/en/class.domentity.php#domentity.props.systemid
      */
-    public $systemId ;
+    public $systemId;
 
     /**
      * @var string|null
      * @since 5.0
      * For unparsed entities, the name of the notation for the entity. For parsed entities, this is NULL.
-     * @link https://php.net/manual/en/class.domentity.php#domentity.props.notationname
+     * @link  https://php.net/manual/en/class.domentity.php#domentity.props.notationname
      */
-    public $notationName ;
+    public $notationName;
 
     /**
      * @var string|null
      * @since 5.0
      * An attribute specifying the encoding used for this entity at the time of parsing, when it is an external
      * parsed entity. This is NULL if it an entity from the internal subset or if it is not known.
-     * @link https://php.net/manual/en/class.domentity.php#domentity.props.actualencoding
+     * @link  https://php.net/manual/en/class.domentity.php#domentity.props.actualencoding
      */
-    public $actualEncoding ;
+    public $actualEncoding;
 
     /**
      * @var string|null
      * @since 5.0
      * An attribute specifying, as part of the text declaration, the encoding of this entity, when it is an external
      * parsed entity. This is NULL otherwise.
-     * @link https://php.net/manual/en/class.domentity.php#domentity.props.encoding
+     * @link  https://php.net/manual/en/class.domentity.php#domentity.props.encoding
      */
-    public $encoding ;
+    public $encoding;
 
     /**
      * @var string|null
      * @since 5.0
      * An attribute specifying, as part of the text declaration, the version number of this entity, when it is an
      * external parsed entity. This is NULL otherwise.
-     * @link https://php.net/manual/en/class.domentity.php#domentity.props.version
+     * @link  https://php.net/manual/en/class.domentity.php#domentity.props.version
      */
-    public $version ;
+    public $version;
 }

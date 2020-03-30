@@ -18,9 +18,7 @@
 namespace Tests\Suzunone\Contender\Dom;
 
 use Contender\Contender;
-use Contender\Dom\Attr;
 use Contender\Dom\NamedNodeMap;
-use Contender\Dom\Node;
 use PHPUnit\Framework\TestCase;
 
 /**

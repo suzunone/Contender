@@ -17,9 +17,8 @@
 namespace Contender\Dom;
 
 use Contender\Dom\Traits\CssSelector2XPathTrait;
-use DOMNodeList;
-
 use Contender\Service\Factory;
+use DOMNodeList;
 
 /**
  * A collection of {@link \Contender\Dom\Node} from {@link \Contender\Dom\Document}
@@ -40,10 +39,10 @@ use Contender\Service\Factory;
  * @method Node|Element offsetGet($key)
  * @method Node|Element last(callable $callback = null, $default = null)
  * @method Node|Element first(callable $callback = null, $default = null)
- * @property string innerHTML 1st of innerHTML
- * @property string innerXML 1st of innerXML
+ * @property string innerHTML     1st of innerHTML
+ * @property string innerXML      1st of innerXML
  * @property string inner_h_t_m_l 1st of innerHTML
- * @property string inner_x_m_l 1st of innerXML
+ * @property string inner_x_m_l   1st of innerXML
  */
 class NodeList extends \Illuminate\Support\Collection
 {
@@ -276,7 +275,7 @@ class NodeList extends \Illuminate\Support\Collection
      * get tag attribute for element.
      *
      * @param string $name
-     * @return mixed
+     * @return string
      * @link \Contender\Dom\Element::getAttribute()
      */
     public function getAttribute(string $name)

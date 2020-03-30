@@ -1,8 +1,8 @@
 <?php
 /**
- * DocumentFragmentTest.php
+ * CommentTest.php
  *
- * Class DocumentFragmentTest
+ * Class CommentTest
  *
  * @category   Contender
  * @package    Tests\Suzunone\Contender\Dom
@@ -13,16 +13,17 @@
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/29
+ * @since      2020/03/30
  */
 
 namespace Tests\Suzunone\Contender\Dom;
 
 use Contender\Contender;
+use Contender\Dom\Comment;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class DocumentFragmentTest
+ * Class CommentTest
  *
  * @category   Contender
  * @package    Tests\Suzunone\Contender\Dom
@@ -33,23 +34,18 @@ use PHPUnit\Framework\TestCase;
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/03/29
- * @covers \Contender\Dom\DocumentFragment
+ * @since      2020/03/30
+ * @covers \Contender\Dom\Comment
  * @covers \Contender\Service\Factory
- * @covers \Contender\Contender
- * @covers \Contender\Dom\Document
  */
-class DocumentFragmentTest extends TestCase
+class CommentTest extends TestCase
 {
-    public function test_appendXML()
+    public function test_factory()
     {
-        $document = Contender::loadStr('<div></div>');
+        $document = Contender::loadStr('<div><!-- hoge --></div>');
+        $element = $document->querySelector('div');
+        $this->assertInstanceOf(Comment::class, $element->firstChild);
 
-        $fragment = $document->createDocumentFragment();
-        $fragment->appendXML('<h1>Header</h1><section><p>section text</p><span>○△□</span></section>');
-
-        $document->querySelector('div')->appendChild($fragment);
-
-        $this->assertEquals('<body><div><h1>Header</h1><section><p>section text</p><span>○△□</span></section></div></body>', (string) $document->body);
     }
+
 }

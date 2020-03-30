@@ -330,6 +330,8 @@ HTMLEND,
 
     /**
      * @dataProvider encodeDataProvider
+     * @param $html
+     * @param $query
      */
     public function test_encode($html, $query)
     {

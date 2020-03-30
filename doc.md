@@ -2657,8 +2657,6 @@ Contender\Dom\Document {
     public removeChild (Contender\Dom\Node $oldnode) : \Contender\Dom\Node
     public replaceChild (Contender\Dom\Node $newnode, Contender\Dom\Node $oldnode) : \Contender\Dom\Node
     public getOwnerDocumentAttribute () : \Contender\Dom\Document
-    public getParameterAttribute (string $name) : mixed|string|int
-    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Dom\Element|null
     public getElementsByClassName (string $query) : \Contender\Dom\NodeList|\Contender\Dom\Node[]
@@ -3563,48 +3561,6 @@ Replaces a child
 
 #### Return Values
 \Contender\Dom\Document The <a href="#contenderdomdocument">\Contender\Dom\Document</a> object associated with this node
-
-
-### See Also
-None
-
-### \Contender\Dom\Document::getParameterAttribute(string $name)
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-
-
-#### Return Values
-mixed|string|int
-
-
-### See Also
-None
-
-### \Contender\Dom\Document::setParameterAttribute(string $name, mixed|null $value)
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-##### `mixed|null` $value
-
-
-
-
-
-#### Return Values
-void
 
 
 ### See Also
@@ -4840,7 +4796,7 @@ Contender\Dom\Element {
 
     /* Methods */
     public attr (?mixed $name = NULL) : string|null
-    public getAttribute (string $name) : mixed
+    public getAttribute (string $name) : string
     public setAttribute (string $name, string $value) : void
     public getAttributeNames () : array
     public getAttributeNamesGenerator () : \Generator|null
@@ -5244,7 +5200,7 @@ Get tag attribute for element.
 
 
 #### Return Values
-mixed
+string
 
 
 ### See Also
@@ -6567,8 +6523,6 @@ Contender\Dom\Node {
     public removeChild (Contender\Dom\Node $oldnode) : \Contender\Dom\Node
     public replaceChild (Contender\Dom\Node $newnode, Contender\Dom\Node $oldnode) : \Contender\Dom\Node
     public getOwnerDocumentAttribute () : \Contender\Dom\Document
-    public getParameterAttribute (string $name) : mixed|string|int
-    public setParameterAttribute (string $name, ?mixed $value = NULL) : void
     public hasParameterAttribute (string $name) : bool
     public getElementById (string $query) : \Contender\Dom\Element|null
     public getElementsByClassName (string $query) : \Contender\Dom\NodeList|\Contender\Dom\Node[]
@@ -7193,48 +7147,6 @@ Replaces a child
 ### See Also
 None
 
-### \Contender\Dom\Node::getParameterAttribute(string $name)
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-
-
-#### Return Values
-mixed|string|int
-
-
-### See Also
-None
-
-### \Contender\Dom\Node::setParameterAttribute(string $name, mixed|null $value)
-
-
-
-
-#### Parameters
-##### `string` $name
-
-
-
-##### `mixed|null` $value
-
-
-
-
-
-#### Return Values
-void
-
-
-### See Also
-None
-
 ### \Contender\Dom\Node::hasParameterAttribute(string $name)
 
 
@@ -7495,7 +7407,7 @@ Contender\Dom\NodeList {
     public sortDom () : \Contender\Dom\NodeList
     public querySelector (string $query) : \Contender\Dom\Node|null
     public attr (?mixed $param = NULL) : string|null
-    public getAttribute (string $name) : mixed
+    public getAttribute (string $name) : string
     public setAttribute (string $name, string $value) : void
     public remove () : \Contender\Dom\NodeList
 
@@ -7712,7 +7624,7 @@ get tag attribute for element.
 
 
 #### Return Values
-mixed
+string
 
 
 ### See Also

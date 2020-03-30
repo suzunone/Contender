@@ -71,13 +71,13 @@ namespace Contender\Dom\Traits;
  * @property-read string node_path                           Gets an XPath location path for the node
  * @property-read int lineNo                                 Get line number for a node
  * @property-read int line_no                                Get line number for a node
- * @property-read \Contender\Dom\NodeList children    That contains all children of this node. If there are no children, this is an empty {@link \Contender\Dom\NodeList}.
- * @property-read \Contender\Dom\NodeList childNodes  Aliases to children
- * @property-read \Contender\Dom\NodeList child_nodes Aliases to children
- * @property-read \Contender\Dom\Node firstChild        Get a first child node.
- * @property-read \Contender\Dom\Node first_child       Get a first child node.
- * @property-read \Contender\Dom\Node lastChild         Get a last child node.
- * @property-read \Contender\Dom\Node last_child        Get a last child node.
+ * @property-read \Contender\Dom\NodeList children           That contains all children of this node. If there are no children, this is an empty {@link \Contender\Dom\NodeList}.
+ * @property-read \Contender\Dom\NodeList childNodes         Aliases to children
+ * @property-read \Contender\Dom\NodeList child_nodes        Aliases to children
+ * @property-read \Contender\Dom\Node firstChild             Get a first child node.
+ * @property-read \Contender\Dom\Node first_child            Get a first child node.
+ * @property-read \Contender\Dom\Node lastChild              Get a last child node.
+ * @property-read \Contender\Dom\Node last_child             Get a last child node.
  * @property-read self|null firstElementChild                The first child of this node. If there is no such node, this returns NULL.
  * @property-read self|null first_element_child              The first child of this node. If there is no such node, this returns NULL.
  * @property-read self|null parentNode                       The parent of this node. If there is no such node, this returns NULL.

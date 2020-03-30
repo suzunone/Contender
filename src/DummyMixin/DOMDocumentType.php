@@ -41,7 +41,7 @@ class DOMDocumentType extends DOMNode
      * @var string
      * @since 5.0
      * The public identifier of the external subset.
-     * @link https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.publicid
+     * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.publicid
      */
     public $publicId;
 
@@ -49,7 +49,7 @@ class DOMDocumentType extends DOMNode
      * @var string
      * @since 5.0
      * The system identifier of the external subset. This may be an absolute URI or not.
-     * @link https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.systemid
+     * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.systemid
      */
     public $systemId;
 
@@ -57,7 +57,7 @@ class DOMDocumentType extends DOMNode
      * @var string
      * @since 5.0
      * The name of DTD; i.e., the name immediately following the DOCTYPE keyword.
-     * @link https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.name
+     * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.name
      */
     public $name;
 
@@ -65,7 +65,7 @@ class DOMDocumentType extends DOMNode
      * @var \Contender\Dom\NamedNodeMap
      * @since 5.0
      * A {@link \Contender\Dom\NamedNodeMap} containing the general entities, both external and internal, declared in the DTD.
-     * @link https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.entities
+     * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.entities
      */
     public $entities;
 
@@ -73,7 +73,7 @@ class DOMDocumentType extends DOMNode
      * @var \Contender\Dom\NamedNodeMap
      * @since 5.0
      * A {@link \Contender\Dom\NamedNodeMap} containing the notations declared in the DTD.
-     * @link https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.notations
+     * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.notations
      */
     public $notations;
 
@@ -81,7 +81,7 @@ class DOMDocumentType extends DOMNode
      * @var string|null
      * @since 5.0
      * The internal subset as a string, or null if there is none. This is does not contain the delimiting square brackets.
-     * @link https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.internalsubset
+     * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.internalsubset
      */
     public $internalSubset;
 }

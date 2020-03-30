@@ -16,9 +16,9 @@
 
 namespace Contender\Dom\Traits;
 
+use Contender\Dom\Node;
 use Contender\Dom\NodeList;
 use Contender\Service\Factory;
-use Contender\Dom\Node;
 use DOMNodeList;
 use DOMXPath;
 
