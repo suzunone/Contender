@@ -37,7 +37,6 @@ use PHPUnit\Framework\TestCase;
  * @covers     \Contender\Contender
  * @covers     \Contender\Dom\Node
  * @covers     \Contender\Dom\Element
- * @covers \Contender\Dom\Traits\ElementTrait
  */
 class ElementTest extends TestCase
 {
