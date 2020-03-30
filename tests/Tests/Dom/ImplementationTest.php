@@ -37,26 +37,27 @@ use PHPUnit\Framework\TestCase;
  * @covers     \Contender\Service\Factory
  * @covers     \Contender\Dom\Implementation
  * @covers     \Contender\Dom\Document
+ * @covers     \Contender\Dom\Implementation\Driver
  */
 class ImplementationTest extends TestCase
 {
     public function dataProvider()
     {
         return [
-            'Core'            => ['Core', false],
-            'XML'             => ['XML', true],
-            'HTML'            => ['HTML', false],
-            'Views'           => ['Views', false],
-            'Stylesheets'     => ['Stylesheets', false],
-            'CSS'             => ['CSS', false],
-            'CSS2'            => ['CSS2', false],
-            'Events'          => ['Events', false],
-            'UIEvents'        => ['UIEvents', false],
-            'MouseEvents'     => ['MouseEvents', false],
-            'MutationEvents'  => ['MutationEvents', false],
-            'HTMLEvents'      => ['HTMLEvents', false],
-            'Range'           => ['Range', false],
-            'Traversal'       => ['Traversal', false],
+            'Core'           => ['Core', false],
+            'XML'            => ['XML', true],
+            'HTML'           => ['HTML', false],
+            'Views'          => ['Views', false],
+            'Stylesheets'    => ['Stylesheets', false],
+            'CSS'            => ['CSS', false],
+            'CSS2'           => ['CSS2', false],
+            'Events'         => ['Events', false],
+            'UIEvents'       => ['UIEvents', false],
+            'MouseEvents'    => ['MouseEvents', false],
+            'MutationEvents' => ['MutationEvents', false],
+            'HTMLEvents'     => ['HTMLEvents', false],
+            'Range'          => ['Range', false],
+            'Traversal'      => ['Traversal', false],
         ];
     }
 

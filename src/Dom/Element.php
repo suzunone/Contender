@@ -107,8 +107,6 @@ use Generator;
  */
 class Element extends Node
 {
-    use ElementTrait;
-
     /**
      * @var \DOMElement
      */
