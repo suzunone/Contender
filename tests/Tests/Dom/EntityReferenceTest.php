@@ -24,7 +24,6 @@ use PHPUnit\Framework\TestCase;
 
 class EntityReferenceTest extends TestCase
 {
-
     public function test_get()
     {
         $document = Contender::loadStr('<div></div>');
@@ -33,17 +32,12 @@ class EntityReferenceTest extends TestCase
 
         $document->querySelector('div')->insertBefore($entityRef);
 
-
         $this->assertInstanceOf(EntityReference::class, $entityRef);
 
-
-
-        $this->assertEquals('&amp;', (string)$entityRef);
+        $this->assertEquals('&amp;', (string) $entityRef);
 
         $entityRef = $document->querySelector('div')->children[0];
 
         $this->assertInstanceOf(EntityReference::class, $entityRef);
-
     }
-
 }

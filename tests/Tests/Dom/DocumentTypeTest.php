@@ -42,7 +42,8 @@ class DocumentTypeTest extends TestCase
 {
     public function test_factory()
     {
-        $document = Contender::loadStr(<<<HTMLEND
+        $document = Contender::loadStr(
+            <<<HTMLEND
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -58,7 +59,5 @@ HTMLEND
         );
         $element = $document->firstChild;
         $this->assertInstanceOf(DocumentType::class, $element);
-
     }
-
 }

@@ -39,7 +39,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TextTest extends TestCase
 {
-
     /**
      * @return \Contender\Dom\Node|null
      */
@@ -68,7 +67,6 @@ class TextTest extends TestCase
 
         return $text;
     }
-
 
     /**
      * @param \Contender\Dom\Text $text

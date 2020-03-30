@@ -1056,6 +1056,9 @@ Contender\Dom\CdataSection {
     public string $textContent ;
     public string $text_content ;
 
+    /* Methods */
+    public __construct (DOMCdataSection $element) : mixed
+
  }
 
 ```
@@ -1416,6 +1419,25 @@ Holds all the text of logically-adjacent (not separated by Element, Comment or P
 Methods
 ----------------------------
 
+### \Contender\Dom\CdataSection::__construct(DOMCdataSection $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMCdataSection` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 
 \Contender\Dom\CharacterData
 ==========================
@@ -1502,6 +1524,7 @@ Contender\Dom\CharacterData {
     public string $text_content ;
 
     /* Methods */
+    public __construct (DOMCharacterData $element) : mixed
     public substringData (?mixed $offset = NULL, ?mixed $count = NULL) : string
     public appendData (?mixed $data = NULL) : void
     public insertData (?mixed $offset = NULL, ?mixed $data = NULL) : void
@@ -1864,6 +1887,25 @@ The namespace prefix of this node, or NULL if it is unspecified.
 Methods
 ----------------------------
 
+### \Contender\Dom\CharacterData::__construct(DOMCharacterData $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMCharacterData` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 ### \Contender\Dom\CharacterData::substringData(mixed|null $offset, mixed|null $count)
 Extracts a range of data from the node
 
@@ -2098,6 +2140,9 @@ Contender\Dom\Comment {
     public string $textContent ;
     public string $text_content ;
     public string $xmlEncoding ;
+
+    /* Methods */
+    public __construct (DOMComment $element) : mixed
 
  }
 
@@ -2528,6 +2573,25 @@ An attribute specifying, as part of the XML declaration, the version number of t
 
 Methods
 ----------------------------
+
+### \Contender\Dom\Comment::__construct(DOMComment $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMComment` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
 
 
 \Contender\Dom\Document
@@ -3877,6 +3941,7 @@ Contender\Dom\DocumentFragment {
     public string $text_content ;
 
     /* Methods */
+    public __construct (DOMDocumentFragment $element) : mixed
     public appendXML (string $data) : bool
 
  }
@@ -4224,6 +4289,25 @@ The namespace prefix of this node, or NULL if it is unspecified.
 Methods
 ----------------------------
 
+### \Contender\Dom\DocumentFragment::__construct(DOMDocumentFragment $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMDocumentFragment` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 ### \Contender\Dom\DocumentFragment::appendXML(string $data)
 Append raw XML data
 
@@ -4332,6 +4416,9 @@ Contender\Dom\DocumentType {
     public \Contender\Dom\Node|null $previous_element_sibling ;
     public string $textContent ;
     public string $text_content ;
+
+    /* Methods */
+    public __construct (DOMDocumentType $element) : mixed
 
  }
 
@@ -4708,6 +4795,25 @@ The system identifier of the external subset. This may be an absolute URI or not
 Methods
 ----------------------------
 
+### \Contender\Dom\DocumentType::__construct(DOMDocumentType $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMDocumentType` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 
 \Contender\Dom\Element
 ==========================
@@ -4795,6 +4901,7 @@ Contender\Dom\Element {
     public string $text_content ;
 
     /* Methods */
+    public __construct (DOMElement $element) : mixed
     public attr (?mixed $name = NULL) : string|null
     public getAttribute (string $name) : string
     public setAttribute (string $name, string $value) : void
@@ -5162,6 +5269,25 @@ The element name
 Methods
 ----------------------------
 
+### \Contender\Dom\Element::__construct(DOMElement $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMElement` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 ### \Contender\Dom\Element::attr(mixed|null $name)
 if call attr('name')
 
@@ -5370,6 +5496,9 @@ Contender\Dom\Entity {
     public \Contender\Dom\Node|null $previous_element_sibling ;
     public string $textContent ;
     public string $text_content ;
+
+    /* Methods */
+    public __construct (DOMEntity $element) : mixed
 
  }
 
@@ -5746,6 +5875,25 @@ An attribute specifying, as part of the text declaration, the version number of 
 Methods
 ----------------------------
 
+### \Contender\Dom\Entity::__construct(DOMEntity $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMEntity` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 
 \Contender\Dom\EntityReference
 ==========================
@@ -5828,6 +5976,9 @@ Contender\Dom\EntityReference {
     public \Contender\Dom\Node|null $previous_element_sibling ;
     public string $textContent ;
     public string $text_content ;
+
+    /* Methods */
+    public __construct (DOMEntityReference $element) : mixed
 
  }
 
@@ -6174,6 +6325,25 @@ The namespace prefix of this node, or NULL if it is unspecified.
 Methods
 ----------------------------
 
+### \Contender\Dom\EntityReference::__construct(DOMEntityReference $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMEntityReference` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 
 \Contender\Dom\Implementation
 ==========================
@@ -6191,9 +6361,9 @@ Class synopsis
 Contender\Dom\Implementation {
 
     /* Methods */
-    public __construct (DOMImplementation $element) : void
     public hasFeature (?mixed $feature = NULL, ?mixed $version = NULL) : bool
     public createDocumentType ([?mixed $qualifiedName = null], [?mixed $publicId = null], [?mixed $systemId = null]) : \Contender\Dom\DocumentType
+    public createHTMLDocument ([?string $title = null]) : \Contender\Dom\Document
     public createDocument ([?mixed $namespaceURI = null], [?mixed $qualifiedName = null], [?Contender\Dom\DocumentType $doctype = null]) : \Contender\Dom\Document
 
  }
@@ -6215,26 +6385,6 @@ Properties
 
 Methods
 ----------------------------
-
-### \Contender\Dom\Implementation::__construct(DOMImplementation $element)
-Node constructor.
-
-
-
-
-#### Parameters
-##### `\DOMImplementation` $element
-
-
-
-
-
-#### Return Values
-void
-
-
-### See Also
-None
 
 ### \Contender\Dom\Implementation::hasFeature(mixed|null $feature, mixed|null $version)
 Test if the DOM implementation implements a specific feature
@@ -6258,6 +6408,7 @@ bool true on success or false on failure.
 
 ### See Also
  - <a href="https://php.net/manual/en/domimplementation.hasfeature.php">https://php.net/manual/en/domimplementation.hasfeature.php</a>
+ - <a href="https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance">https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance</a>
 
 
 ### \Contender\Dom\Implementation::createDocumentType(mixed|null $qualifiedName, mixed|null $publicId, mixed|null $systemId)
@@ -6287,6 +6438,26 @@ Creates an empty DOMDocumentType object
 ### See Also
  - <a href="https://php.net/manual/en/domimplementation.createdocumenttype.php">https://php.net/manual/en/domimplementation.createdocumenttype.php</a>
 
+
+### \Contender\Dom\Implementation::createHTMLDocument(string|null $title)
+The DOMImplementation.createHTMLDocument() method creates a new HTML
+
+
+
+
+#### Parameters
+##### `string|null` $title
+
+
+
+
+
+#### Return Values
+\Contender\Dom\Document
+
+
+### See Also
+None
 
 ### \Contender\Dom\Implementation::createDocument(mixed|null $namespaceURI, mixed|null $qualifiedName, Contender\Dom\DocumentType|null $doctype)
 Creates a DOMDocument object of the specified type with its document element
@@ -7758,6 +7929,9 @@ Contender\Dom\Notation {
     public string $textContent ;
     public string $text_content ;
 
+    /* Methods */
+    public __construct (DOMNotation $element) : mixed
+
  }
 
 ```
@@ -8113,6 +8287,25 @@ The namespace prefix of this node, or NULL if it is unspecified.
 Methods
 ----------------------------
 
+### \Contender\Dom\Notation::__construct(DOMNotation $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMNotation` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 
 \Contender\Dom\ProcessingInstruction
 ==========================
@@ -8195,6 +8388,9 @@ Contender\Dom\ProcessingInstruction {
     public \Contender\Dom\Node|null $previous_element_sibling ;
     public string $textContent ;
     public string $text_content ;
+
+    /* Methods */
+    public __construct (DOMProcessingInstruction $element) : mixed
 
  }
 
@@ -8541,6 +8737,25 @@ The namespace prefix of this node, or NULL if it is unspecified.
 Methods
 ----------------------------
 
+### \Contender\Dom\ProcessingInstruction::__construct(DOMProcessingInstruction $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMProcessingInstruction` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 
 \Contender\Dom\Text
 ==========================
@@ -8628,8 +8843,9 @@ Contender\Dom\Text {
     public string $text_content ;
 
     /* Methods */
+    public __construct (DOMText $element) : mixed
     public splitText (?mixed $offset = NULL) : \Contender\Dom\Text
-    public isWhitespaceInElementContent () : void
+    public isWhitespaceInElementContent () : bool
 
  }
 
@@ -8991,6 +9207,25 @@ Holds all the text of logically-adjacent (not separated by Element, Comment or P
 Methods
 ----------------------------
 
+### \Contender\Dom\Text::__construct(DOMText $element)
+Comment constructor.
+
+
+
+#### Parameters
+##### `\DOMText` $element
+
+
+
+
+
+#### Return Values
+mixed
+
+
+### See Also
+None
+
 ### \Contender\Dom\Text::splitText(mixed|null $offset)
 Breaks this node into two nodes at the specified offset
 
@@ -9021,7 +9256,7 @@ Indicates whether this text node contains whitespace
 
 
 #### Return Values
-void true on success or false on failure.
+bool true on success or false on failure.
 
 
 ### See Also

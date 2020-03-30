@@ -40,7 +40,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CdataSectionTest extends TestCase
 {
-
     public function test_get()
     {
         $document = Contender::loadStr('<div></div>');
@@ -50,5 +49,4 @@ class CdataSectionTest extends TestCase
 
         $this->assertEquals('<div>○○○○○○○○○</div>', $document->body->innerHTML);
     }
-
 }

@@ -39,32 +39,17 @@ use Contender\Service\Factory;
 class Implementation
 {
     /**
-     * @var \DOMImplementation
-     */
-    protected $element;
-
-    /**
-     * Node constructor.
-     *
-     * @param \DOMImplementation $element
-     * @return void
-     */
-    public function __construct(\DOMImplementation $element)
-    {
-        $this->element = $element;
-    }
-
-    /**
      * Test if the DOM implementation implements a specific feature
      * @link  https://php.net/manual/en/domimplementation.hasfeature.php
+     * @link https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance
      * @param string $feature The feature to test.
      * @param string $version The version number of the feature to test. In level 2, this can be either 2.0 or 1.0.
      * @return bool true on success or false on failure.
      * @since 5.0
      */
-    public function hasFeature($feature, $version)
+    public static function hasFeature($feature, $version): bool
     {
-        return $this->element->hasFeature($feature, $version);
+        return (new \DOMImplementation())->hasFeature($feature, $version);
     }
 
     /**
@@ -76,9 +61,41 @@ class Implementation
      * @return \Contender\Dom\DocumentType A new DOMDocumentType node with its ownerDocument set to &null;.
      * @since 5.0
      */
-    public function createDocumentType($qualifiedName = null, $publicId = null, $systemId = null)
+    public static function createDocumentType($qualifiedName = null, $publicId = null, $systemId = null): ?DocumentType
     {
-        return Factory::get($this->element->createDocumentType($qualifiedName, $publicId, $systemId), $this);
+        return Factory::get((new \DOMImplementation())->createDocumentType($qualifiedName, $publicId, $systemId), null);
+    }
+
+    /**
+     * The DOMImplementation.createHTMLDocument() method creates a new HTML
+     *
+     * @param string|null $title
+     * @return \Contender\Dom\Document
+     */
+    public static function createHTMLDocument(string $title = null): Document
+    {
+        $document = self::createDocument(
+            null,
+            'html',
+            self::createDocumentType(
+                'html',
+                '-//W3C//DTD XHTML 1.0 Transitional//EN',
+                'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+            )
+        );
+        $document->encoding = 'UTF-8';
+        $document->standalone = false;
+
+        $node = $document->createDocumentFragment();
+        $node->appendXML('<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title></title></head>');
+        $document->querySelector('html')->insertBefore($node);
+
+        if ($title !== null) {
+            $text = $document->createTextNode($title);
+            $document->querySelector('title')->insertBefore($text);
+        }
+
+        return $document;
     }
 
     /**
@@ -90,8 +107,13 @@ class Implementation
      * @return \Contender\Dom\Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
      * @since 5.0
      */
-    public function createDocument($namespaceURI = null, $qualifiedName = null, ?DocumentType $doctype = null)
+    public static function createDocument($namespaceURI = null, $qualifiedName = null, DocumentType $doctype = null): Document
     {
-        return Factory::get($this->element->createDocument($namespaceURI, $qualifiedName, $doctype), $this);
+        $type = null;
+        if ($doctype instanceof DocumentType) {
+            $type = $doctype->nativeNode();
+        }
+
+        return Factory::get((new \DOMImplementation())->createDocument($namespaceURI, $qualifiedName, $type), null);
     }
 }

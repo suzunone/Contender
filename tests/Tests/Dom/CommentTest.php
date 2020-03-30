@@ -45,7 +45,5 @@ class CommentTest extends TestCase
         $document = Contender::loadStr('<div><!-- hoge --></div>');
         $element = $document->querySelector('div');
         $this->assertInstanceOf(Comment::class, $element->firstChild);
-
     }
-
 }
