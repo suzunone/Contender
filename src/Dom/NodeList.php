@@ -202,7 +202,9 @@ class NodeList extends Collection
             return $this->getInnerXMLAttribute();
         }
 
+        // @codeCoverageIgnoreStart
         return parent::__get($key);
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -274,7 +276,9 @@ class NodeList extends Collection
             return true;
         }
 
+        // @codeCoverageIgnoreStart
         return in_array($key, static::$proxies, true);
+        // @codeCoverageIgnoreEnd
     }
 
     /**

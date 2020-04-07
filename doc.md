@@ -7479,7 +7479,6 @@ Contender\Dom\NodeList {
     public string $inner_x_m_l ;
 
     /* Methods */
-    public __construct ([?mixed $items = []]) : void
     public find (string $selectors) : \Contender\Dom\NodeList
     public onlyElement () : \Contender\Dom\NodeList
     public querySelectorAll (string $selectors) : \Contender\Dom\NodeList|Node[]
@@ -7529,25 +7528,6 @@ Properties
 
 Methods
 ----------------------------
-
-### \Contender\Dom\NodeList::__construct(mixed|null $items)
-NodeList constructor.
-
-
-
-#### Parameters
-##### `array` $items
-
-
-
-
-
-#### Return Values
-void
-
-
-### See Also
-None
 
 ### \Contender\Dom\NodeList::find(string $selectors)
 Call <a href="#contenderdomnodelistqueryselectorallstring-selectors">\Contender\Dom\NodeList::querySelectorAll()</a> and <a href="#contenderdomnodelistonlyelement">\Contender\Dom\NodeList::onlyElement()</a>
@@ -8208,6 +8188,7 @@ Class synopsis
 Contender\Dom\ProcessingInstruction {
 
     /* Properties */
+    public string $data ;
     public string $innerHTML ;
     public string $innerXML ;
     public string $inner_h_t_m_l ;
@@ -8271,6 +8252,7 @@ Contender\Dom\ProcessingInstruction {
     public \Contender\Dom\Document $owner_document ;
     public \Contender\Dom\Node|null $previousElementSibling ;
     public \Contender\Dom\Node|null $previous_element_sibling ;
+    public string $target ;
     public string $textContent ;
     public string $text_content ;
 
@@ -8571,6 +8553,11 @@ The node immediately preceding this node. If there is no such node, this returns
 
 
 
+### `string` \Contender\Dom\ProcessingInstruction::$target __read only__
+
+
+
+
 ### `string` \Contender\Dom\ProcessingInstruction::$textContent __read only__
 The text content of this node and its descendants.
 
@@ -8578,6 +8565,11 @@ The text content of this node and its descendants.
 
 ### `string` \Contender\Dom\ProcessingInstruction::$text_content __read only__
 The text content of this node and its descendants.
+
+
+
+### `string` \Contender\Dom\ProcessingInstruction::$data
+
 
 
 

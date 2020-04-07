@@ -169,8 +169,10 @@ class Document implements ElementInterface
     {
         $element = $this->element->createElementNS($namespaceURI, $qualifiedName, $value);
 
-        if ($element === false) {
+        if (!$element instanceof \DOMElement) {
+            // @codeCoverageIgnoreStart
             return null;
+            // @codeCoverageIgnoreEnd
         }
 
         return Factory::get($element, $this);

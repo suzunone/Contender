@@ -113,6 +113,7 @@ class CharacterData extends Node
     /**
      * Comment constructor.
      * @param \DOMCharacterData $element
+     * @codeCoverageIgnore
      */
     public function __construct(DOMCharacterData $element)
     {

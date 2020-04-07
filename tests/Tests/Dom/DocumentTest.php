@@ -19,6 +19,7 @@
 namespace Tests\Contender\Dom;
 
 use Contender\Contender;
+use Contender\Dom\Element;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -201,5 +202,19 @@ XML;
 
         $document->find('div')->first()->appendChild($attr);
         $this->assertStringContainsString('<div class="data">', $document->innerHTML);
+    }
+
+    /**
+     * @dataProvider dataProvider
+     * @covers       \Contender\Dom\Attr
+     * @param $html
+     */
+    public function test_createElementNS($html)
+    {
+        $document = Contender::loadStr($html);
+        $res = $document->createElementNS('http://www.w3.org/1999/xhtml', 'div');
+
+        $this->assertInstanceOf(Element::class, $res);
+        $this->assertEquals('<div xmlns="http://www.w3.org/1999/xhtml"></div>', (string) $res);
     }
 }

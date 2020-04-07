@@ -39,6 +39,7 @@ use DOMProcessingInstruction;
  * @property-read \Contender\Dom\NodeList childNodes Aliases to children
  * @property-read \Contender\Dom\NodeList child_nodes Aliases to children
  * @property-read \Contender\Dom\NodeList children That contains all children of this node. If there are no children, this is an empty {@link \Contender\Dom\NodeList}.
+ * @property string data
  * @property-read \Contender\Dom\Node|null firstChild Get a first child node.
  * @property-read \Contender\Dom\Element|null firstElementChild The first child of this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Dom\Node|null first_child Get a first child node.
@@ -98,6 +99,7 @@ use DOMProcessingInstruction;
  * @property string|null prefix The namespace prefix of this node, or NULL if it is unspecified.
  * @property-read \Contender\Dom\Node|null previousElementSibling The node immediately preceding this node. If there is no such node, this returns NULL.
  * @property-read \Contender\Dom\Node|null previous_element_sibling The node immediately preceding this node. If there is no such node, this returns NULL.
+ * @property-read string target
  * @property-read string textContent The text content of this node and its descendants.
  * @property-read string text_content The text content of this node and its descendants.
  */

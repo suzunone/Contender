@@ -177,4 +177,10 @@ class NodeListTest extends TestCase
         $document->getElementsByTagName('li')->remove();
         $this->assertStringNotContainsString('<li>', $document->outerXML);
     }
+
+    public function test_last()
+    {
+        $document = Contender::loadStr('<ul><li></li><li></li><li></li><li></li><li class="last"></li></ul>');
+        $this->assertEquals('last', $document->querySelector('ul')->children->last()->getAttribute('class'));
+    }
 }
