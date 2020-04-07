@@ -18,6 +18,8 @@
 
 namespace Contender\Dom;
 
+use DOMDocumentType;
+
 /**
  * Class DocumentType
  *
@@ -116,7 +118,7 @@ class DocumentType extends Node
      * Comment constructor.
      * @param \DOMDocumentType $element
      */
-    public function __construct(\DOMDocumentType $element)
+    public function __construct(DOMDocumentType $element)
     {
         parent::__construct($element);
     }

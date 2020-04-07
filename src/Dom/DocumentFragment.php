@@ -18,6 +18,8 @@
 
 namespace Contender\Dom;
 
+use DOMDocumentFragment;
+
 /**
  * Class DocumentFragment
  *
@@ -110,7 +112,7 @@ class DocumentFragment extends Node
      * Comment constructor.
      * @param \DOMDocumentFragment $element
      */
-    public function __construct(\DOMDocumentFragment $element)
+    public function __construct(DOMDocumentFragment $element)
     {
         parent::__construct($element);
     }

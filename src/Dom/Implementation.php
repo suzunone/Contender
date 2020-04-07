@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+
 /**
  * Implementation.php
  *
@@ -19,7 +20,6 @@
 namespace Contender\Dom;
 
 use Contender\Dom\Implementation\Driver;
-use Contender\Service\Factory;
 use DOMImplementation;
 
 /**

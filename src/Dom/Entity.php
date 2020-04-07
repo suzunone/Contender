@@ -18,6 +18,8 @@
 
 namespace Contender\Dom;
 
+use DOMEntity;
+
 /**
  * Class Entity
  *
@@ -116,7 +118,7 @@ class Entity extends Node
      * Comment constructor.
      * @param \DOMEntity $element
      */
-    public function __construct(\DOMEntity $element)
+    public function __construct(DOMEntity $element)
     {
         parent::__construct($element);
     }

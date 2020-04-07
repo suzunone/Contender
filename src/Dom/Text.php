@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use Contender\Service\Factory;
+use DOMText;
 
 /**
  * Class Text
@@ -115,7 +116,7 @@ class Text extends CharacterData
      * Comment constructor.
      * @param \DOMText $element
      */
-    public function __construct(\DOMText $element)
+    public function __construct(DOMText $element)
     {
         parent::__construct($element);
     }

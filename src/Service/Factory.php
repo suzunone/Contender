@@ -47,6 +47,8 @@ use DOMImplementation;
 use DOMNamedNodeMap;
 use DOMNode;
 use DOMNodeList;
+use DOMNotation;
+use DOMProcessingInstruction;
 use DOMText;
 
 /**
@@ -90,11 +92,11 @@ class Factory
             return new Entity($item);
         }
 
-        if ($item instanceof \DOMProcessingInstruction) {
+        if ($item instanceof DOMProcessingInstruction) {
             return new ProcessingInstruction($item);
         }
 
-        if ($item instanceof \DOMNotation) {
+        if ($item instanceof DOMNotation) {
             return new Notation($item);
         }
 

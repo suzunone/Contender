@@ -1,4 +1,7 @@
-<?php
+<?php /** @noinspection PhpInconsistentReturnPointsInspection */
+/** @noinspection ReturnTypeCanBeDeclaredInspection */
+/** @noinspection PhpDocSignatureInspection */
+
 /**
  * DOMImplementation.php
  *

@@ -18,7 +18,7 @@
 
 namespace Contender\Dom;
 
-use Contender\Dom\Exceptions\CreateErrorException;
+use DOMCharacterData;
 
 /**
  * Class CharacterData
@@ -114,7 +114,7 @@ class CharacterData extends Node
      * Comment constructor.
      * @param \DOMCharacterData $element
      */
-    public function __construct(\DOMCharacterData $element)
+    public function __construct(DOMCharacterData $element)
     {
         parent::__construct($element);
     }

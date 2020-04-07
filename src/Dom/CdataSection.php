@@ -18,7 +18,7 @@
 
 namespace Contender\Dom;
 
-use Contender\Dom\Exceptions\CreateErrorException;
+use DOMCdataSection;
 
 /**
  * Class CdataSection
@@ -115,7 +115,7 @@ class CdataSection extends Text
      * Comment constructor.
      * @param \DOMCdataSection $element
      */
-    public function __construct(\DOMCdataSection $element)
+    public function __construct(DOMCdataSection $element)
     {
         parent::__construct($element);
     }

@@ -18,6 +18,8 @@
 
 namespace Contender\Dom;
 
+use DOMNotation;
+
 /**
  * Class Notation
  *
@@ -112,7 +114,7 @@ class Notation extends Node
      * Comment constructor.
      * @param \DOMNotation $element
      */
-    public function __construct(\DOMNotation $element)
+    public function __construct(DOMNotation $element)
     {
         parent::__construct($element);
     }

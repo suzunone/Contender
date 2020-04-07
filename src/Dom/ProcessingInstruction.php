@@ -18,6 +18,8 @@
 
 namespace Contender\Dom;
 
+use DOMProcessingInstruction;
+
 /**
  * Class ProcessingInstruction
  *
@@ -110,7 +112,7 @@ class ProcessingInstruction extends Node
      * Comment constructor.
      * @param \DOMProcessingInstruction $element
      */
-    public function __construct(\DOMProcessingInstruction $element)
+    public function __construct(DOMProcessingInstruction $element)
     {
         parent::__construct($element);
     }

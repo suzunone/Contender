@@ -18,7 +18,7 @@
 
 namespace Contender\Dom;
 
-use Contender\Dom\Traits\ElementTrait;
+use DOMElement;
 use Generator;
 
 /**
@@ -116,7 +116,7 @@ class Element extends Node
      * Comment constructor.
      * @param \DOMElement $element
      */
-    public function __construct(\DOMElement $element)
+    public function __construct(DOMElement $element)
     {
         parent::__construct($element);
     }
@@ -148,7 +148,7 @@ class Element extends Node
      * @param string $name
      * @return string
      */
-    public function getAttribute(string $name)
+    public function getAttribute(string $name): string
     {
         return $this->element->getAttribute($name);
     }

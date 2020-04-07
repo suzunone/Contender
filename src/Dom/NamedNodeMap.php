@@ -55,7 +55,7 @@ class NamedNodeMap extends Collection
 
     /**
      * @param \DOMNamedNodeMap|null $map
-     * @param \Contender\Dom\Node $old
+     * @param \Contender\Dom\Node|null $old
      * @return \Contender\Dom\NamedNodeMap
      * @hideDoc
      */

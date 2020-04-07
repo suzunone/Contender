@@ -18,6 +18,8 @@
 
 namespace Contender\Dom;
 
+use DOMEntityReference;
+
 /**
  * Class EntityReference
  *
@@ -110,7 +112,7 @@ class EntityReference extends Node
      * Comment constructor.
      * @param \DOMEntityReference $element
      */
-    public function __construct(\DOMEntityReference $element)
+    public function __construct(DOMEntityReference $element)
     {
         parent::__construct($element);
     }

@@ -19,6 +19,7 @@ namespace Contender\Dom;
 use Contender\Dom\Traits\CssSelector2XPathTrait;
 use Contender\Service\Factory;
 use DOMNodeList;
+use Illuminate\Support\Collection;
 
 /**
  * A collection of {@link \Contender\Dom\Node} from {@link \Contender\Dom\Document}
@@ -39,25 +40,16 @@ use DOMNodeList;
  * @property string inner_h_t_m_l 1st of innerHTML
  * @property string inner_x_m_l 1st of innerXML
  */
-class NodeList extends \Illuminate\Support\Collection
+class NodeList extends Collection
 {
     use CssSelector2XPathTrait;
-
-    /**
-     * NodeList constructor.
-     * @param array $items
-     * @return void
-     */
-    public function __construct($items = [])
-    {
-        parent::__construct($items);
-    }
 
     /**
      * @param callable|null $callback
      * @param \Contender\Dom\Node|\Contender\Dom\Element|null $default
      * @return \Contender\Dom\Node|\Contender\Dom\Element
      * @hideDoc
+     * @noinspection SenselessProxyMethodInspection
      */
     public function last(callable $callback = null, $default = null)
     {
@@ -69,6 +61,7 @@ class NodeList extends \Illuminate\Support\Collection
      * @param \Contender\Dom\Node|\Contender\Dom\Element|null $default
      * @return \Contender\Dom\Node|\Contender\Dom\Element
      * @hideDoc
+     * @noinspection SenselessProxyMethodInspection
      */
     public function first(callable $callback = null, $default = null)
     {
@@ -79,6 +72,7 @@ class NodeList extends \Illuminate\Support\Collection
      * @param string $key
      * @return \Contender\Dom\Node|\Contender\Dom\Element
      * @hideDoc
+     * @noinspection SenselessProxyMethodInspection
      */
     public function offsetGet($key)
     {
@@ -135,7 +129,7 @@ class NodeList extends \Illuminate\Support\Collection
         $queries = explode(',', $selectors);
         $res = self::make();
 
-        $this->each(function (Node $item) use ($queries, &$res) {
+        $this->each(static function (Node $item) use ($queries, &$res) {
             foreach ($queries as $selector) {
                 $res = $res->merge($item->evaluateToCollection($item->cssSelector2XPath(trim($selector))));
             }
@@ -306,7 +300,7 @@ class NodeList extends \Illuminate\Support\Collection
      * @return string
      * @link \Contender\Dom\Element::getAttribute()
      */
-    public function getAttribute(string $name)
+    public function getAttribute(string $name): string
     {
         return $this->sortDom()->first()->getAttribute($name);
     }
@@ -331,7 +325,7 @@ class NodeList extends \Illuminate\Support\Collection
      */
     public function remove(): NodeList
     {
-        $collect = new NodeList([]);
+        $collect = new self([]);
         $this->each(static function (Node $node) use (&$collect) {
             $collect->push($node->remove());
         });
