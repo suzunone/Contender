@@ -18,6 +18,10 @@
 
 namespace Contender\DummyMixin;
 
+use Contender\Dom\DocumentType;
+use Contender\Dom\Element;
+use Contender\Dom\Implementation;
+
 /**
  * Class DomDocument
  *
@@ -43,78 +47,69 @@ class DomDocument extends DOMNode
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.actualencoding
      * @deprecated
      */
-    public $actualEncoding;
-
-    /**
-     * @read-only
-     * @var \DOMConfiguration
-     * Deprecated. Configuration used when {@link DOMDocument::normalizeDocument()} is invoked.
-     * @link  https://php.net/manual/class.domdocument.php#domdocument.props.config
-     * @deprecated
-     */
-    public $config;
+    public string $actualEncoding;
 
     /**
      * @read-only
      * This is a convenience attribute that allows direct access to the child node that is the document element of the document.
      * @var \Contender\Dom\Element
      */
-    public $documentElement;
+    public Element $documentElement;
 
     /**
      * @read-only
      * The Document Type Declaration associated with this document.
      * @var \Contender\Dom\DocumentType
      */
-    public $doctype;
+    public DocumentType $doctype;
 
     /**
      * @var string|null
      * The location of the document or NULL if undefined.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.documenturi
      */
-    public $documentURI;
+    public ?string $documentURI;
 
     /**
      * @var string
      * Encoding of the document, as specified by the XML declaration. This attribute is not present in the final DOM Level 3 specification, but is the only way of manipulating XML document encoding in this implementation.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.encoding
      */
-    public $encoding;
+    public string $encoding;
 
     /**
      * @var bool
      * Nicely formats output with indentation and extra space.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.formatoutput
      */
-    public $formatOutput;
+    public bool $formatOutput;
 
     /**
      * The {@link \Contender\Dom\Implementation} object that handles this document.
      * @var \Contender\Dom\Implementation
      */
-    public $implementation;
+    public Implementation $implementation;
 
     /**
      * @var bool
      * Do not remove redundant white space. Default to TRUE.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.preservewhitespace
      */
-    public $preserveWhiteSpace = true;
+    public bool $preserveWhiteSpace = true;
 
     /**
      * @var bool
      * Proprietary. Enables recovery mode, i.e. trying to parse non-well formed documents.This attribute is not part of the DOM specification and is specific to libxml.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.recover
      */
-    public $recover;
+    public bool $recover;
 
     /**
      * @var bool
      * Set it to TRUE to load external entities from a doctype declaration. This is useful for including character entities in your XML document.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.resolveexternals
      */
-    public $resolveExternals;
+    public bool $resolveExternals;
 
     /**
      * @var bool
@@ -122,35 +117,35 @@ class DomDocument extends DOMNode
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.standalone
      * @deprecated
      */
-    public $standalone;
+    public bool $standalone;
 
     /**
      * @var bool
      * Throws <classname>DOMException</classname> on errors. Default to TRUE.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.stricterrorchecking
      */
-    public $strictErrorChecking = true;
+    public bool $strictErrorChecking = true;
 
     /**
      * @var bool
      * Proprietary. Whether or not to substitute entities. This attribute is not part of the DOMspecification and is specific to libxml.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.substituteentities
      */
-    public $substituteEntities;
+    public bool $substituteEntities;
 
     /**
      * @var bool
      * Loads and validates against the DTD. Default to FALSE.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.validateonparse
      */
-    public $validateOnParse = false;
+    public bool $validateOnParse = false;
 
     /**
      * @var string
      * Deprecated. Version of XML, corresponds to xmlVersion
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.version
      */
-    public $version;
+    public string $version;
 
     /**
      * @read-only
@@ -158,19 +153,19 @@ class DomDocument extends DOMNode
      * An attribute specifying, as part of the XML declaration, the encoding of this document. This is NULL whenunspecified or when it is not known, such as when the Document was created in memory.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.xmlencoding
      */
-    public $xmlEncoding;
+    public string $xmlEncoding;
 
     /**
      * @var bool
      * An attribute specifying, as part of the XML declaration, whether this document is standalone.This is FALSE when unspecified.
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.xmlstandalone
      */
-    public $xmlStandalone;
+    public bool $xmlStandalone;
 
     /**
      * @var string
      * An attribute specifying, as part of the XML declaration, the version number of this document. If there is nodeclaration and if this document supports the "XML" feature, the value is "1.0".
      * @link  https://php.net/manual/class.domdocument.php#domdocument.props.xmlversion
      */
-    public $xmlVersion;
+    public string $xmlVersion;
 }

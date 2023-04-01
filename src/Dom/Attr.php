@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use Contender\Service\Factory;
+use DOMNode;
 
 /**
  * Class Attr
@@ -112,7 +113,7 @@ class Attr extends Node
     /**
      * @var \DOMAttr
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * @return string

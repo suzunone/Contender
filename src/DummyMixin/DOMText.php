@@ -41,5 +41,5 @@ class DOMText extends DOMCharacterData
      * @link https://php.net/manual/en/class.domtext.php#domtext.props.wholeText
      * @var string
      */
-    public $wholeText;
+    public string $wholeText;
 }

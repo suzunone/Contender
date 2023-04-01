@@ -40,21 +40,21 @@ class DOMNode
      * @read-only
      * Gets the type of the node. One of the predefined XML_xxx_NODE constants
      */
-    public $nodeType;
+    public int $nodeType;
     /**
      * @var string
      * @read-only
      * Returns the most accurate name for the current node type
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.nodename
      */
-    public $nodeName;
+    public string $nodeName;
 
     /**
      * @var string
      * The value of this node, depending on its type
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.nodevalue
      */
-    public $nodeValue;
+    public string $nodeValue;
 
     /**
      * @var string|null
@@ -62,14 +62,14 @@ class DOMNode
      * The namespace URI of this node, or NULL if it is unspecified.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.namespaceuri
      */
-    public $namespaceURI;
+    public ?string $namespaceURI;
 
     /**
      * @var string|null
      * The namespace prefix of this node, or NULL if it is unspecified.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.prefix
      */
-    public $prefix;
+    public ?string $prefix;
 
     /**
      * @var string
@@ -77,7 +77,7 @@ class DOMNode
      * Returns the local part of the qualified name of this node.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.localname
      */
-    public $localName;
+    public string $localName;
 
     /**
      * @var string|null
@@ -85,12 +85,12 @@ class DOMNode
      * The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.baseuri
      */
-    public $baseURI;
+    public ?string $baseURI;
 
     /**
      * @var string
      * This attribute returns the text content of this node and its descendants.
      * @link  https://php.net/manual/en/class.domnode.php#domnode.props.textcontent
      */
-    public $textContent;
+    public string $textContent;
 }

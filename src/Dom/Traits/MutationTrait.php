@@ -37,7 +37,7 @@ use Illuminate\Support\Str;
  */
 trait MutationTrait
 {
-    protected $attribute = [];
+    protected array $attribute = [];
 
     /**
      * @param $name
@@ -80,10 +80,10 @@ trait MutationTrait
 
     /**
      * @param $key
-     * @param mixed $value
+     * @param mixed|null $value
      * @return mixed
      */
-    protected function mutateGetAttribute($key, $value = null)
+    protected function mutateGetAttribute($key, mixed $value = null): mixed
     {
         return $this->{$this->mutateGetAttributeName($key)}($value);
     }
@@ -92,7 +92,7 @@ trait MutationTrait
      * @param string $name
      * @return mixed|string|int
      */
-    protected function getParameterAttribute(string $name)
+    protected function getParameterAttribute(string $name): mixed
     {
         $name = Str::camel($name);
 
@@ -112,10 +112,10 @@ trait MutationTrait
 
     /**
      * @param $key
-     * @param mixed $value
+     * @param mixed|null $value
      * @return mixed
      */
-    protected function mutateSetAttribute($key, $value = null)
+    protected function mutateSetAttribute($key, mixed $value = null): mixed
     {
         return $this->{$this->mutateSetAttributeName($key)}($value);
     }

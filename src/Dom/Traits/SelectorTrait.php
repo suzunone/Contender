@@ -61,7 +61,8 @@ trait SelectorTrait
      *  Returns a {@link \Contender\Dom\NodeList} object of all child elements which have all of the given class name(s)
      *
      * @param string $query tag class name
-     * @return \Contender\Dom\NodeList|\Contender\Dom\Node[]
+     * @return NodeList
+     * @throws \DOMException
      */
     public function getElementsByClassName(string $query): NodeList
     {
@@ -72,7 +73,8 @@ trait SelectorTrait
      * Returns a {@link \Contender\Dom\NodeList} of {@link \Contender\Dom\Node} matching CSS selector.
      *
      * @param string $selectors Valid CSS selector string
-     * @return \Contender\Dom\NodeList|Node[]
+     * @return NodeList
+     * @throws \DOMException
      */
     public function querySelectorAll(string $selectors): NodeList
     {
@@ -89,7 +91,8 @@ trait SelectorTrait
      * Evaluates the given XPath expression and returns a {@link \Contender\Dom\NodeList} result if possible
      *
      * @param string $query xpath
-     * @return \Contender\Dom\NodeList|Node[]
+     * @return NodeList
+     * @throws \DOMException
      */
     public function evaluateToCollection(string $query): NodeList
     {
@@ -109,9 +112,9 @@ trait SelectorTrait
      * alias DOMXPath::evaluate
      *
      * @param string $query
-     * @return  DOMNodeList
+     * @return  DOMNodeList|bool
      */
-    protected function domXPathQuery(string $query): DOMNodeList
+    protected function domXPathQuery(string $query): mixed
     {
         $xpath = new DOMXPath($this->document());
 
@@ -122,7 +125,8 @@ trait SelectorTrait
      *  Returns a {@link \Contender\Dom\NodeList} object of elements with a given name in the document.
      *
      * @param string $query tag name attribute
-     * @return \Contender\Dom\NodeList|\Contender\Dom\Node[]
+     * @return NodeList
+     * @throws \DOMException
      */
     public function getElementsByName(string $query): NodeList
     {
@@ -147,7 +151,7 @@ trait SelectorTrait
             return Factory::get($res, $this);
         }
 
-        return NodeList::make([]);
+        return NodeList::make();
     }
 
     /**
@@ -214,7 +218,8 @@ trait SelectorTrait
      * Call querySelectorAll() and {@link \Contender\Dom\NodeList::onlyElement()}
      *
      * @param string $query
-     * @return \Contender\Dom\NodeList
+     * @return NodeList
+     * @throws \DOMException
      */
     public function find(string $query): NodeList
     {

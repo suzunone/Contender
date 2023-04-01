@@ -25,7 +25,7 @@ use DOMImplementation;
  */
 class Driver
 {
-    protected $implementation;
+    protected DOMImplementation $implementation;
 
     /**
      * Implementation constructor.
@@ -45,7 +45,7 @@ class Driver
      * @return bool true on success or false on failure.
      * @since 5.0
      */
-    public function hasFeature($feature, $version): bool
+    public function hasFeature(string $feature, string $version): bool
     {
         return $this->implementation->hasFeature($feature, $version);
     }
@@ -53,10 +53,11 @@ class Driver
     /**
      * Creates an empty DOMDocumentType object
      * @link  https://php.net/manual/en/domimplementation.createdocumenttype.php
-     * @param string $qualifiedName [optional] The qualified name of the document type to create.
-     * @param string $publicId      [optional] The external subset public identifier.
-     * @param string $systemId      [optional] The external subset system identifier.
-     * @return \Contender\Dom\DocumentType A new DOMDocumentType node with its ownerDocument set to &null;.
+     * @param null $qualifiedName [optional] The qualified name of the document type to create.
+     * @param null $publicId [optional] The external subset public identifier.
+     * @param null $systemId [optional] The external subset system identifier.
+     * @return DocumentType|null A new DOMDocumentType node with its ownerDocument set to &null;.
+     * @throws \DOMException
      * @since 5.0
      */
     public function createDocumentType($qualifiedName = null, $publicId = null, $systemId = null): ?DocumentType
@@ -68,7 +69,8 @@ class Driver
      * The DOMImplementation.createHTMLDocument() method creates a new HTML
      *
      * @param string|null $title
-     * @return \Contender\Dom\Document
+     * @return Document
+     * @throws \DOMException
      */
     public function createHTMLDocument(string $title = null): Document
     {
@@ -98,10 +100,11 @@ class Driver
     /**
      * Creates a DOMDocument object of the specified type with its document element
      * @link  https://php.net/manual/en/domimplementation.createdocument.php
-     * @param string $namespaceURI                 [optional] The namespace URI of the document element to create.
-     * @param string $qualifiedName                [optional]The qualified name of the document element to create.
-     * @param \Contender\Dom\DocumentType $doctype [optional] The type of document to create or &null;.
-     * @return \Contender\Dom\Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
+     * @param null $namespaceURI [optional] The namespace URI of the document element to create.
+     * @param null $qualifiedName [optional]The qualified name of the document element to create.
+     * @param DocumentType|null $doctype [optional] The type of document to create or &null;.
+     * @return Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
+     * @throws \DOMException
      * @since 5.0
      */
     public function createDocument($namespaceURI = null, $qualifiedName = null, DocumentType $doctype = null): Document

@@ -47,11 +47,11 @@ class NodeList extends Collection
     /**
      * @param callable|null $callback
      * @param \Contender\Dom\Node|\Contender\Dom\Element|null $default
-     * @return \Contender\Dom\Node|\Contender\Dom\Element
+     * @return \Contender\Dom\Node|\Contender\Dom\Element|null
      * @hideDoc
      * @noinspection SenselessProxyMethodInspection
      */
-    public function last(callable $callback = null, $default = null)
+    public function last(callable $callback = null, $default = null): Node|Element|null
     {
         return parent::last($callback, $default);
     }
@@ -59,22 +59,22 @@ class NodeList extends Collection
     /**
      * @param callable|null $callback
      * @param \Contender\Dom\Node|\Contender\Dom\Element|null $default
-     * @return \Contender\Dom\Node|\Contender\Dom\Element
+     * @return \Contender\Dom\Node|\Contender\Dom\Element|null
      * @hideDoc
      * @noinspection SenselessProxyMethodInspection
      */
-    public function first(callable $callback = null, $default = null)
+    public function first(callable $callback = null, $default = null): Node|Element|null
     {
         return parent::first($callback, $default);
     }
 
     /**
      * @param string $key
-     * @return \Contender\Dom\Node|\Contender\Dom\Element
+     * @return \Contender\Dom\Node|\Contender\Dom\Element|null
      * @hideDoc
      * @noinspection SenselessProxyMethodInspection
      */
-    public function offsetGet($key)
+    public function offsetGet($key): Node|Element|null
     {
         return parent::offsetGet($key);
     }
@@ -99,7 +99,8 @@ class NodeList extends Collection
      * Call {@link \Contender\Dom\NodeList::querySelectorAll()} and {@link \Contender\Dom\NodeList::onlyElement()}
      *
      * @param string $selectors
-     * @return \Contender\Dom\NodeList
+     * @return NodeList
+     * @throws \DOMException
      */
     public function find(string $selectors): NodeList
     {
@@ -122,7 +123,8 @@ class NodeList extends Collection
      * Returns a {@link \Contender\Dom\NodeList} of {@link \Contender\Dom\Node} matching CSS selector.
      *
      * @param string $selectors Valid CSS selector string
-     * @return \Contender\Dom\NodeList|Node[]
+     * @return NodeList
+     * @throws \DOMException
      */
     public function querySelectorAll(string $selectors): NodeList
     {

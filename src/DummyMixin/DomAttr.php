@@ -42,7 +42,7 @@ class DomAttr extends DOMNode
      * The name of the attribute
      * @link https://php.net/manual/en/class.domattr.php#domattr.props.name
      */
-    public $name;
+    public string $name;
 
     /**
      * @var bool
@@ -50,7 +50,7 @@ class DomAttr extends DOMNode
      * Not implemented yet, always is NULL
      * @link https://php.net/manual/en/class.domattr.php#domattr.props.schematypeinfo
      */
-    public $schemaTypeInfo;
+    public bool $schemaTypeInfo;
 
     /**
      * @var bool
@@ -58,12 +58,12 @@ class DomAttr extends DOMNode
      * Not implemented yet, always is NULL
      * @link https://php.net/manual/en/class.domattr.php#domattr.props.specified
      */
-    public $specified;
+    public bool $specified;
 
     /**
      * @var string
      * The value of the attribute
      * @link https://php.net/manual/en/class.domattr.php#domattr.props.value
      */
-    public $value;
+    public string $value;
 }

@@ -18,6 +18,8 @@
 
 namespace Contender\DummyMixin;
 
+use Contender\Dom\NamedNodeMap;
+
 /**
  * Class DOMDocumentType
  *
@@ -42,7 +44,7 @@ class DOMDocumentType extends DOMNode
      * The public identifier of the external subset.
      * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.publicid
      */
-    public $publicId;
+    public string $publicId;
 
     /**
      * @var string
@@ -50,7 +52,7 @@ class DOMDocumentType extends DOMNode
      * The system identifier of the external subset. This may be an absolute URI or not.
      * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.systemid
      */
-    public $systemId;
+    public string $systemId;
 
     /**
      * @var string
@@ -58,7 +60,7 @@ class DOMDocumentType extends DOMNode
      * The name of DTD; i.e., the name immediately following the DOCTYPE keyword.
      * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.name
      */
-    public $name;
+    public string $name;
 
     /**
      * @var \Contender\Dom\NamedNodeMap
@@ -66,7 +68,7 @@ class DOMDocumentType extends DOMNode
      * A {@link \Contender\Dom\NamedNodeMap} containing the general entities, both external and internal, declared in the DTD.
      * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.entities
      */
-    public $entities;
+    public NamedNodeMap $entities;
 
     /**
      * @var \Contender\Dom\NamedNodeMap
@@ -74,7 +76,7 @@ class DOMDocumentType extends DOMNode
      * A {@link \Contender\Dom\NamedNodeMap} containing the notations declared in the DTD.
      * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.notations
      */
-    public $notations;
+    public NamedNodeMap $notations;
 
     /**
      * @var string|null
@@ -82,5 +84,5 @@ class DOMDocumentType extends DOMNode
      * The internal subset as a string, or null if there is none. This is does not contain the delimiting square brackets.
      * @link  https://php.net/manual/en/class.domdocumenttype.php#domdocumenttype.props.internalsubset
      */
-    public $internalSubset;
+    public ?string $internalSubset;
 }

@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMEntity;
+use DOMNode;
 
 /**
  * Class Entity
@@ -112,7 +113,7 @@ class Entity extends Node
     /**
      * @var \DOMEntity
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

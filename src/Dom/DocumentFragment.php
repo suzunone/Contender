@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMDocumentFragment;
+use DOMNode;
 
 /**
  * Class DocumentFragment
@@ -106,7 +107,7 @@ class DocumentFragment extends Node
     /**
      * @var \DOMDocumentFragment
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

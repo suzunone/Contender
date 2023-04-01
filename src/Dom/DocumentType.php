@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMDocumentType;
+use DOMNode;
 
 /**
  * Class DocumentType
@@ -112,7 +113,7 @@ class DocumentType extends Node
     /**
      * @var \DOMDocumentType
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

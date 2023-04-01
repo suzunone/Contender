@@ -40,12 +40,12 @@ class DOMElement extends DOMNode
      * Not implemented yet, always return NULL
      * @link  https://php.net/manual/en/class.domelement.php#domelement.props.schematypeinfo
      */
-    public $schemaTypeInfo;
+    public bool $schemaTypeInfo;
 
     /**
      * @var string
      * The element name
      * @link  https://php.net/manual/en/class.domelement.php#domelement.props.tagname
      */
-    public $tagName;
+    public string $tagName;
 }

@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMCharacterData;
+use DOMNode;
 
 /**
  * Class CharacterData
@@ -108,7 +109,7 @@ class CharacterData extends Node
     /**
      * @var \DOMCharacterData
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.
@@ -127,7 +128,7 @@ class CharacterData extends Node
      * @param int $count  The number of characters to extract.
      * @return string The specified substring. If the sum of offset and count exceeds the length, then all 16-bit units to the end of the data are returned.
      */
-    public function substringData($offset, $count): string
+    public function substringData(int $offset, int $count): string
     {
         return $this->element->substringData($offset, $count);
     }
@@ -139,7 +140,7 @@ class CharacterData extends Node
      * @return void
      * @since 5.0
      */
-    public function appendData($data): void
+    public function appendData(string $data): void
     {
         $this->element->appendData($data);
     }
@@ -152,7 +153,7 @@ class CharacterData extends Node
      * @return void
      * @since 5.0
      */
-    public function insertData($offset, $data): void
+    public function insertData(int $offset, string $data): void
     {
         $this->element->insertData($offset, $data);
     }
@@ -165,7 +166,7 @@ class CharacterData extends Node
      * @return void
      * @since 5.0
      */
-    public function deleteData($offset, $count): void
+    public function deleteData(int $offset, int $count): void
     {
         $this->element->deleteData($offset, $count);
     }
@@ -179,7 +180,7 @@ class CharacterData extends Node
      * @return void
      * @since 5.0
      */
-    public function replaceData($offset, $count, $data): void
+    public function replaceData(int $offset, int $count, string $data): void
     {
         $this->element->replaceData($offset, $count, $data);
     }

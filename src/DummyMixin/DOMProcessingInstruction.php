@@ -43,7 +43,7 @@ class DOMProcessingInstruction extends DOMNode
      * @var string
      * @link https://php.net/manual/en/class.domprocessinginstruction.php#domprocessinginstruction.props.target
      */
-    public $target;
+    public string $target;
 
     /**
      * @since 5.0
@@ -51,5 +51,5 @@ class DOMProcessingInstruction extends DOMNode
      * @var string
      * @link https://php.net/manual/en/class.domprocessinginstruction.php#domprocessinginstruction.props.data
      */
-    public $data;
+    public string $data;
 }

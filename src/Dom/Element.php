@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMElement;
+use DOMNode;
 use Generator;
 
 /**
@@ -110,7 +111,7 @@ class Element extends Node
     /**
      * @var \DOMElement
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.
@@ -128,7 +129,7 @@ class Element extends Node
      * if call attr('name', 'value')
      * Alias setAttribute()
      *
-     * @param string[] ...$name
+     * @param string ...$name
      * @return string|null
      */
     public function attr(...$name): ?string

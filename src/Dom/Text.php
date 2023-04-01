@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use Contender\Service\Factory;
+use DOMNode;
 use DOMText;
 
 /**
@@ -110,7 +111,7 @@ class Text extends CharacterData
     /**
      * @var \DOMText
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.
@@ -129,7 +130,7 @@ class Text extends CharacterData
      * @return \Contender\Dom\Text The new node of the same type, which contains all the content at and after the offset.
      * @since 5.0
      */
-    public function splitText($offset): Text
+    public function splitText(int $offset): Text
     {
         return Factory::get($this->element->splitText($offset), $this);
     }

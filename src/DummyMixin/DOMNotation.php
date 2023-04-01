@@ -43,7 +43,7 @@ class DOMNotation extends DOMNode
      *
      * @link  https://php.net/manual/en/class.domnotation.php#domnotation.props.publicid
      */
-    public $publicId;
+    public string $publicId;
 
     /**
      * @var string
@@ -51,5 +51,5 @@ class DOMNotation extends DOMNode
      *
      * @link  https://php.net/manual/en/class.domnotation.php#domnotation.props.systemid
      */
-    public $systemId;
+    public string $systemId;
 }

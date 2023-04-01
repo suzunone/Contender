@@ -40,7 +40,7 @@ use Illuminate\Support\Collection;
  */
 class NamedNodeMap extends Collection
 {
-    protected $nodeMap;
+    protected ?DOMNamedNodeMap $nodeMap;
 
     /**
      * NamedNodeMap constructor.
@@ -59,7 +59,7 @@ class NamedNodeMap extends Collection
      * @return \Contender\Dom\NamedNodeMap
      * @hideDoc
      */
-    public static function load(?DOMNamedNodeMap $map, $old): self
+    public static function load(?DOMNamedNodeMap $map, ?Node $old): self
     {
         if ($map === null) {
             // @codeCoverageIgnoreStart

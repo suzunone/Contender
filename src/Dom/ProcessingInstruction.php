@@ -18,6 +18,7 @@
 
 namespace Contender\Dom;
 
+use DOMNode;
 use DOMProcessingInstruction;
 
 /**
@@ -108,7 +109,7 @@ class ProcessingInstruction extends Node
     /**
      * @var \DOMProcessingInstruction
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

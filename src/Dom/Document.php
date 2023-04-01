@@ -19,6 +19,7 @@ namespace Contender\Dom;
 use Contender\Dom\Traits\NodeTrait;
 use Contender\Service\Factory;
 use DOMDocument;
+use DOMElement;
 
 /**
  * Access each element of Html, like window.document in Javascript.
@@ -130,7 +131,7 @@ class Document implements ElementInterface
     /**
      * @var \DOMDocument
      */
-    protected $element;
+    protected DOMDocument $element;
 
     /**
      * Node constructor.
@@ -146,9 +147,10 @@ class Document implements ElementInterface
     /**
      * Create new element node
      *
-     * @param string $name       The tag name of the element.
+     * @param string $name The tag name of the element.
      * @param string|null $value The value of the element. By default, an empty element will be created. You can also set the value later with {@link \Contender\Dom\Element::$nodeValue}.
-     * @return \Contender\Dom\Element
+     * @return Element
+     * @throws \DOMException
      */
     public function createElement(string $name, ?string $value = null): Element
     {
@@ -160,16 +162,17 @@ class Document implements ElementInterface
     /**
      * Create new element node with an associated namespace
      * @link  https://php.net/manual/domdocument.createelementns.php
-     * @param string $namespaceURI  The URI of the namespace.
+     * @param string $namespaceURI The URI of the namespace.
      * @param string $qualifiedName The qualified name of the element, as prefix:tagname.
-     * @param string $value         [optional] The value of the element. By default, an empty element will be created. You can also set the value later with {@link \Contender\Dom\Element::$nodeValue}.
-     * @return \Contender\Dom\Element|null The new {@link \Contender\Dom\Element} or null if an error occured.
+     * @param null $value [optional] The value of the element. By default, an empty element will be created. You can also set the value later with {@link \Contender\Dom\Element::$nodeValue}.
+     * @return Element|null The new {@link \Contender\Dom\Element} or null if an error occured.
+     * @throws \DOMException
      */
-    public function createElementNS($namespaceURI, $qualifiedName, $value = null): ?Element
+    public function createElementNS(string $namespaceURI, string $qualifiedName, $value = null): ?Element
     {
         $element = $this->element->createElementNS($namespaceURI, $qualifiedName, $value);
 
-        if (!$element instanceof \DOMElement) {
+        if (!$element instanceof DOMElement) {
             // @codeCoverageIgnoreStart
             return null;
             // @codeCoverageIgnoreEnd
@@ -244,9 +247,10 @@ class Document implements ElementInterface
     /**
      * Create new attribute node with an associated namespace
      *
-     * @param string $namespaceURI  The namespace URI of the elements to match on. The special value * matches all namespaces.
+     * @param string $namespaceURI The namespace URI of the elements to match on. The special value * matches all namespaces.
      * @param string $qualifiedName The local name of the elements to match on. The special value * matches all local names.
-     * @return \Contender\Dom\Attr
+     * @return Attr
+     * @throws \DOMException
      */
     public function createAttributeNS(string $namespaceURI, string $qualifiedName): Attr
     {
@@ -259,7 +263,8 @@ class Document implements ElementInterface
      * Create new attribute
      *
      * @param string $value The name of the attribute.
-     * @return \Contender\Dom\Attr
+     * @return Attr
+     * @throws \DOMException
      */
     public function createAttribute(string $value): Attr
     {

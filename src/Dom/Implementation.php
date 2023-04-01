@@ -47,7 +47,7 @@ class Implementation
     /**
      * @var \Contender\Dom\Implementation\Driver
      */
-    protected $Driver;
+    protected Driver $Driver;
 
     /**
      * Implementation constructor.

@@ -112,7 +112,7 @@ class Node implements ElementInterface
     /**
      * @var \DOMNode
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Node constructor.

@@ -192,18 +192,18 @@ class Contender
      * Auto adding charset meta
      * @var bool
      */
-    public $is_add_meta = true;
+    public bool $is_add_meta = true;
 
-    protected $options = [];
+    protected array $options = [];
 
-    protected $is_encode = false;
-    protected $is_replace_charset = true;
-    protected $format_output = false;
-    protected $is_minify = true;
-    protected $is_style_remove = false;
-    protected $is_script_remove = false;
-    protected $is_comment_remove = false;
-    protected $xml_load = false;
+    protected bool $is_encode = false;
+    protected bool $is_replace_charset = true;
+    protected bool $format_output = false;
+    protected bool $is_minify = true;
+    protected bool $is_style_remove = false;
+    protected bool $is_script_remove = false;
+    protected bool $is_comment_remove = false;
+    protected bool $xml_load = false;
 
     /**
      * Contender constructor.
@@ -454,11 +454,11 @@ class Contender
      */
     protected function completeHtmlTag(string $html): string
     {
-        if (strpos($html, '</body>') === false) {
+        if (!str_contains($html, '</body>')) {
             $html = "<body>{$html}</body>";
         }
 
-        if (strpos($html, '</html>') === false) {
+        if (!str_contains($html, '</html>')) {
             $internal_encoding = mb_internal_encoding();
             $html = /** @lang html */
                 <<<HTML

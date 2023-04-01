@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMCdataSection;
+use DOMNode;
 
 /**
  * Class CdataSection
@@ -109,7 +110,7 @@ class CdataSection extends Text
     /**
      * @var \DOMCdataSection
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

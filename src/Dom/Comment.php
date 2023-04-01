@@ -19,6 +19,7 @@
 namespace Contender\Dom;
 
 use DOMComment;
+use DOMNode;
 
 /**
  * Class Comment
@@ -125,7 +126,7 @@ class Comment extends CharacterData
     /**
      * @var \DOMComment
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

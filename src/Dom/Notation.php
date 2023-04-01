@@ -18,6 +18,7 @@
 
 namespace Contender\Dom;
 
+use DOMNode;
 use DOMNotation;
 
 /**
@@ -108,7 +109,7 @@ class Notation extends Node
     /**
      * @var \DOMNotation
      */
-    protected $element;
+    protected DOMNode $element;
 
     /**
      * Comment constructor.

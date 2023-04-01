@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpInconsistentReturnPointsInspection */
+<?php
 /** @noinspection ReturnTypeCanBeDeclaredInspection */
 /** @noinspection PhpDocSignatureInspection */
 
@@ -47,23 +47,23 @@ class DOMImplementation
      * @link  https://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance
      * @param string $feature The feature to test.
      * @param string $version The version number of the feature to test. In level 2, this can be either 2.0 or 1.0.
-     * @return bool true on success or false on failure.
+     * @return void true on success or false on failure.
      * @since 5.0
      */
-    public static function hasFeature($feature, $version)
+    public static function hasFeature(string $feature, string $version): void
     {
     }
 
     /**
      * Creates an empty DOMDocumentType object
      * @link  https://php.net/manual/en/domimplementation.createdocumenttype.php
-     * @param string $qualifiedName [optional] The qualified name of the document type to create.
-     * @param string $publicId      [optional] The external subset public identifier.
-     * @param string $systemId      [optional] The external subset system identifier.
-     * @return \Contender\Dom\DocumentType A new DOMDocumentType node with its ownerDocument set to &null;.
+     * @param string|null $qualifiedName [optional] The qualified name of the document type to create.
+     * @param string|null $publicId      [optional] The external subset public identifier.
+     * @param string|null $systemId      [optional] The external subset system identifier.
+     * @return void A new DOMDocumentType node with its ownerDocument set to &null;.
      * @since 5.0
      */
-    public static function createDocumentType($qualifiedName = null, $publicId = null, $systemId = null)
+    public static function createDocumentType(string $qualifiedName = null, string $publicId = null, string $systemId = null): void
     {
     }
 
@@ -71,22 +71,22 @@ class DOMImplementation
      * The DOMImplementation.createHTMLDocument() method creates a new HTML
      *
      * @param string|null $title
-     * @return \Contender\Dom\Document
+     * @return void
      */
-    public static function createHTMLDocument(string $title = null)
+    public static function createHTMLDocument(string $title = null): void
     {
     }
 
     /**
      * Creates a DOMDocument object of the specified type with its document element
      * @link  https://php.net/manual/en/domimplementation.createdocument.php
-     * @param string $namespaceURI                 [optional] The namespace URI of the document element to create.
-     * @param string $qualifiedName                [optional]The qualified name of the document element to create.
+     * @param string|null $namespaceURI                 [optional] The namespace URI of the document element to create.
+     * @param string|null $qualifiedName                [optional]The qualified name of the document element to create.
      * @param \Contender\Dom\DocumentType $doctype [optional] The type of document to create or &null;.
-     * @return \Contender\Dom\Document A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
+     * @return void A new DOMDocument object. If namespaceURI, qualifiedName, and doctype are null, the returned DOMDocument is empty with no document element
      * @since 5.0
      */
-    public static function createDocument($namespaceURI = null, $qualifiedName = null, DocumentType $doctype = null)
+    public static function createDocument(string $namespaceURI = null, string $qualifiedName = null, DocumentType $doctype = null): void
     {
     }
 }

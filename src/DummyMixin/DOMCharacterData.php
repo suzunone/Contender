@@ -41,7 +41,7 @@ class DOMCharacterData extends DOMNode
      * The contents of the node.
      * @link https://php.net/manual/en/class.domcharacterdata.php#domcharacterdata.props.data
      */
-    public $data;
+    public string $data;
 
     /**
      * @var int
@@ -49,5 +49,5 @@ class DOMCharacterData extends DOMNode
      * The length of the contents.
      * @link https://php.net/manual/en/class.domcharacterdata.php#domcharacterdata.props.length
      */
-    public $length;
+    public int $length;
 }

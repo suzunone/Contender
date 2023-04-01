@@ -43,7 +43,7 @@ class DOMEntity extends DOMNode
      * The public identifier associated with the entity if specified, and NULL otherwise.
      * @link  https://php.net/manual/en/class.domentity.php#domentity.props.publicid
      */
-    public $publicId;
+    public ?string $publicId;
 
     /**
      * @var string|null
@@ -52,7 +52,7 @@ class DOMEntity extends DOMNode
      * absolute URI or not.
      * @link  https://php.net/manual/en/class.domentity.php#domentity.props.systemid
      */
-    public $systemId;
+    public ?string $systemId;
 
     /**
      * @var string|null
@@ -60,7 +60,7 @@ class DOMEntity extends DOMNode
      * For unparsed entities, the name of the notation for the entity. For parsed entities, this is NULL.
      * @link  https://php.net/manual/en/class.domentity.php#domentity.props.notationname
      */
-    public $notationName;
+    public ?string $notationName;
 
     /**
      * @var string|null
@@ -69,7 +69,7 @@ class DOMEntity extends DOMNode
      * parsed entity. This is NULL if it an entity from the internal subset or if it is not known.
      * @link  https://php.net/manual/en/class.domentity.php#domentity.props.actualencoding
      */
-    public $actualEncoding;
+    public ?string $actualEncoding;
 
     /**
      * @var string|null
@@ -78,7 +78,7 @@ class DOMEntity extends DOMNode
      * parsed entity. This is NULL otherwise.
      * @link  https://php.net/manual/en/class.domentity.php#domentity.props.encoding
      */
-    public $encoding;
+    public ?string $encoding;
 
     /**
      * @var string|null
@@ -87,5 +87,5 @@ class DOMEntity extends DOMNode
      * external parsed entity. This is NULL otherwise.
      * @link  https://php.net/manual/en/class.domentity.php#domentity.props.version
      */
-    public $version;
+    public ?string $version;
 }
