@@ -14,17 +14,17 @@
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-mbstring": "*",
-    "illuminate/support":  "~5.1|~6.0|~7.0|~8.0|~9.0|~10.0",
-    "symfony/css-selector": "^6.2"
+    "illuminate/support":  "*",
+    "symfony/css-selector": "*"
 
   },
   "require-dev": {
-    "phpunit/phpunit": "^10.0",
-    "mockery/mockery": "^1.5",
-    "fzaninotto/faker": "^1.5",
-    "symfony/var-dumper": "^6.2",
-    "symfony/debug": "^4.4",
-    "symfony/console": "^6.2"
+    "phpunit/phpunit": "*",
+    "mockery/mockery": "*",
+    "fzaninotto/faker": "*",
+    "symfony/var-dumper": "*",
+    "symfony/debug": "*",
+    "symfony/console": "*"
   },
   "autoload": {
     "psr-4": {
